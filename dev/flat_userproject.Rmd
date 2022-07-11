@@ -1,0 +1,384 @@
+---
+title: "Creating a project"
+author: "Sebastien Rochette"
+date: "23/01/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+<!--
+**Developers**
+
+This allows to create a directory ready to be proposed to user of your package, while including 
+
+- the necessary parts of your "renv.lock"
+- a README for your users to follow instructions
+- your vignettes
+
+This flat file contains a function that you will be using for your deliveries.  
+*This is not recommended to use it for a RStudio New project template Menu, because this would imply for your users to install your package twice, with bad dependencies.*
+
+Delivery?
+
+At the end of this file, you will see the code that you can use for each delivery.
+
+What to do?
+
+=> Follow instructions written as HTML comments like the following one
+
+- Create a vignette in your package that will be used as a Readme for your users project
+  + I recommend using the template in {thinkridentity}
+-->
+
+```{r dev-first-time}
+# Empty vignette
+# usethis::use_vignette('e-user-project-readme')
+
+# {thinkridentity} template
+file.copy(
+  system.file("package", "e-user-project-readme.Rmd", package = "thinkridentity"),
+  here::here("vignettes"), 
+  recursive = TRUE
+)
+```
+
+<!--
+- Search and replace the "the-vignette.Rmd" by a vector of your vignettes to include in the project for your users to test. Here and in the vignette for readme.
+- Search and replace the name of 'the.package' by the name of your package. Here and in the vignette for readme
+-->
+
+```{r development-update}
+# To modify ----
+# Which vignettes to copy for users to test the package
+the_vignettes <- c("the-vignette.Rmd")
+# Name of the vignette used as Readme
+the_readme_vignette <- "e-user-project-readme.Rmd"
+
+# If rsproject does not exist ----
+if (!dir.exists(here::here("inst/rsproject"))) {
+  dir.create(here::here("inst/rsproject"), recursive = TRUE)
+}
+
+# If specific versions need to be forced ----
+# renv::install("usethis@2.0.0")
+# renv::install("odbc@1.2.2")
+
+# Load already included functions
+pkgload::load_all(export_all = FALSE)
+
+# Update DESCRIPTION ----
+attachment::att_amend_desc(
+  # pkg_ignore = c("whereami"), # if needed
+  # extra.suggests = c("DT", "knitr") # if needed
+)
+
+# Update renv in the current development project ----
+custom_packages <- c(
+  attachment::att_from_description(),
+  "renv",
+  "devtools", "roxygen2", "usethis", "pkgload",
+  "testthat", "covr", "attachment", "remotes",
+  "bookdown", "DT", "pak",
+  "zip", "credentials",
+  "gert",
+  "fontawesome",
+  "pkgdown", "styler", "checkhelper", "fusen", "boxr"
+)
+renv::snapshot(packages = custom_packages, prompt = FALSE)
+
+# Create dir with RStudio project ready ----
+dir.create(here::here("inst/rsproject"))
+dir.create(here::here("inst/rstudio/templates/project"), recursive = TRUE)
+
+# Copy Rprofile
+file.copy(here::here(".Rprofile"), here::here("inst/rsproject/Rprofile"), overwrite = TRUE)
+
+# Copy renv files
+dir.create(here::here("inst/rsproject/renv"))
+file.copy(here::here("renv/.gitignore"), here::here("inst/rsproject/renv/.gitignore"), overwrite = TRUE)
+file.copy(here::here("renv/activate.R"), here::here("inst/rsproject/renv/activate.R"), overwrite = TRUE)
+file.copy(here::here("renv/settings.dcf"), here::here("inst/rsproject/renv/settings.dcf"), overwrite = TRUE)
+
+# Upgrade renv.lock in the user project ----
+renv::install("usethis@1.6.3")
+
+custom_packages <- c(
+  attachment::att_from_description(field = c("Depends", "Imports", "Suggests")),
+  "renv", "pkgload",
+  "remotes", "styler", "knitr", "rmarkdown", "rstudioapi",
+  "DT", "zip", "credentials",
+  "gert",
+  "fontawesome", "pak"
+)
+renv::snapshot(packages = custom_packages, lockfile = here::here("inst/rsproject/renv.lock"), prompt = FALSE)
+
+lock_ <- renv:::lockfile(file = here::here("inst/rsproject/renv.lock"))
+
+# Enable this universe
+options(
+  repos = c(
+    # thinkropen = 'https://thinkr-open.r-universe.dev',
+    CRAN = "https://cran.rstudio.com"
+  )
+)
+lock_$repos(
+  # thinkropen = 'https://thinkr-open.r-universe.dev',
+  CRAN = "https://cran.rstudio.com"
+)
+
+lock_$write(file = here::here("inst/rsproject/renv.lock"))
+rm(lock_)
+
+# Update vignettes ----
+for (vignette in the_vignettes) {
+  file.copy(here::here("vignettes", vignette), 
+            here::here("inst/rsproject", vignette), overwrite = TRUE)
+}
+
+# Update Readme and clean yaml ----
+temp_readme <- tempfile("readme", fileext = ".Rmd")
+file.copy(here::here("vignettes", the_readme_vignette),
+          temp_readme)
+readme_lines <- readLines(temp_readme)
+w.clean <- grep("WARNING", readme_lines)[1]
+w.yaml.end <- grep("^---$", readme_lines)[2]
+readme_lines <- readme_lines[-c(1:max(w.clean, w.yaml.end))]
+cat(c("---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---", 
+readme_lines), 
+sep = "\n", 
+file = here::here("inst/rsproject/README.Rmd"),
+append = FALSE)
+
+
+# Back to normal Rprofile ----
+source(here::here(".Rprofile"))
+# Re-install development versions if needed
+# renv::install("usethis@2.0.0")
+```
+
+
+<!--
+From here, if you inflate this flat file,
+this can be used to create a RStudio template for new project.
+However, this is a bad idea because this would require your users to install your package twice: on their general installation, and in the {renv} environment of the project created.
+
+-- So you can stop here --
+
+Or change "the-vignette.Rmd" by a vector of your vignettes included
+-->
+
+## Create directory with everything needed to use the package
+
+You can create a new directory with Rmd files needed to use the package, as well as the {renv} environment to reproduce the conditions of development.  
+
+### Create the project with RStudio or command line
+
+- Use the RStudio project creation with the template 'the.package'
+    - File > New Project > New directory > "Admin project with {the.package}"
+    - Choose where to create the project
+    
+OR with command line
+
+- Run `the.package::create_new_project("your/path/of/choice")`
+  - Restart the R session inside the new project
+
+### Restore the conditions of development
+
+- To install all R packages with correct versions inside the newly created package, run:
+
+```r
+renv::restore()
+```
+
+- Re-install the {the.package} package inside this environment
+
+```r
+# install.packages("remotes")
+remotes::install_local("the.package_0.1.0.tar.gz", upgrade = "never")
+```
+
+### Use the package
+
+Then, you can use the files:  
+
+- "the-vignette.Rmd" to test the package
+
+```{r function-create_new_project}
+#' Create directory with everything needed to use the package
+#'
+#' @param path Path of the directory where to create the project
+#' @param open Logical. Whether to open the directory when created
+#' @param overwrite Logical. Whether to overwrite all existing files.
+#'
+#' @importFrom utils browseURL
+#' @importFrom usethis create_project
+#' @export
+create_new_project <- function(path = tempfile("path"), open = FALSE,
+                             overwrite = FALSE) {
+  path <- normalizePath(path, mustWork = FALSE)
+  if (!dir.exists(path)) {
+    dir.create(path)
+  } else {
+    message("Files added to existing path: ", path)
+  }
+  
+  files_to_copy <- file.path(
+    app_sys_admin("rsproject"), 
+    list.files(app_sys_admin("rsproject")))
+  files_to_copy <- files_to_copy[!grepl("Rprofile", files_to_copy)]
+  
+  file.copy(from = files_to_copy, to = path,
+            recursive = TRUE, overwrite = overwrite)
+  
+  # Specific to .Rprofile
+  file.copy(from = app_sys_admin("rsproject", "Rprofile"),
+            to = file.path(path, ".Rprofile"),
+            overwrite = overwrite)
+  
+  # Create the project 
+  create_project(path, open = open)
+  
+  if (isTRUE(open)) {
+    browseURL(path)
+  }
+  
+  return(path)
+}
+```
+
+```{r examples-create_new_project}
+# Define a directory, new or existing
+my_directory <- tempdir()
+# Create the content
+create_new_project(my_directory)
+# See the content of the directory
+fs::dir_tree(my_directory)
+```
+
+```{r tests-create_new_project}
+test_that("create_new_project works properly", {
+  
+  skip_if_not(Sys.getenv("RSTUDIO_PROGRAM_MODE") == "desktop")
+  
+  # Define a directory, new or existing
+  my_directory <- tempfile(pattern = "admin-")
+
+  # Create the content
+  create_new_project(my_directory, open = FALSE)
+
+  # fs::dir_tree(my_directory, all = TRUE)
+
+  all_files <- c("renv.lock", ".Rprofile", "renv/activate.R",
+                 "README.Rmd",
+                 "the-vignette.Rmd")
+
+  for (the_file in all_files) {
+    expect_true(file.exists(file.path(my_directory, the_file)))
+  }
+
+  # No error to open file, but message because of existing directory
+  expect_message(create_new_project(my_directory, open = TRUE), regexp = "Files added to existing path")
+
+
+# Test locally during dev only that content was updated ----
+  message("create_new_project is up-to-date")
+  skip_if_not(file.exists("../../.Rprofile"))
+  
+  all_files <- c(".Rprofile", "renv/activate.R") # "renv.lock", 
+  for (the_file in all_files) {
+    file_expected <- readLines(file.path("..", "..", the_file))
+    file_created <- readLines(file.path(my_directory, the_file))
+    expect_equal(file_created, file_expected)
+  }
+  
+  all_files <- c("the-vignette.Rmd")
+  for (the_file in all_files) {
+    file_expected <- readLines(file.path("..", "..", "vignettes", the_file))
+    file_created <- readLines(file.path(my_directory, the_file))
+    expect_equal(file_created, file_expected)
+  }
+  
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(flat_file = "dev/flat_userproject.Rmd", 
+               vignette_name = "d - create admin project", 
+               open_vignette = FALSE,
+               overwrite = "yes",
+               check = FALSE)
+
+# Test file for updated skeleton
+pkgload::load_all()
+testthat::test_file(here::here("tests/testthat/test-create_new_project.R"))
+```
+
+<!-- 
+
+-- Delivery --
+
+- Run the content of the `development-update` chunk above to update the renv.lock
+- Run the code in the `development-delivery` chunk below to
+  + Create a directory that will be send to your users
+  + Build sources of your package to include in the delivery
+  + Include the sources
+
+
+-->
+
+```{r development-delivery}
+# _RS Project update ----
+rs_dir <- "deliverables/the.package_project"
+unlink(rs_dir, recursive = TRUE)
+usethis::use_git_ignore("deliverables")
+pkgload::load_all()
+outdir <- create_new_project(path = file.path(tempdir(), "the.package_project"))
+file.copy(outdir, "deliverables", recursive = TRUE)
+unlink(outdir, recursive = TRUE)
+# => Do not forget to add sources in the project
+
+# _Sources build ----
+temp_install <- file.path(tempdir(), "temp_pkg_folder")
+unlink(temp_install, recursive = TRUE)
+dir.create(temp_install)
+
+# Build with all except what is in Rbuildignore
+rbuildignore <- gsub("\\\\[.]", "[.]", paste(readLines(".Rbuildignore"), collapse = "|"))
+all.files.noinst <- list.files(here::here())[
+  !grepl(rbuildignore, list.files(here::here()))]
+
+# Copy the entire folder in tempdir()
+file.copy(from = all.files.noinst,
+          to = temp_install,
+          recursive = TRUE) 
+list.files(temp_install)
+
+# Build sources from reduced package
+dir.create("deliverables/sources")
+devtools::build(pkg = temp_install,
+                path = "deliverables/sources",
+                vignettes = FALSE) # build the package
+
+unlink(temp_install, recursive = TRUE)
+
+# _Copy sources in the.package_project ----
+# dir.create("deliverables/the.package_project/renv/cellar", recursive = TRUE)
+file.copy(tail(
+  list.files("deliverables/sources", pattern = ".tar.gz", full.names = TRUE), 1),
+          to = "deliverables/the.package_project", overwrite = TRUE)
+
+# Verify the Readme, but you maybe deliver this "deliverables/the.package_project" as is to your clients
+```
+

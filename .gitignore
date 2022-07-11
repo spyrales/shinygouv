@@ -1,0 +1,8 @@
+
+!.github/*/*
+docs
+.Rproj.user
+.DS_Store
+.Rdata
+.Rhistory
+.httr-oauth
