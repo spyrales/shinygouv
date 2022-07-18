@@ -1,20 +1,23 @@
 # Define a direct explicite title
-# exemple: Create my_fun to build xml 
+# exemple: Create my_fun to build xml
 
-Why?  
+# List of tags to add
+Tags :
 
-- 
+Why?
 
-What?  
+-
 
-- 
-# 50-character subject line 
+What?
+
+-
+# 50-character subject line
 # 72-character wrapped longer description.
 
 Issues
 
 issue #
 
-# List corresponding issues 
+# List corresponding issues
 # example :Issue #12
 # Be careful with # as it will not be commit if line starts with #

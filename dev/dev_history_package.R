@@ -77,6 +77,12 @@ devtools::check()
 # Utils for dev ----
 # Get global variables
 checkhelper::print_globals()
+# styler the package
+grkstyle::grk_style_pkg()
+# linter
+lintr::lint_package()
+# bump version
+desc::desc_bump_version("dev")
 # Install
 devtools::install(upgrade = "never")
 # devtools::load_all()
