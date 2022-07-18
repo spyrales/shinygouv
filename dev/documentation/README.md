@@ -26,11 +26,11 @@ Voici un exemple :
 
     tags: feat, doc, test
 
-    Why
+    Pourquoi ?
 
-    What
+    Quoi ?
 
-    Issues
+    Tickets
 
 Et voici la liste des tags possible :
 
@@ -56,13 +56,13 @@ Pensez à executer les lignes suivantes du fichier
 
 ``` r
 # Utils for dev ----
-# Get global variables
+# Recuperer les variables globales
 checkhelper::print_globals()
-# styler the package
+# styler le package
 grkstyle::grk_style_pkg()
 # linter
 lintr::lint_package()
-# bump version
+# Incrementer le numero de version
 desc::desc_bump_version("dev")
 # Install
 devtools::install(upgrade = "never")
