@@ -1,6 +1,8 @@
-dev: lire avant de dev
+Guide du développeur
 ================
-2022-07-18
+
+Vous trouverez ici l’ensemble des informations nécéssaires pour
+développer le package.
 
 ## Workflow a suivre avant de dev sur le projet :
 
@@ -41,7 +43,7 @@ Et voici la liste des tags possible :
 
 ## Workflow avant de commit
 
-Pensez à executer les lignes suivant du fichier
+Pensez à executer les lignes suivantes du fichier
 `dev/dev_history_package.R` :
 
 ``` r
