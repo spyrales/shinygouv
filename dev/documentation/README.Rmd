@@ -1,6 +1,8 @@
 ---
 title: 'Guide du développeur'
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -50,6 +52,12 @@ style : pour la mise en forme de code
 chore: tout ce qui touche au projet en lui même, ne correspond pas à un feat ou un fix
 ```
 
+## Les packages nécéssaires au developpement
+
+
+En plus des dépendances du package, un ensemble de packages sera nécéssaire pour le bon developpement du package.
+
+Vous retrouverez cette liste dans le fichier `dev/pkgs_deps.csv`.
 
 ## Workflow avant de commit
 

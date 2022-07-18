@@ -16,7 +16,6 @@
 ## Dependencies ----
 ## Amend DESCRIPTION with dependencies read from package code parsing
 attachment::att_amend_desc()
-usethis::use_dev_package("charpente", type = "Suggests")
 
 ## Add fusen flat
 fusen::add_flat_template("add", flat_name = "doc_externe_files")
@@ -46,7 +45,51 @@ usethis::use_data_raw(name = "my_dataset", open = FALSE)
 ## Add one line by test you want to create
 usethis::use_test("app")
 
-# Documentation
+# Documentation and dev
+
+charpente::get_dependency_versions("@gouvfr/dsfr")
+
+## deps for dev
+
+## Only for describe deps for developper
+install.packages("remotes")
+remotes::install_cran("attachment")
+pkgs <- unique(
+  c(
+    attachment::att_from_rmds("dev"),
+    attachment::att_from_rscripts("dev")
+  )
+)
+
+remotes_or_not <- lapply(pkgs, function(x){
+  packageDescription(x)
+}) %>%
+  setNames(pkgs)
+
+cran_or_not <- lapply(remotes_or_not, function(x){
+  try(x[["Repository"]], silent = TRUE)
+}) %>%
+  sapply(., is.null)
+
+github_pkg <- names(cran_or_not[cran_or_not])
+cran_pkg <- names(cran_or_not[!cran_or_not])
+github_repo <- lapply(github_pkg,function(x) {
+  desc <- remotes_or_not[[x]]
+  tolower(paste(desc$RemoteUsername, desc$RemoteRepo, sep = "/"))
+}) %>%
+  setNames(github_pkg) %>%
+  purrr::compact()
+
+packages_and_deps <- rbind(
+  data.frame(
+    name_pkg = cran_pkg, cran = TRUE, remote = ""
+  ),
+  data.frame(
+    name_pkg = names(github_repo), cran = FALSE, remote = unlist(github_repo)
+  )
+)
+
+write.csv(x = packages_and_deps, "dev/pkgs_deps.csv")
 
 ## Vignette ----
 usethis::use_vignette("shinygouv")
