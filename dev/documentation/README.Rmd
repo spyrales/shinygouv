@@ -1,6 +1,6 @@
 ---
 title: 'dev: lire avant de dev'
-output: html_document
+output: github_document
 date: '2022-07-18'
 ---
 
