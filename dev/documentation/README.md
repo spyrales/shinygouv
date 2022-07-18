@@ -1,8 +1,9 @@
 Guide du développeur
 ================
 
-Vous trouverez ici l’ensemble des informations nécéssaires pour
-développer le package.
+Ceci est un dossier de documentation dédié aux développeurs et
+développeuses. Il contient les choix de mode de développement et tout
+autre document qui ne s’adresserait pas directement aux utilisateurs.
 
 ## Workflow a suivre avant de dev sur le projet :
 
@@ -60,6 +61,4 @@ desc::desc_bump_version("dev")
 devtools::install(upgrade = "never")
 # devtools::load_all()
 devtools::check(vignettes = TRUE)
-# ascii
-stringi::stri_trans_general("é", "hex")
 ```
