@@ -16,6 +16,10 @@
 ## Dependencies ----
 ## Amend DESCRIPTION with dependencies read from package code parsing
 attachment::att_amend_desc()
+usethis::use_dev_package("charpente", type = "Suggests")
+
+## Add fusen flat
+fusen::add_flat_template("add", flat_name = "doc_externe_files")
 
 ## Add modules ----
 ## Create a module infrastructure in R/

@@ -6,3 +6,4 @@ docs
 .Rdata
 .Rhistory
 .httr-oauth
+inst/doc
