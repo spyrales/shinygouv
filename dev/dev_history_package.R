@@ -14,7 +14,7 @@ devtools::check()
 # Get global variables
 checkhelper::print_globals()
 # styler the package
-grkstyle::grk_style_pkg()
+grkstyle::grk_style_pkg(pkg = ".")
 # linter
 lintr::lint_package()
 # bump version
