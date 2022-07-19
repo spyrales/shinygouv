@@ -9,8 +9,6 @@ autre document qui ne s’adresserait pas directement aux utilisateurs.
 
 -   Ajouter le template de commit :
 
-<!-- -->
-
     git config --local commit.template .github/template_commit
 
 Et suivre cette convention pour les commits et les tags :
@@ -47,6 +45,17 @@ Et voici la liste des tags possible dans l'ordre d'importance pour le choix du t
     style : pour la mise en forme de code
     chore: tout ce qui touche au projet en lui même, ne correspond pas à un feat ou un fix
 
+## Les langues utilisées dans le projet
+
+- Rapports d'exploration (présentés en vignettes) : 🇫🇷 
+- Vignettes utilisateurs: les vignettes qui expliquent comment utiliser les fonctions du package 🇫🇷 
+- Contenu du Readme 🇫🇷 
+- Documentation {roxygen2} des fonctions 🇫🇷 
+- Messages de commit (de préférence en anglais, par habitude chez nous) 🇫🇷 
+- Description des tests unitaires (de préférence en anglais) 🇫🇷 
+- Code of Conduct: template par défaut de {usethis} en anglais déjà présent comme pour {gouvdown} 🇬🇧 
+- Contributing: template par défaut de {usethis} en anglais peut être ajouté comme pour {gouvdown} 🇬🇧 
+
 ## Les packages nécéssaires au developpement
 
 En plus des dépendances du package, un ensemble de packages sera
@@ -56,21 +65,9 @@ Vous retrouverez cette liste dans le fichier `dev/pkgs_deps.csv`.
 
 ## Workflow avant de commit
 
-Pensez à executer les lignes suivantes du fichier
-`dev/dev_history_package.R` :
+Pensez à executer les lignes "Each time needed" du fichier 
+`dev/dev_history_package.R` avant chaque commit.
 
 ``` r
-# Utils for dev ----
-# Recuperer les variables globales
-checkhelper::print_globals()
-# styler le package
-grkstyle::grk_style_pkg()
-# linter
-lintr::lint_package()
-# Incrementer le numero de version
-desc::desc_bump_version("dev")
-# Installer
-devtools::install(upgrade = "never")
-# devtools::load_all()
-devtools::check(vignettes = TRUE)
+rstudioapi::navigateToFile("dev/dev_history_package.R")
 ```

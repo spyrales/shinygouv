@@ -1,7 +1,9 @@
 # Contributing to shinygouv
 
-This outlines how to propose a change to shinygouv. 
-For more detailed info about contributing to this, and other tidyverse packages, please see the
+This outlines how to propose a change to {shinygouv}. 
+For specific code contributions to this project, please read the documentation in "dev/documentation/README.Rmd"
+
+For more detailed info about contributing to a package on GitHub, please see the
 [**development contributing guide**](https://rstd.io/tidy-contrib). 
 
 ## Fixing typos
