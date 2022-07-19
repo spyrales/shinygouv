@@ -1,23 +1,27 @@
-# Define a direct explicite title
-# exemple: Create my_fun to build xml
+# Définir un titre explicite et concis avec un tag principal
+# Exemple: feat: Création de ma_fonction pour construire le xml
+# 50-character subject line
 
-# List of tags to add
+# Choisir un ou plusieurs tags à ajouter: le principal et les secondaires
+# Tags possibles du plus au moins important :
+# ci, fix, feat, doc, test, style, chore
 Tags :
 
-Why?
+Pourquoi ?
 
 -
 
-What?
+Quoi ?
 
 -
-# 50-character subject line
+
 # 72-character wrapped longer description.
 
-Issues
+# Liste des tickets correspondants
+# exemple : Ticket #12
+# Soyez vigilant avec le #, la ligne ne fera pas partie du commit si elle commence par #
+Tickets
 
-issue #
+ticket #
 
-# List corresponding issues
-# example :Issue #12
-# Be careful with # as it will not be commit if line starts with #
+

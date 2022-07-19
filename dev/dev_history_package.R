@@ -1,3 +1,80 @@
+# ==== Each time needed ====
+# Dependencies ----
+## Ce qu'il faut avant d'envoyer sur le serveur
+# devtools::install_github("ThinkR-open/attachment")
+# attachment::att_amend_desc(extra.suggests = c("bookdown"))
+# attachment::create_dependencies_file()
+attachment::att_amend_desc()
+# Cela est normal : "Error in eval(x, envir = envir) : object 'db_local' not found"
+
+devtools::build_readme()
+devtools::check()
+
+# Utils for dev ----
+# Get global variables
+checkhelper::print_globals()
+# styler the package
+grkstyle::grk_style_pkg()
+# linter
+lintr::lint_package()
+# bump version
+desc::desc_bump_version("dev")
+# Install
+devtools::install(upgrade = "never")
+# devtools::load_all()
+devtools::check(vignettes = TRUE)
+# ascii
+stringi::stri_trans_general("é", "hex")
+# Create a summary readme for the testthat subdirectory
+covrpage::covrpage()
+
+# Documentation and dev ----
+charpente::get_dependency_versions("@gouvfr/dsfr")
+
+## deps for dev ----
+## Only for describe deps for developper
+install.packages("remotes")
+remotes::install_cran("attachment")
+pkgs <- unique(
+  c(
+    attachment::att_from_rmds("dev"),
+    attachment::att_from_rscripts("dev")
+  )
+)
+
+remotes_or_not <- lapply(pkgs, function(x){
+  packageDescription(x)
+}) %>%
+  setNames(pkgs)
+
+cran_or_not <- lapply(remotes_or_not, function(x){
+  try(x[["Repository"]], silent = TRUE)
+}) %>%
+  sapply(., is.null)
+
+github_pkg <- names(cran_or_not[cran_or_not])
+cran_pkg <- names(cran_or_not[!cran_or_not])
+github_repo <- lapply(github_pkg,function(x) {
+  desc <- remotes_or_not[[x]]
+  tolower(paste(desc$RemoteUsername, desc$RemoteRepo, sep = "/"))
+}) %>%
+  setNames(github_pkg) %>%
+  purrr::compact()
+
+packages_and_deps <- rbind(
+  data.frame(
+    name_pkg = cran_pkg, cran = TRUE, remote = ""
+  ),
+  data.frame(
+    name_pkg = names(github_repo), cran = FALSE, remote = unlist(github_repo)
+  )
+)
+
+write.csv(x = packages_and_deps, "dev/pkgs_deps.csv")
+
+
+
+# ==== Usually once ====
 # Hide this file from build
 usethis::use_build_ignore("dev")
 usethis::use_build_ignore("ci/lib")
@@ -33,7 +110,8 @@ usethis::use_github_action_check_standard()
 usethis::use_github_action("pkgdown")
 #  _Add remotes::install_github("ThinkR-open/thinkrtemplate") in this action
 usethis::use_github_action("test-coverage")
-
+## Set the code coverage service ("codecov" or "coveralls")
+usethis::use_coverage()
 
 # _rhub
 # rhub::check_for_cran()
@@ -62,32 +140,6 @@ devtools::build_vignettes()
 usethis::use_pkgdown()
 # pkgdown::build_site() # pour tests en local
 
-# Dependencies ----
-## Ce qu'il faut avant d'envoyer sur le serveur
-# devtools::install_github("ThinkR-open/attachment")
-# attachment::att_amend_desc(extra.suggests = c("bookdown"))
-# attachment::create_dependencies_file()
-attachment::att_amend_desc()
-# Cela est normal : "Error in eval(x, envir = envir) : object 'db_local' not found"
 
-devtools::build_readme()
-devtools::check()
-
-
-# Utils for dev ----
-# Get global variables
-checkhelper::print_globals()
-# styler the package
-grkstyle::grk_style_pkg()
-# linter
-lintr::lint_package()
-# bump version
-desc::desc_bump_version("dev")
-# Install
-devtools::install(upgrade = "never")
-# devtools::load_all()
-devtools::check(vignettes = TRUE)
-# ascii
-stringi::stri_trans_general("é", "hex")
 
 

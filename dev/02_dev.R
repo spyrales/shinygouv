@@ -11,15 +11,11 @@
 #### CURRENT FILE: DEV SCRIPT #####
 ###################################
 
-# Engineering
+# Engineering: to do everytime
+# => In dev/dev_history_package.R
 
-## Dependencies ----
-## Amend DESCRIPTION with dependencies read from package code parsing
-attachment::att_amend_desc()
 
-## Add fusen flat
-fusen::add_flat_template("add", flat_name = "doc_externe_files")
-
+# ==== To do once with {golem} ====
 ## Add modules ----
 ## Create a module infrastructure in R/
 golem::add_module(name = "name_of_module1", with_test = TRUE) # Name of the module
@@ -45,98 +41,11 @@ usethis::use_data_raw(name = "my_dataset", open = FALSE)
 ## Add one line by test you want to create
 usethis::use_test("app")
 
-# Documentation and dev
-
-charpente::get_dependency_versions("@gouvfr/dsfr")
-
-## deps for dev
-
-## Only for describe deps for developper
-install.packages("remotes")
-remotes::install_cran("attachment")
-pkgs <- unique(
-  c(
-    attachment::att_from_rmds("dev"),
-    attachment::att_from_rscripts("dev")
-  )
-)
-
-remotes_or_not <- lapply(pkgs, function(x){
-  packageDescription(x)
-}) %>%
-  setNames(pkgs)
-
-cran_or_not <- lapply(remotes_or_not, function(x){
-  try(x[["Repository"]], silent = TRUE)
-}) %>%
-  sapply(., is.null)
-
-github_pkg <- names(cran_or_not[cran_or_not])
-cran_pkg <- names(cran_or_not[!cran_or_not])
-github_repo <- lapply(github_pkg,function(x) {
-  desc <- remotes_or_not[[x]]
-  tolower(paste(desc$RemoteUsername, desc$RemoteRepo, sep = "/"))
-}) %>%
-  setNames(github_pkg) %>%
-  purrr::compact()
-
-packages_and_deps <- rbind(
-  data.frame(
-    name_pkg = cran_pkg, cran = TRUE, remote = ""
-  ),
-  data.frame(
-    name_pkg = names(github_repo), cran = FALSE, remote = unlist(github_repo)
-  )
-)
-
-write.csv(x = packages_and_deps, "dev/pkgs_deps.csv")
 
 ## Vignette ----
 usethis::use_vignette("shinygouv")
 devtools::build_vignettes()
 
-## Code Coverage----
-## Set the code coverage service ("codecov" or "coveralls")
-usethis::use_coverage()
-
-# Create a summary readme for the testthat subdirectory
-covrpage::covrpage()
-
-## CI ----
-## Use this part of the script if you need to set up a CI
-## service for your application
-##
-## (You'll need GitHub there)
-usethis::use_github()
-
-# GitHub Actions
-usethis::use_github_action()
-# Chose one of the three
-# See https://usethis.r-lib.org/reference/use_github_action.html
-usethis::use_github_action_check_release()
-usethis::use_github_action_check_standard()
-usethis::use_github_action_check_full()
-# Add action for PR
-usethis::use_github_action_pr_commands()
-
-# Travis CI
-usethis::use_travis()
-usethis::use_travis_badge()
-
-# AppVeyor
-usethis::use_appveyor()
-usethis::use_appveyor_badge()
-
-# Circle CI
-usethis::use_circleci()
-usethis::use_circleci_badge()
-
-# Jenkins
-usethis::use_jenkins()
-
-# GitLab CI
-usethis::use_gitlab_ci()
-
 # You're now set! ----
-# go to dev/03_deploy.R
+# To deploy: go to dev/03_deploy.R
 rstudioapi::navigateToFile("dev/03_deploy.R")
