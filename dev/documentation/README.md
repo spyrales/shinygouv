@@ -15,24 +15,29 @@ autre document qui ne s’adresserait pas directement aux utilisateurs.
 
 Et suivre cette convention pour les commits et les tags :
 
--   Un mot clé en début de message pour dire le principal objectif de ce
+-   Un mot clé et un titre en début de message pour dire le principal objectif de ce
     commit.
 -   Une ligne `tags` qui reprend les mots clés pour ce qui est fait dans
     le commit
 
 Voici un exemple :
 
-    feat: ma feature de ouf
+```
+feat: ma fonctionnalité de ouf
 
-    tags: feat, doc, test
+# Tags possibles du plus au moins important :
+Tags: ci, fix, feat, doc, test, style, chore
 
-    Pourquoi ?
+Pourquoi ?
 
-    Quoi ?
+Quoi ?
+   
+Tickets
 
-    Tickets
+```
 
-Et voici la liste des tags possible :
+Et voici la liste des tags possible dans l'ordre d'importance pour le choix du tag majeur dans le titre du commit :
+
 
     ci : tout ce qui touche au ci, meme les fix du ci pour l'instant
     fix : correction d'un bug dans la code base
@@ -45,7 +50,7 @@ Et voici la liste des tags possible :
 ## Les packages nécéssaires au developpement
 
 En plus des dépendances du package, un ensemble de packages sera
-nécéssaire pour le bon developpement du package.
+nécessaire pour le bon developpement du package.
 
 Vous retrouverez cette liste dans le fichier `dev/pkgs_deps.csv`.
 
@@ -64,7 +69,7 @@ grkstyle::grk_style_pkg()
 lintr::lint_package()
 # Incrementer le numero de version
 desc::desc_bump_version("dev")
-# Install
+# Installer
 devtools::install(upgrade = "never")
 # devtools::load_all()
 devtools::check(vignettes = TRUE)
