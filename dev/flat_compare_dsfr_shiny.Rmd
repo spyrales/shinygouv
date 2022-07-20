@@ -225,14 +225,14 @@ actionButton_dsfr <- function(inputId, label){
 ui <- fluidPage(
 
       includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
-      actionButton_dsfr("test", "test"),
-
+      actionButton_dsfr("test", "test")
 )
 
 server <- function(input, output, session) {
   observeEvent(input$test,{
     message(input$test)
   })
+
 }
 
 shinyApp(ui, server)
@@ -254,6 +254,23 @@ Inconvénients :
 - Liée au package {shiny} et aux inputs implémentés 
 - Si l'input n'existe pas, alors il faudra recoder la partie JS (c'est vrai pour les options A et B)
 - Maintenance : suivre {shiny} et DSFR. Autrement dit, si la classe de l'input {shiny} devient autre chose que `action-button` notre code ne marchera plus (peu probable...).
+
+
+## Les inputs recensés dans les apps "ssm-écologie" par option
+
+```{r, echo=FALSE}
+DT::datatable(readxl::read_excel(
+  system.file(
+    "comparaison",
+    "list_input_par_option.xlsx",
+    package = "shinygouv"
+  )
+), 
+options = list("dom" = "tp")
+)
+```
+
+Les éléments tels que navbarpage, tabpanel etc sont possible dans la limite de ce que propose DSFR. Ils nécéssitent plus ou moins une demi-journée par composant (codé avec des htmlTemplates). 
 
 
 ## Notre recommandation
