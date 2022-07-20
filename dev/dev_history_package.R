@@ -8,7 +8,14 @@ attachment::att_amend_desc()
 # Cela est normal : "Error in eval(x, envir = envir) : object 'db_local' not found"
 
 devtools::build_readme()
-devtools::check()
+
+check_n_covr <- function() {
+  res <- devtools::check(args = c("--no-tests"))
+  print(res)
+  covr::package_coverage(type = "tests", quiet = TRUE)
+}
+
+check_n_covr()
 
 # Utils for dev ----
 # Get global variables
