@@ -63,7 +63,7 @@ De plus, seulement quelques applications utilisent les composantes suivantes:
 
 ```{r, echo = FALSE}
 
-compo_shiny_bonus <- c("fileInput", "dataRangeInput", "showModal")
+compo_shiny_bonus <- c("fileInput", "dateRangeInput", "showModal")
 compo_shiny_bonus
 
 ```
