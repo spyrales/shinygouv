@@ -7,3 +7,4 @@ docs
 .Rhistory
 .httr-oauth
 inst/doc
+rsconnect
