@@ -1,7 +1,7 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
-  push:
+  pull_request:
     branches: [main, master]
 
 name: deploy
@@ -13,7 +13,7 @@ jobs:
       SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
       SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
       SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-      NAME_OF_APP: shinygouv-demo
+      NAME_OF_APP: shinygouv-demo-dev
     steps:
       - uses: actions/checkout@v2
 
