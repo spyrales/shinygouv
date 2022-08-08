@@ -82,4 +82,4 @@ rstudioapi::navigateToFile("dev/dev_history_package.R")
 
 ## Choix techniques
 
-- Explication du choix des htmlTemplates [ici](explo_shiny.dsfr.html)
+- Explication du choix des htmlTemplates [ici](explo_shiny.dsfr.md)
