@@ -1,0 +1,432 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+Documentation sur l'implementation des composants `fluidPage_dsfr`, `fluidRow_dsfr` et les columns.
+
+Nous allons dans un premier temps nous attaquer au fluidPage.
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# fluidPage_dsfr_template
+
+Comme expliqué dans le workflow de création des composants, nous avons un fichier `html` dans le dossier `inst/v1.7.2/composant/fluidpage.html`. Celui ci reprend la structure de base de la page pour dsfr.
+
+Ensuite, vient la traduction avec `htmlTemplate` :
+
+```{r function-fluidPage_dsfr_template}
+#' fluidPage_dsfr_template
+#' 
+#' @param title titre de la page
+#' @param body body 
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+fluidPage_dsfr_template <- function(
+    title,
+    body
+){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "fluidpage.html",
+      package = "shinygouv"
+    ),
+    title = title,
+    body = body
+  )
+}
+
+```
+
+```{r, eval=FALSE, echo=TRUE}
+fluidPage_dsfr_template <- function(
+    title,
+    body
+){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "fluidpage.html",
+      package = "shinygouv"
+    ),
+    title = title,
+    body = body
+  )
+}
+```
+
+Les paramètres `title` et `body` sont repris dans le html pour pouvoir le créer.
+
+```{r tests-fluidPage_dsfr_template}
+test_that("fluidPage_dsfr_template works", {
+  expect_true(inherits(fluidPage_dsfr_template, "function")) 
+  
+  test <- fluidPage_dsfr_template(
+    title = "titre",
+    body = NULL
+  )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+
+
+# fluidPage_dsfr
+
+Le template étant défini, nous allons pourvoir apporter notre logique métier dans la fonction `fluidPage_dsfr`. Pour ça, la fonction reprend le template précédent. Ensuite, cette fonction permet d'ajouter une logique sur les paramètres, comme checker avec des assertthat ou autre.
+
+Aussi, c'est ici que nous ajoutons les dépendences à notre application avec `add_dsfr_deps`. Autrement dit, nous chargons à cet endroit le css, js et autres.
+
+Petit détail technique, le `parse_html` permet de s'assurer de retrouver une structure classique d'une app shiny après la lecture du htmlTemplate. On l'utilisera toujours après la fonction `_template`. La zone permet de spécifier jusqu'à ou on veut traduire le template `html`. Dans 90% des cas, le paramètre par défaut, à savoir "/html/body/*" sera suiffisant. Ici, on utilise "/html" car nous souhaitons récupérer l'intégralité du template.
+
+```{r function-fluidPage_dsfr}
+#' fluidPage_dsfr
+#' 
+#' @param ... element a inclure dans la page
+#' @param theme pas implemente
+#' @param lang pas implemente
+#' @param title titre de la page
+#'
+#' @return html
+#' 
+#' @importFrom htmltools tagList
+#' 
+#' @export
+#'
+#' @examples
+fluidPage_dsfr <- function(
+    ...,
+    title = NULL,
+    theme = NULL,
+    lang = NULL
+) {
+  
+  # TODO theme et lang
+  # check les params
+  ui <- fluidPage_dsfr_template(
+    title = tagList(title),
+    body = tagList(
+      ...
+      )
+  ) %>%
+    parse_html(zone = "/html") %>% 
+    add_dsfr_deps() 
+  ui
+  
+}
+```
+
+```{r, eval=FALSE, echo=TRUE}
+fluidPage_dsfr <- function(
+    ...,
+    title = NULL,
+    theme = NULL,
+    lang = NULL
+) {
+  
+  # TODO theme et lang
+  # check les params
+  ui <- fluidPage_dsfr_template(
+    title = tagList(title),
+    body = tagList(
+      ...
+      )
+  ) %>%
+    parse_html(zone = "/html") %>% 
+    add_dsfr_deps() 
+  ui
+}
+```
+
+
+```{r examples-fluidPage_dsfr, eval=FALSE}
+my_page <- fluidPage_dsfr(
+  title = "Gouv",
+  htmltools::div("test")
+)
+if(interactive()){
+shiny::shinyApp(
+  my_page,
+  server = function(input, output){}
+  )
+}
+```
+
+```{r tests-fluidPage_dsfr}
+test_that("fluidPage_dsfr works", {
+  test <- fluidPage_dsfr(
+      title = "Gouv",
+      body = htmltools::div("test")
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag.list")
+})
+```
+
+# fluidRow_dsfr
+
+Voici un autre exemple pour les layouts. Un ensemble de fonction va reposer sur un seul template, celui du layout. On trouve alors un fichier `html` dans un dossier `layout`.
+
+```{r function-layout_dsfr_template}
+#' layout_dsfr_template
+#' 
+#' @param html list de tag
+#' @param class class de la div
+#' @param other_class autre classes a ajouter
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+layout_dsfr_template <- function(
+    html,
+    class,
+    other_class
+){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "layout", 
+      "layout.html",
+      package = "shinygouv"
+    ),
+    html = html,
+    class = class,
+    other_class = other_class
+  )
+}
+
+```
+
+
+```{r, echo=TRUE, eval=FALSE}
+layout_dsfr_template <- function(
+    html,
+    class,
+    other_class
+){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "layout", 
+      "layout.html",
+      package = "shinygouv"
+    ),
+    html = html,
+    class = class,
+    other_class = other_class
+  )
+}
+```
+
+
+```{r tests-layout_dsfr_template}
+test_that("fluidPage_dsfr_template works", {
+  expect_true(inherits(fluidPage_dsfr_template, "function")) 
+  
+  test <- fluidPage_dsfr_template(
+    title = "titre",
+    body = NULL
+  )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+
+Avec cette fonction, on va pouvoir initier tout un ensemble d'éléments pour notre application, comme les fluidRow, les containers et les columns
+
+## Exemple pour fluidRow_dsfr
+
+On reprend le template layout et on ajoute notre logique métier sur les paramètres.
+
+```{r function-fluidRow_dsfr}
+#' fluidRow_dsfr
+#' 
+#' 
+#' @param ... differents tag pour construire la page
+#' @param class ajout de class pour la fluidRow_dsfr (voir la page officiel du CSS)
+#'
+#' @return shiny.tag.list
+#' @importFrom htmltools tagList
+#' 
+#' @export
+fluidRow_dsfr <- function(..., class = NULL){
+    layout_dsfr_template(
+      html = tagList(
+        ...
+      ),
+      class = "fr-grid-row",
+      other_class = class
+    )
+}
+```
+  
+```{r example-fluidRow_dsfr}
+
+if(interactive()){
+shiny::shinyApp(
+  ui = fluidPage_dsfr(
+    title = "exemple",
+    fluidRow_dsfr(
+      shiny::p("Voici un exemple")
+    )
+  ),
+  server = function(input, output){}
+  )
+}
+
+```
+  
+```{r tests-fluidRow_dsfr}
+test_that("fluidRow_dsfr works", {
+  expect_true(inherits(fluidRow_dsfr, "function")) 
+  test <- fluidRow_dsfr(
+    shiny::p("Voici un exemple")
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag.list")
+})
+```
+
+## Exemple avec les colonnes
+
+Le fonctionnement des colonnes est un peu différent pour le dsfr. Si la largeur n'est pas précisée alors la taille des colonnes est automatiquement calculée en fonction du nombre. Mais on a quand même la possibilité de changer la taille comme dans {shiny}. Nous allons donc implementer cette logique en essayant de penser à la conversion de nos applications.
+
+```{r function-column_dsfr}
+#' column_dsfr
+#' 
+#' 
+#' @param width width par défaut est NULL, cela signifie que la taille de la colonne depend des autres colonnes. Vous pouvez aussi utiliser 0
+#' @param ... differents tag pour construire la page
+#'
+#' @return shiny.tag.list
+#' 
+#' @importFrom htmltools tagList
+#' 
+#' @export
+column_dsfr <- function(width = NULL, ...){
+  
+  if(is.null(width)) {
+    add_width <- ""
+    }else{
+      if(width != 0){
+        add_width <- paste0("-", width)
+      }else{
+        add_width <- ""
+      }
+    }
+
+  class <- paste0("fr-col", add_width)
+  
+  layout_dsfr_template(
+      html = tagList(
+        ...
+      ),
+      class = class,
+      other_class = NULL
+    )
+}
+```
+  
+
+```{r, echo=TRUE, eval=FALSE}
+column_dsfr <- function(width = NULL, ...){
+  
+  if(is.null(width)) {
+    add_width <- ""
+    }else{
+      if(width != 0){
+        add_width <- paste0("-", width)
+      }else{
+        add_width <- ""
+      }
+    }
+
+  class <- paste0("fr-col", add_width)
+  
+  layout_dsfr_template(
+      html = tagList(
+        ...
+      ),
+      class = class,
+      other_class = NULL
+    )
+}
+```  
+  
+```{r example-column_dsfr}
+
+if(interactive()){
+shiny::shinyApp(
+  ui = fluidPage_dsfr(
+    title = "exemple",
+    fluidRow_dsfr(
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test")
+    )
+  ),
+  server = function(input, output){}
+  )
+}
+
+```
+  
+```{r tests-column_dsfr}
+test_that("column_dsfr works", {
+  expect_true(inherits(column_dsfr, "function")) 
+  test <- column_dsfr(
+    3,
+    shiny::p("Voici un exemple")
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag.list")
+})
+```
+
+## Conclusion
+
+Voila plusieurs exemples d'implémentation de composants/layouts qui ne demandent pas d'intéraction avec {shiny}. Vous pouvez reproduire ce processus avec les [cartes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/222331445/Carte+-+Card) ou les [alertes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/736362500/Alertes+-+Alerts).
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+spec_infalte <- function(){
+  nom <- "fluidPage_dsfr"
+  fusen::inflate(
+    flat_file = "dev/v1.7.2/composant/flat_fluidpage.Rmd", 
+    vignette_name = nom)
+  
+  nom_c <- gsub(x = tolower(nom), "\\s", "-")
+  nom_file <- paste0(nom_c, ".Rmd")
+  
+  file.copy(
+    file.path("vignettes", nom_file),
+    file.path("dev","documentation", nom_file),
+    overwrite = TRUE
+    )
+  
+  unlink(file.path("vignettes", nom_file))
+}
+spec_infalte()
+
+```
+

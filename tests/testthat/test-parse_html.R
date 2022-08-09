@@ -3,10 +3,10 @@
 test_that("tester parse_html", {
   html_code <- '<button id="test" type="button" class="btn btn-default action-button">test</button>'
   result <- parse_html(html_code)
-
+  
   #' @description tester si la fonction renvoie bien un shiny.tag
   expect_s3_class(result, "shiny.tag")
-
+  
   #' @description tester si on peut manipuler les attributs
   classes <- htmltools::tagGetAttribute(result, "class")
   expect_true(length(classes) != 0)

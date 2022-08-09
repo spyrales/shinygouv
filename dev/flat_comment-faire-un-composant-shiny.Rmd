@@ -88,9 +88,11 @@ spec_infalte <- function(){
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")
+  
   file.copy(
     file.path("vignettes", nom_file),
-    file.path("dev","documentation", nom_file)
+    file.path("dev","documentation", nom_file),
+    overwrite = TRUE
     )
   
   unlink(file.path("vignettes", nom_file))

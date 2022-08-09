@@ -25,7 +25,7 @@ pkgload::load_all(export_all = FALSE)
 #' @param html_code resultat de la fonction htmlTemplate
 #' @importFrom XML htmlParse getNodeSet
 #'
-parse_to_xml <- function(html_code){
+parse_to_xml <- function(html_code, zone = "/html/body/*"){
   if(inherits(html_code, "XMLInternalElementNode")){
     stop("Use this function with character or shiny.tag.list")
   }
@@ -33,10 +33,10 @@ parse_to_xml <- function(html_code){
   if(!is.character(html_code)){
     html_code <- as.character(html_code)
   }
-  
+  browser()
     html_code %>% 
       XML::htmlParse() %>% 
-      XML::getNodeSet("/html/body/*") %>% 
+      XML::getNodeSet(zone) %>% 
       getElement(1) 
 }
 ```
@@ -88,11 +88,10 @@ render_node <- function (node, indent = 0, prefix = FALSE) {
     if (nchar(trimws(txt)) > 0) {
       paste0("\"", trimws(txt), "\"")
     }
-  }
-  else {
-    tagName <- if (prefix)
+  }else {
+    tagName <- if (prefix){
       paste0("tags$", xmlName(node))
-    else {
+      }else {
       xmlName(node)
     }
     
@@ -154,16 +153,17 @@ test_that("render_node works", {
 #' Traduit du html en resultat shiny 
 #'
 #' @param html_code resultat d'une fonction htmlTemplate ou une chaine de caractere
+#' @param zone zone a garder pour parser
 #'
 #' @return shiny.tag
 #' @export
 #'
 #' @examples
-parse_html <- function(html_code) {
-  xml <- parse_to_xml(html_code)
-  to_character <- render_node(xml, prefix = TRUE)
+parse_html <- function(html_code, zone = "/html/body/*") {
+
+  xml <- parse_to_xml(html_code, zone) %>% render_node(prefix = TRUE)
   
-  eval(parse(text = to_character)) 
+  eval(parse(text = xml)) 
 }
 ```
 
@@ -190,6 +190,6 @@ test_that("tester parse_html", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/flat_tools.Rmd", vignette_name = "html vers shiny.tag")
+fusen::inflate(flat_file = "dev/flat_tools.Rmd", vignette_name = "html vers shiny.tag", check = FALSE, overwrite = TRUE)
 ```
 

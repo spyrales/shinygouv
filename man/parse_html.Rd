@@ -4,10 +4,12 @@
 \alias{parse_html}
 \title{Traduit du html en resultat shiny}
 \usage{
-parse_html(html_code)
+parse_html(html_code, zone = "/html/body/*")
 }
 \arguments{
 \item{html_code}{resultat d'une fonction htmlTemplate ou une chaine de caractere}
+
+\item{zone}{zone a garder pour parser}
 }
 \value{
 shiny.tag
