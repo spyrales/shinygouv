@@ -15,6 +15,7 @@ Authors@R: c(
 Description: What the package does (one paragraph).
 License: EUPL (>= 1.2) | file LICENSE
 Imports: 
+    assertthat,
     config (>= 0.3.1),
     golem (>= 0.3.2),
     htmltools,
