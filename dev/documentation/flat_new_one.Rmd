@@ -1,0 +1,105 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# nom_composant_shiny_dsfr_template
+    
+```{r function-nom_composant_shiny_dsfr_template}
+#' nom_composant_shiny_dsfr_template
+#' 
+#' @importFrom htmltools htmlTemplate
+#' @return html
+nom_composant_shiny_dsfr_template <- function(
+  # ajouter vos params  
+  ){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "chemin vers le fichier",
+      package = "shinygouv"
+    )
+    # ajouter vos params
+    )
+}
+
+```
+  
+  
+```{r tests-nom_composant_shiny_dsfr_template}
+test_that("nom_composant_shiny_dsfr_template works", {
+  expect_true(inherits(nom_composant_shiny_dsfr_template, "function")) 
+  
+    test <- nom_composant_shiny_dsfr_template(
+      # ajouter vos params
+    )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+  
+
+# nom_composant_shiny_dsfr
+
+```{r function-nom_composant_shiny_dsfr}
+#' nom_composant_shiny_dsfr
+#' 
+#' 
+#' @return html
+#' 
+#' @export
+#'
+#' @examples
+nom_composant_shiny_dsfr <- function(
+  # ajouter vos paramètres  
+  ) {
+  
+  # check les params
+  # assertthat::assert_that(is.character(params))
+  
+    nom_composant_shiny_dsfr_template(
+      # ajouter vos params
+    ) %>%
+      parse_html()
+
+}
+```
+
+```{r examples-nom_composant_shiny_dsfr}
+nom_composant_shiny_dsfr(
+  # ajouter vos params
+)
+```
+
+```{r tests-nom_composant_shiny_dsfr}
+test_that("nom_composant_shiny_dsfr works", {
+  test <- nom_composant_shiny_dsfr(
+    # ajouter vos params
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag")
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+fusen::inflate(flat_file = "chemin à modifier", 
+                vignette_name = "nom_composant_shiny_dsfr")
+```
+

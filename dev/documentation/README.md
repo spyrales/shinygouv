@@ -5,6 +5,28 @@ Ceci est un dossier de documentation dédié aux développeurs et
 développeuses. Il contient les choix de mode de développement et tout
 autre document qui ne s’adresserait pas directement aux utilisateurs.
 
+## Version du framework dsfr en cours de développement
+
+Pour s’assurer du bon developpement du package `shinygouv`, il a été
+ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
+
+Pour connaître la version utilisée, vous pouvez lancer :
+
+``` r
+desc::desc_get("VersionDsfr")
+```
+
+    ## VersionDsfr 
+    ##     "1.7.2"
+
+Si il y a un changement de version du dsfr pour ce package, il faudra
+alors penser à mettre à jour le fichier DESCRIPTION avec la commande
+suivante :
+
+``` r
+desc::desc_set("VersionDsfr" = "1.7.2")
+```
+
 ## Workflow a suivre avant de dev sur le projet :
 
 -   Ajouter le template de commit :
@@ -77,4 +99,4 @@ rstudioapi::navigateToFile("dev/dev_history_package.R")
 
 ## Choix techniques
 
--   Explication du choix des htmlTemplates [ici](explo_shiny.dsfr.html)
+-   Explication du choix des htmlTemplates [ici](explo_shiny.dsfr.md)
