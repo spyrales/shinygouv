@@ -18,5 +18,11 @@ Authors:
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})
 }
 
+Other contributors:
+\itemize{
+  \item David Granjon [contributor]
+  \item Alan Dipert [contributor]
+}
+
 }
 \keyword{internal}

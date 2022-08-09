@@ -14,3 +14,4 @@ $run_dev.*
 ^shinygouv\.Rproj$
 ^app\.R$
 ^rsconnect$
+docs
