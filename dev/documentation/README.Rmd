@@ -29,15 +29,15 @@ desc::desc_set("VersionDsfr" = "1.7.2")
 ```
 
 
-## Workflow a suivre avant de dev sur le projet :
+## Workflow à suivre avant de dev sur le projet :
 
-- Ajouter le template de commit :
+### Ajouter le template de commit :
 
 ```
 git config --local commit.template .github/template_commit
 ```
 
-Et suivre cette convention pour les commits et les tags :
+### Suivre cette convention pour les commits et les tags :
 
 - Un mot clé et un titre en début de message pour dire le principal objectif de ce commit.
 - Une ligne `tags` qui reprend les mots clés pour ce qui est fait dans le commit
@@ -69,17 +69,28 @@ test: pour les tests unitaires
 style : pour la mise en forme de code
 chore : tout ce qui touche au projet en lui même, ne correspond pas à un feat ou un fix
 ```
+### S'assurer d'avoir une issue à résoudre
+
+- Dans le cadre de l'ajout d'un nouveau composant, vous pouvez créer une issue avec le template d'issue "composant"
+    + Il se trouve sur GitHub à la création d'une issue, ou dans le package: ".github/ISSUE_TEMPLATE/composant.md"
+
+### Développer dans une branche
+
+- Chaque développement se fait dans une nouvelle branche
+    + Elle est nommée à partir du numéro de l'issue à traiter
+- Les développements sont intégrés à la branche principale après demande de PR de votre branche vers la branche principale
+
 
 ## Comprendre et appliquer le workflow pour développer le package
 
-Pour développer ce pakage, des choix techniques ont été adopter. Vous retrouverez les raisons [ici](explo_shiny.dsfr.md).
+Pour développer ce package, des choix techniques ont été adoptés. Vous retrouverez les raisons [ici](explo_shiny.dsfr.md).
 
 Le workflow se découpe en deux possibilités :
 
 - Les composants nécéssitant de la réactivité
 - Les composants sans réactivité
 
-Ces deux possibilités se basent sur le même principe **l'utilisation des templates html**. La trame général de ce workflow est définie dans la documentation: 
+Ces deux possibilités se basent sur le même principe : **l'utilisation des templates html**. La trame générale de ce workflow est définie dans la documentation : 
 
 - [Comment faire un composant shiny](comment-faire-un-composant-shiny.md)
 
