@@ -1,0 +1,123 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# actionButton_dsfr_template
+    
+```{r function-actionButton_dsfr_template}
+#' actionButton_dsfr_template
+#' 
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param class des classes a ajouter si necessaire
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+actionButton_dsfr_template <- function(
+    inputId,
+    label,
+    class
+){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "bouton.html",
+      package = "shinygouv"
+    ),
+    inputId = inputId,
+    label = label,
+    class = class
+  )
+}
+
+```
+  
+  
+```{r tests-actionButton_dsfr_template}
+test_that("actionButton_dsfr_template works", {
+  expect_true(inherits(actionButton_dsfr_template, "function")) 
+  
+  test <- actionButton_dsfr_template("test", "test", NULL)
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+  
+
+# actionButton_dsfr
+
+```{r function-actionButton_dsfr}
+#' actionButton_dsfr
+#' 
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param class des classes a ajouter si necessaire
+#' 
+#' @return html
+#' 
+#' @export
+#'
+#' @examples
+actionButton_dsfr <- function(
+    inputId,
+    label,
+    class = NULL
+  ) {
+  
+  
+  actionButton_dsfr_template(
+    inputId,
+    label,
+    class
+  ) %>%
+    parse_html()
+
+}
+```
+
+```{r examples-actionButton_dsfr}
+actionButton_dsfr(
+  inputId = "test",
+  label = "test",
+  class = "fr-btn--icon-left fr-icon-checkbox-circle-line"
+)
+```
+
+```{r tests-actionButton_dsfr}
+test_that("actionButton_dsfr works", {
+  
+  test <- actionButton_dsfr(
+    inputId = "test",
+    label = "test",
+    class = "fr-btn--icon-left fr-icon-checkbox-circle-line"
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag")
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+fusen::inflate(flat_file = "dev/v1.7.2/composant/flat_actionButton.Rmd", 
+                vignette_name = "actionButton_dsfr")
+```
+

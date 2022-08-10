@@ -11,6 +11,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Ceci est un dossier de documentation dédié aux développeurs et développeuses. Il contient les choix de mode de développement et tout autre document qui ne s'adresserait pas directement aux utilisateurs.
 
+## Version du framework dsfr en cours de développement
+
+Pour s'assurer du bon developpement du package `shinygouv`, il a été ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
+
+Pour connaître la version utilisée, vous pouvez lancer :
+
+```{r}
+desc::desc_get("VersionDsfr")
+```
+
+
+Si il y a un changement de version du dsfr pour ce package, il faudra alors penser à mettre à jour le fichier DESCRIPTION avec la commande suivante :
+
+```{r, eval=FALSE}
+desc::desc_set("VersionDsfr" = "1.7.2")
+```
+
 
 ## Workflow a suivre avant de dev sur le projet :
 
@@ -65,7 +82,6 @@ chore : tout ce qui touche au projet en lui même, ne correspond pas à un feat 
 - Contributing: template par défaut de {usethis} en anglais peut être ajouté comme pour {gouvdown} 🇬🇧 
 
 ## Les packages nécéssaires au developpement
-
 
 En plus des dépendances du package, un ensemble de packages sera nécessaire pour le bon developpement du package.
 
