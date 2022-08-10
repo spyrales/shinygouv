@@ -16,9 +16,6 @@
     <loc>/articles/actionbutton_dsfr.html</loc>
   </url>
   <url>
-    <loc>/articles/comment-faire-un-composant-shiny.html</loc>
-  </url>
-  <url>
     <loc>/articles/documentation-inventaire.html</loc>
   </url>
   <url>
@@ -26,6 +23,9 @@
   </url>
   <url>
     <loc>/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>/articles/radiobuttons_dsfr.html</loc>
   </url>
   <url>
     <loc>/articles/recommandation-pour-l-implementation-de-dsfr.html</loc>
@@ -56,6 +56,9 @@
   </url>
   <url>
     <loc>/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>/reference/radioButtons_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/render_node.html</loc>

@@ -3,10 +3,10 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   actionbutton_dsfr: actionbutton_dsfr.html
-  comment-faire-un-composant-shiny: comment-faire-un-composant-shiny.html
   documentation-inventaire: documentation-inventaire.html
   html-vers-shiny-tag: html-vers-shiny-tag.html
+  radiobuttons_dsfr: radiobuttons_dsfr.html
   recommandation-pour-l-implementation-de-dsfr: recommandation-pour-l-implementation-de-dsfr.html
   trouver_css_js: trouver_css_js.html
-last_built: 2022-08-10T05:50Z
+last_built: 2022-08-10T07:15Z
 
