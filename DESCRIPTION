@@ -17,15 +17,18 @@ License: EUPL (>= 1.2) | file LICENSE
 Imports: 
     assertthat,
     config (>= 0.3.1),
+    dplyr,
+    glue,
     golem (>= 0.3.2),
     htmltools,
     magrittr,
     purrr,
+    readr,
     shiny (>= 1.7.1),
     stringr,
+    utils,
     XML
 Suggests: 
-    dplyr,
     DT,
     kableExtra,
     knitr,

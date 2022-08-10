@@ -74,7 +74,13 @@ Après retravail sur le composant actionButton, voici son template html:
   
 Voir exemple `dev/v1.7.2/composant/flat_bouton.Rmd`
  
+#### Quatrième étape
 
+Lorsque l'implementation de votre nouveau composant dsfr est terminée:
+- remplir la table de correspondance disponible dans `inst/v1.7.2/table_correspondance_shiny_dsfr.csv` (en adaptant sur la version en cours d'implementation)
+
+La colonne `composant_shiny` restera vide si le composant dsfr n'a pas d'équivalent dans {shiny}.
+Cette table de correspondance permettra le bon déroulement de la conversion d'une app shiny en une app shiny dsfr (en utilisant `convert_to_dsfr()`)
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
