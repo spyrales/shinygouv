@@ -13,7 +13,16 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>/articles/actionbutton_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/articles/comment-faire-un-composant-shiny.html</loc>
+  </url>
+  <url>
     <loc>/articles/documentation-inventaire.html</loc>
+  </url>
+  <url>
+    <loc>/articles/html-vers-shiny-tag.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>
@@ -37,10 +46,19 @@
     <loc>/pull_request_template.html</loc>
   </url>
   <url>
+    <loc>/reference/actionButton_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/parse_html.html</loc>
+  </url>
+  <url>
     <loc>/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>/reference/render_node.html</loc>
   </url>
   <url>
     <loc>/reference/run_app.html</loc>
