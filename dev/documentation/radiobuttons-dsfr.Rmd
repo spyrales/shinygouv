@@ -1,10 +1,8 @@
 ---
 title: "radioButtons dsfr"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{radiobuttons-dsfr}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -120,7 +118,7 @@ L'implementation de la fonction `radioButtons_dsfr()` reste quant à elle simila
 
 # radioButtons_dsfr
 
-```{r examples-radioButtons_dsfr}
+```{r examples-radioButtons_dsfr, eval = FALSE}
 radioButtons_dsfr(
       inputId = "test", label = "Test", choices = c("A","B"), class = NULL
 )

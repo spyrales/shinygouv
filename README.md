@@ -6,9 +6,22 @@
 Reprendre le template existant pour le `Système de Design de l'Etat`
 (DSFR)
 
-# Comment utiliser le pacakge :
+# Comment utiliser le package :
 
-TODO
+Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la
+partie UI:
+
+``` r
+library(shinygouv)
+
+app_ui <- fluidPage_dsfr(
+  title = "Exemple",
+  fluidRow_dsfr(
+    column_dsfr(0,
+                shiny::p("Exemple colonne"))
+  )
+)
+```
 
 # Contribuer au package
 
