@@ -31,7 +31,7 @@ devtools::install(upgrade = "never")
 # devtools::load_all()
 devtools::check(vignettes = TRUE)
 # ascii
-stringi::stri_trans_general("é", "hex")
+stringi::stri_trans_general("è", "hex")
 # Create a summary readme for the testthat subdirectory
 covrpage::covrpage()
 

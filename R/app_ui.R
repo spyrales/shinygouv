@@ -9,8 +9,30 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      h1("shinygouv")
+    fluidPage_dsfr(
+      title = "Exemple shiny dsfr",
+      h1("Exemple d'utilisation de {shinygouv}"),
+      fluidRow_dsfr(
+        column_dsfr(0, #Calcul automatique de la largeur
+                    p("Premi\\u00E8re Colonne"),
+                    actionButton_dsfr("go", label = "Sample!"),
+                    plotOutput(
+                      "plot_sample"
+                    )
+                    ),
+        column_dsfr(0,#Calcul automatique de la largeur
+                    p("Deuxi\\u00E8me Colonne"),
+                    radioButtons_dsfr(
+                      inputId = "espece",
+                      label = "Especes",
+                      choices = c("Setosa" = "setosa","Versicolor" = "versicolor"),
+                      class = NULL
+                    ),
+                    plotOutput(
+                      "plot_espece"
+                    )
+        )
+      )
     )
   )
 }

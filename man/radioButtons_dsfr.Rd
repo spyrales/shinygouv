@@ -13,7 +13,7 @@ radioButtons_dsfr(inputId, label, choices, inline = FALSE, class = NULL)
 
 \item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
 
-\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Non implemente}
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
 
 \item{class}{des classes a ajouter si necessaire}
 }
