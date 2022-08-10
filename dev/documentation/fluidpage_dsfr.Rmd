@@ -1,10 +1,8 @@
 ---
 title: "fluidPage_dsfr"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{fluidpage_dsfr}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}

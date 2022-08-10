@@ -66,6 +66,33 @@ choix du tag majeur dans le titre du commit :
     style : pour la mise en forme de code
     chore : tout ce qui touche au projet en lui même, ne correspond pas à un feat ou un fix
 
+## Comprendre et appliquer le workflow pour développer le package
+
+Pour développer ce pakage, des choix techniques ont été adopter. Vous
+retrouverez les raisons [ici](explo_shiny.dsfr.md).
+
+Le workflow se découpe en deux possibilités :
+
+-   Les composants nécéssitant de la réactivité
+-   Les composants sans réactivité
+
+Ces deux possibilités se basent sur le même principe **l’utilisation des
+templates html**. La trame général de ce workflow est définie dans la
+documentation:
+
+-   [Comment faire un composant
+    shiny](comment-faire-un-composant-shiny.md)
+
+Vous trouverez des exemples pour d’autres composants :
+
+-   Avec réactivité:
+    -   [radio buttons](radiobuttons-dsfr.md)
+-   Sans réactivité:
+    -   [Fluid page](fluidpage_dsfr.md)
+
+N’hésitez pas à amender cette liste au fur et à mesure de vos
+développements
+
 ## Les langues utilisées dans le projet
 
 -   Rapports d’exploration (présentés en vignettes) : 🇫🇷
@@ -96,7 +123,3 @@ Pensez à executer les lignes “Each time needed” du fichier
 ``` r
 rstudioapi::navigateToFile("dev/dev_history_package.R")
 ```
-
-## Choix techniques
-
--   Explication du choix des htmlTemplates [ici](explo_shiny.dsfr.md)
