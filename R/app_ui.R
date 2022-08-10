@@ -10,6 +10,12 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage_dsfr(
+      header = header_dsfr(intitule = "Intitule",
+                  officiel = "Officiel",
+                  nom_site_service = "Nom du site / service",
+                  baseline = "baseline - precisions sur l organisation",
+                  class = "fr-m-1w"
+      ),
       title = "Exemple shiny dsfr",
       h1("Exemple d'utilisation de {shinygouv}"),
       fluidRow_dsfr(

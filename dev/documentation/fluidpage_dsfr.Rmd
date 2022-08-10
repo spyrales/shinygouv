@@ -34,6 +34,7 @@ Ensuite, vient la traduction avec `htmlTemplate` :
 
 ```{r eval = FALSE, echo = TRUE}
 fluidPage_dsfr_template <- function(
+    header,
     title,
     body
 ){
@@ -45,13 +46,14 @@ fluidPage_dsfr_template <- function(
       "fluidpage.html",
       package = "shinygouv"
     ),
+    header = NULL
     title = title,
     body = body
   )
 }
 ```
 
-Les paramètres `title` et `body` sont repris dans le html pour pouvoir le créer.
+Les paramètres `header`, `title` et `body` sont repris dans le html pour pouvoir le créer.
 
 
 # fluidPage_dsfr
@@ -66,6 +68,7 @@ Petit détail technique, le `parse_html` permet de s'assurer de retrouver une st
 ```{r eval = FALSE, echo = TRUE}
 fluidPage_dsfr <- function(
     ...,
+    header = NULL,
     title = NULL,
     theme = NULL,
     lang = NULL
@@ -74,6 +77,7 @@ fluidPage_dsfr <- function(
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...
@@ -82,11 +86,16 @@ fluidPage_dsfr <- function(
     parse_html(zone = "/html") %>% 
     add_dsfr_deps() 
   ui
+  
 }
 ```
 
 ```{r examples-fluidPage_dsfr, eval = FALSE}
 my_page <- fluidPage_dsfr(
+  header = header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  ),
   title = "Gouv",
   htmltools::div("test")
 )

@@ -1,0 +1,156 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# header_dsfr_template
+    
+```{r function-header_dsfr_template}
+#' header_dsfr_template
+#' @param intitule la partie "intitule" du bloc marque 
+#' @param officiel la partie "officiel" du bloc marque
+#' @param url l url de redirection
+#' @param titre le texte de description de l url
+#' @param nom_site_service le nom du site ou du service - optionnel
+#' @param baseline le texte sous le nom de site/service - optionnel
+#' @param class un classe a ajouter si necessaire (".fr-m-1w" pour #TODO) - optionnel
+#' @importFrom htmltools htmlTemplate
+#' @return html
+header_dsfr_template <- function(
+ intitule, officiel, url, titre, nom_site_service, baseline, class
+  ){
+  
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "entete.html",
+      package = "shinygouv"
+    ),
+    class = class,
+    intitule = intitule,
+    officiel = officiel,
+    url = url, 
+    titre = titre,
+    nom_site_service = nom_site_service,
+    baseline = baseline
+    )
+}
+
+```
+  
+  
+```{r tests-header_dsfr_template}
+test_that("header_dsfr_template works", {
+  expect_true(inherits(header_dsfr_template, "function")) 
+  
+    test <- header_dsfr_template(
+     class = NULL,
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+     url = "https://www.prefectures-regions.gouv.fr/bretagne",
+     titre = "Accueil - Préfecture de Bretagne", 
+     nom_site_service = "DREAL Bretagne", 
+     baseline = "description"
+    )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+  
+
+# header_dsfr
+
+```{r function-header_dsfr}
+#' header_dsfr
+#' 
+#' @param intitule la partie "intitule" du bloc marque 
+#' @param officiel la partie "officiel" du bloc marque
+#' @param url l url de redirection - optionnel
+#' @param titre le texte de description de l url - optionnel
+#' @param nom_site_service le nom du site ou du service - optionnel
+#' @param baseline le texte sous le nom de site/service - optionnel
+#' @param class un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")
+#' @return html
+#' @export
+#'
+#' @examples
+
+header_dsfr <- function(
+ intitule, officiel, url = "/", titre = NULL, nom_site_service = NULL, baseline = NULL, class = "fr-container"
+  ) {
+  
+  # check les params
+  assertthat::assert_that(is.character(intitule))
+  assertthat::assert_that(is.character(officiel))
+  #TODO verifier que l url est valide
+  
+    header_dsfr_template(
+      class = class,
+      intitule = intitule,
+      officiel = officiel,
+      url = url, 
+      titre = titre,
+      nom_site_service = nom_site_service,
+      baseline = baseline
+    ) %>%
+      parse_html()
+
+}
+```
+
+```{r example-fluidRow_dsfr}
+ header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  )
+```
+
+```{r tests-header_dsfr}
+test_that("header_dsfr works", {
+  test <- header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag")
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+spec_infalte <- function(){
+  nom <- "header dsfr"
+  fusen::inflate(
+    flat_file = "dev/v1.7.2/composant/flat_header.Rmd", 
+    vignette_name = nom)
+  
+  nom_c <- gsub(x = tolower(nom), "\\s", "-")
+  nom_file <- paste0(nom_c, ".Rmd")
+  file.copy(
+    file.path("vignettes", nom_file),
+    file.path("dev","documentation", nom_file)
+    )
+  
+  unlink(file.path("vignettes", nom_file))
+}
+spec_infalte()
+
+```
+

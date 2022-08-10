@@ -3,6 +3,7 @@
 #' fluidPage_dsfr
 #' 
 #' @param ... element a inclure dans la page
+#' @param header l entete de la page
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
@@ -15,6 +16,10 @@
 #'
 #' @examples
 #' my_page <- fluidPage_dsfr(
+#'   header = header_dsfr(
+#'      intitule = "Prefet de", 
+#'      officiel = "Bretagne",
+#'   ),
 #'   title = "Gouv",
 #'   htmltools::div("test")
 #' )
@@ -26,6 +31,7 @@
 #' }
 fluidPage_dsfr <- function(
     ...,
+    header = NULL,
     title = NULL,
     theme = NULL,
     lang = NULL
@@ -34,6 +40,7 @@ fluidPage_dsfr <- function(
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...

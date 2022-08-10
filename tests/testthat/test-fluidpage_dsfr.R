@@ -2,6 +2,10 @@
 
 test_that("fluidPage_dsfr works", {
   test <- fluidPage_dsfr(
+    header = header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+      ),
       title = "Gouv",
       body = htmltools::div("test")
   )

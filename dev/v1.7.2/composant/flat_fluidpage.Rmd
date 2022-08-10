@@ -26,13 +26,14 @@ Ensuite, vient la traduction avec `htmlTemplate` :
 
 ```{r function-fluidPage_dsfr_template}
 #' fluidPage_dsfr_template
-#' 
+#' @param header entete de la page
 #' @param title titre de la page
 #' @param body body 
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
 fluidPage_dsfr_template <- function(
+    header,
     title,
     body
 ){
@@ -44,6 +45,7 @@ fluidPage_dsfr_template <- function(
       "fluidpage.html",
       package = "shinygouv"
     ),
+    header = header,
     title = title,
     body = body
   )
@@ -53,6 +55,7 @@ fluidPage_dsfr_template <- function(
 
 ```{r, eval=FALSE, echo=TRUE}
 fluidPage_dsfr_template <- function(
+    header,
     title,
     body
 ){
@@ -64,19 +67,21 @@ fluidPage_dsfr_template <- function(
       "fluidpage.html",
       package = "shinygouv"
     ),
+    header = NULL
     title = title,
     body = body
   )
 }
 ```
 
-Les paramètres `title` et `body` sont repris dans le html pour pouvoir le créer.
+Les paramètres `header`, `title` et `body` sont repris dans le html pour pouvoir le créer.
 
 ```{r tests-fluidPage_dsfr_template}
 test_that("fluidPage_dsfr_template works", {
   expect_true(inherits(fluidPage_dsfr_template, "function")) 
   
   test <- fluidPage_dsfr_template(
+    header = NULL,
     title = "titre",
     body = NULL
   )
@@ -99,6 +104,7 @@ Petit détail technique, le `parse_html` permet de s'assurer de retrouver une st
 #' fluidPage_dsfr
 #' 
 #' @param ... element a inclure dans la page
+#' @param header l entete de la page (voir `header_dsfr()`)
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
@@ -112,6 +118,7 @@ Petit détail technique, le `parse_html` permet de s'assurer de retrouver une st
 #' @examples
 fluidPage_dsfr <- function(
     ...,
+    header = NULL,
     title = NULL,
     theme = NULL,
     lang = NULL
@@ -120,6 +127,7 @@ fluidPage_dsfr <- function(
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...
@@ -135,6 +143,7 @@ fluidPage_dsfr <- function(
 ```{r, eval=FALSE, echo=TRUE}
 fluidPage_dsfr <- function(
     ...,
+    header = NULL,
     title = NULL,
     theme = NULL,
     lang = NULL
@@ -143,6 +152,7 @@ fluidPage_dsfr <- function(
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...
@@ -151,12 +161,17 @@ fluidPage_dsfr <- function(
     parse_html(zone = "/html") %>% 
     add_dsfr_deps() 
   ui
+  
 }
 ```
 
 
 ```{r examples-fluidPage_dsfr, eval=FALSE}
 my_page <- fluidPage_dsfr(
+  header = header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  ),
   title = "Gouv",
   htmltools::div("test")
 )
@@ -171,6 +186,10 @@ shiny::shinyApp(
 ```{r tests-fluidPage_dsfr}
 test_that("fluidPage_dsfr works", {
   test <- fluidPage_dsfr(
+    header = header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+      ),
       title = "Gouv",
       body = htmltools::div("test")
   )
@@ -241,6 +260,7 @@ test_that("fluidPage_dsfr_template works", {
   expect_true(inherits(fluidPage_dsfr_template, "function")) 
   
   test <- fluidPage_dsfr_template(
+    header = NULL,
     title = "titre",
     body = NULL
   )

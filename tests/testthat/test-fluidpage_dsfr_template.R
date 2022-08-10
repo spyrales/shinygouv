@@ -4,6 +4,7 @@ test_that("fluidPage_dsfr_template works", {
   expect_true(inherits(fluidPage_dsfr_template, "function")) 
   
   test <- fluidPage_dsfr_template(
+    header = NULL,
     title = "titre",
     body = NULL
   )
