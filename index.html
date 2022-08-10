@@ -92,9 +92,19 @@
 <p>Reprendre le template existant pour le <code>Système de Design de l'Etat</code> (DSFR)</p>
 </div>
 <div class="section level1">
-<h1 id="comment-utiliser-le-pacakge-">Comment utiliser le pacakge :<a class="anchor" aria-label="anchor" href="#comment-utiliser-le-pacakge-"></a>
+<h1 id="comment-utiliser-le-package-">Comment utiliser le package :<a class="anchor" aria-label="anchor" href="#comment-utiliser-le-package-"></a>
 </h1>
-<p>TODO</p>
+<p>Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la partie UI:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">app_ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Exemple"</span>,</span>
+<span>  <span class="fu"><a href="reference/fluidRow_dsfr.html">fluidRow_dsfr</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="reference/column_dsfr.html">column_dsfr</a></span><span class="op">(</span><span class="fl">0</span>,</span>
+<span>                <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Exemple colonne"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="contribuer-au-package">Contribuer au package<a class="anchor" aria-label="anchor" href="#contribuer-au-package"></a>
