@@ -7,12 +7,11 @@
 app_server <- function(input, output, session) {
   # Your application server logic
 
-  observeEvent(input$go,{
+  observeEvent(input$go, {
     message("je clique ", input$go)
   })
 
-  observeEvent(input$espece,{
+  observeEvent(input$espece, {
     message("je change d'esepce ", input$espece)
   })
-
 }

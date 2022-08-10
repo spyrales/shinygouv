@@ -4,10 +4,12 @@
 \alias{fluidPage_dsfr}
 \title{fluidPage_dsfr}
 \usage{
-fluidPage_dsfr(..., title = NULL, theme = NULL, lang = NULL)
+fluidPage_dsfr(..., header = NULL, title = NULL, theme = NULL, lang = NULL)
 }
 \arguments{
 \item{...}{element a inclure dans la page}
+
+\item{header}{l entete de la page}
 
 \item{title}{titre de la page}
 
@@ -23,6 +25,10 @@ fluidPage_dsfr
 }
 \examples{
 my_page <- fluidPage_dsfr(
+  header = header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  ),
   title = "Gouv",
   htmltools::div("test")
 )
