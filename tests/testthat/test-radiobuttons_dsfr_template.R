@@ -7,7 +7,6 @@ test_that("radioButtons_dsfr_template works", {
     inputId = "test",
     label = "Test",
     choix = c("A", "B"),
-    inline = TRUE,
     class = NULL
   )
 

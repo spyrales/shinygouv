@@ -4,7 +4,7 @@
 #'
 #' @param inputId id de l'input
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Non implemente
 #' @importFrom htmltools htmlTemplate
 #' @return html
 #' @noRd
@@ -19,6 +19,7 @@ radioButtons_unique_dsfr_template <- function(
     name_choix <- names(choix)
   }
 
+  # TODO
   if (isTRUE(inline)) {
     class_inline <- "-inline"
   } else {
@@ -35,6 +36,6 @@ radioButtons_unique_dsfr_template <- function(
     inputId = inputId,
     name_choix = name_choix,
     value_choix = choix,
-    class_inline = class_inline
+    class_inline = class_inline # TODO
   )
 }

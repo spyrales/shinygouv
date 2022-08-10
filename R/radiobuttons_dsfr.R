@@ -5,7 +5,7 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Non implemente
 #' @param class des classes a ajouter si necessaire
 #' @return html
 #'
@@ -19,13 +19,12 @@
 #'   class = NULL
 #' )
 #'
-#' radioButtons_dsfr(
-#'   inputId = "test",
-#'   label = "Test",
-#'   choices = c("Choix A" = "A", "Choix B" = "B"),
-#'   inline = TRUE,
-#'   class = NULL
-#' )
+#' # radioButtons_dsfr(
+#' #       inputId = "test",
+#' #       label = "Test",
+#' #       choices = c("Choix A" = "A","Choix B" = "B"),
+#' #       class = NULL
+#' # )
 radioButtons_dsfr <- function(
   inputId,
   label,
@@ -38,12 +37,13 @@ radioButtons_dsfr <- function(
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.character(choices))
+  assertthat::assert_that(is.logical(inline))
 
   radioButtons_dsfr_template(
     inputId = inputId,
     label = label,
     choix = choices,
-    inline = inline,
+    inline = inline, # TODO
     class = class
   ) %>%
     parse_html()

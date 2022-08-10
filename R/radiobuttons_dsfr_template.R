@@ -5,7 +5,7 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). NON IMLPEMENTE
 #' @param class des classes a ajouter si necessaire
 #'
 #' @importFrom htmltools htmlTemplate tagList
@@ -19,6 +19,8 @@ radioButtons_dsfr_template <- function(
   inline = FALSE,
   class = NULL
 ) {
+
+  # TODO
   if (isTRUE(inline)) {
     class_inline <- "fr-fieldset--inline"
     class <- "shiny-input-container-inline"
@@ -44,7 +46,7 @@ radioButtons_dsfr_template <- function(
       )
     ) %>%
       htmltools::tagList(),
-    inline = class_inline,
+    inline = class_inline, # TODO
     class = class
   )
 }
