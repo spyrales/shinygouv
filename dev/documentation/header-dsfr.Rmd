@@ -32,3 +32,10 @@ library(shinygouv)
 
 # header_dsfr
 
+```{r examples-header_dsfr}
+ header_dsfr(
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+  )
+```
+

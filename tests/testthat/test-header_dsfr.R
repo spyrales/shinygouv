@@ -2,8 +2,8 @@
 
 test_that("header_dsfr works", {
   test <- header_dsfr(
-     intitule = "Prefet de", 
-     officiel = "Bretagne",
+    intitule = "Prefet de",
+    officiel = "Bretagne",
   )
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag")

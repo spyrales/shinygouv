@@ -112,7 +112,7 @@ header_dsfr <- function(
 }
 ```
 
-```{r example-fluidRow_dsfr}
+```{r examples-header_dsfr}
  header_dsfr(
      intitule = "Prefet de", 
      officiel = "Bretagne",

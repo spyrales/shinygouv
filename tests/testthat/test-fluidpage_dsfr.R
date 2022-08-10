@@ -3,11 +3,11 @@
 test_that("fluidPage_dsfr works", {
   test <- fluidPage_dsfr(
     header = header_dsfr(
-     intitule = "Prefet de", 
-     officiel = "Bretagne",
-      ),
-      title = "Gouv",
-      body = htmltools::div("test")
+      intitule = "Prefet de",
+      officiel = "Bretagne",
+    ),
+    title = "Gouv",
+    body = htmltools::div("test")
   )
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag.list")
