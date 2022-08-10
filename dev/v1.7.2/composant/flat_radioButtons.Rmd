@@ -49,11 +49,8 @@ Il est donc nécessaire de scinder les htmlTemplates dans différents fichiers .
 Suivre les 2 premières étape de la procédure décrite dans `dev/documentation/comment-faire-un-composant-shiny.Rmd` uniquement pour la partie `<div class="fr-radio-group">`.
 
 Quelques précisions: 
-- l'`id` n'est pas à conserver dans le template `.html` afin de ne pas avoir de conflit avec les `id` shiny. Celui ci sera géré au niveau du template 'parent' (`radiodouton_group.html`)
-- Pour se rapprocher au plus près du code du radioButtons {shiny}:
+- Pour utiliser le fonctionnement classique du radioButtons {shiny}:
   - l'argument `value` a été rajouté
-  - le `label` a été remplacé par un `span`
-  - l'argument `for` a été supprimé
 
 # radioButtons_unique_dsfr_template
 
@@ -62,16 +59,15 @@ Par exemple, l'utilisation ou non d'un vecteur nommé doit modifier la personnal
 
 
 ```{r, eval = FALSE}
-radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
+radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FALSE
   ){
   
  if (is.null(names(choix))) {
-    name_choix <- choix
-    } else {
+    name_choix <- choix} else {
     name_choix <- names(choix)
     }
   
-  #TODO
+  
   if(isTRUE(inline)){
     class_inline <- "-inline"  
   } else { 
@@ -85,9 +81,10 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
       package = "shinygouv"
     ),
     inputId = inputId,
+    name = name,
     name_choix = name_choix,
     value_choix = choix,
-    class_inline = class_inline
+    class_inline = class_inline 
     )
 }
 ```
@@ -96,12 +93,14 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
 ```{r function-radioButtons_unique_dsfr_template}
 #' radioButtons_unique_dsfr_template
 #' 
-#' @param inputId id de l'input
+#' @param inputId id de l'input avec indexation
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Non implemente
+#' @param name nom de l'inputId sans indexation
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
+#'
 #' @importFrom htmltools htmlTemplate
 #' @return html
-radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
+radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FALSE
   ){
   
  if (is.null(names(choix))) {
@@ -109,7 +108,7 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
     name_choix <- names(choix)
     }
   
-  #TODO
+  
   if(isTRUE(inline)){
     class_inline <- "-inline"  
   } else { 
@@ -123,9 +122,10 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, inline = FALSE
       package = "shinygouv"
     ),
     inputId = inputId,
+    name = name,
     name_choix = name_choix,
     value_choix = choix,
-    class_inline = class_inline #TODO
+    class_inline = class_inline 
     )
 }
 
@@ -137,7 +137,8 @@ test_that("radioButtons_unique_dsfr_template works", {
   expect_true(inherits(radioButtons_unique_dsfr_template, "function")) 
   
     test <- radioButtons_unique_dsfr_template(
-      inputId = "test",
+      inputId = "test-1",
+      name = "test",
       choix = c("Choix A" = "A")
     )
   
@@ -158,15 +159,14 @@ Cette fonction repose sur `radioButtons_unique_dsfr_template()` qui devra être 
 ```{r, eval = FALSE}
 radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
   ){
-  
-  #TODO
+  inline <- FALSE #TODO 
   if (isTRUE(inline)){
     class_inline <- "fr-fieldset--inline"
     class <- "shiny-input-container-inline"
   } else {
     class_inline = NULL
   }
-  
+  x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
       "v1.7.2",
@@ -177,13 +177,17 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
     inputId = inputId,
     label = label,
     choix = purrr::map(.x = choix, 
-                       ~ radioButtons_unique_dsfr_template(
-                          inputId = inputId,
-                          choix = .x,
-                          inline = inline
-                      )) %>%
-            htmltools::tagList(),
-    inline = class_inline, #TODO
+                       ~ {
+                         x <<- x+1
+                         radioButtons_unique_dsfr_template(
+                           inputId = paste0(inputId,"-", x),
+                           name = inputId,
+                           choix = .x,
+                           inline = inline
+                         )
+                       }) %>%
+      htmltools::tagList(),
+    inline = class_inline, 
     class = class
   )
 }
@@ -204,14 +208,14 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
 radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
   ){
   
-  #TODO
+  inline <- FALSE #TODO 
   if (isTRUE(inline)){
     class_inline <- "fr-fieldset--inline"
     class <- "shiny-input-container-inline"
   } else {
     class_inline = NULL
   }
-  
+  x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
       "v1.7.2",
@@ -222,13 +226,17 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
     inputId = inputId,
     label = label,
     choix = purrr::map(.x = choix, 
-                       ~ radioButtons_unique_dsfr_template(
-                          inputId = inputId,
-                          choix = .x,
-                          inline = inline
-                      )) %>%
-            htmltools::tagList(),
-    inline = class_inline, #TODO
+                       ~ {
+                         x <<- x+1
+                         radioButtons_unique_dsfr_template(
+                           inputId = paste0(inputId,"-", x),
+                           name = inputId,
+                           choix = .x,
+                           inline = inline
+                         )
+                       }) %>%
+      htmltools::tagList(),
+    inline = class_inline, 
     class = class
   )
 }
@@ -262,7 +270,7 @@ L'implementation de la fonction `radioButtons_dsfr()` reste quant à elle simila
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Non implemente
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
 #' @param class des classes a ajouter si necessaire 
 #' @return html
 #' 
@@ -283,7 +291,7 @@ radioButtons_dsfr <- function(
     inputId = inputId,
     label = label,
     choix = choices,
-    inline = inline, #TODO
+    inline = inline, 
     class = class
     ) %>%
       parse_html()

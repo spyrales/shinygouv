@@ -10,14 +10,16 @@ add_dsfr_deps <- function(tag) {
   dsfr_deps <- htmlDependency(
     name = "dsfr",
     version = "1.7.2",
-    src = c(file = "dsfr-v1.7.2/dist"),
-    stylesheet = "dsfr.min.css",
+    src = c(file = "dsfr-v1.7.2"),
+    stylesheet = "dist/dsfr.min.css",
     script = list(
-      list(type="module", src="dsfr.module.min.js"),
-      list(type="text/javascript", nomodule=NULL, src="dsfr/dsfr.nomodule.min.js")
+      list(type="module", src="dist/dsfr.module.min.js"),
+      list(type="text/javascript", nomodule=NULL, src="dist/dsfr.nomodule.min.js")
     ),
     package = "shinygouv",
+    all_files = TRUE
   )
+  addResourcePath(prefix = "dsfr-v1.7.2", directoryPath = system.file("dsfr-v1.7.2", package = "shinygouv"))
   tagList(tag, dsfr_deps)
 }
 
