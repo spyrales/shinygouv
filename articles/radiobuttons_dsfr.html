@@ -152,10 +152,10 @@ Il est donc nécessaire de scinder les htmlTemplates dans différents fichiers .
 <legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">Test</legend>
 <div class="fr-fieldset__content">
 <div class="fr-radio-group">
-<input type="radio" name="test" value="A"><span class="fr-label">A</span>
+<input type="radio" id="test-1" name="test" value="A"><label class="fr-label" for="test-1">A</label>
 </div>
 <div class="fr-radio-group">
-<input type="radio" name="test" value="B"><span class="fr-label">B</span>
+<input type="radio" id="test-2" name="test" value="B"><label class="fr-label" for="test-2">B</label>
 </div>
 </div>
 </fieldset>
@@ -168,15 +168,15 @@ radioButtons_dsfr(
       inline = TRUE,
       class = NULL
 )
-<div id="test" class="fr-form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
-<fieldset class="fr-fieldset fr-fieldset--inline">
+<div id="test" class="fr-form-group shiny-input-radiogroup shiny-input-container ">
+<fieldset class="fr-fieldset ">
 <legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">Test</legend>
 <div class="fr-fieldset__content">
 <div class="fr-radio-group">
-<input type="radio" name="test-inline" value="A"><span class="fr-label">A</span>
+<input type="radio" id="test-1" name="test" value="A"><label class="fr-label" for="test-1">A</label>
 </div>
 <div class="fr-radio-group">
-<input type="radio" name="test-inline" value="B"><span class="fr-label">B</span>
+<input type="radio" id="test-2" name="test" value="B"><label class="fr-label" for="test-2">B</label>
 </div>
 </div>
 </fieldset>
