@@ -24,6 +24,10 @@ app_ui <- fluidPage_dsfr(
 )
 ```
 
+# Visualiser un application de démonstration comprenant les composants déjà implémentés:
+
+[shinygouv-demo](https://ssm-ecologie.shinyapps.io/shinygouv-demo/)
+
 # Contribuer au développement du package
 
 Voir le README du dossier [documentation](dev/documentation)
