@@ -3,7 +3,7 @@
 #' fluidPage_dsfr
 #'
 #' @param ... element a inclure dans la page
-#' @param header l entete de la page
+#' @param header l entete de la page (voir `header_dsfr()`)
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
@@ -46,7 +46,8 @@ fluidPage_dsfr <- function(
       ...
     )
   ) %>%
-    parse_html(zone = "/html") %>%
+    # parse_html(zone = "/html") %>%
     add_dsfr_deps()
+
   ui
 }

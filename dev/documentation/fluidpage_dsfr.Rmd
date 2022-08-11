@@ -1,8 +1,10 @@
 ---
 title: "fluidPage_dsfr"
-output: github_document
-editor_options: 
-  chunk_output_type: console
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fluidpage_dsfr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -60,7 +62,8 @@ Le template étant défini, nous allons pourvoir apporter notre logique métier 
 
 Aussi, c'est ici que nous ajoutons les dépendences à notre application avec `add_dsfr_deps`. Autrement dit, nous chargons à cet endroit le css, js et autres.
 
-Petit détail technique, le `parse_html` permet de s'assurer de retrouver une structure classique d'une app shiny après la lecture du htmlTemplate. On l'utilisera toujours après la fonction `_template`. La zone permet de spécifier jusqu'à ou on veut traduire le template `html`. Dans 90% des cas, le paramètre par défaut, à savoir "/html/body/*" sera suiffisant. Ici, on utilise "/html" car nous souhaitons récupérer l'intégralité du template.
+Petit détail technique, le `parse_html` n'est pas appliqué exceptionnelement dans le `fluidPage_dsfr`afin de conserver les dépendances des `htmlwidgets`.
+Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur l'objet `ui`.
 
 
 ```{r eval = FALSE, echo = TRUE}
