@@ -12,7 +12,6 @@ editor_options:
 {golem} est un package R destiné à la création d'applications Shiny.
 
 ```{r, eval = FALSE}
-# install.packages("remotes")
 install.packages("golem")
 ```
 
@@ -28,7 +27,7 @@ Une fonction a été développée pour convertir votre application, soit tous le
 Depuis votre projet, lancer: 
 
 ```{r, eval = FALSE}
-convert_to_dsfr(version = "1.7.2")
+convert_to_dsfr()
 ```
 
 Pour plus d'information, veuillez consulter la documentation de cette fonction `convert_to_dsfr()`
@@ -40,7 +39,7 @@ Dans le cas d'une nouvelle application créée sans le package {golem}, il sera 
 Par exemple: 
 
 ```{r, eval = FALSE}
-convert_to_dsfr(path = "lechemindemonapplication", version = "1.7.2")
+convert_to_dsfr(path = "lechemindemonapplication")
 ```
 
 La dépendance au package {shinygouv} ne sera quant à elle pas prise en compte par la fonction `convert_to_dsfr()` et devra être effectuée manuellement dans les scripts en y ajoutant l'une des 2 possibilités suivantes (en fonction du mode développement utilisé):
@@ -56,11 +55,8 @@ La liste des composants déjà implémentés est disponible dans le package, sel
 - Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv`)
 
 ```{r, echo = FALSE, message = FALSE}
-DT::datatable(
-  tab_corresp <- system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv") %>%
-    readr::read_csv2() %>% 
-    dplyr::select(composant_dsfr)
-)
+read.csv2(system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv"))[,"composant_dsfr", drop = FALSE] %>% 
+  knitr::kable()
 ```
 
 
