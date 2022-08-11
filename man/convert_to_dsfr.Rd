@@ -4,12 +4,12 @@
 \alias{convert_to_dsfr}
 \title{convert_to_dsfr}
 \usage{
-convert_to_dsfr(path = "R/", version)
+convert_to_dsfr(path = "R/", version = get_dsfr_version())
 }
 \arguments{
 \item{path}{le chemin du dossier sur lequel faire la conversion, par defaut "R/"}
 
-\item{version}{le numero de version du dsfr a utiliser, par exemple "1.7.2"}
+\item{version}{le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.}
 }
 \value{
 des fichiers modifies
@@ -25,5 +25,5 @@ golem::create_golem(
   overwrite = TRUE,
   open = FALSE
 )
-convert_to_dsfr(path = file.path(mydir, "R"), version = "1.7.2")
+convert_to_dsfr(path = file.path(mydir, "R"))
 }
