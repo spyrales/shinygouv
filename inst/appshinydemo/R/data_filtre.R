@@ -9,12 +9,9 @@
 #' @param max numeric maximum de "sepal" ou "petal" Length
 #' @return dataframe
 #' @export
-#' @importFrom dplyr filter
 #' @examples
-#' data_filtre(iris, "setosa", "Sepal.Length", "6.2")
+#' data_filtre(iris, "setosa", "Sepal.Length", 6.2)
 data_filtre <- function(df, species, sepal_petal, max) {
-res <- df %>%
-        filter(Species == species &
-                 !!rlang::sym(sepal_petal) <= max)
-return(res)
+  res <- df[df[["Species"]] == species & df[[sepal_petal]] <= max, ]
+  return(res)
 }

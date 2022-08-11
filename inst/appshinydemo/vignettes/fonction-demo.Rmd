@@ -26,6 +26,6 @@ La fonction prend en argument la table `iris` et renvoie une table filtree selon
 
 
 ```{r examples-data_filtre}
-data_filtre(iris, "setosa", "Sepal.Length", "6.2")
+data_filtre(iris, "setosa", "Sepal.Length", 6.2)
 ```
 

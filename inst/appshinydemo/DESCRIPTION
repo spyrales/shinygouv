@@ -7,21 +7,19 @@ Description: PKG_DESC.
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
-    dplyr,
-    DT,
-    ggplot2,
-    glue,
+    DT (>= 0.23),
+    ggplot2 (>= 3.3.6),
+    glue (>= 1.6.2),
     golem (>= 0.3.3),
-    magrittr,
-    rlang,
+    magrittr (>= 2.0.3),
     shiny (>= 1.7.2)
 Suggests: 
-    knitr,
-    rmarkdown,
+    knitr (>= 1.39),
+    rmarkdown (>= 2.14),
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

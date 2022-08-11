@@ -86,10 +86,10 @@ Elle se base alors sur la table de correspondance des composants implémentés :
 Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv`)
 
 ```{r, echo = FALSE, message = FALSE}
-DT::datatable(
-  tab_corresp <- system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv") %>%
-    readr::read_csv2()
-)
+read.csv2(
+  system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv")
+) %>% 
+  DT::datatable()
 ```
 
 ## Dépendances
@@ -101,14 +101,14 @@ De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_
 Pour cela, il suffit de lancer dans votre projet contenant l'application shiny: 
 
 ```{r, eval = FALSE}
-convert_to_dsfr(version = "1.7.2")
+convert_to_dsfr()
 ```
 
 Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
 Comme par exemple: 
 
 ```{r, eval = FALSE}
-convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
+convert_to_dsfr(path = "le_chemin_de_mon_application")
 ```
 
 *Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
@@ -119,15 +119,15 @@ convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
 #' permet de convertir une application shiny en une application shiny suivant le DSFR
 #' 
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
-#' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2"
+#' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
 #' @importFrom purrr map
-#' @importFrom readr read_csv2
 #' @importFrom glue glue
-#' @importFrom stringr  str_which
+#' @importFrom utils read.csv2
+#' @importFrom stringr str_which
 #' @return des fichiers modifies
 #' 
 #' @export
-convert_to_dsfr <- function(path = "R/", version){
+convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()){
   
 chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
 
@@ -146,7 +146,7 @@ chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
     stop(glue::glue("Le fichier 'v{version}/table_correspondance_shiny_dsfr.csv' n existe pas"))
   }
   
-  tab_corresp <- readr::read_csv2(chemin_tab_corresp)
+  tab_corresp <- read.csv2(chemin_tab_corresp)
   tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]),]
     
   # recuperation de la table de correspondance
@@ -181,14 +181,12 @@ golem::create_golem(
   overwrite = TRUE,
   open = FALSE
 )
-convert_to_dsfr(path = file.path(mydir, "R"), version = "1.7.2")
+convert_to_dsfr(path = file.path(mydir, "R"))
 ```
 
 ```{r tests-convert_to_dsfr}
 test_that("convert_to_dsfr works", {
-  
-library(tibble)
-  
+
 mydir <- tempfile(pattern = "app")
 dir.create(mydir)
 golem::create_golem(
@@ -201,16 +199,16 @@ file.copy(from = file.path(mydir,"R", "app_ui.R"),
           to = file.path(mydir,"R", "module_ui.R"))
 
 #' @description Retourne une erreur si le numero de version est NULL
-  expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = NULL))
+expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = NULL))
 
 #' @description Retourne une erreur si le tableau de correspondance n'existe pas pour la version specifiee
-  expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = "A.A.A.A"), msg ="Le dossier 'vA.A.A.A' n'existe pas") 
-  
-convert_to_dsfr(path = file.path(mydir,"R"), version = "1.7.2")  
+expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = "A.A.A.A"), msg ="Le dossier 'vA.A.A.A' n'existe pas") 
+
+expect_error(convert_to_dsfr(path = file.path(mydir,"R")), regexp = NA)
 app_ui <- readLines(file.path(mydir,"R","app_ui.R"))
 
 #' @description la dependance a shinygouv a ete ajoute a app_ui.R
-  expect_true(any(stringr::str_detect(string = app_ui,pattern = "@import shinygouv")))
+expect_true(any(stringr::str_detect(string = app_ui,pattern = "@import shinygouv")))
 })
 ```
 

@@ -1,6 +1,6 @@
 Package: shinygouv
 Title: An Amazing Shiny App
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: c(
     person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
@@ -22,7 +22,6 @@ Imports:
     htmltools,
     magrittr,
     purrr,
-    readr,
     shiny (>= 1.7.1),
     stringr,
     utils,

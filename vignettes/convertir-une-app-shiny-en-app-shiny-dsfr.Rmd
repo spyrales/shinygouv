@@ -33,10 +33,10 @@ Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv
 
 
 ```{r echo = FALSE, message = FALSE}
-DT::datatable(
-  tab_corresp <- system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv") %>%
-    readr::read_csv2()
-)
+read.csv2(
+  system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv")
+) %>% 
+  DT::datatable()
 ```
 
 ## Dépendances
@@ -50,7 +50,7 @@ Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
 
 
 ```{r eval = FALSE}
-convert_to_dsfr(version = "1.7.2")
+convert_to_dsfr()
 ```
 
 Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
@@ -58,7 +58,7 @@ Comme par exemple:
 
 
 ```{r eval = FALSE}
-convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
+convert_to_dsfr(path = "le_chemin_de_mon_application")
 ```
 
 *Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
@@ -72,7 +72,7 @@ golem::create_golem(
   overwrite = TRUE,
   open = FALSE
 )
-convert_to_dsfr(path = file.path(mydir, "R"), version = "1.7.2")
+convert_to_dsfr(path = file.path(mydir, "R"))
 ```
 
 # Connaître la version du dsfr actuelle

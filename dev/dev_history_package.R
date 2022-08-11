@@ -21,6 +21,7 @@ check_n_covr()
 # Get global variables
 checkhelper::print_globals()
 # styler the package
+# install.packages("grkstyle", repos = "https://gadenbuie.r-universe.dev")
 grkstyle::grk_style_pkg(pkg = ".")
 # linter
 lintr::lint_package()
