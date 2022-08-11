@@ -98,7 +98,7 @@ Le template étant défini, nous allons pourvoir apporter notre logique métier 
 
 Aussi, c'est ici que nous ajoutons les dépendences à notre application avec `add_dsfr_deps`. Autrement dit, nous chargons à cet endroit le css, js et autres.
 
-Petit détail technique, le `parse_html` n'est pas appliqué exceptionnelement dans le `fluidPage_dsfr`afin de conserver les dépendances des `htmlwidgets`.
+Petit détail technique, le `parse_html` n'est pas appliqué exceptionnellement dans le `fluidPage_dsfr`afin de conserver les dépendances des `htmlwidgets`.
 Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur l'objet `ui`.
 
 ```{r function-fluidPage_dsfr}

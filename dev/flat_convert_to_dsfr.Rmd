@@ -48,7 +48,7 @@ convert_file_to_dsfr <- function(file, tab_corresp){
 
 ```
 
-```{r tests-convert_to_dsfr}
+```{r tests-convert_file_to_dsfr}
 test_that("convert_file_to_dsfr works", {
 
 library(tibble)
