@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygouv</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9004</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">convert_to_dsfr</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"R/"</span>, <span class="va">version</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">convert_to_dsfr</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"R/"</span>, version <span class="op">=</span> <span class="fu"><a href="get_dsfr_version.html">get_dsfr_version</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -88,7 +88,7 @@
 
 
 <dt>version</dt>
-<dd><p>le numero de version du dsfr a utiliser, par exemple "1.7.2"</p></dd>
+<dd><p>le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -116,23 +116,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Configured app</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ── Running project hook function ───────────────────────────────────────────────</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> All set</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Setting active project to <span style="color: #0000BB;">'/tmp/RtmprPGmLj/app392455d80c55'</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Setting active project to <span style="color: #0000BB;">'/tmp/RtmpeaPEZq/app39c46f46a0ce'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ── Done ────────────────────────────────────────────────────────────────────────</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A new golem named app392455d80c55 was created at /tmp/RtmprPGmLj/app392455d80c55 .</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A new golem named app39c46f46a0ce was created at /tmp/RtmpeaPEZq/app39c46f46a0ce .</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> To continue working on your app, start editing the 01_start.R file.</span>
-<span class="r-in"><span><span class="fu">convert_to_dsfr</span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">mydir</span>, <span class="st">"R"</span><span class="op">)</span>, version <span class="op">=</span> <span class="st">"1.7.2"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Using <span style="color: #0000BB;">"','"</span> as decimal and <span style="color: #0000BB;">"'.'"</span> as grouping mark. Use `read_delim()` for more control.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">4</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">4</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Delimiter:</span> ";"</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">chr</span> (4): composant_shiny, composant_dsfr, fichier, mis_a_jour</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmprPGmLj/app392455d80c55/R/app_config.R</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmprPGmLj/app392455d80c55/R/app_server.R</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmprPGmLj/app392455d80c55/R/app_ui.R</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmprPGmLj/app392455d80c55/R/run_app.R</span>
+<span class="r-in"><span><span class="fu">convert_to_dsfr</span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">mydir</span>, <span class="st">"R"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmpeaPEZq/app39c46f46a0ce/R/app_config.R</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmpeaPEZq/app39c46f46a0ce/R/app_server.R</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmpeaPEZq/app39c46f46a0ce/R/app_ui.R</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> scan /tmp/RtmpeaPEZq/app39c46f46a0ce/R/run_app.R</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> la dependance a shinygouv a ete ajoute dans app_ui.R</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Conversion terminee"</span>
 </code></pre></div>
