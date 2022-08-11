@@ -22,5 +22,5 @@ dataframe
 data_filtre
 }
 \examples{
-data_filtre(iris, "setosa", "Sepal.Length", "6.2")
+data_filtre(iris, "setosa", "Sepal.Length", 6.2)
 }
