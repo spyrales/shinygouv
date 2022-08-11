@@ -20,4 +20,4 @@ ETQ utilisateur/utilisatrice, je souhaite pouvoir ajouter un composant de type `
 - Je crée une branche pour développer la fonctionnalité
 - Utilisation du workflow décrit dans  'dev/documentation/comment-faire-un-composant-shiny.Rmd'
 - Utiliser le flat file fourni pour développer avec {fusen}
-- J'ouvre une PR assignée à @statnmap lorsque c'est traité
+- J'ouvre une PR assignée aux responsables de projet lorsque c'est traité

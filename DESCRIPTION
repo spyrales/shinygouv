@@ -29,6 +29,7 @@ Suggests:
     DT,
     kableExtra,
     knitr,
+    readr,
     readxl,
     rmarkdown,
     testthat (>= 3.0.0),

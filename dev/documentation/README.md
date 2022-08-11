@@ -115,6 +115,7 @@ développements
 -   Messages de commit (de préférence en anglais, par habitude chez
     nous) 🇫🇷
 -   Description des tests unitaires (de préférence en anglais) 🇫🇷
+-   Contenu du NEWS.md 🇫🇷
 -   Code of Conduct: template par défaut de {usethis} en anglais déjà
     présent comme pour {gouvdown} 🇬🇧
 -   Contributing: template par défaut de {usethis} en anglais peut être
