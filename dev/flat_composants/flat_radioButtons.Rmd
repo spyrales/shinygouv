@@ -51,22 +51,18 @@ Suivre les 2 premières étape de la procédure décrite dans `dev/documentation
 Quelques précisions: 
 - Pour utiliser le fonctionnement classique du radioButtons {shiny}:
   - l'argument `value` a été rajouté
-
+  - la classe `shiny-options-group` a été rajouté (ce qui permettra d'implémenter/utiliser une fonction `updateRadioButtons_dsfr()`)
+  - reprendre la div `label` du radioButtons de shiny ainsi que ses attributs.
+  
 # radioButtons_unique_dsfr_template
 
 Avant l'utilisation de `htmlTemplate()`, notre fonction nécessite de considérer les différents cas de figure pour certains paramètres.
-Par exemple, l'utilisation ou non d'un vecteur nommé doit modifier la personnalisation du template `.html` (si le vecteur n'est pas nommé alors le `name_choix` doit être égal au `value_choix`).
+Par exemple, l'utilisation ou non d'un vecteur nommé doit modifier la personnalisation du template `.html` (si le vecteur n'est pas nommé alors le `nom_choix` doit être égal au `value_choix`).
 
 
 ```{r, eval = FALSE}
-radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FALSE
+radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, inline = FALSE
   ){
-  
- if (is.null(names(choix))) {
-    name_choix <- choix} else {
-    name_choix <- names(choix)
-    }
-  
   
   if(isTRUE(inline)){
     class_inline <- "-inline"  
@@ -82,7 +78,7 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FAL
     ),
     inputId = inputId,
     name = name,
-    name_choix = name_choix,
+    nom_choix = nom_choix,
     value_choix = choix,
     class_inline = class_inline 
     )
@@ -94,20 +90,15 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FAL
 #' radioButtons_unique_dsfr_template
 #' 
 #' @param inputId id de l'input avec indexation
-#' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param choix choix une valeur a selectionner 
+#' @param nom_choix le nom de la valeur a selectionner/afficher
 #' @param name nom de l'inputId sans indexation
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
-radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FALSE
+radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, inline = FALSE
   ){
-  
- if (is.null(names(choix))) {
-    name_choix <- choix} else {
-    name_choix <- names(choix)
-    }
-  
   
   if(isTRUE(inline)){
     class_inline <- "-inline"  
@@ -123,7 +114,7 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, name, inline = FAL
     ),
     inputId = inputId,
     name = name,
-    name_choix = name_choix,
+    nom_choix = nom_choix,
     value_choix = choix,
     class_inline = class_inline 
     )
@@ -139,7 +130,8 @@ test_that("radioButtons_unique_dsfr_template works", {
     test <- radioButtons_unique_dsfr_template(
       inputId = "test-1",
       name = "test",
-      choix = c("Choix A" = "A")
+      choix = c("A"),
+      nom_choix = "Choix A"
     )
   
   #' @description tester si tous les params sont remplaces
@@ -166,6 +158,14 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
   } else {
     class_inline = NULL
   }
+
+  if (is.null(names(choix))) {
+    nom_choix <- choix
+  } else {
+    nom_choix <- names(choix)
+  }
+
+  
   x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
@@ -176,13 +176,15 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
     ),
     inputId = inputId,
     label = label,
-    choix = purrr::map(.x = choix, 
+    choix = purrr::map2(.x = choix,
+                        .y = nom_choix
                        ~ {
                          x <<- x+1
                          radioButtons_unique_dsfr_template(
                            inputId = paste0(inputId,"-", x),
                            name = inputId,
                            choix = .x,
+                           nom_choix = nom_choix,
                            inline = inline
                          )
                        }) %>%
@@ -203,11 +205,10 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
 #' @param class des classes a ajouter si necessaire
 #' 
 #' @importFrom htmltools htmlTemplate tagList
-#' @importFrom purrr map map_chr
+#' @importFrom purrr map2 map_chr
 #' @return html
 radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
   ){
-  
   inline <- FALSE #TODO 
   if (isTRUE(inline)){
     class_inline <- "fr-fieldset--inline"
@@ -215,6 +216,14 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
   } else {
     class_inline = NULL
   }
+  
+  if (is.null(names(choix))) {
+    nom_choix <- choix
+  } else {
+    nom_choix <- names(choix)
+  }
+
+  
   x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
@@ -225,13 +234,15 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
     ),
     inputId = inputId,
     label = label,
-    choix = purrr::map(.x = choix, 
+    choix = purrr::map2(.x = choix,
+                        .y = nom_choix,
                        ~ {
                          x <<- x+1
                          radioButtons_unique_dsfr_template(
                            inputId = paste0(inputId,"-", x),
                            name = inputId,
                            choix = .x,
+                           nom_choix = .y,
                            inline = inline
                          )
                        }) %>%
@@ -305,8 +316,8 @@ radioButtons_dsfr(
 )
 
 # radioButtons_dsfr(
-#       inputId = "test", 
-#       label = "Test", 
+#       inputId = "test",
+#       label = "Test",
 #       choices = c("Choix A" = "A","Choix B" = "B"),
 #       class = NULL
 # )
@@ -321,6 +332,102 @@ test_that("radioButtons_dsfr works", {
   expect_s3_class(test, "shiny.tag")
 })
 ```
+
+# updateRadioButtons_dsfr
+    
+```{r function-updateRadioButtons_dsfr}
+#' updateRadioButtons_dsfr
+#' 
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' @importFrom htmltools tagList
+#' @importFrom purrr map2
+#' @return html
+#' 
+#' @export
+updateRadioButtons_dsfr <- function(inputId,
+                                    label = NULL,
+                                    choices = NULL,
+                                    session = shiny::getDefaultReactiveDomain()) {
+  ns <- session$ns
+  x <- 0
+
+  if (!is.null(choices)) {
+    choices <- tags$div(
+      class = "fr-fieldset__content shiny-options-group",
+      tagList(purrr::map2(
+        .x = choices,
+        .y = names(choices),
+        ~ {
+          x <<- x + 1
+          radioButtons_unique_dsfr_template(
+            inputId = paste0(ns(inputId), "-", x),
+            name = ns(inputId),
+            choix = .x,
+            nom_choix = .y,
+            inline = FALSE
+          )
+        }
+      ))
+    )
+  }
+
+  
+  message <- utils::getFromNamespace("dropNulls", "shiny")(
+    list(
+      label = label,
+      options = as.character(choices)
+    )
+  )
+
+  session$sendInputMessage(inputId, message)
+}
+    
+
+```
+  
+```{r example-updateRadioButtons_dsfr}
+## Only run examples in interactive R sessions
+if (interactive()) {
+ui <- fluidPage_dsfr(
+  radioButtons_dsfr(inputId = "inRadioButtons", 
+                    label = "Input radio buttons",
+                    choices = c("Item A","Item B", "Item C")),
+  actionButton_dsfr("go","Change")
+)
+
+server <- function(input, output, session) {
+  
+  observeEvent(input$go,{
+    updateRadioButtons_dsfr(
+      session = session, 
+      inputId = "inRadioButtons",
+      label = "Un nouveau label",
+      choices = c("A" = "a")
+    )
+  })
+  
+  observeEvent(input$inRadioButtons,{
+    message(input$inRadioButtons)
+  })
+}
+
+shinyApp(ui, server)
+}
+
+```
+  
+```{r tests-updateRadioButtons_dsfr}
+test_that("updateRadioButtons_dsfr works", {
+  expect_true(inherits(updateRadioButtons_dsfr, "function")) 
+})
+```
+  
+
+
+
 
 
 ```{r development-inflate, eval=FALSE}
