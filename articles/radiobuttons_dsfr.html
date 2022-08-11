@@ -155,8 +155,10 @@ Il est donc nécessaire de scinder les htmlTemplates dans différents fichiers .
 <span><span class="op">)</span></span></code></pre></div>
 <div id="test" class="fr-form-group shiny-input-radiogroup shiny-input-container ">
 <fieldset class="fr-fieldset ">
-<legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">Test</legend>
-<div class="fr-fieldset__content">
+<legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">
+<label class="control-label" id="test-label" for="test">Test</label>
+</legend>
+<div class="fr-fieldset__content shiny-options-group">
 <div class="fr-radio-group">
 <input type="radio" id="test-1" name="test" value="A"><label class="fr-label" for="test-1">A</label>
 </div>
@@ -176,13 +178,15 @@ radioButtons_dsfr(
 )
 <div id="test" class="fr-form-group shiny-input-radiogroup shiny-input-container ">
 <fieldset class="fr-fieldset ">
-<legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">Test</legend>
-<div class="fr-fieldset__content">
+<legend class="fr-fieldset__legend fr-text--regular" id="radio-legend">
+<label class="control-label" id="test-label" for="test">Test</label>
+</legend>
+<div class="fr-fieldset__content shiny-options-group">
 <div class="fr-radio-group">
-<input type="radio" id="test-1" name="test" value="A"><label class="fr-label" for="test-1">A</label>
+<input type="radio" id="test-1" name="test" value="A"><label class="fr-label" for="test-1">Choix A</label>
 </div>
 <div class="fr-radio-group">
-<input type="radio" id="test-2" name="test" value="B"><label class="fr-label" for="test-2">B</label>
+<input type="radio" id="test-2" name="test" value="B"><label class="fr-label" for="test-2">Choix B</label>
 </div>
 </div>
 </fieldset>
