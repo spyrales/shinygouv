@@ -29,8 +29,8 @@ radioButtons_dsfr(
 )
 
 # radioButtons_dsfr(
-#       inputId = "test", 
-#       label = "Test", 
+#       inputId = "test",
+#       label = "Test",
 #       choices = c("Choix A" = "A","Choix B" = "B"),
 #       class = NULL
 # )

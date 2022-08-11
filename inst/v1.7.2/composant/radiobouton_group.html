@@ -1,9 +1,11 @@
-<div id = {{inputId}} class="fr-form-group shiny-input-radiogroup shiny-input-container {{class}}">
+<div id = "{{inputId}}" class="fr-form-group shiny-input-radiogroup shiny-input-container {{class}}">
     <fieldset class="fr-fieldset {{inline}}">
         <legend class="fr-fieldset__legend fr-text--regular" id='radio-legend'>
+          <label class = "control-label" id = "{{inputId}}-label" for = "{{inputId}}">
             {{label}}
-        </legend>
-        <div class="fr-fieldset__content">
+          </label>
+          </legend>
+        <div class="fr-fieldset__content shiny-options-group">
         {{choix}}
         </div>
     </fieldset>

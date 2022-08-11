@@ -24,6 +24,7 @@ app_ui <- function(request) {
           0, # Calcul automatique de la largeur
           p("Premi\\u00E8re Colonne"),
           actionButton_dsfr("go", label = "Sample!"),
+          actionButton_dsfr("updateradiobutton", label = "Update RadioButtons!"),
           plotOutput(
             "plot_sample"
           )

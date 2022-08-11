@@ -11,7 +11,16 @@ app_server <- function(input, output, session) {
     message("je clique ", input$go)
   })
 
+  observeEvent(input$updateradiobutton, {
+    updateRadioButtons_dsfr(
+      session = session,
+      inputId = "espece",
+      label = "Un nouveau label",
+      choices = c("Espece A" = "a", "Espece B" = "b")
+    )
+  })
+
   observeEvent(input$espece, {
-    message("je change d'esepce ", input$espece)
+    message("je change d'espece ", input$espece)
   })
 }
