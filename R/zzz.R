@@ -1,3 +1,3 @@
 globalVariables(
-  c(".")
+  c(".", "composant_shiny")
 )

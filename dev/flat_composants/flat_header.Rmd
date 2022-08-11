@@ -138,7 +138,7 @@ test_that("header_dsfr works", {
 spec_infalte <- function(){
   nom <- "header dsfr"
   fusen::inflate(
-    flat_file = "dev/v1.7.2/composant/flat_header.Rmd", 
+    flat_file = "dev/flat_composants/flat_header.Rmd", 
     vignette_name = nom)
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")

@@ -117,7 +117,7 @@ test_that("actionButton_dsfr works", {
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
 
-fusen::inflate(flat_file = "dev/v1.7.2/composant/flat_actionButton.Rmd", 
+fusen::inflate(flat_file = "dev/flat_composants/flat_actionButton.Rmd", 
                 vignette_name = "actionButton_dsfr")
 ```
 

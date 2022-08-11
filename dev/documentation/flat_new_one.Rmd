@@ -99,7 +99,7 @@ test_that("nom_composant_shiny_dsfr works", {
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
 
-fusen::inflate(flat_file = "chemin à modifier", 
+fusen::inflate(flat_file = "dev/flat_composants/chemin à modifier", 
                 vignette_name = "nom_composant_shiny_dsfr")
 ```
 

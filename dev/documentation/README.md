@@ -19,9 +19,20 @@ desc::desc_get("VersionDsfr")
     ## VersionDsfr 
     ##     "1.7.2"
 
-Si il y a un changement de version du dsfr pour ce package, il faudra
-alors penser à mettre à jour le fichier DESCRIPTION avec la commande
-suivante :
+## Ajouter une nouvelle version du dsfr
+
+Si vous souhaitez implémenter une nouvelle version du dsfr, vous devez
+suivre les instructions dans “dev/flat_montee_version_dsfr.Rmd”.
+
+``` r
+rstudioapi::navigateToFile("dev/flat_montee_version_dsfr.Rmd")
+```
+
+    ## [1] "8DB8266C"
+
+Lorsque vous aurez implémenté toutes les composantes avec la nouvelle
+version, vous pourrez mettre à jour le fichier DESCRIPTION avec la
+commande suivante :
 
 ``` r
 desc::desc_set("VersionDsfr" = "1.7.2")

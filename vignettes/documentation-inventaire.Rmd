@@ -97,7 +97,6 @@ shinycssloaders <- tibble::tibble("package" = "shinycssloaders",
                                   "composantes" = c("withSpinner"),
                                   "utilisation" = "faible")
 
-composantes_autres <- dplyr::bind_rows(leaflet, shinywidgets, shinycssloaders)
-kableExtra::kbl(composantes_autres)
+composantes_autres <- rbind(leaflet, shinywidgets, shinycssloaders)
 ```
 

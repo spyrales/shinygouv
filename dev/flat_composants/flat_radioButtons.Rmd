@@ -331,7 +331,7 @@ test_that("radioButtons_dsfr works", {
 spec_infalte <- function(){
   nom <- "radioButtons dsfr"
   fusen::inflate(
-    flat_file = "dev/v1.7.2/composant/flat_radioButtons.Rmd", 
+    flat_file = "dev/flat_composants/flat_radioButtons.Rmd", 
     vignette_name = nom)
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
