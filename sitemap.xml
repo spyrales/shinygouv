@@ -16,6 +16,9 @@
     <loc>/articles/actionbutton_dsfr.html</loc>
   </url>
   <url>
+    <loc>/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html</loc>
+  </url>
+  <url>
     <loc>/articles/documentation-inventaire.html</loc>
   </url>
   <url>
@@ -25,13 +28,13 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html</loc>
+  </url>
+  <url>
     <loc>/articles/radiobuttons_dsfr.html</loc>
   </url>
   <url>
     <loc>/articles/recommandation-pour-l-implementation-de-dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/trouver_css_js.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -55,10 +58,16 @@
     <loc>/reference/column_dsfr.html</loc>
   </url>
   <url>
+    <loc>/reference/convert_to_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/fluidPage_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/fluidRow_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_dsfr_version.html</loc>
   </url>
   <url>
     <loc>/reference/header_dsfr.html</loc>

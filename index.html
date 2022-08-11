@@ -53,19 +53,22 @@
       <a href="articles/actionbutton_dsfr.html">actionButton_dsfr</a>
     </li>
     <li>
+      <a href="articles/convertir-une-app-shiny-en-app-shiny-dsfr.html">Convertir une app shiny en app shiny dsfr</a>
+    </li>
+    <li>
       <a href="articles/documentation-inventaire.html">Documentation-Inventaire</a>
     </li>
     <li>
       <a href="articles/html-vers-shiny-tag.html">html vers shiny.tag</a>
     </li>
     <li>
+      <a href="articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee en version du dsfr : trouver les fichiers CSS et JS</a>
+    </li>
+    <li>
       <a href="articles/radiobuttons_dsfr.html">radioButtons_dsfr</a>
     </li>
     <li>
       <a href="articles/recommandation-pour-l-implementation-de-dsfr.html">Recommandation pour l'implementation de DSFR</a>
-    </li>
-    <li>
-      <a href="articles/trouver_css_js.html">trouver_css_js</a>
     </li>
   </ul>
 </li>
@@ -87,16 +90,17 @@
   <div class="contents col-md-9">
 
 <div class="section level1">
-<div class="page-header"><h1 id="shinygouv">shinygouv<a class="anchor" aria-label="anchor" href="#shinygouv"></a>
+<div class="page-header"><h1 id="shinygouv">{shinygouv}<a class="anchor" aria-label="anchor" href="#shinygouv"></a>
 </h1></div>
-<p>Reprendre le template existant pour le <code>Système de Design de l'Etat</code> (DSFR)</p>
+<p>Le package {shinygouv} permet d’utiliser le template existant pour le <code>Système de Design de l'Etat</code> (DSFR) dans vos applications Shiny.</p>
 </div>
 <div class="section level1">
-<h1 id="comment-utiliser-le-package-">Comment utiliser le package :<a class="anchor" aria-label="anchor" href="#comment-utiliser-le-package-"></a>
+<h1 id="comment-utiliser-le-package">Comment utiliser le package<a class="anchor" aria-label="anchor" href="#comment-utiliser-le-package"></a>
 </h1>
 <p>Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la partie UI:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">app_ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Exemple"</span>,</span>
@@ -107,9 +111,14 @@
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
-<h1 id="contribuer-au-package">Contribuer au package<a class="anchor" aria-label="anchor" href="#contribuer-au-package"></a>
+<h1 id="contribuer-au-développement-du-package">Contribuer au développement du package<a class="anchor" aria-label="anchor" href="#contribuer-au-d%C3%A9veloppement-du-package"></a>
 </h1>
 <p>Voir le README du dossier <a href="dev/documentation">documentation</a></p>
+</div>
+<div class="section level1">
+<h1 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h1>
+<p>Please note that the {shinygouv} project is released with a Contributor Code of Conduct. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 
   </div>
