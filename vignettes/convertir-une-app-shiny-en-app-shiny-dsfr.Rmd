@@ -22,12 +22,12 @@ library(shinygouv)
 
 # convert_to_dsfr
 
-La fonction convertit tous les composants shiny présents dans les fichiers du dossier R/ d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémenté dans la {version} définie en paramètre.
+La fonction convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémentés dans la {version} définie en paramètre.
 
 
 ## Table de correspondance
 
-Elle se base alors sur la table de correspondance des composants implementes :
+Elle se base alors sur la table de correspondance des composants implémentés :
 
 Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv`)
 
@@ -39,12 +39,12 @@ DT::datatable(
 )
 ```
 
-## Dependance
+## Dépendances
 
-De plus, elle ajoute la dependance au package {shinygouv} dans le fichier `app_ui.R`
+De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_ui.R`
 
 
-## Convertion
+## Conversion
 
 Pour cela, il suffit de lancer dans votre projet contenant l'application shiny: 
 
@@ -53,7 +53,7 @@ Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
 convert_to_dsfr(version = "1.7.2")
 ```
 
-Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier `R/` a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
+Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
 Comme par exemple: 
 
 
@@ -61,7 +61,7 @@ Comme par exemple:
 convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
 ```
 
-*Attention*, dans le cadre d'une application hors {golem}, vous devrez rajouter les dependances a {shinygouv} pour que votre application puisse utiliser les composants dsfr
+*Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
 
 
 ```{r examples-convert_to_dsfr}
@@ -72,6 +72,22 @@ golem::create_golem(
   overwrite = TRUE,
   open = FALSE
 )
-convert_to_dsfr(path = file.path(mydir,"R"), version = "1.7.2")
+convert_to_dsfr(path = file.path(mydir, "R"), version = "1.7.2")
 ```
+
+# Connaître la version du dsfr actuelle
+
+    
+Pour savoir quelle version du dsfr est utilisée dans votre installation de {shinygouv}, vous pouvez exécuter `get_dsfr_version()`
+    
+
+  
+
+```{r example-get_dsfr_version}
+get_dsfr_version()
+```
+
+  
+
+  
 

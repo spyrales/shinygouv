@@ -1,17 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# shinygouv
+# {shinygouv}
 
-Reprendre le template existant pour le `Système de Design de l'Etat`
-(DSFR)
+Le package {shinygouv} permet d’utiliser le template existant pour le
+`Système de Design de l'Etat` (DSFR) dans vos applications Shiny.
 
-# Comment utiliser le package :
+# Comment utiliser le package
 
 Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la
 partie UI:
 
 ``` r
+library(shiny)
 library(shinygouv)
 
 app_ui <- fluidPage_dsfr(
@@ -23,6 +24,12 @@ app_ui <- fluidPage_dsfr(
 )
 ```
 
-# Contribuer au package
+# Contribuer au développement du package
 
 Voir le README du dossier [documentation](dev/documentation)
+
+# Code of Conduct
+
+Please note that the {shinygouv} project is released with a Contributor
+Code of Conduct. By contributing to this project, you agree to abide by
+its terms.

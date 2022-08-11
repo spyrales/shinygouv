@@ -77,11 +77,11 @@ fichier_transform <- readLines(fichier)
 
 # convert_to_dsfr
 
-La fonction convertit tous les composants shiny présents dans les fichiers du dossier R/ d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémenté dans la {version} définie en paramètre.
+La fonction convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémentés dans la {version} définie en paramètre.
 
 ## Table de correspondance
 
-Elle se base alors sur la table de correspondance des composants implementes :
+Elle se base alors sur la table de correspondance des composants implémentés :
 
 Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv`)
 
@@ -92,11 +92,11 @@ DT::datatable(
 )
 ```
 
-## Dependance
+## Dépendances
 
-De plus, elle ajoute la dependance au package {shinygouv} dans le fichier `app_ui.R`
+De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_ui.R`
 
-## Convertion
+## Conversion
 
 Pour cela, il suffit de lancer dans votre projet contenant l'application shiny: 
 
@@ -104,14 +104,14 @@ Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
 convert_to_dsfr(version = "1.7.2")
 ```
 
-Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier `R/` a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
+Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
 Comme par exemple: 
 
 ```{r, eval = FALSE}
 convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
 ```
 
-*Attention*, dans le cadre d'une application hors {golem}, vous devrez rajouter les dependances a {shinygouv} pour que votre application puisse utiliser les composants dsfr
+*Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
 
 ```{r function-convert_to_dsfr}
 #' convert_to_dsfr 
@@ -124,7 +124,6 @@ convert_to_dsfr(path = "le_chemin_de_mon_application", version = "1.7.2")
 #' @importFrom readr read_csv2
 #' @importFrom glue glue
 #' @importFrom stringr  str_which
-#' @importFrom dplyr filter
 #' @return des fichiers modifies
 #' 
 #' @export
@@ -147,9 +146,8 @@ chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
     stop(glue::glue("Le fichier 'v{version}/table_correspondance_shiny_dsfr.csv' n existe pas"))
   }
   
-  tab_corresp <- chemin_tab_corresp %>%
-    readr::read_csv2() %>% 
-    filter(!is.na(composant_shiny))
+  tab_corresp <- readr::read_csv2(chemin_tab_corresp)
+  tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]),]
     
   # recuperation de la table de correspondance
   fic <- list.files(path = path, full.names = TRUE)
@@ -183,7 +181,7 @@ golem::create_golem(
   overwrite = TRUE,
   open = FALSE
 )
-convert_to_dsfr(path = file.path(mydir,"R"), version = "1.7.2")
+convert_to_dsfr(path = file.path(mydir, "R"), version = "1.7.2")
 ```
 
 ```{r tests-convert_to_dsfr}
@@ -216,7 +214,33 @@ app_ui <- readLines(file.path(mydir,"R","app_ui.R"))
 })
 ```
 
-
+# Connaître la version du dsfr actuelle
+    
+Pour savoir quelle version du dsfr est utilisée dans votre installation de {shinygouv}, vous pouvez exécuter `get_dsfr_version()`
+    
+```{r function-get_dsfr_version}
+#' Recuperer la version du dsfr de 'shinygouv'
+#' 
+#' @return Character. Numero de version
+#' 
+#' @export
+get_dsfr_version <- function(){
+    utils::packageDescription(pkg = 'shinygouv')[["VersionDsfr"]]
+}
+```
+  
+```{r example-get_dsfr_version}
+get_dsfr_version()
+```
+  
+```{r tests-get_dsfr_version}
+test_that("get_dsfr_version works", {
+  expect_true(inherits(get_dsfr_version, "function")) 
+  # A changer a chaque fois que 'shinygouv' met a jour le dsfr
+  expect_equal(get_dsfr_version(), "1.7.2")
+})
+```
+  
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly

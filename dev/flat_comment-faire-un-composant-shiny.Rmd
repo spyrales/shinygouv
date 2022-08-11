@@ -10,17 +10,21 @@ blockquote{
 }
 </style>
 
-Avant de commencer, il faut s'assurer de la version du dsfr utilisé actuellement :
+Si vous êtes sur le développement d'un nouveau composant, il faut s'assurer de la version du dsfr utilisé actuellement :
 
 ```{r}
 desc::desc_get("VersionDsfr")
 ```
 
-Vous devriez trouver un dossier dans `inst` avec le bon numéro de version. Si ce n'est pas le cas, suivre la vignette `trouver_css_js`, mettre à jour la version du dsfr utilisé puis le script `dev/maj_version_dsfr.R`.
+Vous devriez trouver un dossier dans "inst/" avec le bon numéro de version. Si ce n'est pas le cas, suivre la vignette `montee-en-version-du-dsfr-trouver-fichiers-css-et-js`.
+
+Si vous êtes sur une montée de version, les dossiers devraient déjà être prêts.
 
 ## Développement d'un composant avec interaction shiny
 
-Pour expliquer le workflow de ce package, nous allons détailler comment développer le futur `actionButton`.
+Pour expliquer le workflow de ce package, nous allons détailler comment développer le futur `actionButton()`.
+
+_Ici nous prenons l'exemple d'un composant développé pour la version 1.7.2 du dsfr._
 
 #### Première étape
 
@@ -35,44 +39,47 @@ Pour expliquer le workflow de ce package, nous allons détailler comment dévelo
 #### Deuxième étape
 
 - Modifier le code html pour mettre les paramètres nécéssaires à son bon fonctionnement dans {shiny}
-  - Ajouter un id pour le futur inputId
-  - Ajouter la classe permettant de déclencher l'évenement côté {shiny}
-
-
-> Dans notre cas, nous traitons le actionButton et la classe a ajouter est `action-button`
-Comment savoir ?
-Le plus simple est d'exécuter la fonction de l'input dans shiny dans la console:
->```{r, eval = FALSE}
->shiny::actionButton("test", "test")
->```
->`<button id="test" type="button" class="btn btn-default action-button">test</button>`
->
->On observe alors que dans "class" nous avons des classes liées à bootstrap `btn-*` et une classe à part `action-button`. c'est souvent cette classe qui permet de déclencher l'évenement coté server. Si cela n'est pas suffisant, il faudra chercher dans le code du package {shiny}. Le code se trouve [ici](https://github.com/rstudio/shiny/tree/main/srcts/src/bindings/input) et en ouvrant le fichier `.ts` vous trouverez alors un endroit ou on recherche la classe qui active l'input :
->```
->  find(scope: HTMLElement): JQuery<HTMLElement> {
->    return $(scope).find(".action-button");
->  }
->```
-
+  - Ajouter un `id` pour le futur `inputId`
+  - Ajouter la classe permettant de déclencher l'événement côté {shiny}
   - Ajouter/Remplacer aussi les autres paramètres nécéssaires à la personnalisation du composant
   
-Après retravail sur le composant actionButton, voici son template html:
+Après retravail sur le composant `actionButton()`, voici son template html:
 
 ```
 <button id={{inputId}} class="fr-btn action-button {{class}}">{{label}}</button>
+```
+
+##### Exemple avec le `actionButton()`
+
+Dans notre cas, nous traitons le `actionButton()` et la classe a ajouter est `action-button`.  
+Comment savoir ?  
+
+Le plus simple est d'exécuter la fonction de l'input dans shiny dans la console:
+```{r, eval = FALSE}
+shiny::actionButton("test", "test")
+```
+```
+`<button id="test" type="button" class="btn btn-default action-button">test</button>`
+```
+
+On observe alors que dans "class" nous avons des classes liées à bootstrap `btn-*` et une classe à part `action-button`. C'est souvent cette classe qui permet de déclencher l'évenement coté server. Si cela n'est pas suffisant, il faudra chercher dans le code du package {shiny}. Le code se trouve [ici](https://github.com/rstudio/shiny/tree/main/srcts/src/bindings/input) et en ouvrant le fichier `.ts` vous trouverez alors un endroit ou on recherche la classe qui active l'input :
+```
+  find(scope: HTMLElement): JQuery<HTMLElement> {
+    return $(scope).find(".action-button");
+  }
 ```
 
 #### Troisième étape
 
 - Créer la fonction qui permettra d'utiliser ce nouveau bouton.
   - Copier coller le flat se trouvant dans `dev/documentation/flat_new_one.Rmd` dans
-  `dev/v1.7.2/composant/` et le renommer flat_nom_du_composant_shiny.rmd. Dans cet exemple, `flat_actionButton.Rmd`
+  `dev/flat_composants/` et le renommer "flat_nom_du_composant_shiny.Rmd". Dans cet exemple, `flat_actionButton.Rmd`
   - Dans votre nouveau flat, il faut remplacer "nom_composant_shiny" par le nom du composant shiny (dans cet exemple, `actionButton`)
   - Changer le chemin du fichier de votre `.html` dans la fonction `*_template`
   - Compléter les paramètres et leur documentation dans vos fonctions selon la personnalisation de votre `.html`
-  - Puis lancer le dernier chunck `fusen::inflate`
+  - Puis lancer le dernier chunck `fusen::inflate()`
   
-Voir exemple `dev/v1.7.2/composant/flat_bouton.Rmd`
+Voir exemple `dev/flat_composants/flat_actionButton.Rmd`
  
 #### Quatrième étape
 
@@ -85,12 +92,13 @@ Cette table de correspondance permettra le bon déroulement de la conversion d'u
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-
+# Inflate, but put vignette in "dev/documentation"
 spec_infalte <- function(){
   nom <- "Comment faire un composant shiny"
   fusen::inflate(
     flat_file = "dev/flat_comment-faire-un-composant-shiny.Rmd", 
-    vignette_name = nom)
+    vignette_name = nom,
+    check = FALSE)
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")

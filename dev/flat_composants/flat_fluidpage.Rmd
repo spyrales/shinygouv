@@ -434,7 +434,7 @@ Voila plusieurs exemples d'implémentation de composants/layouts qui ne demanden
 spec_infalte <- function(){
   nom <- "fluidPage_dsfr"
   fusen::inflate(
-    flat_file = "dev/v1.7.2/composant/flat_fluidpage.Rmd", 
+    flat_file = "dev/flat_composants/flat_fluidpage.Rmd", 
     vignette_name = nom)
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")

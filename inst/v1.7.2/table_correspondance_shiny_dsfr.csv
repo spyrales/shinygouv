@@ -1,5 +1,5 @@
-composant_shiny;composant_dsfr
-fluidPage;fluidPage_dsfr
-actionButton;actionButton_dsfr
-radioButtons;radioButtons_dsfr
-;header_dsfr
+composant_shiny;composant_dsfr;fichier;mis_a_jour
+fluidPage;fluidPage_dsfr;fluidpage.html;oui
+actionButton;actionButton_dsfr;bouton.html;oui
+radioButtons;radioButtons_dsfr;radiobouton.html;oui
+;header_dsfr;entete.html;oui

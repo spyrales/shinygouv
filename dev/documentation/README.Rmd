@@ -21,8 +21,15 @@ Pour connaître la version utilisée, vous pouvez lancer :
 desc::desc_get("VersionDsfr")
 ```
 
+## Ajouter une nouvelle version du dsfr
 
-Si il y a un changement de version du dsfr pour ce package, il faudra alors penser à mettre à jour le fichier DESCRIPTION avec la commande suivante :
+Si vous souhaitez implémenter une nouvelle version du dsfr, vous devez suivre les instructions dans "dev/flat_montee_version_dsfr.Rmd".  
+
+```{r}
+rstudioapi::navigateToFile("dev/flat_montee_version_dsfr.Rmd")
+```
+
+Lorsque vous aurez implémenté toutes les composantes avec la nouvelle version, vous pourrez mettre à jour le fichier DESCRIPTION avec la commande suivante :
 
 ```{r, eval=FALSE}
 desc::desc_set("VersionDsfr" = "1.7.2")
