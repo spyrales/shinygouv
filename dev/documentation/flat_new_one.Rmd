@@ -58,7 +58,7 @@ test_that("nom_composant_shiny_dsfr_template works", {
     function(param){
       with_moustache <- paste0("\\{\\{",param,"\\}\\}")
       message(with_moustache)
-      expect_true(grepl(pattern = with_moustache, htmlfile))
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)))
       message("test passed :-)")
     })
   
@@ -79,7 +79,7 @@ test_that("nom_composant_shiny_dsfr_template works", {
       ),
     function(param){
       message(param)
-      expect_true(grepl(pattern = param, test))
+      expect_true(any(grepl(pattern = param, test)))
       message("test passed :-)")
     })
   
@@ -96,11 +96,11 @@ test_that("nom_composant_shiny_dsfr_template works", {
   
     # Si erreur au précedent test deux cas possible :
     #
-    # - nouveau composant: Lancer le saveRDS et relancer le test
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
     #
     # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
     #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
-    #                              dans la fonction nom_composant_shiny_dsfr_template puis lancer le saveRDS et relancer le test
+    #                              dans la fonction nom_composant_shiny_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
  # saveRDS(htmlfile,
  #         file = file.path("tests/testthat/snapshot",
