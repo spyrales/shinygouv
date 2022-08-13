@@ -360,7 +360,7 @@ test_that("radioButtons_dsfr works", {
   
   test_error_selected <- function() {
   radioButtons_dsfr(inputId = "test", 
-                    label = "Test Error Selected", 
+                    label = "Test error selected with more than one element", 
                     choices = c("A","B"),
                     selected = c("A", "B"),
                     class = NULL)
