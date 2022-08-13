@@ -46,7 +46,8 @@ server <- function(input, output, session) {
       session = session, 
       inputId = "inRadioButtons",
       label = "Un nouveau label",
-      choices = c("A" = "a")
+      choices = c("A" = "a"),
+      selected = "a"
     )
   })
   
