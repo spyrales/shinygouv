@@ -6,4 +6,13 @@ test_that("radioButtons_dsfr works", {
   )
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag")
+  
+  test_error_selected <- function() {
+  radioButtons_dsfr(inputId = "test", 
+                    label = "Test Error Selected", 
+                    choices = c("A","B"),
+                    selected = c("A", "B"),
+                    class = NULL)
+    }
+  expect_error(test_error_selected())
 })
