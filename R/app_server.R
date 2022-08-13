@@ -15,8 +15,9 @@ app_server <- function(input, output, session) {
     updateRadioButtons_dsfr(
       session = session,
       inputId = "espece",
-      label = "Un nouveau label",
-      choices = c("Espece A" = "a", "Espece B" = "b")
+      label = "Un nouveau label avec la selection de l'espece A",
+      choices = c("Espece A" = "a", "Espece B" = "b"),
+      selected = "a"
     )
   })
 
