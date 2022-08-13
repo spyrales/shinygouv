@@ -5,6 +5,7 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element sélectionné (NULL par defaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). NON IMLPEMENTE
 #' @param class des classes a ajouter si necessaire
 #' 
@@ -12,7 +13,7 @@
 #' @importFrom purrr map2 map_chr
 #' @return html
 #' @noRd
-radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
+radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE,  class = NULL
   ){
   inline <- FALSE #TODO 
   if (isTRUE(inline)){
@@ -48,6 +49,7 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
                            name = inputId,
                            choix = .x,
                            nom_choix = .y,
+                           checked = identical(.x, selected),
                            inline = inline
                          )
                        }) %>%

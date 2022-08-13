@@ -5,6 +5,7 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom htmltools tagList
 #' @importFrom purrr map2
@@ -43,6 +44,7 @@
 updateRadioButtons_dsfr <- function(inputId,
                                     label = NULL,
                                     choices = NULL,
+                                    selected = NULL,
                                     session = shiny::getDefaultReactiveDomain()) {
   ns <- session$ns
   x <- 0
@@ -60,6 +62,7 @@ updateRadioButtons_dsfr <- function(inputId,
             name = ns(inputId),
             choix = .x,
             nom_choix = .y,
+            checked = identical(.x, selected),
             inline = FALSE
           )
         }

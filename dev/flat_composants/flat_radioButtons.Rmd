@@ -61,9 +61,14 @@ Par exemple, l'utilisation ou non d'un vecteur nommé doit modifier la personnal
 
 
 ```{r, eval = FALSE}
-radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, inline = FALSE
+radioButtons_unique_dsfr_template <-
+  function(inputId,
+           choix,
+           nom_choix,
+           name,
+           checked = FALSE,
+           inline = FALSE
   ){
-  
   if(isTRUE(inline)){
     class_inline <- "-inline"  
   } else { 
@@ -79,9 +84,10 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, i
     inputId = inputId,
     name = name,
     nom_choix = nom_choix,
+    checked = if (checked) "checked" else NULL,
     value_choix = choix,
     class_inline = class_inline 
-    )
+  )
 }
 ```
 
@@ -93,13 +99,20 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, i
 #' @param choix choix une valeur a selectionner 
 #' @param nom_choix le nom de la valeur a selectionner/afficher
 #' @param name nom de l'inputId sans indexation
+#' @param checked Si TRUE, ajoute l'attribut checked
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
-radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, inline = FALSE
+radioButtons_unique_dsfr_template <-
+  function(inputId,
+           choix,
+           nom_choix,
+           name,
+           checked = FALSE,
+           inline = FALSE
+           
   ){
-  
   if(isTRUE(inline)){
     class_inline <- "-inline"  
   } else { 
@@ -116,6 +129,7 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, i
     name = name,
     nom_choix = nom_choix,
     value_choix = choix,
+    checked = if (checked) "checked" else NULL,
     class_inline = class_inline 
     )
 }
@@ -149,7 +163,14 @@ De la même manière que pour la fonction précédente, il est nécessaire d'ada
 Cette fonction repose sur `radioButtons_unique_dsfr_template()` qui devra être répeter autant de fois qu'il y a de choix (utilisation de `purrr::map(...)`)
 
 ```{r, eval = FALSE}
-radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
+radioButtons_dsfr_template <-
+  function(inputId,
+           label,
+           choix,
+           selected = NULL,
+           inline = FALSE,
+           class = NULL
+           
   ){
   inline <- FALSE #TODO 
   if (isTRUE(inline)){
@@ -185,6 +206,7 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
                            name = inputId,
                            choix = .x,
                            nom_choix = nom_choix,
+                           checked = identical(.x, selected), 
                            inline = inline
                          )
                        }) %>%
@@ -201,13 +223,14 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element sélectionné (NULL par defaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). NON IMLPEMENTE
 #' @param class des classes a ajouter si necessaire
 #' 
 #' @importFrom htmltools htmlTemplate tagList
 #' @importFrom purrr map2 map_chr
 #' @return html
-radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  class = NULL
+radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE,  class = NULL
   ){
   inline <- FALSE #TODO 
   if (isTRUE(inline)){
@@ -243,6 +266,7 @@ radioButtons_dsfr_template <- function(inputId, label, choix, inline = FALSE,  c
                            name = inputId,
                            choix = .x,
                            nom_choix = .y,
+                           checked = identical(.x, selected),
                            inline = inline
                          )
                        }) %>%
@@ -281,6 +305,7 @@ L'implementation de la fonction `radioButtons_dsfr()` reste quant à elle simila
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element sélectionné (NULL par défaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
 #' @param class des classes a ajouter si necessaire 
 #' @return html
@@ -289,19 +314,20 @@ L'implementation de la fonction `radioButtons_dsfr()` reste quant à elle simila
 #'
 #' @examples
 radioButtons_dsfr <- function(
-  inputId, label, choices, inline = FALSE, class = NULL  
+  inputId, label, choices, selected = NULL, inline = FALSE, class = NULL  
   ) {
   
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.character(choices))
-  assertthat::assert_that(is.logical(inline))  
+  assertthat::assert_that(is.logical(inline)) 
   
     radioButtons_dsfr_template(
     inputId = inputId,
     label = label,
     choix = choices,
+    selected = selected,
     inline = inline, 
     class = class
     ) %>%
@@ -341,6 +367,7 @@ test_that("radioButtons_dsfr works", {
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom htmltools tagList
 #' @importFrom purrr map2
@@ -350,6 +377,7 @@ test_that("radioButtons_dsfr works", {
 updateRadioButtons_dsfr <- function(inputId,
                                     label = NULL,
                                     choices = NULL,
+                                    selected = NULL,
                                     session = shiny::getDefaultReactiveDomain()) {
   ns <- session$ns
   x <- 0
@@ -367,6 +395,7 @@ updateRadioButtons_dsfr <- function(inputId,
             name = ns(inputId),
             choix = .x,
             nom_choix = .y,
+            checked = identical(.x, selected),
             inline = FALSE
           )
         }
