@@ -31,6 +31,7 @@ radioButtons_dsfr <- function(
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.character(choices))
+  assertthat::assert_that(length(selected) <= 1)
   assertthat::assert_that(is.logical(inline)) 
   
     radioButtons_dsfr_template(
