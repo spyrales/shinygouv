@@ -24,7 +24,7 @@ app_server <- function(input, output, session) {
     updateCheckboxInput_dsfr(
       session = session,
       inputId = "case_a_cocher",
-      label = "Un nouveau case à cocher",
+      label = "Un nouveau case a cocher",
       choice_values = c("case a", "case b"),
       choice_names = c("Case A", "Case b")
     )

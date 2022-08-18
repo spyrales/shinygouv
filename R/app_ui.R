@@ -40,7 +40,7 @@ app_ui <- function(request) {
             class = NULL
           ),
           checkboxInput_dsfr(inputId = "case_a_cocher",
-                             label = "Groupe de case à cocher",
+                             label = "Groupe de case a cocher",
                              choices = c("A" = "a", "B" = "b")),
           plotOutput(
             "plot_espece"
