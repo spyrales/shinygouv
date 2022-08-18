@@ -25,6 +25,7 @@ app_ui <- function(request) {
           p("Premi\\u00E8re Colonne"),
           actionButton_dsfr("go", label = "Sample!"),
           actionButton_dsfr("updateradiobutton", label = "Update RadioButtons!"),
+          actionButton_dsfr("updatecheckbox", label = "Update Checkbox!"),
           plotOutput(
             "plot_sample"
           )
@@ -38,6 +39,9 @@ app_ui <- function(request) {
             choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
             class = NULL
           ),
+          checkboxInput_dsfr(inputId = "case_a_cocher",
+                             label = "Groupe de case à cocher",
+                             choices = c("A" = "a", "B" = "b")),
           plotOutput(
             "plot_espece"
           )

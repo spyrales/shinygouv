@@ -1,0 +1,302 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# checkboxInput_unique_dsfr_template
+    
+```{r function-checkboxInput_unique_dsfr_template}
+#' checkboxInput_unique_dsfr_template
+#' 
+#' @param inputId id de l'input avec indexation
+#' @param choice_value choix
+#' @param choice_name label
+#' @param value TRUE (coché) ou FALSE (non coché)
+#' @param name id de l'input sans indexation
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+checkboxInput_unique_dsfr_template <- function(inputId, name, choice_value, choice_name = choice_value, value = FALSE){
+  
+
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "checkbox.html",
+      package = "shinygouv"
+    ),
+    inputId = inputId,
+    name = name,
+    choice_name = choice_name,
+    choice_value = choice_value,
+    checked = if (value) "checked" else NULL
+    )
+}
+
+```
+  
+```{r tests-checkboxInput_unique_dsfr_template}
+test_that("checkboxInput_unique_dsfr_template works", {
+  expect_true(inherits(checkboxInput_unique_dsfr_template, "function")) 
+  
+    test <- checkboxInput_unique_dsfr_template(inputId = 'test-1', name = 'test', choice_value = 'a', value = FALSE)
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+
+# checkboxInput_dsfr_template
+    
+```{r function-checkboxInput_dsfr_template}
+#' checkboxInput_dsfr_template
+#' 
+#' @param label label du groupe de boite à cocher
+#' @param choices les choix possibles
+#' @param selected les cases éventuellement déjà cochées
+#' @param inline pour aligner les cases à cocher horizontalement (FALSE par défaut)
+#' @param inputId id de l'input avec indexation
+#' @param choice_names les choix possibles (label)
+#' @param choice_values les choix possible (valeur)
+#'
+#' @importFrom htmltools htmlTemplate tagList
+#' @importFrom purrr pmap
+#' @return html
+checkboxInput_dsfr_template <- function(inputId, 
+                                        label, 
+                                        choices = NULL, 
+                                        selected = NULL, 
+                                        inline = FALSE,
+                                        choice_names = NULL,
+                                        choice_values = NULL){
+  
+  if (isTRUE(inline)) {
+    class_inline <- "fr-fieldset--inline"
+  } else {
+    class_inline <- NULL
+  }
+  
+  # if choices is not null, we ignore choice_names and choice_values
+  if (!is.null(choices)) {
+    choice_values <- choices
+    if (is.null(names(choices))) {
+      choice_names <- choices
+    } else {
+      choice_names <- names(choices)
+    }
+  }
+
+  htmltools::htmlTemplate(
+    filename = system.file(
+      "v1.7.2",
+      "composant", 
+      "checkbox_group.html",
+      package = "shinygouv"
+    ),
+    inputId = inputId,
+    class_inline = class_inline,
+    label = label,
+    choice = purrr::pmap(list(choice_values, choice_names, seq_along(choice_values)),
+                         ~checkboxInput_unique_dsfr_template(
+                           inputId = paste0(inputId,"-", ..3),
+                           name = inputId,
+                           choice_value = ..1,
+                           choice_name = ..2,
+                           value = ..1 %in% selected 
+                           )
+                         ) %>% htmltools::tagList()
+  )
+}
+
+```
+  
+```{r tests-checkboxInput_dsfr_template}
+test_that("checkboxInput_dsfr_template works", {
+  expect_true(inherits(checkboxInput_dsfr_template, "function")) 
+  
+    test <- checkboxInput_dsfr_template(
+      inputId = 'test',
+      label = 'label',
+      choices = c('a', 'b'),
+      selected = NULL,
+      inline = FALSE
+    )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test))
+})
+```
+
+# checkboxInput_dsfr
+
+```{r function-checkboxInput_dsfr}
+#' checkboxInput_dsfr
+#' 
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Valeurs préselectionnées
+#' @param choice_names Liste de labels (ignoré si choices est défini)
+#' @param choice_values Liste des valeurs (ignoré si choices est défini)
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
+#'
+#' @return html
+#' 
+#' @export
+#'
+#' @examples
+checkboxInput_dsfr <- function(inputId, 
+                                        label, 
+                                        choices = NULL, 
+                                        selected = NULL, 
+                                        inline = FALSE,
+                                        choice_names = NULL,
+                                        choice_values = NULL) {
+  
+  # check les params
+  assertthat::assert_that(is.character(inputId))
+  assertthat::assert_that(is.character(label))
+  assertthat::assert_that(is.logical(inline))
+  
+  # if choices is null then choices_value and choice_names must be not empty with the same length
+  assertthat::assert_that(!is.null(choices) | (length(choice_values) > 0 & length(choice_values) == length(choice_names)))
+  
+  checkboxInput_dsfr_template(inputId, 
+                                label, 
+                                choices, 
+                                selected, 
+                                inline,
+                                choice_names,
+                                choice_values) %>%
+      parse_html()
+
+}
+```
+
+
+```{r tests-checkboxInput_dsfr}
+test_that("checkboxInput_dsfr", {
+  test <- checkboxInput_dsfr(
+    inputId = "test1", label = "Test1", choices = c("A","B")
+  )
+  
+  #' @description tester si shiny.tag
+  expect_s3_class(test, "shiny.tag")
+  
+  # with choice
+  test_with_choice <- checkboxInput_dsfr(
+    inputId = "test", label = "Test", choices = c("A" = "a", "B" = "b"), selected = "b"
+  )
+  # with choice_values and choice_name
+  test_witch_choice_value <- checkboxInput_dsfr(
+    inputId = "test", label = "Test", choice_values = c("a", "b"), choice_names = c("A", "B"), selected = "b"
+  )
+  
+  expect_equal(test_with_choice, test_witch_choice_value)
+  
+  # error when choice and choice_values are NULL
+  test_error_no_choices <- function() {
+    checkboxInput_dsfr(inputId = "test", choice = NULL, choice_values = NULL)
+  }
+  
+  expect_error(test_error_no_choices())
+  
+  # error if character vector choice_values and choice_names are not the same length
+  test_error_choice_values_name_different_length <- function(){
+    checkboxInput_dsfr(inputId = "test", choice = NULL, choice_values = c('a', 'b'), choice_names = c('A'))
+  }
+  
+  expect_error(test_error_choice_values_name_different_length())
+})
+```
+
+# updateCheckboxInput_dsfr
+
+
+```{r function-updateCheckboxInput_dsfr}
+#' updateCheckboxInput_dsfr
+#' 
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Valeurs préselectionnées
+#' @param choice_names Liste de labels (ignoré si choices est défini)
+#' @param choice_values Liste des valeurs (ignoré si choices est défini)
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). 
+#' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' 
+#' @importFrom htmltools tagQuery
+#' @return html
+#' 
+#' @export
+updateCheckboxInput_dsfr <- function(inputId,
+                                    label = NULL,
+                                    choices = NULL,
+                                    selected = NULL,
+                                    inline = FALSE,
+                                    choice_names = NULL,
+                                    choice_values = NULL,
+                                    session = shiny::getDefaultReactiveDomain()) {
+  
+  ns <- session$ns
+  
+  if (!is.null(selected)) selected <- as.character(selected)
+  
+  tag <- checkboxInput_dsfr(
+    inputId = ns(inputId),
+    label = label,
+    choices = choices,
+    selected = selected, 
+    inline = inline,
+    choice_names = choice_names,
+    choice_values = choice_values
+  ) %>% 
+    htmltools::tagQuery()
+  
+  choices <- tag$find(".shiny-options-group")$selectedTags()
+  
+  message <- utils::getFromNamespace("dropNulls", "shiny")(
+    list(
+      label = label,
+      options = as.character(choices),
+      selected = selected
+    )
+  )
+
+  session$sendInputMessage(inputId, message)
+}
+
+```
+
+```{r development-inflate, eval=FALSE}
+spec_infalte <- function(){
+  nom <- "checkboxInput dsfr"
+  fusen::inflate(
+    flat_file = "dev/flat_composants/flat_checkboxInput.Rmd", 
+    vignette_name = nom)
+  
+  nom_c <- gsub(x = tolower(nom), "\\s", "-")
+  nom_file <- paste0(nom_c, ".Rmd")
+  file.copy(
+    file.path("vignettes", nom_file),
+    file.path("dev","documentation", nom_file)
+    )
+  
+  unlink(file.path("vignettes", nom_file))
+}
+spec_infalte()
+
+```
+
