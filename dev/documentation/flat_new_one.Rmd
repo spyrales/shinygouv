@@ -175,8 +175,8 @@ test_that("nom_composant_shiny_dsfr works", {
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
   #
   # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
-  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
-  #                              dans la fonction nom_composant_shiny_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction nom_composant_shiny_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
   
   # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",

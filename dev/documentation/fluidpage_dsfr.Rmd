@@ -1,6 +1,6 @@
 ---
 title: "fluidPage_dsfr"
-output: github_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{fluidpage_dsfr}
   %\VignetteEngine{knitr::rmarkdown}
@@ -41,7 +41,7 @@ fluidPage_dsfr_template <- function(
   
   htmltools::htmlTemplate(
     filename = system.file(
-      get_dsfr_version(with_v = TRUE),
+      "v1.7.2",
       "composant", 
       "fluidpage.html",
       package = "shinygouv"
@@ -137,7 +137,7 @@ layout_dsfr_template <- function(
 Avec cette fonction, on va pouvoir initier tout un ensemble d'éléments pour notre application, comme les fluidRow, les containers et les columns
 
 
-## Exemple pour fluidRow_dsfr
+## Exemple pour `fluidRow_dsfr()`
 
 On reprend le template layout et on ajoute notre logique métier sur les paramètres.
 

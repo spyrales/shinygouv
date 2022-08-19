@@ -3,20 +3,21 @@
 #' fluidPage_dsfr_template
 #' @param header entete de la page
 #' @param title titre de la page
-#' @param body body
+#' @param body body 
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
 #' @noRd
 fluidPage_dsfr_template <- function(
-  header,
-  title,
-  body
-) {
+    header,
+    title,
+    body
+){
+  
   htmltools::htmlTemplate(
     filename = system.file(
       "v1.7.2",
-      "composant",
+      "composant", 
       "fluidpage.html",
       package = "shinygouv"
     ),
@@ -25,3 +26,4 @@ fluidPage_dsfr_template <- function(
     body = body
   )
 }
+
