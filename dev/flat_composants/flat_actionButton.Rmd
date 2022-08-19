@@ -52,11 +52,9 @@ actionButton_dsfr_template <- function(
 test_that("actionButton_dsfr_template works", {
   expect_true(inherits(actionButton_dsfr_template, "function")) 
   
-  
-    
   htmlfile <- readLines(
     system.file(
-      "v1.7.2",
+      get_dsfr_version(), 
       "composant", 
       "bouton.html",
       package = "shinygouv"
@@ -166,7 +164,7 @@ actionButton_dsfr(
 ```{r tests-actionButton_dsfr}
 test_that("actionButton_dsfr works", {
   
-  test <- actionButton_dsfr(
+  test_html <- actionButton_dsfr(
     inputId = "test",
     label = "test",
     class = "fr-btn--icon-left fr-icon-checkbox-circle-line"

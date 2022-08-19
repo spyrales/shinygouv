@@ -2,4 +2,25 @@
 
 test_that("updateRadioButtons_dsfr works", {
   expect_true(inherits(updateRadioButtons_dsfr, "function")) 
+
+  sessA <- createModuleSession("modA")
+
+  updateRadioButtons_dsfr(
+      session = sessA, 
+      inputId = "inRadioButtons",
+      label = "Un nouveau label",
+      choices = c("choice-a" = "a"),
+      selected = "a"
+    )
+  
+    resultA <- sessA$lastInputMessage
+    # inputId
+    expect_equal("inRadioButtons", resultA$id)
+    # label
+    expect_equal("Un nouveau label", resultA$message$label)
+    # HTML content
+    expect_true(grepl('id\\s*=\\s*\"modA-inRadioButtons-1\"', resultA$message$options))
+    expect_true(grepl('value\\s*=\\s*"a"', resultA$message$options))
+    expect_true(grepl('choice-a', resultA$message$options))
+    expect_true(grepl('checked\\s*=\\s*""', resultA$message$options))
 })

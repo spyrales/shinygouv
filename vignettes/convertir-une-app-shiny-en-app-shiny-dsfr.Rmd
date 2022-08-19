@@ -85,6 +85,7 @@ Pour savoir quelle version du dsfr est utilisée dans votre installation de {shi
 
 ```{r example-get_dsfr_version}
 get_dsfr_version()
+get_dsfr_version(with_v = TRUE)
 ```
 
   

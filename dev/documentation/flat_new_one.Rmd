@@ -28,7 +28,9 @@ nom_composant_shiny_dsfr_template <- function(
   
   htmltools::htmlTemplate(
     filename = system.file(
-      "chemin vers le fichier",
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "chemin vers le fichier.html",
       package = "shinygouv"
     )
     # ajouter vos params
@@ -59,7 +61,6 @@ test_that("nom_composant_shiny_dsfr_template works", {
       with_moustache <- paste0("\\{\\{",param,"\\}\\}")
       expect_true(any(grepl(pattern = with_moustache, htmlfile)),
                   label = paste0("sans moustache '", param, "'"))
-
     })
   
   
@@ -101,8 +102,8 @@ test_that("nom_composant_shiny_dsfr_template works", {
     # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
     #
     # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
-    #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
-    #                              dans la fonction nom_composant_shiny_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #  dans la fonction nom_composant_shiny_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
  # saveRDS(test_html,
  #         file = file.path("tests/testthat/snapshot",
@@ -164,6 +165,10 @@ test_that("nom_composant_shiny_dsfr works", {
   ))
 })
 ```
+
+# update_nom_composant_shiny_dsfr
+
+Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd"
 
 
 ```{r development-inflate, eval=FALSE}

@@ -4,7 +4,10 @@
 \alias{get_dsfr_version}
 \title{Recuperer la version du dsfr de 'shinygouv'}
 \usage{
-get_dsfr_version()
+get_dsfr_version(with_v = FALSE)
+}
+\arguments{
+\item{with_v}{Logical. Whether to return with "v" in front of the number}
 }
 \value{
 Character. Numero de version
@@ -14,4 +17,5 @@ Recuperer la version du dsfr de 'shinygouv'
 }
 \examples{
 get_dsfr_version()
+get_dsfr_version(with_v = TRUE)
 }

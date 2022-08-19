@@ -8,7 +8,7 @@
 #' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom htmltools tagList
-#' @importFrom purrr map2
+#' @importFrom purrr pmap
 #' @return html
 #' 
 #' @export
@@ -48,18 +48,17 @@ updateRadioButtons_dsfr <- function(inputId,
                                     selected = NULL,
                                     session = shiny::getDefaultReactiveDomain()) {
   ns <- session$ns
-  x <- 0
 
   if (!is.null(choices)) {
     choices <- tags$div(
       class = "fr-fieldset__content shiny-options-group",
-      tagList(purrr::map2(
-        .x = choices,
-        .y = names(choices),
-        ~ {
-          x <<- x + 1
+      tagList(
+    choix = pmap(list(.x = choices,
+                        .y = names(choices),
+                        .nb = seq_along(choices)),
+        function(.x, .y, .nb) {
           radioButtons_unique_dsfr_template(
-            inputId = paste0(ns(inputId), "-", x),
+            inputId = paste0(ns(inputId), "-", .nb),
             name = ns(inputId),
             choix = .x,
             nom_choix = .y,

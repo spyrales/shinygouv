@@ -8,7 +8,7 @@ test_that("radioButtons_dsfr_template works", {
   
   htmlfile <- readLines(
     system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "composant",
       "radiobouton_group.html",
       package = "shinygouv"

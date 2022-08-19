@@ -10,7 +10,7 @@
 #' @param class des classes a ajouter si necessaire
 #' 
 #' @importFrom htmltools htmlTemplate tagList
-#' @importFrom purrr map2 map_chr
+#' @importFrom purrr pmap map_chr
 #' @return html
 #' @noRd
 radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE,  class = NULL
@@ -31,14 +31,14 @@ radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, i
 
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "composant",
       "radiobouton_group.html",
       package = "shinygouv"
     ),
     inputId = inputId,
     label = label,
-    choix = purrr::pmap(list(.x = choix,
+    choix = pmap(list(.x = choix,
                         .y = nom_choix,
                         .nb = seq_along(choix)),
                        function(.x, .y, .nb) {
