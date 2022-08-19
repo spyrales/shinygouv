@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygouv</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9005</span>
       </span>
     </div>
 
@@ -75,7 +75,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">radioButtons_dsfr</span><span class="op">(</span><span class="va">inputId</span>, <span class="va">label</span>, <span class="va">choices</span>, inline <span class="op">=</span> <span class="cn">FALSE</span>, class <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">radioButtons_dsfr</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  <span class="va">label</span>,</span>
+<span>  <span class="va">choices</span>,</span>
+<span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  class <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -90,6 +97,10 @@
 
 <dt>choices</dt>
 <dd><p>Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)</p></dd>
+
+
+<dt>selected</dt>
+<dd><p>Element sélectionné (NULL par défaut)</p></dd>
 
 
 <dt>inline</dt>
@@ -130,12 +141,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/fieldset&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># radioButtons_dsfr(</span></span></span>
-<span class="r-in"><span><span class="co">#       inputId = "test",</span></span></span>
-<span class="r-in"><span><span class="co">#       label = "Test",</span></span></span>
-<span class="r-in"><span><span class="co">#       choices = c("Choix A" = "A","Choix B" = "B"),</span></span></span>
-<span class="r-in"><span><span class="co">#       class = NULL</span></span></span>
-<span class="r-in"><span><span class="co"># )</span></span></span>
+<span class="r-in"><span><span class="fu">radioButtons_dsfr</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"test2"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Test"</span>,</span></span>
+<span class="r-in"><span>      choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Choix A"</span> <span class="op">=</span> <span class="st">"A"</span>,<span class="st">"Choix B"</span> <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      selected <span class="op">=</span> <span class="st">"B"</span>,</span></span>
+<span class="r-in"><span>      class <span class="op">=</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;div id="test2" class="fr-form-group shiny-input-radiogroup shiny-input-container "&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;fieldset class="fr-fieldset "&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;legend class="fr-fieldset__legend fr-text--regular" id="radio-legend"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;label class="control-label" id="test2-label" for="test2"&gt;Test&lt;/label&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/legend&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;div class="fr-fieldset__content shiny-options-group"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;div class="fr-radio-group"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;input type="radio" id="test2-1" name="test2" value="A"/&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;label class="fr-label" for="test2-1"&gt;Choix A&lt;/label&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;div class="fr-radio-group"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;input type="radio" id="test2-2" name="test2" value="B" checked/&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;label class="fr-label" for="test2-2"&gt;Choix B&lt;/label&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/fieldset&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/div&gt;</span>
 </code></pre></div>
     </div>
   </div>
