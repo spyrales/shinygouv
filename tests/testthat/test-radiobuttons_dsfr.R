@@ -2,7 +2,10 @@
 
 test_that("radioButtons_dsfr works", {
   test <- radioButtons_dsfr(
-    inputId = "test", label = "Test", choices = c("A","B"), class = NULL
+    inputId = "test",
+    label = "Test",
+    choices = c("A", "B"),
+    class = NULL
   )
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag")
