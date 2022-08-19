@@ -5,7 +5,7 @@ test_that("header_dsfr_template works", {
 
   htmlfile <- readLines(
     system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "composant",
       "entete.html",
       package = "shinygouv"
@@ -26,14 +26,15 @@ test_that("header_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      message(with_moustache)
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)))
-      message("test passed :-)")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
     }
   )
 
 
-  test <- header_dsfr_template(
+  test_html <- header_dsfr_template(
     class = "class",
     intitule = "Prefet de",
     officiel = "Bretagne",
@@ -44,7 +45,7 @@ test_that("header_dsfr_template works", {
   )
 
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
 
 
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
@@ -60,35 +61,39 @@ test_that("header_dsfr_template works", {
       baseline = "description"
     ),
     function(param) {
-      message(param)
-      expect_true(any(grepl(pattern = param, test)))
-      message("test passed :-)")
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
     }
   )
 
   ## lecture snapshot
-  snapshot <- readRDS(
+  snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "2022-08-12-header_dsfr_template.Rda"
+      "header_dsfr_template.Rda"
     )
   )
 
-  #' @description Verifie la presence du parametre class
-  expect_equal(htmlfile, snapshot)
+  #' @description Verifie le HTML créé
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
 
   # Si erreur au précedent test deux cas possible :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
   #
   # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
-  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
-  #                              dans la fonction header_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #   assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #   dans la fonction header_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
-  # saveRDS(htmlfile,
+  # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
-  #                          paste0(Sys.Date(), "-","header_dsfr_template.Rda")
+  #                          "header_dsfr_template.Rda"
   #                          )
   #         )
 })

@@ -4,4 +4,5 @@ test_that("get_dsfr_version works", {
   expect_true(inherits(get_dsfr_version, "function"))
   # A changer a chaque fois que 'shinygouv' met a jour le dsfr
   expect_equal(get_dsfr_version(), "1.7.2")
+  expect_equal(get_dsfr_version(with_v = TRUE), "v1.7.2")
 })

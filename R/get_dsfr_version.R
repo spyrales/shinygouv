@@ -2,11 +2,17 @@
 
 #' Recuperer la version du dsfr de 'shinygouv'
 #'
+#' @param with_v Logical. Whether to return with "v" in front of the number
 #' @return Character. Numero de version
 #'
 #' @export
 #' @examples
 #' get_dsfr_version()
-get_dsfr_version <- function() {
-  utils::packageDescription(pkg = "shinygouv")[["VersionDsfr"]]
+#' get_dsfr_version(with_v = TRUE)
+get_dsfr_version <- function(with_v = FALSE) {
+  res <- utils::packageDescription(pkg = "shinygouv")[["VersionDsfr"]]
+  if (isTRUE(with_v)) {
+    res <- paste0("v", res)
+  }
+  return(res)
 }

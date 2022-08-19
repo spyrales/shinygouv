@@ -1,5 +1,7 @@
 composant_shiny;composant_dsfr;fichier;mis_a_jour
 fluidPage;fluidPage_dsfr;fluidpage.html;oui
+column;column_dsfr;;oui
+fluidRow;fluidRow_dsfr;;oui
 actionButton;actionButton_dsfr;bouton.html;oui
 radioButtons;radioButtons_dsfr;radiobouton.html;oui
 updateRadioButtons;updateRadioButtons_dsfr;;oui

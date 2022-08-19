@@ -5,9 +5,10 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom htmltools tagList
-#' @importFrom purrr map2
+#' @importFrom purrr pmap
 #' @return html
 #'
 #' @export
@@ -29,7 +30,8 @@
 #'         session = session,
 #'         inputId = "inRadioButtons",
 #'         label = "Un nouveau label",
-#'         choices = c("A" = "a")
+#'         choices = c("A" = "a"),
+#'         selected = "a"
 #'       )
 #'     })
 #'
@@ -45,28 +47,33 @@ updateRadioButtons_dsfr <- function(
   inputId,
   label = NULL,
   choices = NULL,
+  selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 ) {
   ns <- session$ns
-  x <- 0
 
   if (!is.null(choices)) {
     choices <- tags$div(
       class = "fr-fieldset__content shiny-options-group",
-      tagList(purrr::map2(
-        .x = choices,
-        .y = names(choices),
-        ~ {
-          x <<- x + 1
-          radioButtons_unique_dsfr_template(
-            inputId = paste0(ns(inputId), "-", x),
-            name = ns(inputId),
-            choix = .x,
-            nom_choix = .y,
-            inline = FALSE
-          )
-        }
-      ))
+      tagList(
+        choix = pmap(
+          list(
+            .x = choices,
+            .y = names(choices),
+            .nb = seq_along(choices)
+          ),
+          function(.x, .y, .nb) {
+            radioButtons_unique_dsfr_template(
+              inputId = paste0(ns(inputId), "-", .nb),
+              name = ns(inputId),
+              choix = .x,
+              nom_choix = .y,
+              checked = identical(.x, selected),
+              inline = FALSE
+            )
+          }
+        )
+      )
     )
   }
 

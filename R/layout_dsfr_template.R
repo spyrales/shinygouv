@@ -16,7 +16,7 @@ layout_dsfr_template <- function(
 ) {
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "layout",
       "layout.html",
       package = "shinygouv"

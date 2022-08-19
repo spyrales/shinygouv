@@ -5,17 +5,19 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element sélectionné (NULL par defaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). NON IMLPEMENTE
 #' @param class des classes a ajouter si necessaire
 #'
 #' @importFrom htmltools htmlTemplate tagList
-#' @importFrom purrr map2 map_chr
+#' @importFrom purrr pmap map_chr
 #' @return html
 #' @noRd
 radioButtons_dsfr_template <- function(
   inputId,
   label,
   choix,
+  selected = NULL,
   inline = FALSE,
   class = NULL
 ) {
@@ -33,27 +35,28 @@ radioButtons_dsfr_template <- function(
     nom_choix <- names(choix)
   }
 
-
-  x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "composant",
       "radiobouton_group.html",
       package = "shinygouv"
     ),
     inputId = inputId,
     label = label,
-    choix = purrr::map2(
-      .x = choix,
-      .y = nom_choix,
-      ~ {
-        x <<- x + 1
+    choix = pmap(
+      list(
+        .x = choix,
+        .y = nom_choix,
+        .nb = seq_along(choix)
+      ),
+      function(.x, .y, .nb) {
         radioButtons_unique_dsfr_template(
-          inputId = paste0(inputId, "-", x),
+          inputId = paste0(inputId, "-", .nb),
           name = inputId,
           choix = .x,
           nom_choix = .y,
+          checked = identical(.x, selected),
           inline = inline
         )
       }

@@ -6,7 +6,7 @@ test_that("layout_dsfr_template works", {
 
   htmlfile <- readLines(
     system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "layout",
       "layout.html",
       package = "shinygouv"
@@ -23,21 +23,22 @@ test_that("layout_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      message(with_moustache)
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)))
-      message("test passed :-)")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
     }
   )
 
 
-  test <- layout_dsfr_template(
+  test_html <- layout_dsfr_template(
     html = "html",
     class = "class",
     other_class = "other_class"
   )
 
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
 
 
 
@@ -50,23 +51,24 @@ test_that("layout_dsfr_template works", {
       other_class = "other_class"
     ),
     function(param) {
-      message(param)
-      expect_true(any(grepl(pattern = param, test)))
-      message("test passed :-)")
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
     }
   )
 
   ## lecture snapshot
-  snapshot <- readRDS(
+  snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "2022-08-12-layout_dsfr_template.Rda"
+      "layout_dsfr_template.Rda"
     )
   )
 
   #' @description Verifie la presence du parametre class
-  expect_equal(htmlfile, snapshot)
+  expect_equal(test_html, snapshot_html)
 
   # Si erreur au précedent test deux cas possible :
   #
@@ -76,9 +78,9 @@ test_that("layout_dsfr_template works", {
   #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
   #                              dans la fonction layout_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
-  # saveRDS(htmlfile,
+  # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
-  #                          paste0(Sys.Date(), "-","layout_dsfr_template.Rda")
+  #                          "layout_dsfr_template.Rda"
   #                          )
   #         )
 })
