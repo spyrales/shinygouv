@@ -26,16 +26,16 @@ fluidPage_dsfr
 \examples{
 my_page <- fluidPage_dsfr(
   header = header_dsfr(
-     intitule = "Prefet de", 
-     officiel = "Bretagne",
+    intitule = "Prefet de",
+    officiel = "Bretagne",
   ),
   title = "Gouv",
   htmltools::div("test")
 )
-if(interactive()){
-shiny::shinyApp(
-  my_page,
-  server = function(input, output){}
+if (interactive()) {
+  shiny::shinyApp(
+    my_page,
+    server = function(input, output) {}
   )
 }
 }

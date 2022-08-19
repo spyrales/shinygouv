@@ -22,7 +22,7 @@ app_ui <- function(request) {
       fluidRow_dsfr(
         column_dsfr(
           0, # Calcul automatique de la largeur
-          p("Premi\\u00E8re Colonne"),
+          p("Premi\u00E8re Colonne"),
           actionButton_dsfr("go", label = "Sample!"),
           actionButton_dsfr("updateradiobutton", label = "Update RadioButtons!"),
           plotOutput(
@@ -31,7 +31,7 @@ app_ui <- function(request) {
         ),
         column_dsfr(
           0, # Calcul automatique de la largeur
-          p("Deuxi\\u00E8me Colonne"),
+          p("Deuxi\u00E8me Colonne"),
           radioButtons_dsfr(
             inputId = "espece",
             label = "Especes",

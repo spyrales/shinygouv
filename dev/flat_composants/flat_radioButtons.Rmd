@@ -84,7 +84,7 @@ radioButtons_unique_dsfr_template <-
     inputId = inputId,
     name = name,
     nom_choix = nom_choix,
-    checked = if (checked) "checked" else NULL,
+    checked = if (isTRUE(checked)) "checked" else NULL,
     value_choix = choix,
     class_inline = class_inline 
   )
@@ -129,7 +129,7 @@ radioButtons_unique_dsfr_template <-
     name = name,
     nom_choix = nom_choix,
     value_choix = choix,
-    checked = if (checked) "checked" else NULL,
+    checked = if (isTRUE(checked)) 'checked=""' else NULL,
     class_inline = class_inline 
     )
 }
@@ -158,17 +158,17 @@ test_that("radioButtons_unique_dsfr_template works", {
     "name" ,
     "nom_choix" ,
     "value_choix" ,
-    "class_inline"  
+    "class_inline"
       ),
     function(param){
       with_moustache <- paste0("\\{\\{",param,"\\}\\}")
-      message(with_moustache)
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)))
-      message("test passed :-)")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+
     })
   
   
-    test <- radioButtons_unique_dsfr_template(
+  test_html <- radioButtons_unique_dsfr_template(
       inputId = "test-1",
       name = "test",
       choix = c("A"),
@@ -176,7 +176,7 @@ test_that("radioButtons_unique_dsfr_template works", {
     )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
   
   
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
@@ -189,35 +189,65 @@ test_that("radioButtons_unique_dsfr_template works", {
       nom_choix = "Choix A"
      ),
     function(param){
-      message(param)
-      expect_true(any(grepl(pattern = param, test)))
-      message("test passed :-)")
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
     })
   
  ## lecture snapshot
-  snapshot <- readRDS(
+  snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate), 
       #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
-                     "2022-08-12-radioButtons_unique_dsfr_template.Rda")
+      "radioButtons_unique_dsfr_template.Rda")
   )
   
-  #' @description Verifie la presence du parametre class
-  expect_equal(htmlfile, snapshot) 
+  #' @description Verifie le HTML créé
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
   
-    # Si erreur au précedent test deux cas possible :
+  # Test "checked"
+  test_html_selected <- radioButtons_unique_dsfr_template(
+      inputId = "test-1",
+      name = "test",
+      choix = c("A"),
+      nom_choix = "Choix A",
+      checked = TRUE
+    )
+  
+    snapshot_html_selected <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "radioButtons_unique_dsfr_template_selected.Rda")
+  )
+    
+    #' @description Verifie la presence du parametre selected
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html_selected),
+               gsub("\\s|\\n", "", snapshot_html_selected)) 
+    
+    # Si erreur au précedent test deux cas possibles :
     #
     # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
     #
     # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
     #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
     #                              dans la fonction radioButtons_unique_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
-
- # saveRDS(htmlfile,
- #         file = file.path("tests/testthat/snapshot",
- #                          paste0(Sys.Date(), "-","radioButtons_unique_dsfr_template.Rda")
- #                          )
- #         )
+# 
+# saveRDS(test_html,
+#         file = file.path("tests/testthat/snapshot",
+#                          "radioButtons_unique_dsfr_template.Rda"
+#                          )
+#         )
+# 
+# saveRDS(test_html_selected,
+#         file = file.path("tests/testthat/snapshot",
+#                          "radioButtons_unique_dsfr_template_selected.Rda"
+#                          )
+#         )
 
   
   
@@ -317,8 +347,6 @@ radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, i
     nom_choix <- names(choix)
   }
 
-  
-  x <- 0
   htmltools::htmlTemplate(
     filename = system.file(
       "v1.7.2",
@@ -328,12 +356,12 @@ radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, i
     ),
     inputId = inputId,
     label = label,
-    choix = purrr::map2(.x = choix,
+    choix = purrr::pmap(list(.x = choix,
                         .y = nom_choix,
-                       ~ {
-                         x <<- x+1
+                        .nb = seq_along(choix)),
+                       function(.x, .y, .nb) {
                          radioButtons_unique_dsfr_template(
-                           inputId = paste0(inputId,"-", x),
+                           inputId = paste0(inputId, "-", .nb),
                            name = inputId,
                            choix = .x,
                            nom_choix = .y,
@@ -378,13 +406,13 @@ test_that("radioButtons_dsfr_template works", {
       ),
     function(param){
       with_moustache <- paste0("\\{\\{",param,"\\}\\}")
-      message(with_moustache)
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)))
-      message("test passed :-)")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+
     })
   
   
-    test <- radioButtons_dsfr_template(
+    test_html <- radioButtons_dsfr_template(
       inputId = "test",
       label = "Test",
       choix = c("A","B"),
@@ -392,7 +420,7 @@ test_that("radioButtons_dsfr_template works", {
     )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
   
   
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
@@ -404,21 +432,41 @@ test_that("radioButtons_dsfr_template works", {
       choix = c("A","B")
      ),
     function(param){
-      message(param)
-      expect_true(any(grepl(pattern = param, test)))
-      message("test passed :-)")
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
     })
   
  ## lecture snapshot
-  snapshot <- readRDS(
+  snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate), 
       #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
-                     "2022-08-12-radioButtons_dsfr_template.Rda")
+      "radioButtons_dsfr_template.Rda")
   )
   
-  #' @description Verifie la presence du parametre class
-  expect_equal(htmlfile, snapshot) 
+  #' @description Verifie le HTML créé
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  
+  # test selected
+  test_html_selected <- radioButtons_dsfr_template(
+      inputId = "test",
+      label = "Test",
+      choix = c("A name" = "A","B name" = "B"),
+      selected = "B",
+      class = NULL
+    )
+  snapshot_html_selected <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "radioButtons_dsfr_template_selected.Rda")
+  )
+  #' @description Verifie le parametre selected dans le HTML
+  expect_equal(gsub("\\s|\\n", "", test_html_selected),
+               gsub("\\s|\\n", "", snapshot_html_selected)) 
+  
   
     # Si erreur au précedent test deux cas possible :
     #
@@ -428,9 +476,15 @@ test_that("radioButtons_dsfr_template works", {
     #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
     #                              dans la fonction radioButtons_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
- # saveRDS(htmlfile,
+ # saveRDS(test_html,
  #         file = file.path("tests/testthat/snapshot",
- #                          paste0(Sys.Date(), "-","radioButtons_dsfr_template.Rda")
+ #                          "radioButtons_dsfr_template.Rda"
+ #                          )
+ #         )
+ # 
+ # saveRDS(test_html_selected,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "radioButtons_dsfr_template_selected.Rda"
  #                          )
  #         )
 
@@ -486,30 +540,65 @@ radioButtons_dsfr(
       inputId = "test", label = "Test", choices = c("A","B"), class = NULL
 )
 
-# radioButtons_dsfr(
-#       inputId = "test",
-#       label = "Test",
-#       choices = c("Choix A" = "A","Choix B" = "B"),
-#       class = NULL
-# )
+radioButtons_dsfr(
+      inputId = "test2",
+      label = "Test",
+      choices = c("Choix A" = "A","Choix B" = "B"),
+      selected = "B",
+      class = NULL
+)
 ```
 
 ```{r tests-radioButtons_dsfr}
 test_that("radioButtons_dsfr works", {
-  test <- radioButtons_dsfr(
+  test_html <- radioButtons_dsfr(
     inputId = "test", label = "Test", choices = c("A","B"), class = NULL
   )
   #' @description tester si shiny.tag
-  expect_s3_class(test, "shiny.tag")
+  expect_s3_class(test_html, "shiny.tag")
   
-  test_error_selected <- function() {
-  radioButtons_dsfr(inputId = "test", 
-                    label = "Test error selected with more than one element", 
-                    choices = c("A","B"),
-                    selected = c("A", "B"),
-                    class = NULL)
-    }
-  expect_error(test_error_selected())
+  expect_error(
+    radioButtons_dsfr(
+      inputId = "test", 
+      label = "Test error selected with more than one element", 
+      choices = c("A","B"),
+      selected = c("A", "B"),
+      class = NULL), 
+    regexp = "selected")
+  
+    # test selected
+  test_html_selected <- radioButtons_dsfr(
+      inputId = "test-selected", 
+      label = "Selected", 
+      choices = c("A","B"),
+      selected = "A",
+      class = NULL)
+  
+  snapshot_html_selected <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "radioButtons_dsfr_selected.Rda")
+  )
+  #' @description Verifie le parametre selected dans le HTML
+  expect_equal(gsub("\\s|\\n", "", test_html_selected),
+               gsub("\\s|\\n", "", snapshot_html_selected)) 
+  
+  
+    # Si erreur au précedent test deux cas possible :
+    #
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #
+    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+    #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #                              dans la fonction radioButtons_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+ # saveRDS(test_html_selected,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "radioButtons_dsfr_selected.Rda"
+ #                          )
+ #         )
+ # 
 })
 ```
 

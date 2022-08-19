@@ -1,32 +1,17 @@
 Package: shinygouv
 Title: An Amazing Shiny App
 Version: 0.0.0.9004
-Authors@R: 
-    c(person(given = "Juliette",
-             family = "ENGELARE-LEFEBVRE",
-             role = c("aut", "cre"),
-             email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr"),
-      person(given = "Sébastien",
-             family = "Rochette",
-             role = "aut",
-             email = "sebastien@thinkr.fr",
-             comment = c(ORCID = "0000-0002-1565-9313")),
-      person(given = "Murielle",
-             family = "Delmotte",
-             role = "aut",
-             email = "murielle@thinkr.fr",
-             comment = c(ORCID = "0000-0002-1339-2424")),
-      person(given = "Cervan",
-             family = "Girard",
-             role = "aut",
-             email = "cervan@thinkr.fr",
-             comment = c(ORCID = "0000-0002-4816-4624")),
-      person(given = "David",
-             family = "Granjon",
-             role = "ctb"),
-      person(given = "Alan",
-             family = "Dipert",
-             role = "ctb"))
+Authors@R: c(
+    person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
+    person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
+           comment = c(ORCID = "0000-0002-1565-9313")),
+    person("Murielle", "Delmotte", , "murielle@thinkr.fr", role = "aut",
+           comment = c(ORCID = "0000-0002-1339-2424")),
+    person("Cervan", "Girard", , "cervan@thinkr.fr", role = "aut",
+           comment = c(ORCID = "0000-0002-4816-4624")),
+    person("David", "Granjon", role = "ctb"),
+    person("Alan", "Dipert", role = "ctb")
+  )
 Description: What the package does (one paragraph).
 License: EUPL (>= 1.2) | file LICENSE
 Imports: 
