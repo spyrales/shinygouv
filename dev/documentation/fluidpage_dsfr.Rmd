@@ -1,6 +1,6 @@
 ---
 title: "fluidPage_dsfr"
-output: rmarkdown::html_vignette
+output: github_document
 vignette: >
   %\VignetteIndexEntry{fluidpage_dsfr}
   %\VignetteEngine{knitr::rmarkdown}

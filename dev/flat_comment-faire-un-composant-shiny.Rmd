@@ -77,10 +77,16 @@ On observe alors que dans "class" nous avons des classes liées à bootstrap `bt
   - Dans votre nouveau flat, il faut remplacer "nom_composant_shiny" par le nom du composant shiny (dans cet exemple, `actionButton`)
   - Changer le chemin du fichier de votre `.html` dans la fonction `*_template`
   - Compléter les paramètres et leur documentation dans vos fonctions selon la personnalisation de votre `.html`
+  - Adapter les tests unitaires en fonction des paramètres choisis (y compris la date du snapshot).
   - Puis lancer le dernier chunck `fusen::inflate()`
-  
+
+
 Voir exemple `dev/flat_composants/flat_actionButton.Rmd`
- 
+
+**/!\\ Attention: **
+Ayez une attention particulière pour les tests unitaires qui sont la garantie du bon fonctionnement du package.
+
+
 #### Quatrième étape
 
 Lorsque l'implementation de votre nouveau composant dsfr est terminée:

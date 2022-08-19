@@ -17,6 +17,9 @@ check_n_covr <- function() {
 
 check_n_covr()
 
+# Verifier que les md sont disponibles dans le dossier dev/documentation,
+#sinon knit les Rmd en modifiant l'output par github_document
+
 # Utils for dev ----
 # Get global variables
 checkhelper::print_globals()
