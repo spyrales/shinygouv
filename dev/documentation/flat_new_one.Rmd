@@ -22,6 +22,7 @@ pkgload::load_all(export_all = TRUE)
 #' 
 #' @importFrom htmltools htmlTemplate
 #' @return html
+#' @noRd
 nom_composant_shiny_dsfr_template <- function(
   # ajouter vos params  
   ){

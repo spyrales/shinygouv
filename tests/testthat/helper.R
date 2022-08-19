@@ -4,7 +4,7 @@ createModuleSession <- function(moduleId) {
   session <- as.environment(list(
     ns = NS(moduleId),
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     }
   ))
   class(session) <- "ShinySession"

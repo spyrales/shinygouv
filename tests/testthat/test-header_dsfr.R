@@ -2,26 +2,29 @@
 
 test_that("header_dsfr works", {
   test_html <- header_dsfr(
-     intitule = "Prefet de", 
-     officiel = "Bretagne",
+    intitule = "Prefet de",
+    officiel = "Bretagne",
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
-  
+
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "header_dsfr.Rda")
+      "header_dsfr.Rda"
+    )
   )
-  
+
   #' @description Verifer que le HTML est correct en sortie
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
   # Si erreur au précedent test deux cas possible :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -29,11 +32,10 @@ test_that("header_dsfr works", {
   # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
   #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
   #  dans la fonction header_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
-  
+
   # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
   #                          "header_dsfr.Rda"
   #                          )
   #         )
-  
 })

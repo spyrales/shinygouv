@@ -2,7 +2,7 @@
 
 test_that("fluidRow_dsfr works", {
   expect_true(inherits(fluidRow_dsfr, "function"))
-  
+
   test_html <- fluidRow_dsfr(
     shiny::p("Voici un exemple")
   )
@@ -14,15 +14,18 @@ test_that("fluidRow_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "fluidRow_dsfr.Rda")
+      "fluidRow_dsfr.Rda"
+    )
   )
-  
+
   #' @description Verifer que le HTML est correct en sortie
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
   # Si erreur au précedent test deux cas possible :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -30,11 +33,10 @@ test_that("fluidRow_dsfr works", {
   # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
   #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
   #  dans la fonction fluidRow_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
-  
+
   # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
   #                          "fluidRow_dsfr.Rda"
   #                          )
   #         )
-  
 })
