@@ -25,7 +25,7 @@ checkboxInput_unique_dsfr_template <- function(inputId, name, choice_value, choi
     name = name,
     choice_name = choice_name,
     choice_value = choice_value,
-    checked = if (value) "checked" else NULL
+    checked = if (isTRUE(value)) 'checked=""' else NULL
     )
 }
 
