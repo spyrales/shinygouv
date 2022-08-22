@@ -14,6 +14,24 @@
 #' 
 #' @export
 #'
+#' @examples
+#' checkboxInput_dsfr(
+#'   inputId = 'test', label = 'test', choices = c("A", "B"))
+#' 
+#' checkboxInput_dsfr(
+#'   inputId = 'test', 
+#'   label = 'test', 
+#'   choices = c("Choix A" = "A", "Choix B"= "B"),
+#'   selected = "B"
+#' )
+#' 
+#' checkboxInput_dsfr(
+#'   inputId = 'test', 
+#'   label = 'test', 
+#'   choice_values = c("A","B"),
+#'   choice_names = c("Choix A", "Choice B"),
+#'   selected = "B"
+#' )
 checkboxInput_dsfr <- function(inputId, 
                                         label, 
                                         choices = NULL, 
