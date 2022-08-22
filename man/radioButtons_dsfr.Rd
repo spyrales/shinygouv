@@ -4,7 +4,14 @@
 \alias{radioButtons_dsfr}
 \title{radioButtons_dsfr}
 \usage{
-radioButtons_dsfr(inputId, label, choices, inline = FALSE, class = NULL)
+radioButtons_dsfr(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  inline = FALSE,
+  class = NULL
+)
 }
 \arguments{
 \item{inputId}{id de l'input}
@@ -12,6 +19,8 @@ radioButtons_dsfr(inputId, label, choices, inline = FALSE, class = NULL)
 \item{label}{label du bouton}
 
 \item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
+
+\item{selected}{Element sélectionné (NULL par défaut)}
 
 \item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
 
@@ -28,10 +37,11 @@ radioButtons_dsfr(
       inputId = "test", label = "Test", choices = c("A","B"), class = NULL
 )
 
-# radioButtons_dsfr(
-#       inputId = "test",
-#       label = "Test",
-#       choices = c("Choix A" = "A","Choix B" = "B"),
-#       class = NULL
-# )
+radioButtons_dsfr(
+      inputId = "test2",
+      label = "Test",
+      choices = c("Choix A" = "A","Choix B" = "B"),
+      selected = "B",
+      class = NULL
+)
 }

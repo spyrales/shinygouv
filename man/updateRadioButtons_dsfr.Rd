@@ -8,6 +8,7 @@ updateRadioButtons_dsfr(
   inputId,
   label = NULL,
   choices = NULL,
+  selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -17,6 +18,8 @@ updateRadioButtons_dsfr(
 \item{label}{label du bouton}
 
 \item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
+
+\item{selected}{Element selectionné}
 
 \item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
 }
@@ -43,7 +46,8 @@ server <- function(input, output, session) {
       session = session, 
       inputId = "inRadioButtons",
       label = "Un nouveau label",
-      choices = c("A" = "a")
+      choices = c("A" = "a"),
+      selected = "a"
     )
   })
   

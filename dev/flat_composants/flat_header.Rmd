@@ -15,6 +15,23 @@ library(testthat)
 pkgload::load_all(export_all = TRUE)
 ```
 
+Vous pouvez ajouter le header officiel dans votre application avec `header_dsfr()`. Par exemple avec un `fluidPage_dsfr()` :
+
+```{r, eval=FALSE}
+fluidPage_dsfr(
+  header = header_dsfr(
+    intitule = "Intitule",
+    officiel = "Officiel",
+    nom_site_service = "Nom du site / service",
+    baseline = "baseline - precisions sur l organisation",
+    class = "fr-m-1w"
+  ),
+  title = "Exemple shiny dsfr",
+  h1("Exemple d'utilisation de {shinygouv}"),
+)
+```
+
+
 # header_dsfr_template
     
 ```{r function-header_dsfr_template}
@@ -34,7 +51,7 @@ header_dsfr_template <- function(
   
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "composant", 
       "entete.html",
       package = "shinygouv"
@@ -56,8 +73,36 @@ header_dsfr_template <- function(
 test_that("header_dsfr_template works", {
   expect_true(inherits(header_dsfr_template, "function")) 
   
-    test <- header_dsfr_template(
-     class = NULL,
+    htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant", 
+      "entete.html",
+      package = "shinygouv"
+    )
+  )
+  
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+  
+  purrr::walk(
+    c(
+     "class" ,
+     "intitule", 
+     "officiel",
+     "url",
+     "titre", 
+     "nom_site_service", 
+     "baseline"
+      ),
+    function(param){
+      with_moustache <- paste0("\\{\\{",param,"\\}\\}")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
+    test_html <- header_dsfr_template(
+     class = "class",
      intitule = "Prefet de", 
      officiel = "Bretagne",
      url = "https://www.prefectures-regions.gouv.fr/bretagne",
@@ -67,7 +112,52 @@ test_that("header_dsfr_template works", {
     )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+  
+  
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+     class = "class",
+     intitule = "Prefet de", 
+     officiel = "Bretagne",
+     url = "https://www.prefectures-regions.gouv.fr/bretagne",
+     titre = "Accueil - Préfecture de Bretagne", 
+     nom_site_service = "DREAL Bretagne", 
+     baseline = "description"
+     ),
+    function(param){
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
+ ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "header_dsfr_template.Rda")
+  )
+  
+  #' @description Verifie le HTML créé
+    expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+    # Si erreur au précedent test deux cas possible :
+    #
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #
+    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+    #   assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #   dans la fonction header_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+ # saveRDS(test_html,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "header_dsfr_template.Rda"
+ #                          )
+ #         )
+
 })
 ```
   
@@ -121,12 +211,41 @@ header_dsfr <- function(
 
 ```{r tests-header_dsfr}
 test_that("header_dsfr works", {
-  test <- header_dsfr(
+  test_html <- header_dsfr(
      intitule = "Prefet de", 
      officiel = "Bretagne",
   )
   #' @description tester si shiny.tag
-  expect_s3_class(test, "shiny.tag")
+  expect_s3_class(test_html, "shiny.tag")
+  
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "header_dsfr.Rda")
+  )
+  
+  #' @description Verifer que le HTML est correct en sortie
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction header_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "header_dsfr.Rda"
+  #                          )
+  #         )
+  
 })
 ```
 
@@ -135,11 +254,11 @@ test_that("header_dsfr works", {
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
 
-spec_infalte <- function(){
-  nom <- "header dsfr"
+spec_inflate <- function(){
+  nom <- "header_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_header.Rmd", 
-    vignette_name = nom)
+    vignette_name = nom, open_vignette = FALSE)
   
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")
@@ -150,7 +269,7 @@ spec_infalte <- function(){
   
   unlink(file.path("vignettes", nom_file))
 }
-spec_infalte()
+spec_inflate()
 
 ```
 

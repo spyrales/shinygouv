@@ -80,14 +80,79 @@ Les paramètres `header`, `title` et `body` sont repris dans le html pour pouvoi
 test_that("fluidPage_dsfr_template works", {
   expect_true(inherits(fluidPage_dsfr_template, "function")) 
   
-  test <- fluidPage_dsfr_template(
-    header = NULL,
+    htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant", 
+      "fluidpage.html",
+      package = "shinygouv"
+    )
+  )
+  
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+  
+  purrr::walk(
+    c(
+      "header",
+      "title",
+      "body"
+      ),
+    function(param){
+      with_moustache <- paste0("\\{\\{",param,"\\}\\}")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
+  test_html <- fluidPage_dsfr_template(
+    header = "header",
     title = "titre",
-    body = NULL
+    body = "body"
   )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+  
+  
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+    header = "header",
+    title = "titre",
+    body = "body"
+      ),
+    function(param){
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
+ ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "fluidPage_dsfr_template.Rda")
+  )
+  
+  #' @description Verifie la presence du parametre class
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+    # Si erreur au précedent test deux cas possible :
+    #
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #
+    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+    #   assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #   dans la fonction fluidPage_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+ # saveRDS(test_html,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "fluidPage_dsfr_template.Rda"
+ #                          )
+ #         )
+  
 })
 ```
 
@@ -187,7 +252,7 @@ shiny::shinyApp(
 
 ```{r tests-fluidPage_dsfr}
 test_that("fluidPage_dsfr works", {
-  test <- fluidPage_dsfr(
+  test_html <- fluidPage_dsfr(
     header = header_dsfr(
      intitule = "Prefet de", 
      officiel = "Bretagne",
@@ -196,7 +261,35 @@ test_that("fluidPage_dsfr works", {
       body = htmltools::div("test")
   )
   #' @description tester si shiny.tag
-  expect_s3_class(test, "shiny.tag.list")
+  expect_s3_class(test_html, "shiny.tag.list")
+  
+    ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "fluidPage_dsfr.Rda")
+  )
+  
+  #' @description Verifer que le HTML est correct en sortie
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction fluidPage_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "fluidPage_dsfr.Rda"
+  #                          )
+  #         )
 })
 ```
 
@@ -221,7 +314,7 @@ layout_dsfr_template <- function(
   
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "layout", 
       "layout.html",
       package = "shinygouv"
@@ -244,7 +337,7 @@ layout_dsfr_template <- function(
   
   htmltools::htmlTemplate(
     filename = system.file(
-      "v1.7.2",
+      get_dsfr_version(with_v = TRUE),
       "layout", 
       "layout.html",
       package = "shinygouv"
@@ -258,23 +351,89 @@ layout_dsfr_template <- function(
 
 
 ```{r tests-layout_dsfr_template}
-test_that("fluidPage_dsfr_template works", {
-  expect_true(inherits(fluidPage_dsfr_template, "function")) 
+test_that("layout_dsfr_template works", {
+  expect_true(inherits(layout_dsfr_template, "function")) 
   
-  test <- fluidPage_dsfr_template(
-    header = NULL,
-    title = "titre",
-    body = NULL
+
+    htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "layout", 
+      "layout.html",
+      package = "shinygouv"
+    )
+  )
+  
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+  
+  purrr::walk(
+    c(
+    "html", 
+    "class", 
+    "other_class"
+      ),
+    function(param){
+      with_moustache <- paste0("\\{\\{",param,"\\}\\}")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
+  test_html <- layout_dsfr_template(
+    html = "html",
+    class = "class",
+    other_class = "other_class"
   )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+  
+  
+  
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+    html = "html",
+    class = "class",
+    other_class = "other_class"
+      ),
+    function(param){
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
+ ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "layout_dsfr_template.Rda")
+  )
+  
+  #' @description Verifie la presence du parametre class
+  expect_equal(test_html, snapshot_html) 
+  
+    # Si erreur au précedent test deux cas possible :
+    #
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #
+    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+    #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #                              dans la fonction layout_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+ # saveRDS(test_html,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "layout_dsfr_template.Rda"
+ #                          )
+ #         )
+
 })
 ```
 
 Avec cette fonction, on va pouvoir initier tout un ensemble d'éléments pour notre application, comme les fluidRow, les containers et les columns
 
-## Exemple pour fluidRow_dsfr
+## Exemple pour `fluidRow_dsfr()`
 
 On reprend le template layout et on ajoute notre logique métier sur les paramètres.
 
@@ -318,12 +477,42 @@ shiny::shinyApp(
   
 ```{r tests-fluidRow_dsfr}
 test_that("fluidRow_dsfr works", {
-  expect_true(inherits(fluidRow_dsfr, "function")) 
-  test <- fluidRow_dsfr(
+  expect_true(inherits(fluidRow_dsfr, "function"))
+  
+  test_html <- fluidRow_dsfr(
     shiny::p("Voici un exemple")
   )
   #' @description tester si shiny.tag
-  expect_s3_class(test, "shiny.tag.list")
+  expect_s3_class(test_html, "shiny.tag.list")
+
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "fluidRow_dsfr.Rda")
+  )
+  
+  #' @description Verifer que le HTML est correct en sortie
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction fluidRow_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "fluidRow_dsfr.Rda"
+  #                          )
+  #         )
+  
 })
 ```
 
@@ -415,12 +604,41 @@ shiny::shinyApp(
 ```{r tests-column_dsfr}
 test_that("column_dsfr works", {
   expect_true(inherits(column_dsfr, "function")) 
-  test <- column_dsfr(
-    3,
+  test_html <- column_dsfr(
+    width = 3,
     shiny::p("Voici un exemple")
   )
   #' @description tester si shiny.tag
-  expect_s3_class(test, "shiny.tag.list")
+  expect_s3_class(test_html, "shiny.tag.list")
+  
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "column_dsfr.Rda")
+  )
+  
+  #' @description Verifer que le HTML est correct en sortie
+  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction column_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "column_dsfr.Rda"
+  #                          )
+  #         )
+  
 })
 ```
 
@@ -431,7 +649,7 @@ Voila plusieurs exemples d'implémentation de composants/layouts qui ne demanden
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-spec_infalte <- function(){
+spec_inflate <- function(){
   nom <- "fluidPage_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_fluidpage.Rmd", 
@@ -448,7 +666,7 @@ spec_infalte <- function(){
   
   unlink(file.path("vignettes", nom_file))
 }
-spec_infalte()
+spec_inflate()
 
 ```
 
