@@ -211,15 +211,20 @@ checkboxInput_dsfr_template <- function(inputId,
     inputId = inputId,
     class_inline = class_inline,
     label = label,
-    choice = purrr::pmap(list(choice_values, choice_names, seq_along(choice_values)),
-                         ~checkboxInput_unique_dsfr_template(
-                           inputId = paste0(inputId,"-", ..3),
+    choice = purrr::pmap(list(.x = choice_values, 
+                              .y = choice_names, 
+                              .nb = seq_along(choice_values)),
+                         function(.x, .y, .nb) { 
+                           checkboxInput_unique_dsfr_template(
+                           inputId = paste0(inputId,"-", .nb),
                            name = inputId,
-                           choice_value = ..1,
-                           choice_name = ..2,
-                           value = ..1 %in% selected 
+                           choice_value = .x,
+                           choice_name = .y,
+                           value = .x %in% selected 
                            )
-                         ) %>% htmltools::tagList()
+                         }
+                         ) %>% 
+      htmltools::tagList()
   )
 }
 
