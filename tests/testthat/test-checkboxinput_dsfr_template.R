@@ -3,14 +3,104 @@
 test_that("checkboxInput_dsfr_template works", {
   expect_true(inherits(checkboxInput_dsfr_template, "function")) 
   
-    test <- checkboxInput_dsfr_template(
-      inputId = 'test',
-      label = 'label',
-      choices = c('a', 'b'),
-      selected = NULL,
-      inline = FALSE
+  
+  
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "checkbox_group.html",
+      package = "shinygouv"
+    )
+  )
+  
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+  
+  purrr::walk(
+    c(
+    "inputId",
+    "label",
+    "choice",
+    "class_inline"
+      ),
+    function(param){
+      with_moustache <- paste0("\\{\\{",param,"\\}\\}")
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
+    test_html <- checkboxInput_dsfr_template(
+      inputId = "test",
+      label = "Test",
+      choices = c("A","B")
     )
   
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test))
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+  
+  
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+  purrr::walk(
+    c(
+      inputId = "test",
+      label = "Test",
+      choices = c("A","B")
+     ),
+    function(param){
+      expect_true(any(grepl(pattern = param, test_html)), 
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
+ ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "checkboxInput_dsfr_template.Rda")
+  )
+  
+  #' @description Verifie le HTML créé
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
+  
+  
+  # test selected
+  test_html_selected <- checkboxInput_dsfr_template(
+      inputId = "test",
+      label = "Test",
+      choices = c("A name" = "A","B name" = "B"),
+      selected = "B"
+    )
+  snapshot_html_selected <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "checkboxInput_dsfr_template_selected.Rda")
+  )
+  #' @description Verifie le parametre selected dans le HTML
+  expect_equal(gsub("\\s|\\n", "", test_html_selected),
+               gsub("\\s|\\n", "", snapshot_html_selected)) 
+  
+  
+    # Si erreur au précedent test deux cas possible :
+    #
+    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+    #
+    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+    #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+    #                              dans la fonction checkboxInput_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+ # saveRDS(test_html,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "checkboxInput_dsfr_template.Rda"
+ #                          )
+ #         )
+ # 
+ # saveRDS(test_html_selected,
+ #         file = file.path("tests/testthat/snapshot",
+ #                          "checkboxInput_dsfr_template_selected.Rda"
+ #                          )
+ #         )
+
+  
 })
