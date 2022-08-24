@@ -411,6 +411,19 @@ test_that("checkboxInput_dsfr works", {
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
+  
+  
+   ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate), 
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "checkboxInput_dsfr.Rda")
+  )
+  
+  #' @description Verifie le HTML créé
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html)) 
 
     # test selected
   test_html_selected <- checkboxInput_dsfr(
@@ -539,6 +552,32 @@ updateCheckboxInput_dsfr <- function(inputId,
 }
 
 ```
+```{r tests-updateCheckboxInput_dsfr}
+test_that("updateCheckboxInput_dsfr works", {
+  expect_true(inherits(updateCheckboxInput_dsfr, "function")) 
+  sessA <- createModuleSession("modA")
+  updateCheckboxInput_dsfr(
+      session = sessA, 
+      inputId = "inCheckboxInput",
+      label = "Un nouveau label",
+      choices = c("choice-a" = "a"),
+      selected = "a"
+    )
+  
+    resultA <- sessA$lastInputMessage
+    # inputId
+    expect_equal("inCheckboxInput", resultA$id)
+    # label
+    expect_equal("Un nouveau label", resultA$message$label)
+    # HTML content
+    expect_true(grepl('id\\s*=\\s*\"modA-inCheckboxInput-1\"', resultA$message$options))
+    expect_true(grepl('value\\s*=\\s*"a"', resultA$message$options))
+    expect_true(grepl('choice-a', resultA$message$options))
+    #expect_true(grepl('checked\\s*=\\s*""', resultA$message$options))
+    expect_true(grepl('checked', resultA$message$options))
+})
+```
+
 
 ```{r development-inflate, eval=FALSE}
 spec_infalte <- function(){
