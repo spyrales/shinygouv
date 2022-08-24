@@ -6,3 +6,5 @@ actionButton;actionButton_dsfr;bouton.html;oui
 radioButtons;radioButtons_dsfr;radiobouton.html;oui
 updateRadioButtons;updateRadioButtons_dsfr;;oui
 ;header_dsfr;entete.html;oui
+checkboxGroupInput;checkboxInput_dsfr;checkbox.html;oui
+updateCheckboxGroupInput;updateCheckboxInput_dsfr;;oui
