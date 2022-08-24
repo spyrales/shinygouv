@@ -15,6 +15,36 @@
 #' @return html
 #' 
 #' @export
+#' @examples
+#' 
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#' ui <- fluidPage_dsfr(
+#'   radioButtons_dsfr(inputId = "inCheckboxInput", 
+#'                     label = "Input checkbox input",
+#'                     choices = c("Item A","Item B", "Item C")),
+#'   actionButton_dsfr("go","Change")
+#' )
+#' server <- function(input, output, session) {
+#'   
+#'   observeEvent(input$go,{
+#'     updateCheckboxInput_dsfr(
+#'       session = session, 
+#'       inputId = "inCheckboxInput",
+#'       label = "Un nouveau label",
+#'       choices = c("A" = "a"),
+#'       selected = "a"
+#'     )
+#'   })
+#'   
+#'   observeEvent(input$inCheckboxInput,{
+#'     message(input$inCheckboxInput)
+#'   })
+#' }
+#' shinyApp(ui, server)
+#' }
+#' 
+#' 
 updateCheckboxInput_dsfr <- function(inputId,
                                     label = NULL,
                                     choices = NULL,
