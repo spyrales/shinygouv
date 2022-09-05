@@ -2,7 +2,9 @@
 
 #' convert_to_dsfr
 #'
-#' permet de convertir une application shiny en une application shiny suivant le DSFR
+#' Permet de convertir une application shiny en une application shiny suivant le DSFR.
+#' Cette fonction va modifier les fichiers de votre application, presents dans le repertoire `path`.
+#' Cf. \href{https://spyrales.github.io/shinygouv/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html}{vignette dediee}
 #'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
@@ -43,6 +45,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
 
   tab_corresp <- read.csv2(chemin_tab_corresp, na.strings = c("", "NA"))
   tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]), ]
+  tab_corresp <- tab_corresp[tab_corresp[["composant_shiny"]] != "", ]
 
   # recuperation de la table de correspondance
   fic <- list.files(path = path, full.names = TRUE)

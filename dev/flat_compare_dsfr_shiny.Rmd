@@ -36,7 +36,7 @@ options = list("dom" = "tp")
 
 ### Option A {shiny} + {bslib} :
 
-Utiliser les fonctionalités de {bslib} pour utiliser le framework DSFR.
+Utiliser les fonctionnalités de {bslib} pour utiliser le framework DSFR.
 
 
 Avantages :
@@ -46,7 +46,7 @@ Avantages :
 Inconvénients:
 
 - Limiter par les paramètres modifiables.
-- Nécéssiterait de transformer le CSS de DSFR pour une compatibilité avec bootstrap (ce qui semble être un non-sens :)).
+- Nécessiterait de transformer le CSS de DSFR pour une compatibilité avec bootstrap (ce qui semble être un non-sens :)).
 - Il faut maintenir le thème DSFR qui est le résultat de la transformation du CSS. Donc une connaissance assez élevée sur bootstrap et DSFR.
 
 ThinkR ne peut garantir le succès de cette méthode. Cette méthode n'a jamais été expérimentée.
@@ -107,7 +107,7 @@ Avantages:
 
 Inconvénients:
 
-- Limiter par ce que propose {shiny}. On ne peut appliquer que les classes DSFR qui ont un équivalent déjà existantes dans bootstrap.
+- Limité par ce que propose {shiny}. On ne peut appliquer que les classes DSFR qui ont un équivalent déjà existantes dans bootstrap.
 - Cela réécrit le code au lancement de l'application et peut donc altérer l'expérience utilisateur.
 - Ne permet pas d'appliquer les règles d'utilisations des différents composants de DSFR.
 - Double travail : il faut maintenir un tableau de correspondance entre les deux frameworks. Donc une connaissance assez élevée sur les deux.
@@ -201,11 +201,11 @@ Avantages :
 
 Inconvénients:
 
-- Nécéssite plus de développement et donc de temps
+- Nécessite plus de développement et donc de temps
 - Oblige les utilisateurs à remplacer les fonctions {shiny} par les fonctions DSFR
 - Bonne connaissance en JS pour maintenir le package
 
-On peut tout à fait imaginer une fonction qui parserait le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
+On peut tout à fait imaginer une fonction qui parcourt le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
 
 ### Option D `from scratch mais pas vraiement`
 
@@ -254,12 +254,12 @@ Avantages :
 
 > Néanmoins, le temps gagné sur les inputs basiques pourrait permettre d'implementer de nouveaux inputs si nécéssaire
 
-- Implementation plus simple pour les composants compatibles.
+- Implémentation plus simple pour les composants compatibles.
 - Pas besoin de connaissances avancées en JS pour les composants compatibles.
 
 Inconvénients :
 
-- Liée au package {shiny} et aux inputs implémentés 
+- Lié au package {shiny} et aux inputs implémentés 
 - Si l'input n'existe pas dans {shiny}, alors il faudra recoder la partie JS (c'est vrai pour les options A et B)
 - Maintenance : suivre {shiny} et DSFR. Autrement dit, si la classe de l'input {shiny} devient autre chose que `action-button` notre code ne marchera plus (peu probable...).
 
@@ -268,7 +268,7 @@ Les changements sont énumérés:
 - pour shiny: <https://shiny.rstudio.com/reference/shiny/1.7.0/upgrade.html>
 - pour DSFR: <https://gouvfr.atlassian.net/wiki/spaces/DB/pages/1028030465/Version+1.6.0>
 
-On peut tout à fait imaginer une fonction qui parserait le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
+On peut tout à fait imaginer une fonction qui parcourt le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
 
 ## Les inputs recensés dans les apps "ssm-écologie" par option
 
@@ -284,14 +284,14 @@ options = list("dom" = "tp")
 )
 ```
 
-Les éléments tels que navbarpage, tabpanel etc sont possible dans la limite de ce que propose DSFR. Ils nécéssitent plus ou moins une demi-journée par composant (codé avec des htmlTemplates). 
+Les éléments tels que navbarpage, tabpanel etc sont possibles dans la limite de ce que propose DSFR. Ils necéssitent plus ou moins une demi-journée par composant (codé avec des htmlTemplates). 
 
 
 ## Notre recommandation
 
 Nous préconisons l'**option D**. Pourquoi ?
 
-Cette aprroche permet de mettre en avant le travail réalisé sur le framework DSFR avec une implementation possible de l'intégralité des fonctionnalités sans la contrainte et la lourdeur de connaitre le JS. Elle permet aussi de faciliter la maintenance du package par les futures mainteneurs. Bien que cette option ne réponde pas directement à l'objectif : `éviter d'avoir des fonctions spécifiques pour ne pas géner le passage d'un template à un autre`, on peut tout à fait imaginer une fonction qui parserait le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
+Cette approche permet de mettre en avant le travail réalisé sur le framework DSFR avec une implémentation possible de l'intégralité des fonctionnalités sans la contrainte et la lourdeur de connaitre le JS. Elle permet aussi de faciliter la maintenance du package par les futures mainteneurs. Bien que cette option ne réponde pas directement à l'objectif : `éviter d'avoir des fonctions spécifiques pour ne pas géner le passage d'un template à un autre`, on peut tout à fait imaginer une fonction qui parcourt le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop

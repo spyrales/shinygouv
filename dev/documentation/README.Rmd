@@ -94,7 +94,7 @@ Pour développer ce package, des choix techniques ont été adoptés. Vous retro
 
 Le workflow se découpe en deux possibilités :
 
-- Les composants nécéssitant de la réactivité
+- Les composants nécessitant de la réactivité
 - Les composants sans réactivité
 
 Ces deux possibilités se basent sur le même principe : **l'utilisation des templates html**. La trame générale de ce workflow est définie dans la documentation : 
@@ -130,7 +130,7 @@ Vous retrouverez cette liste dans le fichier `dev/pkgs_deps.csv`.
 
 ## Workflow avant de commit
 
-Pensez à executer les lignes "Each time needed" du fichier `dev/dev_history_package.R` avant chaque commit.
+Pensez à exécuter les lignes "Each time needed" du fichier `dev/dev_history_package.R` avant chaque commit.
 
 ```{r, eval=FALSE}
 rstudioapi::navigateToFile("dev/dev_history_package.R")

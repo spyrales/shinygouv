@@ -53,11 +53,12 @@ En effet, le code html de ce type de composant se structure en plusieurs htmlTem
 Il est donc nécessaire de scinder les htmlTemplates dans différents fichiers .html.
 Suivre les 2 premières étape de la procédure décrite dans `dev/documentation/comment-faire-un-composant-shiny.Rmd` uniquement pour la partie `<div class="fr-radio-group">`.
 
-Quelques précisions: 
-- Pour utiliser le fonctionnement classique du radioButtons {shiny}:
-  - l'argument `value` a été rajouté
-  - la classe `shiny-options-group` a été rajouté (ce qui permettra d'implémenter/utiliser une fonction `updateRadioButtons_dsfr()`)
-  - reprendre la div `label` du radioButtons de shiny ainsi que ses attributs.
+Quelques précisions:  
+
+- Pour utiliser le fonctionnement classique du radioButtons {shiny}:  
+  - l'argument `value` a été rajouté  
+  - la classe `shiny-options-group` a été rajoutée (ce qui permettra d'implémenter/utiliser une fonction `updateRadioButtons_dsfr()`)  
+  - reprendre la div `label` du radioButtons de shiny ainsi que ses attributs.  
   
 
 # radioButtons_unique_dsfr_template
@@ -95,7 +96,7 @@ radioButtons_unique_dsfr_template <- function(inputId, choix, nom_choix, name, i
   
   
 
-Le travail précedemment réalisé, peut maintenant être répeté au niveau de la `<div class="fr-form-group">`:
+Le travail précedemment réalisé, peut maintenant être répété au niveau de la `<div class="fr-form-group">`:
 
 - 2 première étape de la procédure `dev/documentation/comment-faire-un-composant-shiny.Rmd`.
 
@@ -103,7 +104,7 @@ Le travail précedemment réalisé, peut maintenant être répeté au niveau de 
 # radioButtons_dsfr_template
 
 De la même manière que pour la fonction précédente, il est nécessaire d'adapter la personnalisation en fonction des paramètres passés en arguments.
-Cette fonction repose sur `radioButtons_unique_dsfr_template()` qui devra être répeter autant de fois qu'il y a de choix (utilisation de `purrr::map(...)`)
+Cette fonction repose sur `radioButtons_unique_dsfr_template()` qui devra être répéter autant de fois qu'il y a de choix (utilisation de `purrr::map(...)`)
 
 
 ```{r eval = FALSE}

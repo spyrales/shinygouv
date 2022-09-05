@@ -58,10 +58,10 @@ _Ici nous prenons l'exemple d'un composant développé pour la version 1.7.2 du 
 
 #### Deuxième étape
 
-- Modifier le code html pour mettre les paramètres nécéssaires à son bon fonctionnement dans {shiny}
+- Modifier le code html pour mettre les paramètres nécessaires à son bon fonctionnement dans {shiny}
   - Ajouter un `id` pour le futur `inputId`
-  - Ajouter la classe permettant de déclencher l'événement côté {shiny}
-  - Ajouter/Remplacer aussi les autres paramètres nécéssaires à la personnalisation du composant
+  - Ajouter la classe permettant de déclencher l'évènement côté {shiny}
+  - Ajouter/Remplacer aussi les autres paramètres nécessaires à la personnalisation du composant
   
 Après retravail sur le composant `actionButton()`, voici son template html:
 
