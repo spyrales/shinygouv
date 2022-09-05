@@ -23,4 +23,18 @@ test_that("convert_file_to_dsfr works", {
   #' @description le fluidPage de shiny a bien ete remplace
 
   expect_false(any(stringr::str_detect(fichier_transform, pattern = "fluidPage\\(")))
+
+
+  table_passage <- tibble(
+    composant_shiny = c("actionButton", "fluidPage", NA),
+    composant_dsfr = c("actionButton_dsfr", "fluidPage_dsfr", "header_dsfr")
+  )
+
+  fichier <- file.path(mydir, "R", "app_ui.R")
+  convert_file_to_dsfr(file = fichier, table_passage)
+  fichier_transform <- readLines(fichier)
+
+  #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces
+
+  expect_false(any(stringr::str_detect(fichier_transform, pattern = "header_dsfr\\(")))
 })

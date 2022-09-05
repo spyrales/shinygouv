@@ -68,7 +68,11 @@ test_that("layout_dsfr_template works", {
   )
 
   #' @description Verifie la presence du parametre class
-  expect_equal(test_html, snapshot_html)
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
 
   # Si erreur au précedent test deux cas possible :
   #

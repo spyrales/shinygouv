@@ -71,6 +71,18 @@ fichier_transform <- readLines(fichier)
   #' @description le fluidPage de shiny a bien ete remplace
 
   expect_false(any(stringr::str_detect(fichier_transform, pattern = "fluidPage\\(")))
+
+  
+table_passage <- tibble(composant_shiny = c("actionButton","fluidPage",NA),
+                        composant_dsfr = c("actionButton_dsfr","fluidPage_dsfr","header_dsfr"))
+
+fichier <- file.path(mydir,"R", "app_ui.R")
+convert_file_to_dsfr(file = fichier, table_passage) 
+fichier_transform <- readLines(fichier)
+
+  #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces
+
+  expect_false(any(stringr::str_detect(fichier_transform, pattern = "header_dsfr\\(")))
   
 })
 ```
@@ -146,7 +158,7 @@ chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
     stop(glue::glue("Le fichier 'v{version}/table_correspondance_shiny_dsfr.csv' n existe pas"))
   }
   
-  tab_corresp <- read.csv2(chemin_tab_corresp)
+  tab_corresp <- read.csv2(chemin_tab_corresp, na.strings = c("","NA"))
   tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]),]
     
   # recuperation de la table de correspondance
@@ -209,6 +221,12 @@ app_ui <- readLines(file.path(mydir,"R","app_ui.R"))
 
 #' @description la dependance a shinygouv a ete ajoute a app_ui.R
 expect_true(any(stringr::str_detect(string = app_ui,pattern = "@import shinygouv")))
+
+
+#' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces, par exemple header_dsfr
+
+  expect_false(any(stringr::str_detect(app_ui, pattern = "header_dsfr\\(")))
+
 })
 ```
 
