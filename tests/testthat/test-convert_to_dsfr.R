@@ -25,4 +25,9 @@ test_that("convert_to_dsfr works", {
 
   #' @description la dependance a shinygouv a ete ajoute a app_ui.R
   expect_true(any(stringr::str_detect(string = app_ui, pattern = "@import shinygouv")))
+
+
+  #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces, par exemple header_dsfr
+
+  expect_false(any(stringr::str_detect(app_ui, pattern = "header_dsfr\\(")))
 })

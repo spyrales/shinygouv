@@ -41,7 +41,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
     stop(glue::glue("Le fichier 'v{version}/table_correspondance_shiny_dsfr.csv' n existe pas"))
   }
 
-  tab_corresp <- read.csv2(chemin_tab_corresp)
+  tab_corresp <- read.csv2(chemin_tab_corresp, na.strings = c("", "NA"))
   tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]), ]
 
   # recuperation de la table de correspondance
