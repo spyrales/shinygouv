@@ -1,6 +1,6 @@
 Package: shinygouv
-Title: An Amazing Shiny App
-Version: 0.0.0.9005
+Title: Implement the DSFR for your shiny applications
+Version: 0.0.1
 Authors@R: c(
     person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
@@ -12,30 +12,30 @@ Authors@R: c(
     person("David", "Granjon", role = "ctb"),
     person("Alan", "Dipert", role = "ctb")
   )
-Description: What the package does (one paragraph).
+Description: Components and tools to build or transform shiny applications with the Design System of France.
 License: EUPL (>= 1.2) | file LICENSE
 Imports: 
-    assertthat,
+    assertthat (>= 0.2.1),
     config (>= 0.3.1),
-    glue,
+    glue (>= 1.6.2),
     golem (>= 0.3.2),
-    htmltools,
-    magrittr,
-    purrr,
+    htmltools (>= 0.5.2),
+    magrittr (>= 2.0.3),
+    purrr (>= 0.3.4),
     shiny (>= 1.7.1),
-    stringr,
+    stringr (>= 1.4.0),
     utils,
-    XML
+    XML (>= 3.99.0.10)
 Suggests: 
-    desc,
-    DT,
-    fs,
-    knitr,
-    readxl,
-    rmarkdown,
-    rstudioapi,
+    desc (>= 1.4.1),
+    DT (>= 0.23),
+    fs (>= 1.5.2),
+    knitr (>= 1.39),
+    readxl (>= 1.4.0),
+    rmarkdown (>= 2.14),
+    rstudioapi (>= 0.13),
     testthat (>= 3.0.0),
-    tibble
+    tibble (>= 3.1.7)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
