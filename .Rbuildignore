@@ -16,3 +16,4 @@ $run_dev.*
 ^rsconnect$
 docs
 ^inst/appshinydemo/\.Rbuildignore$
+^deliverables$

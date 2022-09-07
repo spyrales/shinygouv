@@ -1,0 +1,142 @@
+---
+title: "Tests and Coverage"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M:%S')`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tests and Coverage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+<!--- Placeholder for tests/README.md Do Not Edit--->
+-   <a href="#coverage" id="toc-coverage">Coverage</a>
+-   <a href="#unit-tests" id="toc-unit-tests">Unit Tests</a>
+
+This output is created by
+[covrpage](https://github.com/yonicd/covrpage).
+
+## Coverage
+
+Coverage summary is created using the
+[covr](https://github.com/r-lib/covr) package.
+
+| Object                                                                            | Coverage (%) |
+|:----------------------------------------------------------------------------------|:------------:|
+| shinygouv                                                                         |    69.87     |
+| [R/app_config.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/app_config.R)                                               |     0.00     |
+| [R/app_server.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/app_server.R)                                               |     0.00     |
+| [R/app_ui.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/app_ui.R)                                                       |     0.00     |
+| [R/convert_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/convert_to_dsfr.R)                                     |     0.00     |
+| [R/run_app.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/run_app.R)                                                     |     0.00     |
+| [R/column_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/column_dsfr.R)                                             |    84.62     |
+| [R/radiobuttons_unique_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/radiobuttons_unique_dsfr_template.R) |    94.12     |
+| [R/radiobuttons_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/radiobuttons_dsfr_template.R)               |    94.74     |
+| [R/render_node.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/render_node.R)                                             |    97.56     |
+| [R/actionbutton_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/actionbutton_dsfr_template.R)               |    100.00    |
+| [R/actionbutton_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/actionbutton_dsfr.R)                                 |    100.00    |
+| [R/convert_file_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/convert_file_to_dsfr.R)                           |    100.00    |
+| [R/fluidpage_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/fluidpage_dsfr_template.R)                     |    100.00    |
+| [R/fluidpage_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/fluidpage_dsfr.R)                                       |    100.00    |
+| [R/fluidrow_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/fluidrow_dsfr.R)                                         |    100.00    |
+| [R/get_dsfr_version.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/get_dsfr_version.R)                                   |    100.00    |
+| [R/header_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/header_dsfr_template.R)                           |    100.00    |
+| [R/header_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/header_dsfr.R)                                             |    100.00    |
+| [R/layout_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/layout_dsfr_template.R)                           |    100.00    |
+| [R/parse_html.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/parse_html.R)                                               |    100.00    |
+| [R/parse_to_xml.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/parse_to_xml.R)                                           |    100.00    |
+| [R/radiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/radiobuttons_dsfr.R)                                 |    100.00    |
+| [R/shinygouv-dependencies.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/shinygouv-dependencies.R)                       |    100.00    |
+| [R/updateradiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/R/updateradiobuttons_dsfr.R)                     |    100.00    |
+
+<br>
+
+## Unit Tests
+
+Unit Test summary is created using the
+[testthat](https://github.com/r-lib/testthat) package.
+
+| file                                                                                          |   n |  time | error | failed | skipped | warning | icon |
+|:----------------------------------------------------------------------------------------------|----:|------:|------:|-------:|--------:|--------:|:-----|
+| [test-actionbutton_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-actionbutton_dsfr_template.R)               |   9 | 0.085 |     0 |      0 |       0 |       0 |      |
+| [test-actionbutton_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-actionbutton_dsfr.R)                                 |   2 | 0.010 |     0 |      0 |       0 |       0 |      |
+| [test-column_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-column_dsfr.R)                                             |   3 | 0.027 |     0 |      0 |       0 |       0 |      |
+| [test-convert_file_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-convert_file_to_dsfr.R)                           |   2 | 0.058 |     0 |      0 |       0 |       0 |      |
+| [test-convert_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-convert_to_dsfr.R)                                     |   6 | 0.359 |     0 |      0 |       0 |       1 | ⚠️   |
+| [test-fluidpage_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidpage_dsfr_template.R)                     |   9 | 0.048 |     0 |      0 |       0 |       0 |      |
+| [test-fluidpage_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidpage_dsfr.R)                                       |   2 | 0.039 |     0 |      0 |       0 |       0 |      |
+| [test-fluidrow_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidrow_dsfr.R)                                         |   3 | 0.015 |     0 |      0 |       0 |       0 |      |
+| [test-get_dsfr_version.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-get_dsfr_version.R)                                   |   3 | 0.024 |     0 |      0 |       0 |       0 |      |
+| [test-header_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-header_dsfr_template.R)                           |  17 | 0.063 |     0 |      0 |       0 |       0 |      |
+| [test-header_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-header_dsfr.R)                                             |   2 | 0.021 |     0 |      0 |       0 |       0 |      |
+| [test-layout_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-layout_dsfr_template.R)                           |   9 | 0.032 |     0 |      0 |       0 |       0 |      |
+| [test-parse_html.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-parse_html.R)                                               |   2 | 0.005 |     0 |      0 |       0 |       0 |      |
+| [test-parse_to_xml.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-parse_to_xml.R)                                           |   4 | 0.019 |     0 |      0 |       0 |       0 |      |
+| [test-radiobuttons_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_dsfr_template.R)               |  13 | 0.258 |     0 |      0 |       0 |       0 |      |
+| [test-radiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_dsfr.R)                                 |   3 | 0.046 |     0 |      0 |       0 |       0 |      |
+| [test-radiobuttons_unique_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_unique_dsfr_template.R) |  13 | 0.067 |     0 |      0 |       0 |       0 |      |
+| [test-render_node.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-render_node.R)                                             |   2 | 0.005 |     0 |      0 |       0 |       0 |      |
+| [test-start.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-start.R)                                                         |   1 | 0.003 |     0 |      0 |       0 |       0 |      |
+| [test-updateradiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-updateradiobuttons_dsfr.R)                     |   7 | 0.023 |     0 |      0 |       0 |       0 |      |
+
+<details open>
+<summary>
+Show Detailed Test Results
+</summary>
+
+| file                                                                                             | context                           | test                                    | status  |   n |  time | icon |
+|:-------------------------------------------------------------------------------------------------|:----------------------------------|:----------------------------------------|:--------|----:|------:|:-----|
+| [test-actionbutton_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-actionbutton_dsfr_template.R#L4)               | actionbutton_dsfr_template        | actionButton_dsfr_template works        | PASS    |   9 | 0.085 |      |
+| [test-actionbutton_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-actionbutton_dsfr.R#L10)                                | actionbutton_dsfr                 | actionButton_dsfr works                 | PASS    |   2 | 0.010 |      |
+| [test-column_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-column_dsfr.R#L4)                                             | column_dsfr                       | column_dsfr works                       | PASS    |   3 | 0.027 |      |
+| [test-convert_file_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-convert_file_to_dsfr.R#L25)                          | convert_file_to_dsfr              | convert_file_to_dsfr works              | PASS    |   2 | 0.058 |      |
+| [test-convert_to_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-convert_to_dsfr.R#L18)                                    | convert_to_dsfr                   | convert_to_dsfr works                   | WARNING |   6 | 0.359 | ⚠️   |
+| [test-fluidpage_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidpage_dsfr_template.R#L4)                     | fluidpage_dsfr_template           | fluidPage_dsfr_template works           | PASS    |   9 | 0.048 |      |
+| [test-fluidpage_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidpage_dsfr.R#L13)                                      | fluidpage_dsfr                    | fluidPage_dsfr works                    | PASS    |   2 | 0.039 |      |
+| [test-fluidrow_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-fluidrow_dsfr.R#L4)                                         | fluidrow_dsfr                     | fluidRow_dsfr works                     | PASS    |   3 | 0.015 |      |
+| [test-get_dsfr_version.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-get_dsfr_version.R#L4)                                   | get_dsfr_version                  | get_dsfr_version works                  | PASS    |   3 | 0.024 |      |
+| [test-header_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-header_dsfr_template.R#L4)                           | header_dsfr_template              | header_dsfr_template works              | PASS    |  17 | 0.063 |      |
+| [test-header_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-header_dsfr.R#L9)                                             | header_dsfr                       | header_dsfr works                       | PASS    |   2 | 0.021 |      |
+| [test-layout_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-layout_dsfr_template.R#L4)                           | layout_dsfr_template              | layout_dsfr_template works              | PASS    |   9 | 0.032 |      |
+| [test-parse_html.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-parse_html.R#L8)                                               | parse_html                        | tester parse_html                       | PASS    |   2 | 0.005 |      |
+| [test-parse_to_xml.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-parse_to_xml.R#L4)                                           | parse_to_xml                      | parse_to_xml works                      | PASS    |   4 | 0.019 |      |
+| [test-radiobuttons_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_dsfr_template.R#L4)               | radiobuttons_dsfr_template        | radioButtons_dsfr_template works        | PASS    |  13 | 0.258 |      |
+| [test-radiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_dsfr.R#L11)                                | radiobuttons_dsfr                 | radioButtons_dsfr works                 | PASS    |   3 | 0.046 |      |
+| [test-radiobuttons_unique_dsfr_template.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-radiobuttons_unique_dsfr_template.R#L4) | radiobuttons_unique_dsfr_template | radioButtons_unique_dsfr_template works | PASS    |  13 | 0.067 |      |
+| [test-render_node.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-render_node.R#L4)                                             | render_node                       | render_node works                       | PASS    |   2 | 0.005 |      |
+| [test-start.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-start.R#L2)                                                         | start                             | multiplication works                    | PASS    |   1 | 0.003 |      |
+| [test-updateradiobuttons_dsfr.R](https://github.com/spyrales/shinygouv/blob/deliverables-0.0.1/tests/testthat/test-updateradiobuttons_dsfr.R#L4)                     | updateradiobuttons_dsfr           | updateRadioButtons_dsfr works           | PASS    |   7 | 0.023 |      |
+
+| Failed | Warning | Skipped |
+|:-------|:--------|:--------|
+| 🛑     | ⚠️      | 🔶      |
+
+</details>
+<details>
+<summary>
+Session Info
+</summary>
+
+| Field    | Value                        |
+|:---------|:-----------------------------|
+| Version  | R version 4.2.0 (2022-04-22) |
+| Platform | x86_64-pc-linux-gnu (64-bit) |
+| Running  | Ubuntu 20.04.4 LTS           |
+| Language | fr_FR                        |
+| Timezone | Europe/Paris                 |
+
+| Package  | Version |
+|:---------|:--------|
+| testthat | 3.1.4   |
+| covr     | 3.5.1   |
+| covrpage | 0.1     |
+
+</details>
+<!--- Final Status : skipped/warning --->
