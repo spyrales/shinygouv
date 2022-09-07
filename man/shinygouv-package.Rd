@@ -4,18 +4,19 @@
 \name{shinygouv-package}
 \alias{shinygouv}
 \alias{shinygouv-package}
-\title{shinygouv: An Amazing Shiny App}
+\title{shinygouv: Implement the DSFR for your shiny applications}
 \description{
-What the package does (one paragraph).
+Components and tools to build or transform shiny applications with the Design System of France.
 }
 \author{
-\strong{Maintainer}: Juliette ENGELARE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
+\strong{Maintainer}: Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere@developpement-durable.gouv.fr}
 
 Authors:
 \itemize{
   \item Sébastien Rochette \email{sebastien@thinkr.fr} (\href{https://orcid.org/0000-0002-1565-9313}{ORCID})
   \item Murielle Delmotte \email{murielle@thinkr.fr} (\href{https://orcid.org/0000-0002-1339-2424}{ORCID})
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})
+  \item Jean-Daniel LOMENEDE \email{jean-daniel.lomenede@seine-maritime.gouv.fr}
 }
 
 Other contributors:

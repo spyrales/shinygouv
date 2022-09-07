@@ -19,15 +19,15 @@ fluidRow_dsfr
 }
 \examples{
 
-if(interactive()){
-shiny::shinyApp(
-  ui = fluidPage_dsfr(
-    title = "exemple",
-    fluidRow_dsfr(
-      shiny::p("Voici un exemple")
-    )
-  ),
-  server = function(input, output){}
+if (interactive()) {
+  shiny::shinyApp(
+    ui = fluidPage_dsfr(
+      title = "exemple",
+      fluidRow_dsfr(
+        shiny::p("Voici un exemple")
+      )
+    ),
+    server = function(input, output) {}
   )
 }
 

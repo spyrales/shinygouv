@@ -1,0 +1,17 @@
+lang: fr
+
+articles:
+- title: Utiliser `{shinygouv}`
+  navbar: ~
+  contents:
+  - util_1_convertir-une-app-shiny-en-app-shiny-dsfr
+  - util_2_comment-demarrer-une-nouvelle-application-shiny-dsfr
+  - starts_with("util")
+
+- title: Developper
+  desc: Vignettes à l'intention des mainteneurs de `{shingouv}`
+  navbar: ~
+  contents:
+  - xdev_guide_du_developpeur
+  - starts_with("xdev_tuto")
+  - starts_with("xdev_hist")

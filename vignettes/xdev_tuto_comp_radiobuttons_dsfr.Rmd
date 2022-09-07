@@ -1,13 +1,14 @@
 ---
 title: "radioButtons_dsfr"
-output: github_document
+output: html_vignette
 vignette: >
-  %\VignetteIndexEntry{radiobuttons_dsfr}
+  %\VignetteIndexEntry{xdev_tuto_comp_radiobuttons_dsfr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

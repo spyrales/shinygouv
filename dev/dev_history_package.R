@@ -128,12 +128,16 @@ usethis::use_coverage()
 # _rhub
 # rhub::check_for_cran()
 
+# Fonctions, dependances
+# regarder les flat de fusen dans
+# dev/dev_history/fusen_source_rmd
+
 
 # Documentation ----
 # _Readme
 # usethis::use_readme_rmd()
 # CoC
-usethis::use_code_of_conduct(contact = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr")
+usethis::use_code_of_conduct(contact = "juliette.engelaere@developpement-durable.gouv.fr")
 # Contributing
 usethis::use_tidy_contributing()
 

@@ -2,7 +2,7 @@
 title: "Montee en version du dsfr : trouver les fichiers CSS et JS"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js}
+  %\VignetteIndexEntry{xdev_tuto_montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

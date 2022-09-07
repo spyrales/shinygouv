@@ -15,7 +15,9 @@ convert_to_dsfr(path = "R/", version = get_dsfr_version())
 des fichiers modifies
 }
 \description{
-permet de convertir une application shiny en une application shiny suivant le DSFR
+Permet de convertir une application shiny en une application shiny suivant le DSFR.
+Cette fonction va modifier les fichiers de votre application, presents dans le repertoire `path`.
+Cf. \href{https://spyrales.github.io/shinygouv/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html}{vignette dediee}
 }
 \examples{
 mydir <- tempfile(pattern = "app")

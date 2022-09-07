@@ -92,7 +92,7 @@ rsconnect::deployApp(
   appName = "mypackage-pkgdown-website",
   appFiles = appFiles,          # the list of files to include as dependencies (all of them)
   appPrimaryDoc = "index.html", # the primary file for pkgdown
-  # appPrimaryDoc = "app.R", # the primary file for shinyapp # Uncomment here
+  # appPrimaryDoc = "dev/app.R", # the primary file for shinyapp # Uncomment here
   # appId = 000, # Define when known
   account = Sys.getenv("CONNECT_USER"),
   server  = "connect",

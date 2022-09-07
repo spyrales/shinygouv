@@ -2,12 +2,13 @@
 title: "Comment demarrer une nouvelle application shiny dsfr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{comment-demarrer-une-nouvelle-application-shiny-dsfr}
+  %\VignetteIndexEntry{util_2_comment-demarrer-une-nouvelle-application-shiny-dsfr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
