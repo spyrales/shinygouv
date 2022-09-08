@@ -1,5 +1,5 @@
-Package: appshinydemo
-Title: PKG_TITLE
+Package: appshinytest
+Title: appshinytest pour convert_to_dsfr()
 Version: 0.0.0.9000
 Authors@R: 
     person("AUTHOR_FIRST", "AUTHOR_LAST", , "AUTHOR@MAIL.COM", role = c("cre", "aut"))

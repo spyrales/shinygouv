@@ -22,6 +22,7 @@ Ceci est un dossier de documentation dédié aux développeurs et développeuses
 
 Ces quelques lignes expliquent comment contribuer à {shinygouv}.  
 
+Pour des contributions au code de ce projet, svp regardez la documentation à l'intention du développeur dans 
 For specific code contributions to this project, please read the documentation in "dev/documentation/README.Rmd"
 
 For more detailed info about contributing to a package on GitHub, please see the

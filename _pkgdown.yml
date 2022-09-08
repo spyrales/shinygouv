@@ -8,10 +8,10 @@ articles:
   - util_2_comment-demarrer-une-nouvelle-application-shiny-dsfr
   - starts_with("util")
 
-- title: Developper
+- title: Developper `{shinygouv}`
   desc: Vignettes à l'intention des mainteneurs de `{shingouv}`
-  navbar: ~
   contents:
   - xdev_guide_du_developpeur
   - starts_with("xdev_tuto")
-  - starts_with("xdev_hist")
+  - starts_with("xdev-hist")
+  - xdev-tests_and_coverage

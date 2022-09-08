@@ -1,0 +1,62 @@
+---
+title: "Faire tourner les applications shiny du package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{xdev_tuto_run_appshinytest}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Ce package contient 2 applications shiny Golem :  
+
+- une première application au design classique a été placée dans [inst/appshinytest]("https://github.com/spyrales/shinygouv/tree/main/inst/appshinytest), pour tester la fonction de conversion `convert_to_dsfr()` ;  
+- une seconde application, mise au design DSFR, permet de visualiser les composants de `{shinygouv}`, elle déployée par intégration continue.
+
+## Application au design classique appshinytest
+ 
+Pour faire fonctionner localement l'app Shiny incluse dans "inst/", il faut lancer:
+```{r eval = FALSE}
+withr::with_dir("inst/appshinytest/", {
+  pkgload::load_all(export_all = FALSE, helpers = FALSE, attach_testthat = FALSE, quiet = TRUE)
+  appshinytest::run_app() 
+})
+```
+
+Et pour tester la conversion à la volée avec 
+```{r eval = FALSE}
+pkgload::load_all()
+mydir <- tempfile(pattern = "app")
+fs::dir_copy("inst/appshinytest/", mydir)
+
+withr::with_dir(mydir, {
+  convert_to_dsfr()
+  pkgload::load_all(export_all = FALSE, helpers = FALSE, attach_testthat = FALSE, quiet = TRUE)
+  appshinytest::run_app()
+})
+
+```
+
+## Application de demo du package
+
+Le package `{shinygouv}` contient une application de démo, qui permet de visualiser les composants implémentés.
+
+Elle peut être lancée en local avec :
+
+```{r eval=FALSE}
+shinygouv::run_app()
+```
+
+
+
+Cette application est déployée par intégration continue sur :   
+
+- https://ssm-ecologie.shinyapps.io/shinygouv-demo/ pour la branche principale, en production  
+- https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/ pour la branche de dev  
+

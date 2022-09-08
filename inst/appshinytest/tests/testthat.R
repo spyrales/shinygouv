@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(appshinydemo)
+library(appshinytest)
 
-test_check("appshinydemo")
+test_check("appshinytest")
