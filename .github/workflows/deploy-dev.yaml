@@ -9,6 +9,7 @@ name: deploy-dev
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    container: rocker/shiny:4.3.0
     env:
       SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
       SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
