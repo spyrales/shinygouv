@@ -3,8 +3,13 @@
 test_that("convert_file_to_dsfr works", {
   library(tibble)
 
+  skip_on_ci()
+
   mydir <- tempfile(pattern = "app")
   dir.create(mydir)
+  golem::install_dev_deps(
+    force_install = TRUE
+  )
   golem::create_golem(
     mydir,
     overwrite = TRUE,

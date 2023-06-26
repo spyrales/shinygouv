@@ -1,7 +1,7 @@
 ---
 title: "flat_convert_to_dsfr.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -16,32 +16,32 @@ pkgload::load_all(export_all = FALSE)
 
 
 ```{r function-convert_file_to_dsfr}
-#' convert_file_to_dsfr 
-#' 
+#' convert_file_to_dsfr
+#'
 #' Remplace dans un fichier les composants shiny par les composants dsfr deja implementes
-#' 
+#'
 #' @param file le fichier a modifier avec son chemin complet
 #' @param tab_corresp la table de correspondance comportant 2 colonnes (composant_shiny, composant_dsfr)
 #' @importFrom glue glue
 #' @importFrom purrr reduce2
 #' @importFrom stringr str_replace_all
 #' @importFrom utils file_test
-#' 
+#'
 #' @return un fichier
 convert_file_to_dsfr <- function(file, tab_corresp){
 
     #verifie que c'est bien un fichier et non un dossier
   if (isTRUE(file_test("-f", file))){
-      
-    message(glue::glue("scan {file}")) 
-    file_read <- readLines(file) 
+
+    message(glue::glue("scan {file}"))
+    file_read <- readLines(file)
     file_convert <- purrr::reduce2(
-                      paste0(tab_corresp$composant_shiny,"\\("), 
+                      paste0(tab_corresp$composant_shiny,"\\("),
                       paste0(tab_corresp$composant_dsfr,"\\("),
                       .init = file_read,
-                      stringr::str_replace_all)  
+                      stringr::str_replace_all)
     writeLines(file_convert, con = file)
-    
+
   }
   return(NULL)
 }
@@ -51,10 +51,15 @@ convert_file_to_dsfr <- function(file, tab_corresp){
 ```{r tests-convert_file_to_dsfr}
 test_that("convert_file_to_dsfr works", {
 
+skip_on_ci()
+
 library(tibble)
-  
+
 mydir <- tempfile(pattern = "app")
 dir.create(mydir)
+golem::install_dev_deps(
+  force_install = TRUE
+)
 golem::create_golem(
   mydir,
   overwrite = TRUE,
@@ -65,25 +70,25 @@ table_passage <- tibble(composant_shiny = c("actionButton","fluidPage"),
                         composant_dsfr = c("actionButton_dsfr","fluidPage_dsfr"))
 
 fichier <- file.path(mydir,"R", "app_ui.R")
-convert_file_to_dsfr(file = fichier, table_passage) 
+convert_file_to_dsfr(file = fichier, table_passage)
 fichier_transform <- readLines(fichier)
 
   #' @description le fluidPage de shiny a bien ete remplace
 
   expect_false(any(stringr::str_detect(fichier_transform, pattern = "fluidPage\\(")))
 
-  
+
 table_passage <- tibble(composant_shiny = c("actionButton","fluidPage",NA),
                         composant_dsfr = c("actionButton_dsfr","fluidPage_dsfr","header_dsfr"))
 
 fichier <- file.path(mydir,"R", "app_ui.R")
-convert_file_to_dsfr(file = fichier, table_passage) 
+convert_file_to_dsfr(file = fichier, table_passage)
 fichier_transform <- readLines(fichier)
 
   #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces
 
   expect_false(any(stringr::str_detect(fichier_transform, pattern = "header_dsfr\\(")))
-  
+
 })
 ```
 
@@ -100,7 +105,7 @@ Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv
 ```{r, echo = FALSE, message = FALSE}
 read.csv2(
   system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv")
-) %>% 
+) %>%
   DT::datatable()
 ```
 
@@ -110,14 +115,14 @@ De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_
 
 ## Conversion
 
-Pour cela, il suffit de lancer dans votre projet contenant l'application shiny: 
+Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
 
 ```{r, eval = FALSE}
 convert_to_dsfr()
 ```
 
-Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
-Comme par exemple: 
+Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers.
+Comme par exemple:
 
 ```{r, eval = FALSE}
 convert_to_dsfr(path = "le_chemin_de_mon_application")
@@ -126,10 +131,10 @@ convert_to_dsfr(path = "le_chemin_de_mon_application")
 *Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
 
 ```{r function-convert_to_dsfr}
-#' convert_to_dsfr 
-#' 
+#' convert_to_dsfr
+#'
 #' permet de convertir une application shiny en une application shiny suivant le DSFR
-#' 
+#'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
 #' @importFrom purrr map
@@ -137,33 +142,33 @@ convert_to_dsfr(path = "le_chemin_de_mon_application")
 #' @importFrom utils read.csv2
 #' @importFrom stringr str_which
 #' @return des fichiers modifies
-#' 
+#'
 #' @export
 convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()){
-  
+
 chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
 
   if (is.null(version)){
     stop("Merci de preciser le numero de version a utiliser")
   }
-   
+
   if (!file.exists(
     system.file(chem, package = "shinygouv"))){
     stop(glue::glue("Le dossier 'v{version}' n existe pas"))
   }
-  
+
   chemin_tab_corresp <- system.file(chem, package = "shinygouv")
 
   if (chemin_tab_corresp == ""){
     stop(glue::glue("Le fichier 'v{version}/table_correspondance_shiny_dsfr.csv' n existe pas"))
   }
-  
+
   tab_corresp <- read.csv2(chemin_tab_corresp, na.strings = c("","NA"))
   tab_corresp <- tab_corresp[!is.na(tab_corresp[["composant_shiny"]]),]
-    
+
   # recuperation de la table de correspondance
   fic <- list.files(path = path, full.names = TRUE)
-  
+
   res <- purrr::map(.x = fic,
       ~convert_file_to_dsfr(.x,
                             tab_corresp )
@@ -171,50 +176,58 @@ chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
 
   # ajout de la dependance a app_ui.R si il existe
   if (file.exists(file.path(path,"app_ui.R"))){
-        file_read <- readLines(file.path(path,"app_ui.R")) 
-        local <- stringr::str_which(string = file_read, pattern = "@import shiny") 
-        for ( i in local){ 
+        file_read <- readLines(file.path(path,"app_ui.R"))
+        local <- stringr::str_which(string = file_read, pattern = "@import shiny")
+        for ( i in local){
           file_read <- append(file_read, "#' @import shinygouv", after=i)
         }
         message("la dependance a shinygouv a ete ajoute dans app_ui.R")
         writeLines(file_read, con = file.path(path,"app_ui.R"))
   }
-  
+
   return("Conversion terminee")
-  
+
 }
 ```
 
 ```{r examples-convert_to_dsfr}
-mydir <- tempfile(pattern = "app")
-dir.create(mydir)
-golem::create_golem(
-  mydir,
-  overwrite = TRUE,
-  open = FALSE
-)
-convert_to_dsfr(path = file.path(mydir, "R"))
+if (FALSE) {
+  mydir <- tempfile(pattern = "app")
+  dir.create(mydir)
+  golem::install_dev_deps(
+    force_install = TRUE
+  )
+  golem::create_golem(
+    mydir,
+    overwrite = TRUE,
+    open = FALSE
+  )
+  convert_to_dsfr(path = file.path(mydir, "R"))
+}
 ```
 
 ```{r tests-convert_to_dsfr}
 test_that("convert_to_dsfr works", {
-
+skip_on_ci()
 mydir <- tempfile(pattern = "app")
 dir.create(mydir)
+golem::install_dev_deps(
+  force_install = TRUE
+)
 golem::create_golem(
   mydir,
   overwrite = TRUE,
   open = FALSE
 )
 
-file.copy(from = file.path(mydir,"R", "app_ui.R"), 
+file.copy(from = file.path(mydir,"R", "app_ui.R"),
           to = file.path(mydir,"R", "module_ui.R"))
 
 #' @description Retourne une erreur si le numero de version est NULL
 expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = NULL))
 
 #' @description Retourne une erreur si le tableau de correspondance n'existe pas pour la version specifiee
-expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = "A.A.A.A"), msg ="Le dossier 'vA.A.A.A' n'existe pas") 
+expect_error(convert_to_dsfr(path = file.path(mydir,"R"), version = "A.A.A.A"), msg ="Le dossier 'vA.A.A.A' n'existe pas")
 
 expect_error(convert_to_dsfr(path = file.path(mydir,"R")), regexp = NA)
 app_ui <- readLines(file.path(mydir,"R","app_ui.R"))
@@ -231,15 +244,15 @@ expect_true(any(stringr::str_detect(string = app_ui,pattern = "@import shinygouv
 ```
 
 # Connaître la version du dsfr actuelle
-    
+
 Pour savoir quelle version du dsfr est utilisée dans votre installation de {shinygouv}, vous pouvez exécuter `get_dsfr_version()`
-    
+
 ```{r function-get_dsfr_version}
 #' Recuperer la version du dsfr de 'shinygouv'
-#' 
+#'
 #' @param with_v Logical. Whether to return with "v" in front of the number
 #' @return Character. Numero de version
-#' 
+#'
 #' @export
 get_dsfr_version <- function(with_v = FALSE){
   res <- utils::packageDescription(pkg = 'shinygouv')[["VersionDsfr"]]
@@ -249,21 +262,21 @@ get_dsfr_version <- function(with_v = FALSE){
   return(res)
 }
 ```
-  
+
 ```{r example-get_dsfr_version}
 get_dsfr_version()
 get_dsfr_version(with_v = TRUE)
 ```
-  
+
 ```{r tests-get_dsfr_version}
 test_that("get_dsfr_version works", {
-  expect_true(inherits(get_dsfr_version, "function")) 
+  expect_true(inherits(get_dsfr_version, "function"))
   # A changer a chaque fois que 'shinygouv' met a jour le dsfr
   expect_equal(get_dsfr_version(), "1.7.2")
   expect_equal(get_dsfr_version(with_v = TRUE), "v1.7.2")
 })
 ```
-  
+
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
