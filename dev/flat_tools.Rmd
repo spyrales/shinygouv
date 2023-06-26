@@ -1,7 +1,7 @@
 ---
 title: "flat_tools.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -18,62 +18,60 @@ pkgload::load_all(export_all = FALSE)
 ```
 
 # parse_to_xml
-    
+
 ```{r function-parse_to_xml}
 #' Traduit du code html de htmltools pour du code xml
-#' 
+#'
 #' @param html_code resultat de la fonction htmlTemplate
 #' @importFrom XML htmlParse getNodeSet
 #'
-parse_to_xml <- function(html_code, zone = "/html/body/*"){
-  if(inherits(html_code, "XMLInternalElementNode")){
+parse_to_xml <- function(html_code, zone = "/html/body/*") {
+  if (inherits(html_code, "XMLInternalElementNode")) {
     stop("Use this function with character or shiny.tag.list")
   }
-  
-  if(!is.character(html_code)){
+
+  if (!is.character(html_code)) {
     html_code <- as.character(html_code)
   }
-  browser()
-    html_code %>% 
-      XML::htmlParse() %>% 
-      XML::getNodeSet(zone) %>% 
-      getElement(1) 
+  html_code %>%
+    XML::htmlParse(encoding = "UTF-8") %>%
+    XML::getNodeSet(zone) %>%
+    getElement(1)
 }
 ```
-  
-  
+
+
 ```{r tests-parse_to_xml}
 test_that("parse_to_xml works", {
-  expect_true(inherits(parse_to_xml, "function")) 
+  expect_true(inherits(parse_to_xml, "function"))
   html_code <- '<button id="test" type="button" class="btn btn-default action-button">test</button>'
-  
-   
+
+
   test <- parse_to_xml(html_code)
-  
+
   #' @description tester la classe du resultat de la fonction sur un caractere
   expect_s3_class(test, "XMLInternalElementNode")
-  
+
   #' @description tester l'erreur si le code est déjà du XML
   expect_error(parse_to_xml(test))
-  
+
   test2 <- parse_to_xml(
     htmltools::tagList(
       tags$div(id = "ok", name = "jean", "pierre")
     )
   )
-  
+
   #' @description tester la classe du resultat de la fonction sur un shiny.tag
   expect_s3_class(test2, "XMLInternalElementNode")
-  
-  })
+})
 ```
-  
+
 
 # render_node
 
 ```{r function-render_node}
 #' render_node
-#' 
+#'
 #' @param node node qui provient de parse_to_xml
 #' @param indent ajout de l'indentation
 #' @param prefix si TRUE alors le resultat sera prefixe par tags
@@ -81,28 +79,38 @@ test_that("parse_to_xml works", {
 #' @importFrom XML xmlName xmlValue xmlChildren
 #' @importFrom stringr str_pad
 #' @importFrom purrr partial
-#' 
-render_node <- function (node, indent = 0, prefix = FALSE) {
+#'
+render_node <- function(
+  node,
+  indent = 0,
+  prefix = FALSE
+    ) {
   if (xmlName(node) == "text") {
     txt <- xmlValue(node)
     if (nchar(trimws(txt)) > 0) {
       paste0("\"", trimws(txt), "\"")
     }
-  }else {
-    tagName <- if (prefix){
+  } else {
+    tagName <- if (prefix) {
       paste0("tags$", xmlName(node))
-      }else {
+    } else {
       xmlName(node)
     }
-    
-    my_render <- partial(render_node, indent = newIndent,
-                         prefix = prefix)
+
+    my_render <- partial(
+      render_node,
+      indent = newIndent,
+      prefix = prefix
+    )
     newIndent <- indent + length(tagName) + 1
     xmlChildren(node) %>%
       Keep(my_render, .) %>%
-      append(make_attrs(node), .) %>% 
-      paste(collapse = str_pad(",\n", width = newIndent,
-                                 side = c("right"))) %>% 
+      append(make_attrs(node), .) %>%
+      paste(collapse = str_pad(
+        ",\n",
+        width = newIndent,
+        side = c("right")
+      )) %>%
       trimws(which = c("left")) %>%
       paste0(tagName, "(", ., ")")
   }
@@ -111,34 +119,37 @@ render_node <- function (node, indent = 0, prefix = FALSE) {
 #' @noRd
 #' @importFrom XML xmlAttrs
 #' @importFrom stringr str_detect
-make_attrs <- function (node) {
+make_attrs <- function(node) {
   attrs <- xmlAttrs(node)
   names(attrs) %>% Map(function(name) {
     val <- attrs[[name]]
-    if (str_detect(string = name, pattern = "-") || str_detect(string = name, 
-      pattern = "for")) {
+    if (str_detect(string = name, pattern = "-") || str_detect(
+      string = name,
+      pattern = "for"
+    )) {
       name <- paste0("`", name, "`")
     }
-    paste0(name, " = ", if (val == "") {"NA"}else{ paste0("\"", val, "\"")})
+    paste0(name, " = ", if (val == "") {
+      "NA"
+    } else {
+      paste0("\"", val, "\"")
+    })
   }, .)
 }
 
 #' @noRd
-Keep <- function (fun, xs) {
+Keep <- function(fun, xs) {
   Map(fun, xs) %>% Filter(Negate(is.null), .)
 }
-
-
 ```
 
 
 ```{r tests-render_node}
 test_that("render_node works", {
-  expect_true(inherits(render_node, "function")) 
+  expect_true(inherits(render_node, "function"))
   html_code <- '<button id="test" type="button" class="btn btn-default action-button">test</button>'
   test <- parse_to_xml(html_code)
-  
-  
+
   result <- render_node(test, prefix = TRUE)
 
   #' @description tester le resultat de render_node
@@ -150,7 +161,7 @@ test_that("render_node works", {
 # parse_html
 
 ```{r function-parse_html}
-#' Traduit du html en resultat shiny 
+#' Traduit du html en resultat shiny
 #'
 #' @param html_code resultat d'une fonction htmlTemplate ou une chaine de caractere
 #' @param zone zone a garder pour parser
@@ -162,8 +173,8 @@ test_that("render_node works", {
 parse_html <- function(html_code, zone = "/html/body/*") {
 
   xml <- parse_to_xml(html_code, zone) %>% render_node(prefix = TRUE)
-  
-  eval(parse(text = xml)) 
+
+  eval(parse(text = xml))
 }
 ```
 
@@ -176,10 +187,10 @@ parse_html(html_code)
 test_that("tester parse_html", {
   html_code <- '<button id="test" type="button" class="btn btn-default action-button">test</button>'
   result <- parse_html(html_code)
-  
+
   #' @description tester si la fonction renvoie bien un shiny.tag
   expect_s3_class(result, "shiny.tag")
-  
+
   #' @description tester si on peut manipuler les attributs
   classes <- htmltools::tagGetAttribute(result, "class")
   expect_true(length(classes) != 0)
@@ -190,6 +201,11 @@ test_that("tester parse_html", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/flat_tools.Rmd", vignette_name = "html vers shiny.tag", check = FALSE, overwrite = TRUE)
+fusen::inflate(
+  flat_file = "dev/flat_tools.Rmd",
+  vignette_name = NA,
+  check = FALSE,
+  overwrite = TRUE
+)
 ```
 

@@ -1,0 +1,20 @@
+flat_tools.Rmd:
+  path: dev/flat_tools.Rmd
+  state: active
+  R:
+  - R/parse_html.R
+  - R/parse_to_xml.R
+  - R/render_node.R
+  tests:
+  - tests/testthat/test-parse_to_xml.R
+  - tests/testthat/test-render_node.R
+  - tests/testthat/test-parse_html.R
+  vignettes: []
+  inflate:
+    pkg: shinygouv
+    flat_file: dev/flat_tools.Rmd
+    vignette_name: .na
+    open_vignette: yes
+    check: no
+    document: yes
+    overwrite: 'yes'
