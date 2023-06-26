@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -35,7 +36,7 @@ Par exemple pour la version "1.7.2" (`v1.7.2/table_correspondance_shiny_dsfr.csv
 ```{r echo = FALSE, message = FALSE}
 read.csv2(
   system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv")
-) %>% 
+) %>%
   DT::datatable()
 ```
 
@@ -46,15 +47,15 @@ De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_
 
 ## Conversion
 
-Pour cela, il suffit de lancer dans votre projet contenant l'application shiny: 
+Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
 
 
 ```{r eval = FALSE}
 convert_to_dsfr()
 ```
 
-Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
-Comme par exemple: 
+Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" a la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers.
+Comme par exemple:
 
 
 ```{r eval = FALSE}
@@ -77,18 +78,18 @@ convert_to_dsfr(path = file.path(mydir, "R"))
 
 # Connaître la version du dsfr actuelle
 
-    
-Pour savoir quelle version du dsfr est utilisée dans votre installation de {shinygouv}, vous pouvez exécuter `get_dsfr_version()`
-    
 
-  
+Pour savoir quelle version du dsfr est utilisée dans votre installation de {shinygouv}, vous pouvez exécuter `get_dsfr_version()`
+
+
+
 
 ```{r example-get_dsfr_version}
 get_dsfr_version()
 get_dsfr_version(with_v = TRUE)
 ```
 
-  
 
-  
+
+
 
