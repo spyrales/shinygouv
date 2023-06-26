@@ -1,8 +1,20 @@
 message("--- Add server ---\n")
 
-rsconnect::setAccountInfo(name   = Sys.getenv("SHINYAPPS_NAME"),
-                          token  = Sys.getenv("SHINYAPPS_TOKEN"),
-                          secret = Sys.getenv("SHINYAPPS_SECRET")
+options("repos" = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")
+
+install.packages("remotes")
+install.packages("pak")
+remotes::install_deps()
+remotes::install_local()
+
+
+
+message("--- Add server ---\n")
+
+rsconnect::setAccountInfo(
+  name = Sys.getenv("SHINYAPPS_NAME"),
+  token = Sys.getenv("SHINYAPPS_TOKEN"),
+  secret = Sys.getenv("SHINYAPPS_SECRET")
 )
 
 message("--- Deploying app ---\n")
