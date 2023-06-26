@@ -10,7 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -31,7 +32,7 @@ library(shinygouv)
 install.packages("golem")
 ```
 
-+  New project > New directory > Package for Shiny App using {golem} 
++  New project > New directory > Package for Shiny App using {golem}
 
 Pour plus d'information, veuillez consulter la documentation de [golem](https://thinkr-open.github.io/golem/articles/a_start.html)
 
@@ -41,7 +42,7 @@ Pour plus d'information, veuillez consulter la documentation de [golem](https://
 L'application minimale {golem} ne possède qu'un `fluidPage`.
 
 Une fonction a été développée pour convertir votre application, soit tous les scripts R du dossier `R`, en précisant la version du dsfr que vous souhaitez utiliser.
-Depuis votre projet, lancer: 
+Depuis votre projet, lancer:
 
 
 ```{r eval = FALSE}
@@ -55,7 +56,7 @@ Pour plus d'information, veuillez consulter la documentation de cette fonction `
 #### Le cas d'une application hors golem
 
 Dans le cas d'une nouvelle application créée sans le package {golem}, il sera nécessaire de préciser le dossier comprenant les scripts `.R` de l'application.
-Par exemple: 
+Par exemple:
 
 
 ```{r eval = FALSE}
@@ -77,7 +78,7 @@ La liste des composants déjà implémentés est disponible dans le package, sel
 
 
 ```{r echo = FALSE, message = FALSE}
-read.csv2(system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv"))[,"composant_dsfr", drop = FALSE] %>% 
+read.csv2(system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv"))[,"composant_dsfr", drop = FALSE] %>%
   knitr::kable()
 ```
 
