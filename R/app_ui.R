@@ -11,7 +11,7 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage_dsfr(
       header = header_dsfr(
-        intitule = "Intitul\\u00E9",
+        intitule = "Intitul\u00E9",
         officiel = "Officiel",
         nom_site_service = "Nom du site / service",
         baseline = "Baseline - Pr\u00E9cisions sur l'organisation",
@@ -23,7 +23,7 @@ app_ui <- function(request) {
         column_dsfr(
           0, # Calcul automatique de la largeur
           p("Premi\u00E8re Colonne"),
-          actionButton_dsfr("go", label = "Bouton avec un accent \\u00E9"),
+          actionButton_dsfr("go", label = "Bouton avec un accent \u00E9"),
           actionButton_dsfr(
             "updateradiobutton",
             label = "Changer le radio button d'esp\u00E8ces"
@@ -37,7 +37,7 @@ app_ui <- function(request) {
           p("Deuxi\u00E8me Colonne"),
           radioButtons_dsfr(
             inputId = "espece",
-            label = "Espèces",
+            label = "Esp\u00E8ces",
             choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
             class = NULL
           ),

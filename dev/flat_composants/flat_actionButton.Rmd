@@ -1,7 +1,7 @@
 ---
 title: "flat_new_one.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -16,10 +16,10 @@ pkgload::load_all(export_all = TRUE)
 ```
 
 # actionButton_dsfr_template
-    
+
 ```{r function-actionButton_dsfr_template}
 #' actionButton_dsfr_template
-#' 
+#'
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param class des classes a ajouter si necessaire
@@ -31,11 +31,11 @@ actionButton_dsfr_template <- function(
     label,
     class
 ){
-  
+
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
-      "composant", 
+      "composant",
       "bouton.html",
       package = "shinygouv"
     ),
@@ -46,23 +46,23 @@ actionButton_dsfr_template <- function(
 }
 
 ```
-  
-  
+
+
 ```{r tests-actionButton_dsfr_template}
 test_that("actionButton_dsfr_template works", {
-  expect_true(inherits(actionButton_dsfr_template, "function")) 
-  
+  expect_true(inherits(actionButton_dsfr_template, "function"))
+
   htmlfile <- readLines(
     system.file(
-      get_dsfr_version(with_v = TRUE), 
-      "composant", 
+      get_dsfr_version(with_v = TRUE),
+      "composant",
       "bouton.html",
       package = "shinygouv"
     )
   )
-  
+
   #' @description Comparer les parametres par rapport a ceux de la version precedente
-  
+
   purrr::walk(
     c("inputId","class","label"),
     function(param){
@@ -70,14 +70,14 @@ test_that("actionButton_dsfr_template works", {
       expect_true(any(grepl(pattern = with_moustache, htmlfile)),
                   label = paste0("sans moustache '", param, "'"))
     })
-  
+
   test_html <- actionButton_dsfr_template(inputId = "testId",
-                                     label = "test", 
+                                     label = "test",
                                      class = "fr-btn--icon-left fr-icon-checkbox-circle-line")
-  
+
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-  
+
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
   purrr::walk(
@@ -87,7 +87,7 @@ test_that("actionButton_dsfr_template works", {
       "test"
       ),
     function(param){
-      expect_true(any(grepl(pattern = param, test_html)), 
+      expect_true(any(grepl(pattern = param, test_html)),
                   label = paste0("remplacement de '", param, "'"))
     })
 
@@ -98,11 +98,11 @@ test_that("actionButton_dsfr_template works", {
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
                      "actionButton_dsfr_template.Rda")
   )
-  
+
   #' @description Verifie la presence du parametre class
   expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+               gsub("\\s|\\n", "", snapshot_html))
+
     # Si erreur au précedent test deux cas possible :
     #
     # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -116,22 +116,22 @@ test_that("actionButton_dsfr_template works", {
  #                          "actionButton_dsfr_template.Rda"
  #                          )
  #         )
-  
+
 })
 ```
-  
+
 
 # actionButton_dsfr
 
 ```{r function-actionButton_dsfr}
 #' actionButton_dsfr
-#' 
+#'
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param class des classes a ajouter si necessaire
-#' 
+#'
 #' @return html
-#' 
+#'
 #' @export
 #'
 #' @examples
@@ -140,8 +140,8 @@ actionButton_dsfr <- function(
     label,
     class = NULL
   ) {
-  
-  
+
+
   actionButton_dsfr_template(
     inputId,
     label,
@@ -162,7 +162,7 @@ actionButton_dsfr(
 
 ```{r tests-actionButton_dsfr}
 test_that("actionButton_dsfr works", {
-  
+
   test_html <- actionButton_dsfr(
     inputId = "test",
     label = "test",
@@ -170,7 +170,7 @@ test_that("actionButton_dsfr works", {
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
-  
+
   #' @description Verifer que le HTML est correct en sortie
     ## lecture snapshot
   snapshot_html <- readRDS(
@@ -179,13 +179,13 @@ test_that("actionButton_dsfr works", {
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
       "actionButton_dsfr.Rda")
   )
-  
+
   #' @description Verifie la presence du parametre class
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
   expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+               gsub("\\s|\\n", "", snapshot_html))
+
     # Si erreur au précedent test deux cas possible :
     #
     # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -207,7 +207,9 @@ test_that("actionButton_dsfr works", {
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
 
-fusen::inflate(flat_file = "dev/flat_composants/flat_actionButton.Rmd", 
-                vignette_name = "actionButton_dsfr")
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_actionButton.Rmd",
+  vignette_name = NA
+)
 ```
 

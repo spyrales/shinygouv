@@ -1,3 +1,21 @@
+flat_actionButton.Rmd:
+  path: dev/flat_composants/flat_actionButton.Rmd
+  state: active
+  R:
+  - R/actionbutton_dsfr.R
+  - R/actionbutton_dsfr_template.R
+  tests:
+  - tests/testthat/test-actionbutton_dsfr_template.R
+  - tests/testthat/test-actionbutton_dsfr.R
+  vignettes: []
+  inflate:
+    pkg: shinygouv
+    flat_file: dev/flat_composants/flat_actionButton.Rmd
+    vignette_name: .na
+    open_vignette: yes
+    check: yes
+    document: yes
+    overwrite: ask
 flat_tools.Rmd:
   path: dev/flat_tools.Rmd
   state: active
