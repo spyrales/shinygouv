@@ -7,14 +7,7 @@ install.packages("pak")
 remotes::install_deps()
 remotes::install_local()
 
-## Forcing the install of some packages because it
-## doesn't work on the CI for unidentified reasons
 
-pak::pak(
-  c("cpp11", "hms", "progress"),
-  repos = "https://cran.rstudio.com",
-  dependencies = TRUE
-)
 
 message("--- Add server ---\n")
 
