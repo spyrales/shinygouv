@@ -1,13 +1,16 @@
 message("--- Add server ---\n")
 
+option("repos" = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")
+
 install.packages("remotes")
+install.packages("pak")
 remotes::install_deps()
 remotes::install_local()
 
 ## Forcing the install of some packages because it
 ## doesn't work on the CI for unidentified reasons
 
-remotes::install_cran(
+pak::pak(
   c("cpp11", "hms", "progress"),
   repos = "https://cran.rstudio.com",
   dependencies = TRUE

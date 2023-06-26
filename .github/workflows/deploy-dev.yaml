@@ -9,7 +9,6 @@ name: deploy-dev
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: rocker/shiny:4.3.0
     env:
       SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
       SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
@@ -17,10 +16,6 @@ jobs:
       NAME_OF_APP: shinygouv-demo-dev
     steps:
       - uses: actions/checkout@v2
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: rsconnect
 
       - name: Deploy package
         run: |
