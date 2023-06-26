@@ -189,17 +189,19 @@ chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
 ```
 
 ```{r examples-convert_to_dsfr}
-mydir <- tempfile(pattern = "app")
-dir.create(mydir)
-golem::install_dev_deps(
-  force_install = TRUE
-)
-golem::create_golem(
-  mydir,
-  overwrite = TRUE,
-  open = FALSE
-)
-convert_to_dsfr(path = file.path(mydir, "R"))
+if (FALSE) {
+  mydir <- tempfile(pattern = "app")
+  dir.create(mydir)
+  golem::install_dev_deps(
+    force_install = TRUE
+  )
+  golem::create_golem(
+    mydir,
+    overwrite = TRUE,
+    open = FALSE
+  )
+  convert_to_dsfr(path = file.path(mydir, "R"))
+}
 ```
 
 ```{r tests-convert_to_dsfr}

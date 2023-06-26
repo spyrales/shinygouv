@@ -18,12 +18,17 @@ des fichiers modifies
 permet de convertir une application shiny en une application shiny suivant le DSFR
 }
 \examples{
-mydir <- tempfile(pattern = "app")
-dir.create(mydir)
-golem::create_golem(
-  mydir,
-  overwrite = TRUE,
-  open = FALSE
-)
-convert_to_dsfr(path = file.path(mydir, "R"))
+if (FALSE){
+  mydir <- tempfile(pattern = "app")
+  dir.create(mydir)
+  golem::install_dev_deps(
+    force_install = TRUE
+  )
+  golem::create_golem(
+    mydir,
+    overwrite = TRUE,
+    open = FALSE
+  )
+  convert_to_dsfr(path = file.path(mydir, "R"))
+}
 }

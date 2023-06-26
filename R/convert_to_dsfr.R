@@ -14,13 +14,19 @@
 #'
 #' @export
 #' @examples
-#' mydir <- tempfile(pattern = "app")
-#' dir.create(mydir)
-#' golem::create_golem(
-#'   mydir,
-#'   overwrite = TRUE,
-#'   open = FALSE
-#' )
+#' if (FALSE) {
+#'   mydir <- tempfile(pattern = "app")
+#'   dir.create(mydir)
+#'   golem::install_dev_deps(
+#'     force_install = TRUE
+#'   )
+#'   golem::create_golem(
+#'     mydir,
+#'     overwrite = TRUE,
+#'     open = FALSE
+#'   )
+#'   convert_to_dsfr(path = file.path(mydir, "R"))
+#' }
 #' convert_to_dsfr(path = file.path(mydir, "R"))
 convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
