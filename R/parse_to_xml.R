@@ -16,7 +16,7 @@ parse_to_xml <- function(html_code, zone = "/html/body/*") {
   }
 
   html_code %>%
-    XML::htmlParse() %>%
+    XML::htmlParse(encoding = "UTF-8") %>%
     XML::getNodeSet(zone) %>%
     getElement(1)
 }
