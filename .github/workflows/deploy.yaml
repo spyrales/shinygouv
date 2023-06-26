@@ -9,6 +9,7 @@ name: deploy
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    container: rocker/shiny:4.3.1
     env:
       SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
       SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
@@ -31,5 +32,4 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e "install.packages('remotes');remotes::install_deps();remotes::install_local()"
           Rscript "dev/deploy.R"
