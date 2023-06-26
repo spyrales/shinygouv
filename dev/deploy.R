@@ -1,6 +1,6 @@
 message("--- Add server ---\n")
 
-option("repos" = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")
+options("repos" = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")
 
 install.packages("remotes")
 install.packages("pak")
