@@ -31,5 +31,4 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e "install.packages('remotes');remotes::install_deps();remotes::install_local()"
           Rscript "dev/deploy.R"
