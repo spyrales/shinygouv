@@ -5,6 +5,7 @@
 #'
 #' @param width width par défaut est NULL, cela signifie que la taille de la colonne depend des autres colonnes. Vous pouvez aussi utiliser 0
 #' @param ... differents tag pour construire la page
+#' @param extra_class ajout de class pour la column_dsfr (voir la page officiel du CSS)
 #'
 #' @return shiny.tag.list
 #'
@@ -12,23 +13,27 @@
 #'
 #' @export
 #' @examples
-#'
-#' if (interactive()) {
-#'   shiny::shinyApp(
-#'     ui = fluidPage_dsfr(
-#'       title = "exemple",
-#'       fluidRow_dsfr(
-#'         column_dsfr(0, "test"),
-#'         column_dsfr(0, "test"),
-#'         column_dsfr(0, "test"),
-#'         column_dsfr(0, "test")
-#'       )
-#'     ),
-#'     server = function(input, output) {}
+#' 
+#' if(interactive()){
+#' shiny::shinyApp(
+#'   ui = fluidPage_dsfr(
+#'     title = "exemple",
+#'     fluidRow_dsfr(
+#'       column_dsfr(0, "test"),
+#'       column_dsfr(0, "test"),
+#'       column_dsfr(0, "test"),
+#'       column_dsfr(0, "test")
+#'     )
+#'   ),
+#'   server = function(input, output){}
 #'   )
 #' }
-#'
-column_dsfr <- function(width = NULL, ...) {
+#' 
+column_dsfr <- function(
+  width = NULL,
+  ...,
+  extra_class = NULL
+    ) {
   if (is.null(width)) {
     add_width <- ""
   } else {
@@ -46,6 +51,6 @@ column_dsfr <- function(width = NULL, ...) {
       ...
     ),
     class = class,
-    other_class = NULL
+    other_class = extra_class
   )
 }
