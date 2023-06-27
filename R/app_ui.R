@@ -11,10 +11,10 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage_dsfr(
       header = header_dsfr(
-        intitule = "Intitule",
+        intitule = "Intitul\u00E9",
         officiel = "Officiel",
         nom_site_service = "Nom du site / service",
-        baseline = "baseline - precisions sur l organisation",
+        baseline = "Baseline - pr\u00E9cisions sur l organisation",
         class = "fr-m-1w"
       ),
       title = "Exemple shiny dsfr",
@@ -23,8 +23,8 @@ app_ui <- function(request) {
         column_dsfr(
           0, # Calcul automatique de la largeur
           p("Premi\u00E8re Colonne"),
-          actionButton_dsfr("go", label = "Sample!"),
-          actionButton_dsfr("updateradiobutton", label = "Update RadioButtons!"),
+          actionButton_dsfr("go", label = "Un bouton avec un \u00E9!"),
+          actionButton_dsfr("updateradiobutton", label = "Update RadioButtons (avec un \u00EA)!"),
           plotOutput(
             "plot_sample"
           )
