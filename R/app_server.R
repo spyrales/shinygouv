@@ -6,22 +6,12 @@
 #' @noRd
 app_server <- function(input, output, session) {
   # Your application server logic
-
-  observeEvent(input$go, {
-    message("je clique ", input$go)
+  # Server logic for Tab 1
+  output$output1 <- renderText({
+    paste("You clicked", input$go, "times")
   })
 
-  observeEvent(input$updateradiobutton, {
-    updateRadioButtons_dsfr(
-      session = session,
-      inputId = "espece",
-      label = "Un nouveau label avec la selection de l'espece A",
-      choices = c("Espece A" = "a", "Espece B" = "b"),
-      selected = "a"
-    )
-  })
-
-  observeEvent(input$espece, {
-    message("je change d'espece ", input$espece)
+  output$output2 <- renderText({
+    paste("You've selected", input$espece)
   })
 }

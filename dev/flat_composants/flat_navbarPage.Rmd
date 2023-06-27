@@ -1,0 +1,285 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+
+# navbarPage_dsfr
+
+La `navbarPage_dsfr()` se compose de :
+
+- Un header, défini par la fonction `header_dsfr()`
+- Une navbar, définie par une série d'élement `navbarPanel_dsfr()`
+
+```{r function-navbarPage_dsfr}
+#' Page avec navbar
+#'
+#' @return html
+#'
+#' @export
+#' @param ... Une list de navbarPanel_dsfr
+#' @param title Titre de l'application (Attention, différent de shiny::navbarPage)
+#' @param id Id de la navbar
+#' @param header header_dsfr()
+#'
+#' @examples
+navbarPage_dsfr <- function(
+  title,
+  ...,
+  header = NULL,
+  id = NULL
+) {
+  all_navs <- list(...)
+  # Making the first tab the current one
+  all_navs[[1]]$current <- TRUE
+  attempt::stop_if_not(
+    inherits(header, "header_dsfr"),
+    msg = "header must be the output of header_dsfr()"
+  )
+  header <- tagAppendChildren(
+    header,
+    htmltools::htmlTemplate(
+      filename = system.file(
+        get_dsfr_version(with_v = TRUE),
+        "composant",
+        "nav.html",
+        package = "shinygouv"
+      ),
+      navs = lapply(
+        all_navs,
+        function(x) {
+          htmltools::htmlTemplate(
+            filename = system.file(
+              get_dsfr_version(with_v = TRUE),
+              "composant",
+              "nav-item.html",
+              package = "shinygouv"
+            ),
+            title = x$title,
+            id = x$id,
+            ariacurrent = {
+              if (
+                isTRUE(x$current)
+              ) {
+                'aria-current="page"'
+              } else {
+                ""
+              }
+            }
+          )
+        }
+      ),
+      id = id
+    )
+  )
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "fluidpage.html",
+      package = "shinygouv"
+    ),
+    header = header,
+    title = title,
+    body = tagList(
+      lapply(
+        all_navs,
+        function(x) {
+          tags$span(
+            class = "navbarPanel_dsfr",
+            id = x$id,
+            x$ui
+          )
+        }
+      )
+    )
+  ) %>%
+    add_dsfr_deps()
+}
+
+#' Panel pour la navbar
+#'
+#' @param title Titre du panel
+#' @param ... UI du panel
+#'
+#' @export
+navbarPanel_dsfr <- function(
+  title,
+  ...
+){
+
+  list(
+    title = title,
+    id = janitor::make_clean_names(title),
+    ui = tagList(
+      ...
+    )
+  )
+}
+```
+
+```{r examples-navbarPage_dsfr}
+library(shiny)
+# Define UI
+ui <- navbarPage_dsfr(
+  title = "Welcome to the Jungle",
+  id = "nav",
+  header = header_dsfr(
+    intitule = "République",
+    officiel = "Française",
+    nom_site_service = "Nom du site / service",
+    baseline = "Baseline - pr\u00E9cisions sur l organisation"
+  ),
+  # First tab
+  navbarPanel_dsfr(
+    title = "actionButton_dsfr()",
+    fluidRow_dsfr(
+      column_dsfr(
+       12,
+       h3('Demo actionButton_dsfr()'),
+       # Adding space to the column
+       # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+       extra_class = "fr-my-6w"
+      ),
+      column_dsfr(
+        4,
+        actionButton_dsfr(
+          "go",
+          label = "Un bouton avec un \u00E9!"
+        )
+      ),
+      column_dsfr(
+        8,
+        p("Salut les gens!"),
+        verbatimTextOutput(
+          "output1"
+        )
+      )
+    )
+  )
+  ,
+
+  # Second tab
+  navbarPanel_dsfr(
+    title = "radioButtons_dsfr()",
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        h3("Demo radioButtons_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
+      ),
+      column_dsfr(
+        6,
+        radioButtons_dsfr(
+          inputId = "espece",
+          label = "Especes",
+          choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
+          class = NULL
+        )
+      ),
+      column_dsfr(
+        6,
+        verbatimTextOutput(
+          "output2"
+        )
+      )
+    )
+  )
+)
+# Define server logic
+server <- function(input, output) {
+  # Server logic for Tab 1
+  output$output1 <- renderText({
+    paste("You clicked", input$go, "times")
+  })
+
+  output$output2 <- renderText({
+    paste("You've selected", input$espece)
+  })
+
+}
+
+if (interactive()) {
+  # Run the application
+  shinyApp(ui = ui, server = server)
+}
+
+
+```
+
+```{r tests-navbarPage_dsfr}
+test_that("navbarPage_dsfr works", {
+  ui <- navbarPage_dsfr(
+    title = "Welcome to the Jungle",
+    id = "nav",
+    header = header_dsfr(
+      intitule = "République",
+      officiel = "Française",
+      nom_site_service = "Nom du site / service",
+      baseline = "Baseline - pr\u00E9cisions sur l organisation"
+    ),
+    # First tab
+    navbarPanel_dsfr(
+      title = "actionButton_dsfr()",
+      fluidRow_dsfr(
+        column_dsfr(
+          12,
+          h3("Demo actionButton_dsfr()"),
+          # Adding space to the column
+          # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+          extra_class = "fr-my-6w"
+        ),
+        column_dsfr(
+          4,
+          actionButton_dsfr(
+            "go",
+            label = "Un bouton avec un \u00E9!"
+          )
+        ),
+        column_dsfr(
+          8,
+          p("Salut les gens!"),
+          verbatimTextOutput(
+            "output1"
+          )
+        )
+      )
+    )
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(ui, "shiny.tag.list")
+  #' @description Est-ce qu'on retrouve les éléments
+  expect_true(
+    grepl("actionButton_dsfr", ui)
+  )
+  #' @description Est-ce qu'on retrouve les éléments
+  expect_true(
+    grepl("navbarPanel_dsfr", ui)
+  )
+})
+```
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_navbarPage.Rmd",
+  vignette_name = "navbarPage_dsfr",
+  check = FALSE
+)
+```
+

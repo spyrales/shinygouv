@@ -9,37 +9,67 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage_dsfr(
+    navbarPage_dsfr(
+      title = "shinygouv",
+      id = "nav",
       header = header_dsfr(
-        intitule = "Intitul\u00E9",
-        officiel = "Officiel",
-        nom_site_service = "Nom du site / service",
-        baseline = "Baseline - pr\u00E9cisions sur l organisation",
-        class = "fr-m-1w"
+        intitule = "D\u00E9mo",
+        officiel = "shinygouv",
+        nom_site_service = "D\u00E9mo de {shinygouv}",
+        baseline = "https://github.com/spyrales/shinygouv"
       ),
-      title = "Exemple shiny dsfr",
-      h1("Exemple d'utilisation de {shinygouv}"),
-      fluidRow_dsfr(
-        column_dsfr(
-          0, # Calcul automatique de la largeur
-          p("Premi\u00E8re Colonne"),
-          actionButton_dsfr("go", label = "Un bouton avec un \u00E9!"),
-          actionButton_dsfr("updateradiobutton", label = "Update RadioButtons (avec un \u00EA)!"),
-          plotOutput(
-            "plot_sample"
-          )
-        ),
-        column_dsfr(
-          0, # Calcul automatique de la largeur
-          p("Deuxi\u00E8me Colonne"),
-          radioButtons_dsfr(
-            inputId = "espece",
-            label = "Especes",
-            choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
-            class = NULL
+      # First tab
+      navbarPanel_dsfr(
+        title = "actionButton_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo actionButton_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
           ),
-          plotOutput(
-            "plot_espece"
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              "go",
+              label = "Un bouton avec un \u00E9!"
+            )
+          ),
+          column_dsfr(
+            8,
+            p("Salut les gens!"),
+            verbatimTextOutput(
+              "output1"
+            )
+          )
+        )
+      ),
+      # Second tab
+      navbarPanel_dsfr(
+        title = "radioButtons_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo radioButtons_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            6,
+            radioButtons_dsfr(
+              inputId = "espece",
+              label = "Especes",
+              choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
+              class = NULL
+            )
+          ),
+          column_dsfr(
+            6,
+            verbatimTextOutput(
+              "output2"
+            )
           )
         )
       )

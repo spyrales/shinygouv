@@ -13,9 +13,9 @@ flat_convert_to_dsfr.Rmd:
   inflate:
     flat_file: dev/flat_convert_to_dsfr.Rmd
     vignette_name: Convertir une app shiny en app shiny dsfr
-    open_vignette: true
-    check: true
-    document: true
+    open_vignette: yes
+    check: yes
+    document: yes
     overwrite: ask
 flat_fluidpage.Rmd:
   path: dev/flat_composants/flat_fluidpage.Rmd
@@ -32,11 +32,44 @@ flat_fluidpage.Rmd:
   - tests/testthat/test-layout_dsfr_template.R
   - tests/testthat/test-fluidrow_dsfr.R
   - tests/testthat/test-column_dsfr.R
-  vignettes: vignettes/fluidpage_dsfr.Rmd
+  vignettes: []
   inflate:
+    pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
-    vignette_name: fluidPage_dsfr
-    open_vignette: true
-    check: true
-    document: true
+    vignette_name: .na
+    open_vignette: yes
+    check: no
+    document: yes
+    overwrite: ask
+flat_header.Rmd:
+  path: dev/flat_composants/flat_header.Rmd
+  state: active
+  R:
+  - R/header_dsfr.R
+  - R/header_dsfr_template.R
+  tests:
+  - tests/testthat/test-header_dsfr_template.R
+  - tests/testthat/test-header_dsfr.R
+  vignettes: []
+  inflate:
+    pkg: shinygouv
+    flat_file: dev/flat_composants/flat_header.Rmd
+    vignette_name: .na
+    open_vignette: no
+    check: no
+    document: yes
+    overwrite: ask
+flat_navbarPage.Rmd:
+  path: dev/flat_composants/flat_navbarPage.Rmd
+  state: active
+  R: R/navbarpage_dsfr.R
+  tests: tests/testthat/test-navbarpage_dsfr.R
+  vignettes: vignettes/navbarpage_dsfr.Rmd
+  inflate:
+    pkg: shinygouv
+    flat_file: dev/flat_composants/flat_navbarPage.Rmd
+    vignette_name: navbarPage_dsfr
+    open_vignette: yes
+    check: no
+    document: yes
     overwrite: ask
