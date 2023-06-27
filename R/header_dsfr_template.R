@@ -19,7 +19,7 @@ header_dsfr_template <- function(
   nom_site_service,
   baseline,
   class
-) {
+    ) {
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),

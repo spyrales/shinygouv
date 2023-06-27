@@ -35,8 +35,10 @@ app_ui <- fluidPage_dsfr(
   ),
   title = "Exemple",
   fluidRow_dsfr(
-    column_dsfr(0,
-                shiny::p("Exemple colonne"))
+    column_dsfr(
+      0,
+      shiny::p("Exemple colonne")
+    )
   )
 )
 ```

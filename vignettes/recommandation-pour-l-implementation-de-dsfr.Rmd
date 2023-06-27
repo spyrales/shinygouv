@@ -27,14 +27,15 @@ Il permet notamment de mettre en évidence la direction technique à employer se
 
 
 ```{r echo = FALSE}
-DT::datatable(readxl::read_excel(
-  system.file(
-    "comparaison",
-    "shinygouv.xlsx",
-    package = "shinygouv"
-  )
-), 
-options = list("dom" = "tp")
+DT::datatable(
+  readxl::read_excel(
+    system.file(
+      "comparaison",
+      "shinygouv.xlsx",
+      package = "shinygouv"
+    )
+  ),
+  options = list("dom" = "tp")
 )
 ```
 
@@ -71,23 +72,24 @@ addResourcePath("fonts", system.file("dsfr-v1.6.0/dist/fonts", package = "shinyg
 
 
 ui <- fluidPage(
-    includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
-    h2("Exemple avec un bouton"),
-    br(),
-    actionButton("test", "test"),
-    textOutput("texte")
+  includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
+  h2("Exemple avec un bouton"),
+  br(),
+  actionButton("test", "test"),
+  textOutput("texte")
 )
 
-remplace_bttn <- function(ui){
-  res<-rapply(
+remplace_bttn <- function(ui) {
+  res <- rapply(
     ui,
-    function(attribut){
+    function(attribut) {
       gsub(
-        x=attribut,
-        pattern="btn btn-default", 
-        replacement="fr-btn")
+        x = attribut,
+        pattern = "btn btn-default",
+        replacement = "fr-btn"
+      )
     },
-    how="replace",
+    how = "replace",
     classes = "character"
   )
 }
@@ -136,19 +138,20 @@ library(shiny)
 
 addResourcePath("fonts", system.file("dsfr-v1.6.0/dist/fonts", package = "shinygouv"))
 
-actionButton_dsfr <- function(inputId, label){
-  tags$button(id = inputId, 
-              class="fr-btn",
-              value = 0,
-              label
-              )
+actionButton_dsfr <- function(inputId, label) {
+  tags$button(
+    id = inputId,
+    class = "fr-btn",
+    value = 0,
+    label
+  )
 }
 
 ui <- fluidPage(
-    tags$head(
-      includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
-      tags$script(
-    "$(document).on('click', '.fr-btn', function(evt) {
+  tags$head(
+    includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
+    tags$script(
+      "$(document).on('click', '.fr-btn', function(evt) {
   var el = evt.target;
   while (el.nodeName != 'BUTTON'){
     el = el.parentNode;
@@ -161,7 +164,7 @@ ui <- fluidPage(
 
 $.extend(buttons, {
   find: function(scope) {
-     
+
     return $(scope).find('.fr-btn')
   },
   getValue: function(el) {
@@ -185,13 +188,13 @@ $.extend(buttons, {
   }
 });
 Shiny.inputBindings.register(buttons);"
-  )),
+    )
+  ),
   actionButton_dsfr("test", "test"),
-
 )
 
 server <- function(input, output, session) {
-  observeEvent(input$test,{
+  observeEvent(input$test, {
     message(input$test)
   })
 }
@@ -233,29 +236,27 @@ library(shiny)
 
 addResourcePath("fonts", system.file("dsfr-v1.6.0/dist/fonts", package = "shinygouv"))
 
-actionButton_dsfr <- function(inputId, label){
-  tags$button(id = inputId, 
-              class="fr-btn action-button",
-              value = 0,
-              label
-              )
+actionButton_dsfr <- function(inputId, label) {
+  tags$button(
+    id = inputId,
+    class = "fr-btn action-button",
+    value = 0,
+    label
+  )
 }
 
 ui <- fluidPage(
-
-      includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
-      actionButton_dsfr("test", "test")
+  includeCSS(system.file("dsfr-v1.6.0/dist/dsfr.min.css", package = "shinygouv")),
+  actionButton_dsfr("test", "test")
 )
 
 server <- function(input, output, session) {
-  observeEvent(input$test,{
+  observeEvent(input$test, {
     message(input$test)
   })
-
 }
 
 shinyApp(ui, server)
-
 ```
 
 Avantages :
@@ -284,14 +285,15 @@ On peut tout à fait imaginer une fonction qui parserait le code pour remplacer 
 ## Les inputs recensés dans les apps "ssm-écologie" par option
 
 ```{r echo = FALSE}
-DT::datatable(readxl::read_excel(
-  system.file(
-    "comparaison",
-    "list_input_par_option.xlsx",
-    package = "shinygouv"
-  )
-), 
-options = list("dom" = "tp")
+DT::datatable(
+  readxl::read_excel(
+    system.file(
+      "comparaison",
+      "list_input_par_option.xlsx",
+      package = "shinygouv"
+    )
+  ),
+  options = list("dom" = "tp")
 )
 ```
 

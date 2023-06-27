@@ -20,7 +20,7 @@ radioButtons_dsfr_template <- function(
   selected = NULL,
   inline = FALSE,
   class = NULL
-) {
+    ) {
   inline <- FALSE # TODO
   if (isTRUE(inline)) {
     class_inline <- "fr-fieldset--inline"

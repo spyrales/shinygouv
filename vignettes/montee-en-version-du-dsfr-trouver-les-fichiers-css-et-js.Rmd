@@ -78,8 +78,10 @@ Nous recommandons de faire une copie du dossier de la version précédente
 ```{r}
 last_version <- max(list.files("inst", pattern = "^v\\d"))
 if (last_version != paste0("v", nouvelle_version)) {
-  fs::dir_copy(path = file.path("inst", last_version), 
-               new_path = paste0("inst/v", nouvelle_version))
+  fs::dir_copy(
+    path = file.path("inst", last_version),
+    new_path = paste0("inst/v", nouvelle_version)
+  )
 }
 ```
 
@@ -88,7 +90,7 @@ Dans le fichier "table_correspondance_shiny_dsfr.csv", mettez `non` dans la colo
 
 ```{r}
 corresp <- read.csv2(file.path("inst", paste0("v", nouvelle_version), "table_correspondance_shiny_dsfr.csv"))
-corresp[,"mis_a_jour"] <- "non"
+corresp[, "mis_a_jour"] <- "non"
 write.csv2(corresp, file.path("inst", paste0("v", nouvelle_version), "table_correspondance_shiny_dsfr.csv"))
 ```
 

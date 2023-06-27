@@ -18,7 +18,7 @@ des fichiers modifies
 permet de convertir une application shiny en une application shiny suivant le DSFR
 }
 \examples{
-if (FALSE){
+if (FALSE) {
   mydir <- tempfile(pattern = "app")
   dir.create(mydir)
   golem::install_dev_deps(

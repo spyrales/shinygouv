@@ -1,3 +1,11 @@
+# shinygouv 0.0.2
+
+## chore
+
+* ajout de la version 1.9.3 du dsfr
+* suppression de la version 1.6.0 du dsfr
+* correction problème encodage 
+
 # shinygouv 0.0.1
 
 ## Composants

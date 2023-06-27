@@ -4,9 +4,9 @@
 \name{shinygouv-package}
 \alias{shinygouv}
 \alias{shinygouv-package}
-\title{shinygouv: An Amazing Shiny App}
+\title{shinygouv: Implement the DSFR for your shiny applications}
 \description{
-What the package does (one paragraph).
+Components and tools to build or transform shiny applications with the Design System of France.
 }
 \author{
 \strong{Maintainer}: Juliette ENGELARE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
