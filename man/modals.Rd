@@ -29,9 +29,10 @@ modalDialog_dsfr
 modalDialog_dsfr(
   htmltools::div("Le corps du texte"),
   title = "Titre du modal",
-  footer = actionButton_dsfr(inputId = "Bouton",
-                             label = "Bouton")
+  footer = actionButton_dsfr(
+    inputId = "Bouton",
+    label = "Bouton"
+  )
 )
-
 
 }
