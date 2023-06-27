@@ -19,8 +19,24 @@ add_dsfr_deps <- function(tag) {
     package = "shinygouv",
     all_files = TRUE
   )
+
+
+  modal_deps <- htmlDependency(
+    name = "external_deps",
+    version = "1.0.0",
+    src = c(file = "external_deps"),
+    script = list(
+      list(type = "text/javascript", nomodule = NULL, src = "shiny_modal.js")
+    ),
+    package = "shinygouv",
+    all_files = TRUE,
+    head = HTML(
+      ' <script src="shiny_modal.js"></script> '
+    )
+  )
+
   addResourcePath(prefix = "dsfr-v1.7.2", directoryPath = system.file("dsfr-v1.7.2", package = "shinygouv"))
-  tagList(tag, dsfr_deps)
+  tagList(tag, dsfr_deps, modal_deps)
 }
 
 #' @import htmltools

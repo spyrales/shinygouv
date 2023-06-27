@@ -28,13 +28,12 @@
 #'   class = NULL
 #' )
 radioButtons_dsfr <- function(
-  inputId,
-  label,
-  choices,
-  selected = NULL,
-  inline = FALSE,
-  class = NULL
-    ) {
+    inputId,
+    label,
+    choices,
+    selected = NULL,
+    inline = FALSE,
+    class = NULL) {
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))

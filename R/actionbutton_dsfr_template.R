@@ -10,10 +10,9 @@
 #' @return html
 #' @noRd
 actionButton_dsfr_template <- function(
-  inputId,
-  label,
-  class
-    ) {
+    inputId,
+    label,
+    class) {
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),

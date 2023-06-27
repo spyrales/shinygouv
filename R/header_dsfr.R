@@ -19,14 +19,13 @@
 #'   officiel = "Bretagne",
 #' )
 header_dsfr <- function(
-  intitule,
-  officiel,
-  url = "/",
-  titre = NULL,
-  nom_site_service = NULL,
-  baseline = NULL,
-  class = "fr-container"
-    ) {
+    intitule,
+    officiel,
+    url = "/",
+    titre = NULL,
+    nom_site_service = NULL,
+    baseline = NULL,
+    class = "fr-container") {
   # check les params
   assertthat::assert_that(is.character(intitule))
   assertthat::assert_that(is.character(officiel))
