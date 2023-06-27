@@ -52,5 +52,4 @@ test_that("fluidRow_dsfr works", {
   #                          "fluidRow_dsfr.Rda"
   #                          )
   #         )
-
 })
