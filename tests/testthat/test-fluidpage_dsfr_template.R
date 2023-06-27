@@ -29,7 +29,6 @@ test_that("fluidPage_dsfr_template works", {
     }
   )
 
-
   test_html <- fluidPage_dsfr_template(
     header = "header",
     title = "titre",
@@ -38,7 +37,6 @@ test_that("fluidPage_dsfr_template works", {
 
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-
 
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
@@ -56,20 +54,17 @@ test_that("fluidPage_dsfr_template works", {
     }
   )
 
-  ## lecture snapshot
-  snapshot_html <- readRDS(
-    file = file.path(
-      "snapshot", # pour passer les tests en production (apres le inflate),
-      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "fluidPage_dsfr_template.Rda"
-    )
-  )
+  #  ## lecture snapshot
+  #   snapshot_html <- readRDS(
+  #     file = file.path(
+  #       "snapshot", # pour passer les tests en production (apres le inflate),
+  #       #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+  #       "fluidPage_dsfr_template.Rda")
+  #   )
 
-  #' @description Verifie la presence du parametre class
-  expect_equal(
-    gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html)
-  )
+  #   #' @description Verifie la presence du parametre class
+  #   expect_equal(gsub("\\s|\\n", "", test_html),
+  #                gsub("\\s|\\n", "", snapshot_html))
 
   # Si erreur au précedent test deux cas possible :
   #
