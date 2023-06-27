@@ -19,7 +19,7 @@ check_n_covr()
 # fusen::check_n_covr()
 
 # Verifier que les md sont disponibles dans le dossier dev/documentation,
-#sinon knit les Rmd en modifiant l'output par github_document
+# sinon knit les Rmd en modifiant l'output par github_document
 
 # Utils for dev ----
 # Get global variables
@@ -30,7 +30,7 @@ grkstyle::grk_style_pkg(pkg = ".")
 # linter
 lintr::lint_package()
 # bump version
-desc::desc_bump_version("dev")
+desc::desc_bump_version("patch")
 # Install
 devtools::install(upgrade = "never")
 # devtools::load_all()
@@ -54,19 +54,19 @@ pkgs <- unique(
   )
 )
 
-remotes_or_not <- lapply(pkgs, function(x){
+remotes_or_not <- lapply(pkgs, function(x) {
   packageDescription(x)
 }) %>%
   setNames(pkgs)
 
-cran_or_not <- lapply(remotes_or_not, function(x){
+cran_or_not <- lapply(remotes_or_not, function(x) {
   try(x[["Repository"]], silent = TRUE)
 }) %>%
   sapply(., is.null)
 
 github_pkg <- names(cran_or_not[cran_or_not])
 cran_pkg <- names(cran_or_not[!cran_or_not])
-github_repo <- lapply(github_pkg,function(x) {
+github_repo <- lapply(github_pkg, function(x) {
   desc <- remotes_or_not[[x]]
   tolower(paste(desc$RemoteUsername, desc$RemoteRepo, sep = "/"))
 }) %>%
@@ -151,7 +151,3 @@ devtools::build_vignettes()
 # _Pkgdown - Pas besoin d'inclure le pkgdown pour un projet open-source avec un gh-pages
 usethis::use_pkgdown()
 # pkgdown::build_site() # pour tests en local
-
-
-
-

@@ -20,7 +20,7 @@ actionButton_dsfr <- function(
   inputId,
   label,
   class = NULL
-) {
+    ) {
   actionButton_dsfr_template(
     inputId,
     label,

@@ -1,0 +1,42 @@
+flat_convert_to_dsfr.Rmd:
+  path: dev/flat_convert_to_dsfr.Rmd
+  state: active
+  R:
+  - R/convert_file_to_dsfr.R
+  - R/convert_to_dsfr.R
+  - R/get_dsfr_version.R
+  tests:
+  - tests/testthat/test-convert_file_to_dsfr.R
+  - tests/testthat/test-convert_to_dsfr.R
+  - tests/testthat/test-get_dsfr_version.R
+  vignettes: vignettes/convertir-une-app-shiny-en-app-shiny-dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_convert_to_dsfr.Rmd
+    vignette_name: Convertir une app shiny en app shiny dsfr
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: ask
+flat_fluidpage.Rmd:
+  path: dev/flat_composants/flat_fluidpage.Rmd
+  state: active
+  R:
+  - R/column_dsfr.R
+  - R/fluidpage_dsfr.R
+  - R/fluidpage_dsfr_template.R
+  - R/fluidrow_dsfr.R
+  - R/layout_dsfr_template.R
+  tests:
+  - tests/testthat/test-fluidpage_dsfr_template.R
+  - tests/testthat/test-fluidpage_dsfr.R
+  - tests/testthat/test-layout_dsfr_template.R
+  - tests/testthat/test-fluidrow_dsfr.R
+  - tests/testthat/test-column_dsfr.R
+  vignettes: vignettes/fluidpage_dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_composants/flat_fluidpage.Rmd
+    vignette_name: fluidPage_dsfr
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: ask

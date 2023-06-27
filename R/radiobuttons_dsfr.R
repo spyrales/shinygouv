@@ -34,8 +34,7 @@ radioButtons_dsfr <- function(
   selected = NULL,
   inline = FALSE,
   class = NULL
-) {
-
+    ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))

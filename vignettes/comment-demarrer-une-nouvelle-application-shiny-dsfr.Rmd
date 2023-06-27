@@ -78,7 +78,7 @@ La liste des composants déjà implémentés est disponible dans le package, sel
 
 
 ```{r echo = FALSE, message = FALSE}
-read.csv2(system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv"))[,"composant_dsfr", drop = FALSE] %>%
+read.csv2(system.file("v1.7.2/table_correspondance_shiny_dsfr.csv", package = "shinygouv"))[, "composant_dsfr", drop = FALSE] %>%
   knitr::kable()
 ```
 

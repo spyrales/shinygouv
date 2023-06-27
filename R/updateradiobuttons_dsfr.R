@@ -49,7 +49,7 @@ updateRadioButtons_dsfr <- function(
   choices = NULL,
   selected = NULL,
   session = shiny::getDefaultReactiveDomain()
-) {
+    ) {
   ns <- session$ns
 
   if (!is.null(choices)) {

@@ -1,6 +1,6 @@
 Package: shinygouv
 Title: Implement the DSFR for your shiny applications
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
@@ -12,7 +12,8 @@ Authors@R: c(
     person("David", "Granjon", role = "ctb"),
     person("Alan", "Dipert", role = "ctb")
   )
-Description: Components and tools to build or transform shiny applications with the Design System of France.
+Description: Components and tools to build or transform shiny applications
+    with the Design System of France.
 License: EUPL (>= 1.2) | file LICENSE
 Imports: 
     assertthat (>= 0.2.1),
@@ -35,11 +36,14 @@ Suggests:
     rmarkdown (>= 2.14),
     rstudioapi (>= 0.13),
     testthat (>= 3.0.0),
-    tibble (>= 3.1.7)
+    tibble (>= 3.1.7),
+    withr
 VignetteBuilder: 
     knitr
+Config/fusen/version: 0.5.0.9006
 Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
-VersionDsfr: 1.7.2
+RoxygenNote: 7.2.3
+VersionDsfr: 1.9.3
