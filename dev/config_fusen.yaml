@@ -75,3 +75,24 @@ flat_toggleswitch.Rmd:
     check: true
     document: true
     overwrite: ask
+flat_withSpinner.Rmd:
+  path: dev/flat_composants/flat_withSpinner.Rmd
+  state: active
+  R:
+  - R/addwithspinner.R
+  - R/hidespinner_dsfr.R
+  - R/showspinner_dsfr.R
+  - R/withspinner_dsfr.R
+  tests:
+  - tests/testthat/test-addwithspinner.R
+  - tests/testthat/test-showspinner_dsfr.R
+  - tests/testthat/test-hidespinner_dsfr.R
+  - tests/testthat/test-withspinner_dsfr.R
+  vignettes: vignettes/withspinner_dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_composants/flat_withSpinner.Rmd
+    vignette_name: withSpinner_dsfr
+    open_vignette: false
+    check: false
+    document: true
+    overwrite: 'yes'

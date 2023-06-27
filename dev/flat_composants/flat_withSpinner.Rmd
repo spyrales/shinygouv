@@ -1,0 +1,169 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# withSpinner html
+
+```{r function-addWithSpinner}
+#' spinner-specific html code
+#'
+#' @param spinner_id id du spinner
+#'
+#' @importFrom htmltools HTML
+#' @return an html code
+#' @export
+#' @examples addWithSpinner()
+addWithSpinner <- function(
+    spinner_id = "lds-ring"
+    ) {
+HTML('<div class="lds-ring" id = "lds-ring" style="display:none"><div></div><div></div><div></div><div></div></div>')
+}
+```
+
+```{r examples-addWithSpinner}
+addWithSpinner()
+```
+
+```{r tests-addWithSpinner}
+test_that("addWithSpinner works", {
+  spinner <- addWithSpinner()
+  expect_true(inherits(spinner, "html"))
+})
+```
+
+
+# showSpinner_dsfr
+    
+```{r function-showSpinner_dsfr}
+#' Affiche le spinner
+#' 
+#' Affiche le spinner dans le cadre d'un appel à `shinygouv::withSpinner_dsfr()`
+#' @param spinner_id id du spinner
+#' @param session session
+#' @importFrom golem invoke_js
+#' @return html
+#' 
+#' @export
+showSpinner_dsfr <- function(
+    spinner_id = "lds-ring",
+    session = shiny::getDefaultReactiveDomain()
+    ){
+    invoke_js("showid", spinner_id, session = session)
+}
+```
+  
+```{r example-showSpinner_dsfr, eval=FALSE}
+#' \dontrun{
+showSpinner_dsfr()
+#' }
+```
+  
+```{r tests-showSpinner_dsfr}
+test_that("showSpinner_dsfr works", {
+  expect_true(inherits(showSpinner_dsfr, "function")) 
+})
+```
+  
+  
+# hideSpinner_dsfr
+    
+```{r function-hideSpinner_dsfr}
+#' Masque le spinner
+#' 
+#' Masque le spinner dans le cadre d'un appel à `shinygouv::withSpinner_dsfr()`
+#' @param spinner_id id du spinner
+#' @param session session
+#' @importFrom golem invoke_js
+#' @return html
+#' 
+#' @export
+hideSpinner_dsfr <- function(
+    spinner_id = "lds-ring",
+    session = shiny::getDefaultReactiveDomain()
+    ){
+    invoke_js("hideid", spinner_id, session = session)
+}
+```
+  
+```{r example-hideSpinner_dsfr, eval=FALSE}
+#' \dontrun{
+hideSpinner_dsfr()
+#' }
+```
+  
+```{r tests-hideSpinner_dsfr}
+test_that("hideSpinner_dsfr works", {
+  expect_true(inherits(hideSpinner_dsfr, "function")) 
+})
+```  
+
+# withSpinner_dsfr
+
+```{r function-withSpinner_dsfr}
+#' withSpinner_dsfr
+#' 
+#' 
+#' @param expr L'opération a réaliser.
+#' @param session 
+#'
+#' @return html
+#' 
+#' @export
+withSpinner_dsfr <- function(
+  expr, 
+  session = shiny::getDefaultReactiveDomain()
+  ) {
+
+  showSpinner_dsfr(session = session)
+  force(expr)
+  on.exit(hideSpinner_dsfr(session = session))
+}
+```
+
+```{r examples-withSpinner_dsfr, eval = FALSE}
+#' \dontrun{
+# To be added in your app_server.R ou some server function on a module
+withSpinner_dsfr(
+  expr = {
+    message("Je vais m'afficher pendant 5 secondes")
+    Sys.sleep(5)
+  }
+)
+#' }
+```
+
+```{r tests-withSpinner_dsfr}
+test_that("withSpinner_dsfr works", {
+  expect_true(inherits(withSpinner_dsfr, "function")) 
+})
+```
+
+# update_withSpinner_dsfr
+
+Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd"
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+fusen::inflate(flat_file = "dev/flat_composants/flat_withSpinner.Rmd", 
+                vignette_name = "withSpinner_dsfr",
+               check = FALSE,
+               overwrite = TRUE,
+               open_vignette = FALSE)
+```
+

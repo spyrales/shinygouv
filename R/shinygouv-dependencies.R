@@ -29,10 +29,19 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       list(type = "text/javascript", src = "shiny-compat.js")
     ),
     all_files = TRUE
+  ),
+  spinner_deps = htmlDependency(
+    name = "spinner",
+    version = dsfr_version,
+    src = c(file = paste0("spinner-v",dsfr_version)),
+    stylesheet = "spinner.css",
+    package = "shinygouv",
+    all_files = TRUE
   )
   )
 
-  tagList(tag, all_deps)
+  tagList(tag, all_deps, addWithSpinner())
+
 }
 
 #' @import htmltools
