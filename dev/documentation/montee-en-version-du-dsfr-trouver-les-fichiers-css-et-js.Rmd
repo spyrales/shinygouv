@@ -35,7 +35,7 @@ Indiquez ici le numéro de la nouvelle version à implémenter que vous pourrez 
 
 
 ```{r}
-nouvelle_version <- "2.0.0"
+nouvelle_version <- "1.9.3"
 ```
 
 # Récolter les fichiers CSS et JS du DSFR
@@ -43,6 +43,17 @@ nouvelle_version <- "2.0.0"
 - Télécharger le zip de la dernière version `1.7.2` qui se trouve [ici](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/223019574/D+veloppeurs)
 - Décompresser le fichier
 - Déplacer le dossier "dsfr-v1.7.2/dist" dans le dossier "inst/" du package 'shinygouv'.
+
+```{r}
+tmp_ <- tempfile(fileext = ".zip")
+download.file(
+  paste0(
+    "https://github.com/GouvernementFR/dsfr/releases/download/v", nouvelle_version, "/dsfr-v", nouvelle_version, ".zip"
+  ),
+  tmp_
+)
+unzip(tmp_, exdir = file.path(paste0("inst/dsfr-v", nouvelle_version)))
+```
 
 Pour une version minimale, les seuls fichiers à garder sont :
 
@@ -61,39 +72,20 @@ Pour une version minimale, les seuls fichiers à garder sont :
 
 Vous pouvez lancer le contenu du script "dev/maj_version_dsfr.R" pour votre version pour réaliser ce nettoyage
 
-
-```{r}
-source("dev/maj_version_dsfr.R")
-maj_version_dsfr()
-```
-
 On pourra ensuite créer une fonction qui permettera d'ajouter les dépendances dans les applications {shiny}.
 
 
-# Créer un dossier pour le code HTML des composants
+## Mettre à jour les composants avec le nouveau dsfr
 
-Nous recommandons de faire une copie du dossier de la version précédente
-
-
-```{r}
-last_version <- max(list.files("inst", pattern = "^v\\d"))
-if (last_version != paste0("v", nouvelle_version)) {
-  fs::dir_copy(path = file.path("inst", last_version), 
-               new_path = paste0("inst/v", nouvelle_version))
-}
-```
-
-Dans le fichier "table_correspondance_shiny_dsfr.csv", mettez `non` dans la colonne `mis_a_jour` car pour le moment, vous n'avez pas récupéré le HTML de toutes les composantes de la nouvelle version
-
+Dans le fichier "table_correspondance_shiny_dsfr.csv", mettez `non` dans la colonne `mis_a_jour` car pour le moment, vous ne vous êtes pas assurer du bon foncionnement des composants dans la novuelle version.
 
 ```{r}
 corresp <- read.csv2(file.path("inst", paste0("v", nouvelle_version), "table_correspondance_shiny_dsfr.csv"))
-corresp[,"mis_a_jour"] <- "non"
+corresp[, "mis_a_jour"] <- "non"
 write.csv2(corresp, file.path("inst", paste0("v", nouvelle_version), "table_correspondance_shiny_dsfr.csv"))
 ```
 
 Vous pouvez ouvrir une issue pour lister tous les fichiers HTML de composants à vérifier avant de mettre `oui` dans la colonne `mis_a_jour`
-
 
 ```{r}
 corresp <- read.csv2(file.path("inst", paste0("v", nouvelle_version), "table_correspondance_shiny_dsfr.csv"))
@@ -124,6 +116,12 @@ Maintenant que vous avez récupéré les fichiers pour une nouvelle version, vou
 all_versions <- list.files("inst", pattern = "^v\\d")
 if (length(all_versions > 2)) {
   unlink(file.path("inst", min(all_versions)), recursive = TRUE)
+  unlink(
+    file.path("inst",
+      paste0("dsfr-", min(all_versions)
+      )
+    ),
+    recursive = TRUE)
 }
 ```
 

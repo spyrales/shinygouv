@@ -1,0 +1,8 @@
+"";"composant_shiny";"composant_dsfr";"fichier";"mis_a_jour"
+"1";"fluidPage";"fluidPage_dsfr";"fluidpage.html";"non"
+"2";"column";"column_dsfr";"";"non"
+"3";"fluidRow";"fluidRow_dsfr";"";"non"
+"4";"actionButton";"actionButton_dsfr";"bouton.html";"non"
+"5";"radioButtons";"radioButtons_dsfr";"radiobouton.html";"non"
+"6";"updateRadioButtons";"updateRadioButtons_dsfr";"";"non"
+"7";"";"header_dsfr";"entete.html";"non"
