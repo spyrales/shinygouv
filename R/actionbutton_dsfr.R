@@ -17,9 +17,10 @@
 #'   class = "fr-btn--icon-left fr-icon-checkbox-circle-line"
 #' )
 actionButton_dsfr <- function(
-    inputId,
-    label,
-    class = NULL) {
+  inputId,
+  label,
+  class = NULL
+    ) {
   actionButton_dsfr_template(
     inputId,
     label,
