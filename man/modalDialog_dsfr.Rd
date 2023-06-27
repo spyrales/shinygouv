@@ -22,13 +22,33 @@ html
 modalDialog_dsfr
 }
 \examples{
+if (interactive()) {
+  library(shiny)
+  ui <- fluidPage_dsfr(
+    actionButton_dsfr("show", "Show modal dialog")
+  )
+  server <- function(input, output, session) {
+    observeEvent(input$show, {
+      showModal_dsfr(
+        ui = modalDialog_dsfr(
+          tagList(
+            htmltools::div("Le corps du texte"),
+            actionButton_dsfr(
+              inputId = "btn",
+              label = "txt"
+            )
+          ),
+          title = "Titre du modal",
+          footer = "Footer du modal"
+        )
+      )
+    })
 
-modalDialog_dsfr(
-  htmltools::div("Le corps du texte"),
-  title = "Titre du modal",
-  footer = actionButton_dsfr(inputId = "Bouton",
-                             label = "Bouton")
-)
-
+    observe({
+      print(input$btn)
+    })
+  }
+  shinyApp(ui, server)
+}
 
 }
