@@ -15,7 +15,8 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
     stylesheet = "dist/dsfr.min.css",
     script = list(
       list(type = "module", src = "dist/dsfr.module.min.js"),
-      list(type = "text/javascript", nomodule = NULL, src = "dist/dsfr.nomodule.min.js")
+      list(type = "text/javascript", nomodule = NULL, src = "dist/dsfr.nomodule.min.js"),
+      list(type = "text/javascript", src = "dist/shiny-compat.js")
     ),
     package = "shinygouv",
     all_files = TRUE
