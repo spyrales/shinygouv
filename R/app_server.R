@@ -47,21 +47,33 @@ app_server <- function(input, output, session) {
     }
   )
 
-    output$show_modal_n <- renderText({
-      paste(input$show_modal_btn, "fois dans le modal")
-    })
+  output$show_modal_n <- renderText({
+    paste("Clics dans le modal :", input$show_modal_btn)
+  })
 
-    observeEvent(input$update, {
-      updateSelectInput_dsfr(inputId = "selectinput", label = "Nouveau label")
-    })
+  observeEvent(input$update, {
+    updateSelectInput_dsfr(
+      inputId = "selectinput",
+      label = paste(sample(letters, 10), collapse = "")
+    )
+  })
 
-    observeEvent(input$update2, {
-      updateSelectInput_dsfr(inputId = "selectinput", choices = LETTERS)
-    })
+  r <- reactiveValues(
+    choices = LETTERS[1:10]
+  )
 
-    observeEvent(input$update3, {
-      updateSelectInput_dsfr(inputId = "selectinput", selected = LETTERS[12])
-    })
+  observeEvent(input$update2, {
+    r$choices <- sample(c(LETTERS[1:10], letters[1:10]), 10)
+    updateSelectInput_dsfr(
+      inputId = "selectinput",
+      choices = r$choices
+    )
+  })
 
-
+  observeEvent(input$update3, {
+    updateSelectInput_dsfr(
+      inputId = "selectinput",
+      selected = sample(r$choices, 1)
+    )
+  })
 }
