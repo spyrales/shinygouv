@@ -33,19 +33,18 @@
 #'         )
 #'       )
 #'     })
-#' 
+#'
 #'     observe({
 #'       print(input$btn)
 #'     })
 #'   }
 #'   shinyApp(ui, server)
 #' }
-#' 
 modalDialog_dsfr <- function(
-  ...,
-  inputId = "fr-modal-1",
-  title,
-  footer = NULL
+    ...,
+    inputId = "fr-modal-1",
+    title,
+    footer = NULL
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
@@ -59,12 +58,17 @@ modalDialog_dsfr <- function(
   )
 }
 
-
+#' Faire apparaitre une modale
+#'
+#' @param ui TODO
+#' @param inputId TODO
+#' @param session TODO
+#'
 #' @export
 showModal_dsfr <- function(
-  ui,
-  inputId = "fr-modal-1",
-  session = shiny::getDefaultReactiveDomain()
+    ui,
+    inputId = "fr-modal-1",
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage(
     "show_dsfr_modal",
@@ -75,11 +79,16 @@ showModal_dsfr <- function(
   )
 }
 
+
+#' Faire dispparaitre une modale
+#'
+#' @param inputId TODO
+#' @param session TODO
+#'
 #' @export
 removeModal_dsfr <- function(
-  inputId = "fr-modal-1",
-  session = shiny::getDefaultReactiveDomain()
+    inputId = "fr-modal-1",
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("hide_dsfr_modal", inputId)
 }
-

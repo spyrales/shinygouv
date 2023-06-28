@@ -4,10 +4,12 @@
 \alias{add_dsfr_deps}
 \title{ddsfr dependances}
 \usage{
-add_dsfr_deps(tag)
+add_dsfr_deps(tag, version = get_dsfr_version())
 }
 \arguments{
 \item{tag}{element de la page pour attacher les deps.}
+
+\item{version}{ajout de la version pour les deps}
 }
 \description{
 Ajout le css et le js de dsfr

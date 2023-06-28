@@ -40,3 +40,20 @@ flat_fluidpage.Rmd:
     check: true
     document: true
     overwrite: ask
+flat_modal.Rmd:
+  path: dev/flat_composants/flat_modal.Rmd
+  state: active
+  R:
+  - R/modaldialog_dsfr.R
+  - R/modaldialog_dsfr_template.R
+  tests:
+  - tests/testthat/test-modaldialog_dsfr_template.R
+  - tests/testthat/test-modaldialog_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_modal.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask

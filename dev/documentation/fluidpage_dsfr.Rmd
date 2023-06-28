@@ -37,16 +37,16 @@ fluidPage_dsfr_template <- function(
     header,
     title,
     body
-){
-  
+    ) {
+
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
-      "composant", 
+      "composant",
       "fluidpage.html",
       package = "shinygouv"
     ),
-    header = NULL
+    header = NULL,
     title = title,
     body = body
   )
@@ -73,8 +73,8 @@ fluidPage_dsfr <- function(
     title = NULL,
     theme = NULL,
     lang = NULL
-) {
-  
+    ) {
+
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
@@ -82,28 +82,28 @@ fluidPage_dsfr <- function(
     title = tagList(title),
     body = tagList(
       ...
-      )
+    )
   ) %>%
-    parse_html(zone = "/html") %>% 
-    add_dsfr_deps() 
+    parse_html(zone = "/html") %>%
+    add_dsfr_deps()
   ui
-  
+
 }
 ```
 
 ```{r examples-fluidPage_dsfr, eval = FALSE}
 my_page <- fluidPage_dsfr(
   header = header_dsfr(
-     intitule = "Prefet de", 
-     officiel = "Bretagne",
+    intitule = "Prefet de",
+    officiel = "Bretagne",
   ),
   title = "Gouv",
   htmltools::div("test")
 )
-if(interactive()){
-shiny::shinyApp(
-  my_page,
-  server = function(input, output){}
+if (interactive()) {
+  shiny::shinyApp(
+    my_page,
+    server = function(input, output) {}
   )
 }
 ```
@@ -118,12 +118,12 @@ layout_dsfr_template <- function(
     html,
     class,
     other_class
-){
-  
+    ) {
+
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
-      "layout", 
+      "layout",
       "layout.html",
       package = "shinygouv"
     ),
@@ -145,19 +145,17 @@ On reprend le template layout et on ajoute notre logique métier sur les paramè
   
 
 ```{r example-fluidRow_dsfr}
-
-if(interactive()){
-shiny::shinyApp(
-  ui = fluidPage_dsfr(
-    title = "exemple",
-    fluidRow_dsfr(
-      shiny::p("Voici un exemple")
-    )
-  ),
-  server = function(input, output){}
+if (interactive()) {
+  shiny::shinyApp(
+    ui = fluidPage_dsfr(
+      title = "exemple",
+      fluidRow_dsfr(
+        shiny::p("Voici un exemple")
+      )
+    ),
+    server = function(input, output) {}
   )
 }
-
 ```
 
   
@@ -171,49 +169,47 @@ Le fonctionnement des colonnes est un peu différent pour le dsfr. Si la largeur
 
 
 ```{r echo = TRUE, eval = FALSE}
-column_dsfr <- function(width = NULL, ...){
-  
-  if(is.null(width)) {
+column_dsfr <- function(width = NULL, ...) {
+
+  if (is.null(width)) {
     add_width <- ""
-    }else{
-      if(width != 0){
-        add_width <- paste0("-", width)
-      }else{
-        add_width <- ""
-      }
+  } else {
+    if (width != 0) {
+      add_width <- paste0("-", width)
+    } else {
+      add_width <- ""
     }
+  }
 
   class <- paste0("fr-col", add_width)
-  
+
   layout_dsfr_template(
-      html = tagList(
-        ...
-      ),
-      class = class,
-      other_class = NULL
-    )
+    html = tagList(
+      ...
+    ),
+    class = class,
+    other_class = NULL
+  )
 }
 ```
 
   
 
 ```{r example-column_dsfr}
-
-if(interactive()){
-shiny::shinyApp(
-  ui = fluidPage_dsfr(
-    title = "exemple",
-    fluidRow_dsfr(
-      column_dsfr(0, "test"),
-      column_dsfr(0, "test"),
-      column_dsfr(0, "test"),
-      column_dsfr(0, "test")
-    )
-  ),
-  server = function(input, output){}
+if (interactive()) {
+  shiny::shinyApp(
+    ui = fluidPage_dsfr(
+      title = "exemple",
+      fluidRow_dsfr(
+        column_dsfr(0, "test"),
+        column_dsfr(0, "test"),
+        column_dsfr(0, "test"),
+        column_dsfr(0, "test")
+      )
+    ),
+    server = function(input, output) {}
   )
 }
-
 ```
 
   

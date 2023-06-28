@@ -11,7 +11,6 @@
 #'
 #' @export
 #' @examples
-#'
 #' if (interactive()) {
 #'   shiny::shinyApp(
 #'     ui = fluidPage_dsfr(
@@ -23,7 +22,6 @@
 #'     server = function(input, output) {}
 #'   )
 #' }
-#'
 fluidRow_dsfr <- function(..., class = NULL) {
   layout_dsfr_template(
     html = tagList(

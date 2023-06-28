@@ -10,10 +10,11 @@
 #' @return html
 #' @noRd
 layout_dsfr_template <- function(
-  html,
-  class,
-  other_class
+    html,
+    class,
+    other_class
     ) {
+
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
