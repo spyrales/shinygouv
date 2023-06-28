@@ -20,7 +20,7 @@ radioButtons_unique_dsfr_template <-
   name,
   checked = FALSE,
   inline = FALSE
-      ) {
+  ) {
     if (isTRUE(inline)) {
       class_inline <- "-inline"
     } else {

@@ -78,16 +78,8 @@ flat_toggleswitch.Rmd:
 flat_withSpinner.Rmd:
   path: dev/flat_composants/flat_withSpinner.Rmd
   state: active
-  R:
-  - R/addwithspinner.R
-  - R/hidespinner_dsfr.R
-  - R/showspinner_dsfr.R
-  - R/withspinner_dsfr.R
-  tests:
-  - tests/testthat/test-addwithspinner.R
-  - tests/testthat/test-showspinner_dsfr.R
-  - tests/testthat/test-hidespinner_dsfr.R
-  - tests/testthat/test-withspinner_dsfr.R
+  R: R/withspinner_dsfr.R
+  tests: tests/testthat/test-withspinner_dsfr.R
   vignettes: vignettes/withspinner_dsfr.Rmd
   inflate:
     flat_file: dev/flat_composants/flat_withSpinner.Rmd

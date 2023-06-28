@@ -2,7 +2,6 @@
 
 export("%>%")
 export(actionButton_dsfr)
-export(addWithSpinner)
 export(add_dsfr_deps)
 export(column_dsfr)
 export(convert_to_dsfr)
