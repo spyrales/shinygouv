@@ -1,0 +1,628 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+
+# selectInput_options_dsfr_template
+    
+```{r function-selectInput_options_dsfr_template}
+#' Template pour la liste des options du selectInput
+#'
+#' Template pour la liste des options du selectInput
+#'
+#' @param option_value value des options (futurs `choices` du selectInput)
+#' @param option_label labels des options (en cas d'utilisation d'un vecteur nommé pour les futurs `choices` du selectInput)
+#' @param selected la valeur est-elle sélectionnée par défaut ou non
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+#' @noRd
+selectInput_options_dsfr_template <- function(
+  option_value,
+  option_label,
+  selected
+    ) {
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "options.html",
+      package = "shinygouv"
+    ),
+    option_value = option_value,
+    option_label = option_label,
+    selected = selected
+  )
+}
+```
+
+```{r tests-selectInput_options_dsfr_template}
+test_that("selectInput_options_dsfr_template works", {
+  expect_true(inherits(selectInput_options_dsfr_template, "function"))
+
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "options.html",
+      package = "shinygouv"
+    )
+  )
+
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+
+  purrr::walk(
+    c(
+      "option_value",
+      "option_label",
+      "selected"
+    ),
+    function(param) {
+      with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
+
+
+  test_html <- selectInput_options_dsfr_template(1, "option1", selected = "selected")
+
+
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+
+
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+      option_value = 1,
+      option_label = "option1",
+      selected = "selected"
+    ),
+    function(param) {
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
+    }
+  )
+
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "selectInput_options_dsfr_template.Rda"
+    )
+  )
+
+  #' @description Verifie le HTML créé
+  # Retire tous les espaces et saut de ligne pour la comparaison
+  # Pour eviter les problèmes inter-OS
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
+
+  # Si erreur au précedent test deux cas possibles :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction radioButtons_unique_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "selectInput_options_dsfr_template.Rda"
+  #                          )
+  #         )
+  #
+})
+```
+  
+
+
+# selectInput_dsfr_template
+    
+```{r function-selectInput_dsfr_template}
+#' selectInput_dsfr_template
+#'
+#' @param inputId inputId
+#' @param label label
+#' @param options options pour les futurs choices
+#' @param selected selected
+#' @param multiple FALSE par defaut
+#'
+#' @importFrom htmltools htmlTemplate
+#' @importFrom purrr pmap
+#' @return html
+#' @noRd
+selectInput_dsfr_template <- function(
+  inputId,
+  label,
+  options,
+  selected = NULL,
+  multiple = FALSE
+    ) {
+  if (is.null(names(options))) {
+    option_label <- options
+  } else {
+    option_label <- names(options)
+  }
+
+  selected_logical <- options %in% selected
+  selected_value <- gsub(x = as.character(selected_logical), pattern = "FALSE", replacement = "")
+  selected_value <- gsub(x = selected_value, pattern = "TRUE", replacement = "selected")
+
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "selectInput.html",
+      package = "shinygouv"
+    ),
+    inputId = inputId,
+    label = label,
+    multiple = ifelse(isTRUE(multiple), 'multiple = "multiple"', ""),
+    options = purrr::pmap(
+      list(
+        .x = options,
+        .y = option_label,
+        .z = selected_value
+      ),
+      function(.x, .y, .z) {
+        selectInput_options_dsfr_template(
+          option_value = .x,
+          option_label = .y,
+          selected = .z
+        )
+      }
+    ) %>%
+      htmltools::tagList()
+  )
+}
+```
+  
+  
+```{r tests-selectInput_dsfr_template}
+test_that("selectInput_dsfr_template works", {
+  expect_true(inherits(selectInput_dsfr_template, "function"))
+
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "selectInput.html",
+      package = "shinygouv"
+    )
+  )
+
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+
+
+  purrr::walk(
+    c(
+      "inputId",
+      "label",
+      "options",
+      "multiple"
+    ),
+    function(param) {
+      with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
+
+
+  test_html <- selectInput_dsfr_template(
+    inputId = "toto",
+    label = "titi",
+    options = c(
+      "Cylinders" = "cyl",
+      "Transmission" = "am",
+      "Gears" = "gear"
+    ),
+    selected = "am",
+    multiple = FALSE
+  )
+
+
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+
+
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+      inputId = "toto",
+      label = "titi",
+      options = c(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      ),
+      selected = "am",
+      multiple = ""
+    ),
+    function(param) {
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
+    }
+  )
+
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "selectInput_dsfr_template.Rda"
+    )
+  )
+
+  #' @description Verifie le HTML créé
+  # Retire tous les espaces et saut de ligne pour la comparaison
+  # Pour eviter les problèmes inter-OS
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
+
+  # Si erreur au précedent test deux cas possibles :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction radioButtons_unique_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "selectInput_dsfr_template.Rda"
+  #                          )
+  #         )
+  #
+})
+```
+  
+
+# selectInput_dsfr
+
+```{r function-selectInput_dsfr}
+#' selectInput_dsfr
+#'
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element selectionné
+#' @importFrom assertthat assert_that
+#' @return html
+#'
+#' @export
+#'
+#' @examples
+selectInput_dsfr <- function(
+  inputId,
+  label,
+  choices,
+  selected = NULL
+    ) {
+  # check les params
+  assertthat::assert_that(is.character(inputId))
+  assertthat::assert_that(is.character(label))
+  assertthat::assert_that(is.character(choices))
+  assertthat::assert_that(length(selected) <= 1)
+
+
+  selectInput_dsfr_template(
+    inputId = inputId,
+    label = label,
+    options = choices,
+    selected = selected,
+    multiple = FALSE
+  ) %>%
+    parse_html()
+}
+```
+
+```{r examples-selectInput_dsfr}
+## Only run examples in interactive R sessions
+if (interactive()) {
+  library(shiny)
+  library(shinygouv)
+
+  ui <- fluidPage_dsfr(
+    header = header_dsfr(
+      intitule = "Intitule",
+      officiel = "Officiel",
+      nom_site_service = "Nom du site / service",
+      baseline = "baseline - precisions sur l organisation",
+      class = "fr-m-1w"
+    ),
+    title = "Exemple",
+    fluidRow_dsfr(
+      # sans vecteur nommé
+selectInput_dsfr(
+  inputId = "myselectInput",
+  label = "Mon label",
+  choices = c(
+    "cyl",
+    "am",
+    "gear"
+  )
+),
+fluidRow_dsfr(
+  # avec un vecteur nommé et une valeur sélectionnée
+selectInput_dsfr(
+  inputId = "myselectInput2",
+  label = "Mon label2",
+  choices = c(
+    "Cylinders" = "cyl",
+    "Transmission" = "am",
+    "Gears" = "gear"
+  ),
+  selected = "gear"
+)
+  
+)
+
+    )
+  )
+  server <- function(input, output, session) {
+  }
+
+  shinyApp(ui, server)
+}
+```
+
+```{r tests-selectInput_dsfr}
+test_that("selectInput_dsfr works", {
+  expect_true(inherits(selectInput_dsfr, "function"))
+
+  test_html <- selectInput_dsfr(
+    inputId = "variable",
+    label = "Variable:",
+    choices = c(
+      "Cylinders" = "cyl",
+      "Transmission" = "am",
+      "Gears" = "gear"
+    )
+  )
+
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag")
+
+
+  expect_error(
+    selectInput_dsfr(
+      inputId = 1234,
+      label = "Variable:",
+      choices = c(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      )
+    )
+  )
+
+  expect_error(
+    selectInput_dsfr(
+      inputId = "variable",
+      label = 1234,
+      choices = c(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      )
+    )
+  )
+
+  expect_error(
+    selectInput_dsfr(
+      inputId = "variable",
+      label = "Variable:",
+      choices = c(1234, 5678)
+    )
+  )
+
+  expect_error(
+    selectInput_dsfr(
+      inputId = "variable",
+      label = "Variable:",
+      choices = c(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      ),
+      selected = c("gear", "am")
+    )
+  )
+
+
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "sliderInput_dsfr.Rda"
+    )
+  )
+  #' @description Verifie le parametre selected dans le HTML
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
+
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction radioButtons_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+  #  saveRDS(test_html,
+  #          file = file.path("tests/testthat/snapshot",
+  #                           "sliderInput_dsfr.Rda"
+  #                           )
+  #          )
+  #
+})
+```
+
+# update_selectInput_dsfr
+
+```{r function-update_selectInput_dsfr}
+#' update_selectInput_dsfr
+#'
+#' @param inputId id de l'input
+#' @param label label du bouton
+#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
+#' @param selected Element selectionné
+#' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#'
+#' @importFrom shiny updateSelectInput
+#' @return html
+#'
+#' @export
+update_selectInput_dsfr <- function(
+  inputId,
+  label = NULL,
+  choices = NULL,
+  selected = NULL,
+  session = shiny::getDefaultReactiveDomain()
+    ) {
+  ns <- session$ns
+
+  updateSelectInput(
+    session = session,
+    inputId = inputId,
+    label = label,
+    choices = choices,
+    selected = selected
+  )
+}
+```
+  
+```{r example-update_selectInput_dsfr}
+## Only run examples in interactive R sessions
+if (interactive()) {
+  library(shiny)
+  library(shinygouv)
+
+  ui <- fluidPage_dsfr(
+    header = header_dsfr(
+      intitule = "Intitule",
+      officiel = "Officiel",
+      nom_site_service = "Nom du site / service",
+      baseline = "baseline - precisions sur l organisation",
+      class = "fr-m-1w"
+    ),
+    title = "Exemple",
+    fluidRow_dsfr(
+      selectInput_dsfr(
+        inputId = "variable",
+        label = "Variable:",
+        choices = c(
+          "Cylinders" = "cyl",
+          "Transmission" = "am",
+          "Gears" = "gear"
+        )
+      )
+    ),
+    fluidRow_dsfr(
+      actionButton_dsfr(inputId = "update", label = "update label")
+    ),
+    fluidRow_dsfr(
+      actionButton_dsfr(inputId = "update2", label = "update choices")
+    ),
+    fluidRow_dsfr(
+      actionButton_dsfr(inputId = "update3", label = "update selected")
+    )
+  )
+  server <- function(input, output, session) {
+    observeEvent(input$update, {
+      update_selectInput_dsfr(inputId = "variable", label = "Nouveau label")
+    })
+
+    observeEvent(input$update2, {
+      update_selectInput_dsfr(inputId = "variable", choices = LETTERS)
+    })
+
+    observeEvent(input$update3, {
+      update_selectInput_dsfr(inputId = "variable", selected = LETTERS[12])
+    })
+  }
+
+  shinyApp(ui, server)
+}
+```
+  
+```{r tests-update_selectInput_dsfr}
+test_that("update_selectInput_dsfr works", {
+  expect_true(inherits(update_selectInput_dsfr, "function"))
+
+  sessA <- createModuleSession("modA")
+
+  update_selectInput_dsfr(
+    session = sessA,
+    inputId = "variable",
+    label = "Nouveau label",
+    choices = LETTERS[1:5],
+    selected = LETTERS[4]
+  )
+
+  resultA <- sessA$lastInputMessage
+  # inputId
+  expect_equal("variable", resultA$id)
+  # label
+  expect_equal("Nouveau label", resultA$message$label)
+  # HTML content
+  expect_equal(
+    resultA$message$options,
+    structure(
+      "<option value=\"A\">A</option>\n<option value=\"B\">B</option>\n<option value=\"C\">C</option>\n<option value=\"D\" selected>D</option>\n<option value=\"E\">E</option>",
+      html = TRUE,
+      class = c(
+        "html",
+        "character"
+      )
+    )
+  )
+})
+```
+  
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_selectInput.Rmd",
+  vignette_name = NA,
+  check = FALSE
+)
+```

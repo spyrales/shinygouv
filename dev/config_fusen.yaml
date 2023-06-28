@@ -36,27 +36,9 @@ flat_fluidpage.Rmd:
   inflate:
     pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
-    vignette_name: .na
+    vignette_name: fluidPage_dsfr
     open_vignette: yes
-    check: no
-    document: yes
-    overwrite: ask
-flat_header.Rmd:
-  path: dev/flat_composants/flat_header.Rmd
-  state: active
-  R:
-  - R/header_dsfr.R
-  - R/header_dsfr_template.R
-  tests:
-  - tests/testthat/test-header_dsfr_template.R
-  - tests/testthat/test-header_dsfr.R
-  vignettes: []
-  inflate:
-    pkg: shinygouv
-    flat_file: dev/flat_composants/flat_header.Rmd
-    vignette_name: .na
-    open_vignette: no
-    check: no
+    check: yes
     document: yes
     overwrite: ask
 flat_modal.Rmd:
@@ -76,16 +58,24 @@ flat_modal.Rmd:
     check: no
     document: yes
     overwrite: ask
-flat_navbarPage.Rmd:
-  path: dev/flat_composants/flat_navbarPage.Rmd
+flat_selectInput.Rmd:
+  path: dev/flat_composants/flat_selectInput.Rmd
   state: active
-  R: R/navbarpage_dsfr.R
-  tests: tests/testthat/test-navbarpage_dsfr.R
-  vignettes: vignettes/navbarpage_dsfr.Rmd
+  R:
+  - R/selectinput_dsfr.R
+  - R/selectinput_dsfr_template.R
+  - R/selectinput_options_dsfr_template.R
+  - R/update_selectinput_dsfr.R
+  tests:
+  - tests/testthat/test-selectinput_options_dsfr_template.R
+  - tests/testthat/test-selectinput_dsfr_template.R
+  - tests/testthat/test-selectinput_dsfr.R
+  - tests/testthat/test-update_selectinput_dsfr.R
+  vignettes: []
   inflate:
     pkg: shinygouv
-    flat_file: dev/flat_composants/flat_navbarPage.Rmd
-    vignette_name: navbarPage_dsfr
+    flat_file: dev/flat_composants/flat_selectInput.Rmd
+    vignette_name: .na
     open_vignette: yes
     check: no
     document: yes
