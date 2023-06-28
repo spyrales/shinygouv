@@ -40,7 +40,7 @@ navbarPage_dsfr <- function(
   ...,
   header = NULL,
   id = NULL
-) {
+    ) {
   all_navs <- list(...)
   # Making the first tab the current one
   all_navs[[1]]$current <- TRUE
@@ -84,29 +84,33 @@ navbarPage_dsfr <- function(
       id = id
     )
   )
-  htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "fluidpage.html",
-      package = "shinygouv"
-    ),
-    header = header,
-    title = title,
-    body = tagList(
-      lapply(
-        all_navs,
-        function(x) {
-          tags$span(
-            class = "navbarPanel_dsfr",
-            id = x$id,
-            x$ui
+  tagList(
+    navbarPage_deps(),
+    add_dsfr_deps(
+      htmltools::htmlTemplate(
+        filename = system.file(
+          get_dsfr_version(with_v = TRUE),
+          "composant",
+          "fluidpage.html",
+          package = "shinygouv"
+        ),
+        header = header,
+        title = title,
+        body = tagList(
+          lapply(
+            all_navs,
+            function(x) {
+              tags$span(
+                class = "navbarPanel_dsfr",
+                id = x$id,
+                x$ui
+              )
+            }
           )
-        }
+        )
       )
     )
-  ) %>%
-    add_dsfr_deps()
+  )
 }
 
 #' Panel pour la navbar
@@ -132,6 +136,7 @@ navbarPanel_dsfr <- function(
 
 ```{r examples-navbarPage_dsfr}
 library(shiny)
+options(shiny.port = httpuv::randomPort())
 # Define UI
 ui <- navbarPage_dsfr(
   title = "Welcome to the Jungle",
