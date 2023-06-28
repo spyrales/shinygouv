@@ -57,3 +57,21 @@ flat_modal.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_toggleswitch.Rmd:
+  path: dev/flat_composants/flat_toggleswitch.Rmd
+  state: active
+  R:
+  - R/toggleswitch_dsfr.R
+  - R/toggleswitch_dsfr_template.R
+  - R/updatetoggleswitch_dsfr.R
+  tests:
+  - tests/testthat/test-toggleswitch_dsfr_template.R
+  - tests/testthat/test-toggleswitch_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_toggleswitch.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: ask
