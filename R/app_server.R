@@ -12,7 +12,7 @@ app_server <- function(input, output, session) {
   })
 
   output$output2 <- renderText({
-    paste("Espèce :", input$espece)
+    paste("Esp\u00E8ce :", input$espece)
   })
 
   observeEvent(input$show_modal, {
