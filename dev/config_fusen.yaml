@@ -59,23 +59,6 @@ flat_header.Rmd:
     check: no
     document: yes
     overwrite: ask
-flat_navbarPage.Rmd:
-  path: dev/flat_composants/flat_navbarPage.Rmd
-  state: active
-  R: R/navbarpage_dsfr.R
-  tests: tests/testthat/test-navbarpage_dsfr.R
-  vignettes: vignettes/navbarpage_dsfr.Rmd
-  inflate:
-    pkg: shinygouv
-    flat_file: dev/flat_composants/flat_navbarPage.Rmd
-    vignette_name: navbarPage_dsfr
-    open_vignette: yes
-    check: no
-    vignette_name: fluidPage_dsfr
-    open_vignette: yes
-    check: yes
-    document: yes
-    overwrite: ask
 flat_modal.Rmd:
   path: dev/flat_composants/flat_modal.Rmd
   state: active
@@ -93,24 +76,6 @@ flat_modal.Rmd:
     check: no
     document: yes
     overwrite: ask
-flat_header.Rmd:
-  path: dev/flat_composants/flat_header.Rmd
-  state: active
-  R:
-  - R/header_dsfr.R
-  - R/header_dsfr_template.R
-  tests:
-  - tests/testthat/test-header_dsfr_template.R
-  - tests/testthat/test-header_dsfr.R
-  vignettes: []
-  inflate:
-    pkg: shinygouv
-    flat_file: dev/flat_composants/flat_header.Rmd
-    vignette_name: .na
-    open_vignette: no
-    check: no
-    document: yes
-    overwrite: ask
 flat_navbarPage.Rmd:
   path: dev/flat_composants/flat_navbarPage.Rmd
   state: active
@@ -124,21 +89,4 @@ flat_navbarPage.Rmd:
     open_vignette: yes
     check: no
     document: yes
-    overwrite: ask
-flat_modal.Rmd:
-  path: dev/flat_composants/flat_modal.Rmd
-  state: active
-  R:
-  - R/modaldialog_dsfr.R
-  - R/modaldialog_dsfr_template.R
-  tests:
-  - tests/testthat/test-modaldialog_dsfr_template.R
-  - tests/testthat/test-modaldialog_dsfr.R
-  vignettes: []
-  inflate:
-    flat_file: dev/flat_composants/flat_modal.Rmd
-    vignette_name: .na
-    open_vignette: true
-    check: false
-    document: true
     overwrite: ask

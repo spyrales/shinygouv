@@ -20,18 +20,20 @@ shiny.tag.list
 column_dsfr
 }
 \examples{
-if (interactive()) {
-  shiny::shinyApp(
-    ui = fluidPage_dsfr(
-      title = "exemple",
-      fluidRow_dsfr(
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test")
-      )
-    ),
-    server = function(input, output) {}
+
+if(interactive()){
+shiny::shinyApp(
+  ui = fluidPage_dsfr(
+    title = "exemple",
+    fluidRow_dsfr(
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test")
+    )
+  ),
+  server = function(input, output){}
   )
 }
+
 }
