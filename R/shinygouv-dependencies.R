@@ -37,10 +37,20 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       list(type = "text/javascript", src = "navbarPage.js")
     ),
     all_files = TRUE
+  ),
+  spinner_deps = htmlDependency(
+    name = "spinner",
+    version = version,
+    src = c(file = "external_deps"),
+    stylesheet = "spinner.css",
+    script = "spinner.js",
+    package = "shinygouv",
+    all_files = TRUE
   )
   )
 
-  tagList(tag, all_deps)
+  tagList(tag, all_deps, addWithSpinner())
+
 }
 
 # navbarPage_deps <- function(

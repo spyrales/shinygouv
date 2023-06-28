@@ -98,8 +98,18 @@ app_ui <- function(request) {
             )
           )
         )
-      )
+      ),
+      fluidRow_dsfr(
+        column_dsfr(
+          0, # Calcul automatique de la largeur
+          p("Afficher le spinner"),
+          actionButton_dsfr(
+            inputId = "showspinner",
+            label = "Afficher le spinner pendant 5 secondes"
+          )
+        )
     )
+  )
   )
 }
 
