@@ -24,4 +24,16 @@ app_server <- function(input, output, session) {
   observeEvent(input$espece, {
     message("je change d'espece ", input$espece)
   })
+
+  observeEvent(
+    input$showspinner,
+    {
+      withSpinner_dsfr(
+        expr = {
+          message("Je vais m'afficher pendant 5 secondes")
+          Sys.sleep(5)
+        }
+      )
+    }
+  )
 }
