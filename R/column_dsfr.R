@@ -13,27 +13,22 @@
 #'
 #' @export
 #' @examples
-#' 
-#' if(interactive()){
-#' shiny::shinyApp(
-#'   ui = fluidPage_dsfr(
-#'     title = "exemple",
-#'     fluidRow_dsfr(
-#'       column_dsfr(0, "test"),
-#'       column_dsfr(0, "test"),
-#'       column_dsfr(0, "test"),
-#'       column_dsfr(0, "test")
-#'     )
-#'   ),
-#'   server = function(input, output){}
+#' if (interactive()) {
+#'   shiny::shinyApp(
+#'     ui = fluidPage_dsfr(
+#'       title = "exemple",
+#'       fluidRow_dsfr(
+#'         column_dsfr(0, "test"),
+#'         column_dsfr(0, "test"),
+#'         column_dsfr(0, "test"),
+#'         column_dsfr(0, "test")
+#'       )
+#'     ),
+#'     server = function(input, output) {}
 #'   )
 #' }
-#' 
-column_dsfr <- function(
-  width = NULL,
-  ...,
-  extra_class = NULL
-    ) {
+column_dsfr <- function(width = NULL, ...) {
+
   if (is.null(width)) {
     add_width <- ""
   } else {

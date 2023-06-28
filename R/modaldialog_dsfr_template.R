@@ -11,10 +11,10 @@
 #' @return html
 #' @noRd
 modalDialog_dsfr_template <- function(
-  inputId = "fr-modal-1",
-  title,
-  body,
-  footer = NULL
+    inputId = "fr-modal-1",
+    title,
+    body,
+    footer = NULL
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -29,4 +29,3 @@ modalDialog_dsfr_template <- function(
     footer = footer
   )
 }
-

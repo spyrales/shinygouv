@@ -30,12 +30,13 @@
 #'   )
 #' }
 fluidPage_dsfr <- function(
-  ...,
-  header = NULL,
-  title = NULL,
-  theme = NULL,
-  lang = NULL
+    ...,
+    header = NULL,
+    title = NULL,
+    theme = NULL,
+    lang = NULL
     ) {
+
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
@@ -49,4 +50,5 @@ fluidPage_dsfr <- function(
     add_dsfr_deps()
 
   ui
+
 }
