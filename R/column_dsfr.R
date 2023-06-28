@@ -12,7 +12,6 @@
 #'
 #' @export
 #' @examples
-#'
 #' if (interactive()) {
 #'   shiny::shinyApp(
 #'     ui = fluidPage_dsfr(
@@ -27,8 +26,8 @@
 #'     server = function(input, output) {}
 #'   )
 #' }
-#'
 column_dsfr <- function(width = NULL, ...) {
+
   if (is.null(width)) {
     add_width <- ""
   } else {

@@ -1,3 +1,3 @@
-globalVariables(
+utils::globalVariables(
   c(".", "composant_shiny")
 )
