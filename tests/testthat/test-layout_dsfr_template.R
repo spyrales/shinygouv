@@ -37,8 +37,6 @@ test_that("layout_dsfr_template works", {
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
 
-
-
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
   purrr::walk(
@@ -64,6 +62,24 @@ test_that("layout_dsfr_template works", {
   expect_equal(gsub("\\s|\\n", "", test_html),
     gsub("\\s|\\n", "", snapshot_html))
 
+
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction layout_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "layout_dsfr_template.Rda"
+  #                          )
+  #         )
+
+  #   #' @description Verifie la presence du parametre class
+  #   expect_equal(gsub("\\s|\\n", "", test_html),
+  #                gsub("\\s|\\n", "", snapshot_html))
 
   # Si erreur au précedent test deux cas possible :
   #

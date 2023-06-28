@@ -142,8 +142,6 @@ Avec cette fonction, on va pouvoir initier tout un ensemble d'éléments pour no
 On reprend le template layout et on ajoute notre logique métier sur les paramètres.
 
 
-  
-
 ```{r example-fluidRow_dsfr}
 if (interactive()) {
   shiny::shinyApp(
@@ -158,14 +156,9 @@ if (interactive()) {
 }
 ```
 
-  
-
 ## Exemple avec les colonnes
 
 Le fonctionnement des colonnes est un peu différent pour le dsfr. Si la largeur n'est pas précisée alors la taille des colonnes est automatiquement calculée en fonction du nombre. Mais on a quand même la possibilité de changer la taille comme dans {shiny}. Nous allons donc implementer cette logique en essayant de penser à la conversion de nos applications.
-
-
-  
 
 
 ```{r echo = TRUE, eval = FALSE}
@@ -193,8 +186,6 @@ column_dsfr <- function(width = NULL, ...) {
 }
 ```
 
-  
-
 ```{r example-column_dsfr}
 if (interactive()) {
   shiny::shinyApp(
@@ -211,8 +202,6 @@ if (interactive()) {
   )
 }
 ```
-
-  
 
 ## Conclusion
 

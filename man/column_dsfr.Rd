@@ -4,12 +4,14 @@
 \alias{column_dsfr}
 \title{column_dsfr}
 \usage{
-column_dsfr(width = NULL, ...)
+column_dsfr(width = NULL, ..., extra_class = NULL)
 }
 \arguments{
 \item{width}{width par défaut est NULL, cela signifie que la taille de la colonne depend des autres colonnes. Vous pouvez aussi utiliser 0}
 
 \item{...}{differents tag pour construire la page}
+
+\item{extra_class}{ajout de class pour la column_dsfr (voir la page officiel du CSS)}
 }
 \value{
 shiny.tag.list
@@ -18,18 +20,20 @@ shiny.tag.list
 column_dsfr
 }
 \examples{
-if (interactive()) {
-  shiny::shinyApp(
-    ui = fluidPage_dsfr(
-      title = "exemple",
-      fluidRow_dsfr(
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test"),
-        column_dsfr(0, "test")
-      )
-    ),
-    server = function(input, output) {}
+
+if(interactive()){
+shiny::shinyApp(
+  ui = fluidPage_dsfr(
+    title = "exemple",
+    fluidRow_dsfr(
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test"),
+      column_dsfr(0, "test")
+    )
+  ),
+  server = function(input, output){}
   )
 }
+
 }

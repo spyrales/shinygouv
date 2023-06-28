@@ -32,8 +32,9 @@ flat_fluidpage.Rmd:
   - tests/testthat/test-layout_dsfr_template.R
   - tests/testthat/test-fluidrow_dsfr.R
   - tests/testthat/test-column_dsfr.R
-  vignettes: vignettes/fluidpage_dsfr.Rmd
+  vignettes: []
   inflate:
+    pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
     vignette_name: fluidPage_dsfr
     open_vignette: yes

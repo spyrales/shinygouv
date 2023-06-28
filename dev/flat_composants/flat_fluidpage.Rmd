@@ -1,7 +1,7 @@
 ---
 title: "flat_new_one.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -111,7 +111,6 @@ test_that("fluidPage_dsfr_template works", {
 
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-
 
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
@@ -428,6 +427,39 @@ test_that("layout_dsfr_template works", {
   #                          )
   #         )
 
+
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction layout_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "layout_dsfr_template.Rda"
+  #                          )
+  #         )
+
+  #   #' @description Verifie la presence du parametre class
+  #   expect_equal(gsub("\\s|\\n", "", test_html),
+  #                gsub("\\s|\\n", "", snapshot_html))
+
+
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #                              dans la fonction layout_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "layout_dsfr_template.Rda"
+  #                          )
+  #         )
 })
 ```
 
@@ -472,7 +504,7 @@ if (interactive()) {
   )
 }
 ```
-  
+
 ```{r tests-fluidRow_dsfr}
 test_that("fluidRow_dsfr works", {
   expect_true(inherits(fluidRow_dsfr, "function"))
@@ -524,6 +556,7 @@ Le fonctionnement des colonnes est un peu différent pour le dsfr. Si la largeur
 #'
 #' @param width width par défaut est NULL, cela signifie que la taille de la colonne depend des autres colonnes. Vous pouvez aussi utiliser 0
 #' @param ... differents tag pour construire la page
+#' @param extra_class ajout de class pour la column_dsfr (voir la page officiel du CSS)
 #'
 #' @return shiny.tag.list
 #'
@@ -553,7 +586,6 @@ column_dsfr <- function(width = NULL, ...) {
   )
 }
 ```
-  
 
 ```{r, echo=TRUE, eval=FALSE}
 column_dsfr <- function(width = NULL, ...) {
@@ -596,7 +628,7 @@ if (interactive()) {
   )
 }
 ```
-  
+
 ```{r tests-column_dsfr}
 test_that("column_dsfr works", {
   expect_true(inherits(column_dsfr, "function"))

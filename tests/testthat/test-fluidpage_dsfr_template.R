@@ -36,7 +36,6 @@ test_that("fluidPage_dsfr_template works", {
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
 
-
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
   purrr::walk(

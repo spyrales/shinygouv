@@ -6,22 +6,34 @@
 #' @noRd
 app_server <- function(input, output, session) {
   # Your application server logic
-
-  observeEvent(input$go, {
-    message("je clique ", input$go)
+  # Server logic for Tab 1
+  output$output1 <- renderText({
+    paste(input$go, "fois")
   })
 
-  observeEvent(input$updateradiobutton, {
-    updateRadioButtons_dsfr(
-      session = session,
-      inputId = "espece",
-      label = "Un nouveau label avec la selection de l'espece A",
-      choices = c("Espece A" = "a", "Espece B" = "b"),
-      selected = "a"
+  output$output2 <- renderText({
+    paste("Esp\u00E8ce :", input$espece)
+  })
+
+  observeEvent(input$show_modal, {
+    showModal_dsfr(
+      ui = modalDialog_dsfr(
+        tagList(
+          htmltools::div("Le corps du texte"),
+          actionButton_dsfr(
+            inputId = "show_modal_btn",
+            label = "Cliquez ici"
+          )
+        ),
+        title = "Titre du modal",
+        footer = "Footer du modal"
+      )
     )
   })
 
-  observeEvent(input$espece, {
-    message("je change d'espece ", input$espece)
-  })
+    output$show_modal_n <- renderText({
+      paste(input$show_modal_btn, "fois dans le modal")
+    })
+
+
 }
