@@ -22,4 +22,14 @@ $(document).ready(function () {
     dsfr(element).modal.conceal(); // Méthode pour fermer manuellement la modale
   });
 
+  Shiny.addCustomMessageHandler('activate_toggle', function (args) {
+    const element = document.getElementById(args.inputId).parentNode.children[1]; // Reference à l'element du DOM
+    element.setAttribute('data-fr-checked-label', args.activate) // Méthode pour fermer manuellement la modale
+  });
+
+  Shiny.addCustomMessageHandler('deactivate_toggle', function (args) {
+    const element = document.getElementById(args.inputId).parentNode.children[1]; // Reference à l'element du DOM
+    element.setAttribute('data-fr-unchecked-label', args.deactivate) // Méthode pour fermer manuellement la modale
+  });
+
 });
