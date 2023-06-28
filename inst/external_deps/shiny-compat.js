@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
   Shiny.addCustomMessageHandler('show_dsfr_modal', function (args) {
-    // Removing any instance of the modal
-    $(".fr-modal").remove();
-    const elt = $(args.ui);
+    elt = $(args.ui);
+    elt = elt.addClass("fr-modal-shiny");
     $(document.body).append(elt);
     // We offset & wait for the DOM to be ready before showing the modal
     // We do this small manip so that the dsfr fun is able to find the modal
@@ -33,3 +32,5 @@ $(document).ready(function () {
   });
 
 });
+
+
