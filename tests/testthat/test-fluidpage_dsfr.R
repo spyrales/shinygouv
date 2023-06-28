@@ -12,7 +12,6 @@ test_that("fluidPage_dsfr works", {
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag.list")
 
-<<<<<<< HEAD
   #   ## lecture snapshot
   # snapshot_html <- readRDS(
   #   file = file.path(
@@ -26,21 +25,6 @@ test_that("fluidPage_dsfr works", {
   # # Pour eviter les problèmes inter-OS
   # expect_equal(gsub("\\s|\\n", "", test_html),
   #              gsub("\\s|\\n", "", snapshot_html))
-=======
-  ## lecture snapshot
-  snapshot_html <- readRDS(
-    file = file.path(
-      "snapshot", # pour passer les tests en production (apres le inflate),
-      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "fluidPage_dsfr.Rda")
-  )
-
-  #' @description Verifer que le HTML est correct en sortie
-  # Retire tous les espaces et saut de ligne pour la comparaison
-  # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html))
->>>>>>> e5722a3 ([feat] Passer a la bonne version du dsfr automatiquement)
 
   # # Si erreur au précedent test deux cas possible :
   # #

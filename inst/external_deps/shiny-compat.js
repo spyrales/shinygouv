@@ -9,17 +9,9 @@ $(document).ready(function () {
     $(elt).offset();
     $(function () {
       const element = document.getElementById(args.inputId);
-      element.addEventListener('dsfr.disclose', (e) => {
-        console.log(e);
-        // triggering shiny events that might be contained in the modal
-        // by forcing shiny to rebind all the inputs
-        Shiny.unbindAll();
-        Shiny.bindAll();
-      })
       dsfr(element).modal.disclose();
       // triggering shiny events that might be contained in the modal
       // by forcing shiny to rebind all the inputs
-      Shiny.unbindAll();
       Shiny.bindAll();
     });
   });
@@ -28,8 +20,6 @@ $(document).ready(function () {
     const element = document.getElementById(inputId); // Reference à l'element du DOM
     dsfr(element).modal.conceal(); // Méthode pour fermer manuellement la modale
   });
-
-
 });
 
 

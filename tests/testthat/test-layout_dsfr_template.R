@@ -50,19 +50,6 @@ test_that("layout_dsfr_template works", {
         label = paste0("remplacement de '", param, "'"))
     })
 
-<<<<<<< HEAD
-  #  ## lecture snapshot
-  #   snapshot_html <- readRDS(
-  #     file = file.path(
-  #       "snapshot", # pour passer les tests en production (apres le inflate),
-  #       #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-  #       "layout_dsfr_template.Rda")
-  #   )
-
-  #   #' @description Verifie la presence du parametre class
-  #   expect_equal(gsub("\\s|\\n", "", test_html),
-  #                gsub("\\s|\\n", "", snapshot_html))
-=======
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
@@ -74,7 +61,6 @@ test_that("layout_dsfr_template works", {
   #' @description Verifie la presence du parametre class
   expect_equal(gsub("\\s|\\n", "", test_html),
     gsub("\\s|\\n", "", snapshot_html))
->>>>>>> e5722a3 ([feat] Passer a la bonne version du dsfr automatiquement)
 
 
   # Si erreur au précedent test deux cas possible :
@@ -95,7 +81,6 @@ test_that("layout_dsfr_template works", {
   #   expect_equal(gsub("\\s|\\n", "", test_html),
   #                gsub("\\s|\\n", "", snapshot_html))
 
-
   # Si erreur au précedent test deux cas possible :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -109,4 +94,5 @@ test_that("layout_dsfr_template works", {
   #                          "layout_dsfr_template.Rda"
   #                          )
   #         )
+
 })
