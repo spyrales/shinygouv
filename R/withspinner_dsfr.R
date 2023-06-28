@@ -47,10 +47,10 @@ showSpinner_dsfr <- function(
 #' @param expr L'opération a réaliser.
 #' @param session session shiny
 #'
-#' @return html#'
+#' @return html
 #' @export
 #' @examples
-#' \dontrun{
+#' if(interactive()) {
 #' library(shiny)
 #' library(shinygouv)
 #'
@@ -70,7 +70,7 @@ showSpinner_dsfr <- function(
 #'     ),
 #'     actionButton_dsfr(
 #'       inputId = "showspinner",
-#'       label = "Afficher le spinner"
+#'       label = "Afficher le spinner pendant 5 secondes"
 #'     )
 #'   )
 #' )

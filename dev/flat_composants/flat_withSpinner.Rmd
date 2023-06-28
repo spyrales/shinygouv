@@ -1,5 +1,5 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "flat_withSpinner.Rmd empty"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -59,6 +59,7 @@ showSpinner_dsfr <- function(
 ```{r tests-showSpinner_dsfr}
 test_that("showSpinner_dsfr works", {
   expect_true(inherits(showSpinner_dsfr, "function"))
+  # TODO
 })
 ```
   
@@ -85,6 +86,7 @@ hideSpinner_dsfr <- function(
 ```{r tests-hideSpinner_dsfr}
 test_that("hideSpinner_dsfr works", {
   expect_true(inherits(hideSpinner_dsfr, "function"))
+  # TODO
 })
 ```  
 
@@ -98,7 +100,7 @@ test_that("hideSpinner_dsfr works", {
 #' @param expr L'opération a réaliser.
 #' @param session session shiny
 #' @filename withSpinner_dsfr
-#' @return html#'
+#' @return html
 #' @export
 withSpinner_dsfr <- function(
   expr,
@@ -110,8 +112,8 @@ withSpinner_dsfr <- function(
 }
 ```
 
-```{r examples-withSpinner_dsfr, eval = FALSE}
-#' \dontrun{
+```{r examples-withSpinner_dsfr}
+if(interactive()) {
 library(shiny)
 library(shinygouv)
 
@@ -131,7 +133,7 @@ ui <- fluidPage_dsfr(
     ),
     actionButton_dsfr(
       inputId = "showspinner",
-      label = "Afficher le spinner"
+      label = "Afficher le spinner pendant 5 secondes"
     )
   )
 )
@@ -151,12 +153,13 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-#' }
+}
 ```
 
 ```{r tests-withSpinner_dsfr}
 test_that("withSpinner_dsfr works", {
   expect_true(inherits(withSpinner_dsfr, "function"))
+# TODO
 })
 ```
 

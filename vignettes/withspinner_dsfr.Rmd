@@ -35,8 +35,8 @@ library(shinygouv)
 
 # withSpinner_dsfr
 
-```{r examples-withSpinner_dsfr, eval = FALSE}
-#' \dontrun{
+```{r examples-withSpinner_dsfr}
+if(interactive()) {
 library(shiny)
 library(shinygouv)
 
@@ -56,7 +56,7 @@ ui <- fluidPage_dsfr(
     ),
     actionButton_dsfr(
       inputId = "showspinner",
-      label = "Afficher le spinner"
+      label = "Afficher le spinner pendant 5 secondes"
     )
   )
 )
@@ -76,6 +76,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-#' }
+}
 ```
 

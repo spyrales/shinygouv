@@ -7,12 +7,15 @@ test_that("addWithSpinner works", {
 
 test_that("showSpinner_dsfr works", {
   expect_true(inherits(showSpinner_dsfr, "function"))
+  # TODO
 })
 
 test_that("hideSpinner_dsfr works", {
   expect_true(inherits(hideSpinner_dsfr, "function"))
+  # TODO
 })
 
 test_that("withSpinner_dsfr works", {
   expect_true(inherits(withSpinner_dsfr, "function"))
+# TODO
 })

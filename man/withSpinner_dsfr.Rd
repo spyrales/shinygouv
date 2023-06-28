@@ -12,13 +12,13 @@ withSpinner_dsfr(expr, session = shiny::getDefaultReactiveDomain())
 \item{session}{session shiny}
 }
 \value{
-html#'
+html
 }
 \description{
 Permet d'afficher un spinner lors d'un calcul prenant du temps, s'inspire du fonctionnement de [shiny::withProgress()]
 }
 \examples{
-\dontrun{
+if(interactive()) {
 library(shiny)
 library(shinygouv)
 
@@ -38,7 +38,7 @@ ui <- fluidPage_dsfr(
     ),
     actionButton_dsfr(
       inputId = "showspinner",
-      label = "Afficher le spinner"
+      label = "Afficher le spinner pendant 5 secondes"
     )
   )
 )

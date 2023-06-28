@@ -32,9 +32,10 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
   ),
   spinner_deps = htmlDependency(
     name = "spinner",
-    version = dsfr_version,
-    src = c(file = paste0("spinner-v",dsfr_version)),
+    version = version,
+    src = c(file = "external_deps"),
     stylesheet = "spinner.css",
+    script = "spinner.js",
     package = "shinygouv",
     all_files = TRUE
   )
