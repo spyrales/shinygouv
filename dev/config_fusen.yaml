@@ -13,9 +13,9 @@ flat_convert_to_dsfr.Rmd:
   inflate:
     flat_file: dev/flat_convert_to_dsfr.Rmd
     vignette_name: Convertir une app shiny en app shiny dsfr
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_fluidpage.Rmd:
   path: dev/flat_composants/flat_fluidpage.Rmd
@@ -37,9 +37,9 @@ flat_fluidpage.Rmd:
     pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
     vignette_name: fluidPage_dsfr
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_modal.Rmd:
   path: dev/flat_composants/flat_modal.Rmd
@@ -54,9 +54,9 @@ flat_modal.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_modal.Rmd
     vignette_name: .na
-    open_vignette: yes
-    check: no
-    document: yes
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_selectInput.Rmd:
   path: dev/flat_composants/flat_selectInput.Rmd
@@ -65,20 +65,19 @@ flat_selectInput.Rmd:
   - R/selectinput_dsfr.R
   - R/selectinput_dsfr_template.R
   - R/selectinput_options_dsfr_template.R
-  - R/update_selectinput_dsfr.R
+  - R/updateselectinput_dsfr.R
   tests:
   - tests/testthat/test-selectinput_options_dsfr_template.R
   - tests/testthat/test-selectinput_dsfr_template.R
   - tests/testthat/test-selectinput_dsfr.R
-  - tests/testthat/test-update_selectinput_dsfr.R
-  vignettes: []
+  - tests/testthat/test-updateselectinput_dsfr.R
+  vignettes: vignettes/selectinput_dsfr.Rmd
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_selectInput.Rmd
-    vignette_name: .na
-    open_vignette: yes
-    check: no
-    document: yes
+    vignette_name: selectInput_dsfr
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_toggleswitch.Rmd:
   path: dev/flat_composants/flat_toggleswitch.Rmd
