@@ -105,6 +105,13 @@ app_ui <- function(request) {
         fluidRow_dsfr(
           column_dsfr(
             12,
+            h3("Demo showspinner()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
             actionButton_dsfr(
               inputId = "showspinner",
               label = "Afficher le spinner pendant 5 secondes"
@@ -119,6 +126,13 @@ app_ui <- function(request) {
         fluidRow_dsfr(
           column_dsfr(
             12,
+            h3("Demo selectInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            3,
             selectInput_dsfr(
               inputId = "selectinput",
               label = "Variable:",
@@ -131,16 +145,32 @@ app_ui <- function(request) {
           )
         ),
         fluidRow_dsfr(
-          actionButton_dsfr(inputId = "update", label = "Mettre \u00e0 jour le label du selectInput")
-        ),
-        fluidRow_dsfr(
-          actionButton_dsfr(inputId = "update2", label = "Mettre \u00e0 jour les choix du selectInput")
-        ),
-        fluidRow_dsfr(
-          actionButton_dsfr(inputId = "update3", label = "Mettre \u00e0 jour l\'option s\u00e9lectionn\u00e9e par d\u00e9faut du selectInput")
+          column_dsfr(
+            4,
+            extra_class = "fr-my-6w",
+            actionButton_dsfr(
+              inputId = "update",
+              label = "Mettre \u00e0 jour le label"
+            )
+          ),
+          column_dsfr(
+            4,
+            extra_class = "fr-my-6w",
+            actionButton_dsfr(
+              inputId = "update2",
+              label = "Mettre \u00e0 jour les choix"
+            )
+          ),
+          column_dsfr(
+            4,
+            extra_class = "fr-my-6w",
+            actionButton_dsfr(
+              inputId = "update3",
+              label = "Mettre \u00e0 jour l\'option s\u00e9lectionn\u00e9e"
+            )
+          )
         )
       )
-
     )
   )
 }
