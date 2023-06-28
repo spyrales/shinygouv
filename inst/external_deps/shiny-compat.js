@@ -1,8 +1,6 @@
 $(document).ready(function () {
 
   Shiny.addCustomMessageHandler('show_dsfr_modal', function (args) {
-    // Removing any instance of the modal
-    $(".fr-modal-shiny").remove();
     elt = $(args.ui);
     elt = elt.addClass("fr-modal-shiny");
     $(document.body).append(elt);
