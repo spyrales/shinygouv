@@ -51,5 +51,17 @@ app_server <- function(input, output, session) {
       paste(input$show_modal_btn, "fois dans le modal")
     })
 
+    observeEvent(input$update, {
+      updateSelectInput_dsfr(inputId = "selectinput", label = "Nouveau label")
+    })
+
+    observeEvent(input$update2, {
+      updateSelectInput_dsfr(inputId = "selectinput", choices = LETTERS)
+    })
+
+    observeEvent(input$update3, {
+      updateSelectInput_dsfr(inputId = "selectinput", selected = LETTERS[12])
+    })
+
 
 }

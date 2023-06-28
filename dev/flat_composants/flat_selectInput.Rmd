@@ -494,10 +494,10 @@ test_that("selectInput_dsfr works", {
 })
 ```
 
-# update_selectInput_dsfr
+# updateSelectInput_dsfr
 
-```{r function-update_selectInput_dsfr}
-#' update_selectInput_dsfr
+```{r function-updateSelectInput_dsfr}
+#' updateSelectInput_dsfr
 #'
 #' @param inputId id de l'input
 #' @param label label du bouton
@@ -509,7 +509,7 @@ test_that("selectInput_dsfr works", {
 #' @return html
 #'
 #' @export
-update_selectInput_dsfr <- function(
+updateSelectInput_dsfr <- function(
   inputId,
   label = NULL,
   choices = NULL,
@@ -528,7 +528,7 @@ update_selectInput_dsfr <- function(
 }
 ```
   
-```{r example-update_selectInput_dsfr}
+```{r example-updateSelectInput_dsfr}
 ## Only run examples in interactive R sessions
 if (interactive()) {
   library(shiny)
@@ -566,15 +566,15 @@ if (interactive()) {
   )
   server <- function(input, output, session) {
     observeEvent(input$update, {
-      update_selectInput_dsfr(inputId = "variable", label = "Nouveau label")
+      updateSelectInput_dsfr(inputId = "variable", label = "Nouveau label")
     })
 
     observeEvent(input$update2, {
-      update_selectInput_dsfr(inputId = "variable", choices = LETTERS)
+      updateSelectInput_dsfr(inputId = "variable", choices = LETTERS)
     })
 
     observeEvent(input$update3, {
-      update_selectInput_dsfr(inputId = "variable", selected = LETTERS[12])
+      updateSelectInput_dsfr(inputId = "variable", selected = LETTERS[12])
     })
   }
 
@@ -582,13 +582,13 @@ if (interactive()) {
 }
 ```
   
-```{r tests-update_selectInput_dsfr}
-test_that("update_selectInput_dsfr works", {
-  expect_true(inherits(update_selectInput_dsfr, "function"))
+```{r tests-updateSelectInput_dsfr}
+test_that("updateSelectInput_dsfr works", {
+  expect_true(inherits(updateSelectInput_dsfr, "function"))
 
   sessA <- createModuleSession("modA")
 
-  update_selectInput_dsfr(
+  updateSelectInput_dsfr(
     session = sessA,
     inputId = "variable",
     label = "Nouveau label",
@@ -622,7 +622,7 @@ test_that("update_selectInput_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_selectInput.Rmd",
-  vignette_name = NA,
+  vignette_name = "selectInput_dsfr",
   check = FALSE
 )
 ```

@@ -16,7 +16,7 @@
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinygouv)
-#' 
+#'
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
@@ -51,12 +51,12 @@
 #' )
 #'   
 #' )
-#' 
+#'
 #'     )
 #'   )
 #'   server <- function(input, output, session) {
 #'   }
-#' 
+#'
 #'   shinyApp(ui, server)
 #' }
 selectInput_dsfr <- function(

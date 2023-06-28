@@ -13,9 +13,9 @@ app_ui <- function(request) {
       title = "shinygouv",
       id = "nav",
       header = header_dsfr(
-        intitule = "D\u00E9mo",
+        intitule = "D\u00e9mo",
         officiel = "shinygouv",
-        nom_site_service = "D\u00E9mo de {shinygouv}",
+        nom_site_service = "D\u00e9mo de {shinygouv}",
         baseline = "https://github.com/spyrales/shinygouv"
       ),
       # First tab
@@ -33,16 +33,16 @@ app_ui <- function(request) {
             4,
             actionButton_dsfr(
               "go",
-              label = "Un bouton avec un \u00E9!"
+              label = "Un bouton avec un \u00e9!"
             ),
-             extra_class = "fr-m-1w"
+            extra_class = "fr-m-1w"
           ),
           column_dsfr(
             6,
             textOutput(
               "output1"
             ),
-             extra_class = "fr-m-1w"
+            extra_class = "fr-m-1w"
           )
         )
       ),
@@ -65,14 +65,14 @@ app_ui <- function(request) {
               choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
               class = NULL
             ),
-             extra_class = "fr-m-1w"
+            extra_class = "fr-m-1w"
           ),
           column_dsfr(
             6,
             textOutput(
               "output2"
             ),
-             extra_class = "fr-m-1w"
+            extra_class = "fr-m-1w"
           )
         )
       ),
@@ -99,17 +99,49 @@ app_ui <- function(request) {
           )
         )
       ),
-      fluidRow_dsfr(
-        column_dsfr(
-          0, # Calcul automatique de la largeur
-          p("Afficher le spinner"),
-          actionButton_dsfr(
-            inputId = "showspinner",
-            label = "Afficher le spinner pendant 5 secondes"
+      # Fourth tab
+      navbarPanel_dsfr(
+        title = "withSpinner_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            actionButton_dsfr(
+              inputId = "showspinner",
+              label = "Afficher le spinner pendant 5 secondes"
+            )
           )
         )
+      ),
+
+      # Fourth tab
+      navbarPanel_dsfr(
+        title = "selectInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            selectInput_dsfr(
+              inputId = "selectinput",
+              label = "Variable:",
+              choices = c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
+              )
+            )
+          )
+        ),
+        fluidRow_dsfr(
+          actionButton_dsfr(inputId = "update", label = "Mettre \u00e0 jour le label du selectInput")
+        ),
+        fluidRow_dsfr(
+          actionButton_dsfr(inputId = "update2", label = "Mettre \u00e0 jour les choix du selectInput")
+        ),
+        fluidRow_dsfr(
+          actionButton_dsfr(inputId = "update3", label = "Mettre \u00e0 jour l\'option s\u00e9lectionn\u00e9e par d\u00e9faut du selectInput")
+        )
+      )
+
     )
-  )
   )
 }
 
