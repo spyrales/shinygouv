@@ -34,14 +34,15 @@ app_ui <- function(request) {
             actionButton_dsfr(
               "go",
               label = "Un bouton avec un \u00E9!"
-            )
+            ),
+             extra_class = "fr-m-1w"
           ),
           column_dsfr(
-            8,
-            p("Salut les gens!"),
-            verbatimTextOutput(
+            6,
+            textOutput(
               "output1"
-            )
+            ),
+             extra_class = "fr-m-1w"
           )
         )
       ),
@@ -57,18 +58,43 @@ app_ui <- function(request) {
             extra_class = "fr-my-6w"
           ),
           column_dsfr(
-            6,
+            4,
             radioButtons_dsfr(
               inputId = "espece",
               label = "Especes",
               choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
               class = NULL
-            )
+            ),
+             extra_class = "fr-m-1w"
           ),
           column_dsfr(
             6,
-            verbatimTextOutput(
+            textOutput(
               "output2"
+            ),
+             extra_class = "fr-m-1w"
+          )
+        )
+      ),
+      # Third tab
+      navbarPanel_dsfr(
+        title = "modalDialog_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo modalDialog_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            6,
+            actionButton_dsfr("show_modal", "Show modal dialog")
+          ),
+          column_dsfr(
+            6,
+            textOutput(
+              "show_modal_n"
             )
           )
         )
