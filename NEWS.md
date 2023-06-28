@@ -1,10 +1,14 @@
-# shinygouv 0.0.2
+# shinygouv 0.0.2 to 1.0.0
 
 ## chore
 
 * ajout de la version 1.9.3 du dsfr
 * suppression de la version 1.6.0 du dsfr
-* correction problème encodage 
+* correction problème encodage
+
+## feat
+
++ implémentation du système de modal
 
 # shinygouv 0.0.1
 
