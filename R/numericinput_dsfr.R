@@ -3,6 +3,13 @@
 #' numericInput_dsfr
 #'
 #'
+#' @param inputId inputId
+#' @param label label
+#' @param value  valeur par défaut
+#' @param min valeur minimale
+#' @param max valeur maximale
+#' @param step pas utilisé entre 2 valeurs
+#'
 #' @return html
 #'
 #' @export

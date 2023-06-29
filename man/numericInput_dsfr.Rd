@@ -13,6 +13,19 @@ numericInput_dsfr(
   step = NA
 )
 }
+\arguments{
+\item{inputId}{inputId}
+
+\item{label}{label}
+
+\item{value}{valeur par défaut}
+
+\item{min}{valeur minimale}
+
+\item{max}{valeur maximale}
+
+\item{step}{pas utilisé entre 2 valeurs}
+}
 \value{
 html
 }

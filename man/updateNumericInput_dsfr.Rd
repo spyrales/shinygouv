@@ -15,15 +15,19 @@ updateNumericInput_dsfr(
 )
 }
 \arguments{
-\item{inputId}{id de l'input}
+\item{inputId}{inputId}
 
-\item{label}{label du bouton}
+\item{label}{label}
 
-\item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
+\item{value}{valeur par défaut}
 
-\item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
+\item{min}{valeur minimale}
 
-\item{selected}{Element selectionné}
+\item{max}{valeur maximale}
+
+\item{step}{pas utilisé entre 2 valeurs}
+
+\item{session}{session shiny}
 }
 \value{
 html
@@ -101,10 +105,8 @@ if (interactive()) {
       updateNumericInput_dsfr(
         session = session,
         inputId = "mynumericinput",
-        value = round(
-          runif(n = 1, min = 0, max = 1000)
+        value = sample(1:1000, size = 1)
         )
-      )
     })
 
     observeEvent(input$updateMin, {
@@ -127,7 +129,7 @@ if (interactive()) {
       updateNumericInput_dsfr(
         session = session,
         inputId = "mynumericinput",
-        step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
+        step = sample(seq(0.1, 1, by = .1), size = 1)
       )
     })
   }
