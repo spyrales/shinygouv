@@ -75,7 +75,7 @@ updateSelectInput_dsfr <- function(
 
   updateSelectInput(
     session = session,
-    inputId = inputId,
+    inputId = ns(inputId),
     label = label,
     choices = choices,
     selected = selected

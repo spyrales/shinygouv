@@ -32,32 +32,31 @@ updateRadioButtons_dsfr
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {
-  ui <- fluidPage_dsfr(
-    radioButtons_dsfr(
+ui <- fluidPage_dsfr(
+  radioButtons_dsfr(inputId = "inRadioButtons", 
+                    label = "Input radio buttons",
+                    choices = c("Item A","Item B", "Item C")),
+  actionButton_dsfr("go","Change")
+)
+
+server <- function(input, output, session) {
+  
+  observeEvent(input$go,{
+    updateRadioButtons_dsfr(
+      session = session, 
       inputId = "inRadioButtons",
-      label = "Input radio buttons",
-      choices = c("Item A", "Item B", "Item C")
-    ),
-    actionButton_dsfr("go", "Change")
-  )
+      label = "Un nouveau label",
+      choices = c("A" = "a"),
+      selected = "a"
+    )
+  })
+  
+  observeEvent(input$inRadioButtons,{
+    message(input$inRadioButtons)
+  })
+}
 
-  server <- function(input, output, session) {
-    observeEvent(input$go, {
-      updateRadioButtons_dsfr(
-        session = session,
-        inputId = "inRadioButtons",
-        label = "Un nouveau label",
-        choices = c("A" = "a"),
-        selected = "a"
-      )
-    })
-
-    observeEvent(input$inRadioButtons, {
-      message(input$inRadioButtons)
-    })
-  }
-
-  shinyApp(ui, server)
+shinyApp(ui, server)
 }
 
 }

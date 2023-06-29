@@ -12,7 +12,7 @@ app_server <- function(input, output, session) {
   })
 
   output$output2 <- renderText({
-    paste("Esp\u00E8ce :", input$espece)
+    paste("Esp\u00e8ce :", input$espece)
   })
 
   observeEvent(input$show_modal, {
@@ -32,7 +32,7 @@ app_server <- function(input, output, session) {
   })
 
   observeEvent(input$espece, {
-    message("je change d'espece ", input$espece)
+    message("je change d\'espece ", input$espece)
   })
 
   observeEvent(
@@ -40,7 +40,7 @@ app_server <- function(input, output, session) {
     {
       withSpinner_dsfr(
         expr = {
-          message("Je vais m'afficher pendant 5 secondes")
+          message("Je vais m\'afficher pendant 5 secondes")
           Sys.sleep(5)
         }
       )
@@ -51,7 +51,7 @@ app_server <- function(input, output, session) {
     paste("Clics dans le modal :", input$show_modal_btn)
   })
 
-  observeEvent(input$update, {
+  observeEvent(input$updateselectinput, {
     updateSelectInput_dsfr(
       inputId = "selectinput",
       label = paste(sample(letters, 10), collapse = "")
@@ -62,7 +62,7 @@ app_server <- function(input, output, session) {
     choices = LETTERS[1:10]
   )
 
-  observeEvent(input$update2, {
+  observeEvent(input$updateselectinput2, {
     r$choices <- sample(c(LETTERS[1:10], letters[1:10]), 10)
     updateSelectInput_dsfr(
       inputId = "selectinput",
@@ -70,10 +70,32 @@ app_server <- function(input, output, session) {
     )
   })
 
-  observeEvent(input$update3, {
+  observeEvent(input$updateselectinput3, {
     updateSelectInput_dsfr(
       inputId = "selectinput",
       selected = sample(r$choices, 1)
     )
   })
+
+
+  observeEvent(input$toggleswitch, {
+    message(input$toggleswitch)
+    message("Vous avez activ\u00e9 le toggle switch")
+  })
+
+  output$toggleswitchvalue <- renderText({
+    paste0("La valeur du toggleSwitch est ", input$toggleswitch)
+  })
+
+  observeEvent(input$updatetoggleswitch, {
+    updateToggleSwitch_dsfr(
+      session = session,
+      inputId = "toggleswitch",
+      value = sample(c(TRUE,FALSE), 1),
+      label = sample(r$choices, 1),
+      activate = sample(r$choices, 1),
+      deactivate = sample(r$choices, 1)
+    )
+  })
+
 }

@@ -1,3 +1,20 @@
+flat_actionButton.Rmd:
+  path: dev/flat_composants/flat_actionButton.Rmd
+  state: active
+  R:
+  - R/actionbutton_dsfr.R
+  - R/actionbutton_dsfr_template.R
+  tests:
+  - tests/testthat/test-actionbutton_dsfr_template.R
+  - tests/testthat/test-actionbutton_dsfr.R
+  vignettes: vignettes/actionbutton_dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_composants/flat_actionButton.Rmd
+    vignette_name: actionButton_dsfr
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
 flat_convert_to_dsfr.Rmd:
   path: dev/flat_convert_to_dsfr.Rmd
   state: active
@@ -58,6 +75,27 @@ flat_modal.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_radioButtons.Rmd:
+  path: dev/flat_composants/flat_radioButtons.Rmd
+  state: active
+  R:
+  - R/radiobuttons_dsfr.R
+  - R/radiobuttons_dsfr_template.R
+  - R/radiobuttons_unique_dsfr_template.R
+  - R/updateradiobuttons_dsfr.R
+  tests:
+  - tests/testthat/test-radiobuttons_unique_dsfr_template.R
+  - tests/testthat/test-radiobuttons_dsfr_template.R
+  - tests/testthat/test-radiobuttons_dsfr.R
+  - tests/testthat/test-updateradiobuttons_dsfr.R
+  vignettes: vignettes/radiobuttons_dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_composants/flat_radioButtons.Rmd
+    vignette_name: radioButtons_dsfr
+    open_vignette: false
+    check: true
+    document: true
+    overwrite: ask
 flat_selectInput.Rmd:
   path: dev/flat_composants/flat_selectInput.Rmd
   state: active
@@ -94,7 +132,7 @@ flat_toggleswitch.Rmd:
     flat_file: dev/flat_composants/flat_toggleswitch.Rmd
     vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
     document: true
     overwrite: ask
 flat_withSpinner.Rmd:
