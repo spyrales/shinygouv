@@ -1,7 +1,7 @@
 ---
 title: "flat_checkBoxInput.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -18,7 +18,7 @@ pkgload::load_all(export_all = TRUE)
 
 ```{r function-checkboxInput_unique_dsfr_template}
 #' checkboxInput_unique_dsfr_template
-#' 
+#'
 #' @param inputId id de l'input avec indexation
 #' @param value TRUE (coché) ou FALSE (non coché)
 #' @param label id de l'input sans indexation
@@ -26,17 +26,17 @@ pkgload::load_all(export_all = TRUE)
 #' @importFrom htmltools htmlTemplate
 #' @return html
 checkboxInput_dsfr_template <- function(inputId, label, value = FALSE){
-  
+
   if (isTRUE(value)){
     checked = 'checked = "checked"'
   } else {
     checked = NULL
   }
-  
+
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
-      "composant", 
+      "composant",
       "checkbox.html",
       package = "shinygouv"
     ),
@@ -49,23 +49,23 @@ checkboxInput_dsfr_template <- function(inputId, label, value = FALSE){
 
 ```{r tests-checkboxInput_dsfr_template}
 test_that("checkboxInput_dsfr_template works", {
-  expect_true(inherits(checkboxInput_dsfr_template, "function")) 
-  
+  expect_true(inherits(checkboxInput_dsfr_template, "function"))
+
       htmlfile <- readLines(
     system.file(
       get_dsfr_version(with_v = TRUE),
-      "composant", 
+      "composant",
       "checkbox.html",
       package = "shinygouv"
     )
   )
-  
+
   #' @description Comparer les parametres par rapport a ceux de la version precedente
-  
+
   purrr::walk(
     c(
-    "inputId", 
-    "label", 
+    "inputId",
+    "label",
     "checked"
       ),
     function(param){
@@ -73,18 +73,18 @@ test_that("checkboxInput_dsfr_template works", {
       expect_true(any(grepl(pattern = with_moustache, htmlfile)),
                   label = paste0("sans moustache '", param, "'"))
     })
-  
-  
+
+
   test_html <- checkboxInput_dsfr_template(
       inputId = "test-1",
       label = "Some Value",
       value = TRUE
     )
-  
+
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-  
-  
+
+
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
   purrr::walk(
     c(
@@ -93,24 +93,24 @@ test_that("checkboxInput_dsfr_template works", {
       checked = "checked"
      ),
     function(param){
-      expect_true(any(grepl(pattern = param, test_html)), 
+      expect_true(any(grepl(pattern = param, test_html)),
                   label = paste0("remplacement de '", param, "'"))
     })
-  
+
  ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
-      "snapshot", # pour passer les tests en production (apres le inflate), 
-      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
       "checkboxInput_dsfr_template.Rda")
   )
-  
+
   #' @description Verifie le HTML créé
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
   expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+               gsub("\\s|\\n", "", snapshot_html))
+
 
     # Si erreur au précedent test deux cas possibles :
     #
@@ -136,29 +136,29 @@ La case à cocher permet à l’utilisateur de sélectionner ou désélectionner
 
 ```{r function-checkboxInput_dsfr}
 #' checkboxInput_dsfr
-#' 
+#'
 #' La case à cocher permet à l’utilisateur de sélectionner ou désélectionner une seule option. Elle est utilisée pour effectuer un choix binaire.
-#' 
+#'
 #' @param inputId id de l'input avec indexation
 #' @param value TRUE (coché) ou FALSE (non coché)
 #' @param label id de l'input sans indexation
 #'
 #' @return html
-#' 
+#'
 #' @export
 #'
 #' @examples
-checkboxInput_dsfr <- function(inputId, 
-                                        label, 
+checkboxInput_dsfr <- function(inputId,
+                                        label,
                                         value = FALSE) {
-  
+
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.logical(value))
-  
-  checkboxInput_dsfr_template(inputId, 
-                                label = label, 
+
+  checkboxInput_dsfr_template(inputId,
+                                label = label,
                                 value = value) %>%
       parse_html()
 }
@@ -177,22 +177,22 @@ checkboxInput_dsfr(
 test_that("checkboxInput_dsfr works", {
   test_html <- checkboxInput_dsfr(
   inputId = 'test', label = 'test', value = FALSE)
-  
+
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
-  
-  
+
+
    ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
-      "snapshot", # pour passer les tests en production (apres le inflate), 
-      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
       "checkboxInput_dsfr.Rda")
   )
-  
+
   #' @description Verifie le HTML créé
   expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
+               gsub("\\s|\\n", "", snapshot_html))
 
     # Si erreur au précedent test deux cas possible :
     #
@@ -212,18 +212,18 @@ test_that("checkboxInput_dsfr works", {
 test_that("checkboxInput_dsfr", {
   test <- checkboxInput_dsfr(
   inputId = 'test', label = 'test', value = FALSE)
-  
+
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag")
-  
+
   expect_error(
     checkboxInput_dsfr(inputId = "test", label = 'test', value = "char")
   )
-  
+
   expect_error(
     checkboxInput_dsfr( inputId = 'test', label = 11, value = FALSE)
   )
-  
+
     expect_error(
     checkboxInput_dsfr( inputId = 11, label = 'test', value = FALSE)
   )
@@ -235,30 +235,30 @@ test_that("checkboxInput_dsfr", {
 
 ```{r function-updateCheckboxInput_dsfr}
 #' updateCheckboxInput_dsfr
-#' 
+#'
 #' Change la valeur d'un checkboxInput
-#' 
+#'
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param value TRUE (coché) ou FALSE (non coché)
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
-#' 
+#'
 #' @importFrom shiny updateCheckboxInput
 #' @return html
-#' 
+#'
 #' @export
 updateCheckboxInput_dsfr <- function(inputId,
                                     label = NULL,
                                     value = NULL,
                                     session = shiny::getDefaultReactiveDomain()) {
-  
+
   ns <- session$ns
-  
-  updateCheckboxInput(session = session, 
-                      inputId = ns(inputId), 
-                      label = label, 
+
+  updateCheckboxInput(session = session,
+                      inputId = ns(inputId),
+                      label = label,
                       value = value)
-  
+
 }
 ```
 
@@ -270,16 +270,16 @@ ui <- fluidPage_dsfr(
   actionButton_dsfr("go","Change")
 )
 server <- function(input, output, session) {
-  
+
   observeEvent(input$go,{
     updateCheckboxInput_dsfr(
-      session = session, 
+      session = session,
       inputId = "inCheckboxInput",
       label = "Un nouveau label",
       value = TRUE
     )
   })
-  
+
   observeEvent(input$inCheckboxInput,{
     message(input$inCheckboxInput)
   })
@@ -291,15 +291,15 @@ shinyApp(ui, server)
 
 ```{r tests-updateCheckboxInput_dsfr}
 test_that("updateCheckboxInput_dsfr works", {
-  expect_true(inherits(updateCheckboxInput_dsfr, "function")) 
+  expect_true(inherits(updateCheckboxInput_dsfr, "function"))
   sessA <- createModuleSession("modA")
   updateCheckboxInput_dsfr(
-      session = sessA, 
+      session = sessA,
       inputId = "inCheckboxInput",
       label = "Un nouveau label",
       value = TRUE
     )
-  
+
     resultA <- sessA$lastInputMessage
     # inputId
     expect_equal("modA-inCheckboxInput", resultA$id)
@@ -316,16 +316,16 @@ test_that("updateCheckboxInput_dsfr works", {
 spec_infalte <- function(){
   nom <- "checkboxInput dsfr"
   fusen::inflate(
-    flat_file = "dev/flat_composants/flat_checkBoxInput.Rmd", 
+    flat_file = "dev/flat_composants/flat_checkBoxInput.Rmd",
     vignette_name = NA)
-  
+
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")
   file.copy(
     file.path("vignettes", nom_file),
     file.path("dev","documentation", nom_file)
     )
-  
+
   unlink(file.path("vignettes", nom_file))
 }
 spec_infalte()
