@@ -9,6 +9,7 @@
 ## feat
 
 + implémentation du système de modal
++ implémentation de la case à cocher unique
 
 # shinygouv 0.0.1
 
