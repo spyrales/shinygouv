@@ -1,3 +1,20 @@
+flat_actionButton.Rmd:
+  path: dev/flat_composants/flat_actionButton.Rmd
+  state: active
+  R:
+  - R/actionbutton_dsfr.R
+  - R/actionbutton_dsfr_template.R
+  tests:
+  - tests/testthat/test-actionbutton_dsfr_template.R
+  - tests/testthat/test-actionbutton_dsfr.R
+  vignettes: vignettes/actionbutton_dsfr.Rmd
+  inflate:
+    flat_file: dev/flat_composants/flat_actionButton.Rmd
+    vignette_name: actionButton_dsfr
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
 flat_convert_to_dsfr.Rmd:
   path: dev/flat_convert_to_dsfr.Rmd
   state: active
