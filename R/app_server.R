@@ -105,7 +105,7 @@ app_server <- function(input, output, session) {
     updateCheckboxInput_dsfr(
       session = session,
       inputId = "mycheckboxInput",
-      label = "Un nouveau label"
+      label = sample(r$choices, 1)
     )
   })
 
@@ -113,7 +113,7 @@ app_server <- function(input, output, session) {
     updateCheckboxInput_dsfr(
       session = session,
       inputId = "mycheckboxInput",
-      value = TRUE
+      value = !input$mycheckboxInput,
     )
   })
 
