@@ -191,11 +191,9 @@ app_ui <- function(request) {
               activate = "Activ\u00e9",
               deactivate = "D\u00e9sactiv\u00e9"
             ),
-
             verbatimTextOutput(
               outputId = "toggleswitchvalue"
             ),
-
             actionButton_dsfr(
               inputId = "updatetoggleswitch",
               label = "Mettre \u00e0 jour le toggle switch"
@@ -237,6 +235,47 @@ app_ui <- function(request) {
             actionButton_dsfr(
               inputId = "updateval_checkboxinput",
               label = "Mettre \u00e0 jour la value "
+            )
+          )
+        )
+      ),
+      # Seventh tab
+      navbarPanel_dsfr(
+        title = "checkboxGroupInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo checkboxGroupInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            3,
+            checkboxGroupInput_dsfr(
+              "mycheckboxgroupInput",
+              "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
+              )
+            )
+          )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "updatelab_checkboxGroupInput",
+              label = "Mettre \u00e0 jour le label"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "updateval_checkboxGroupInput",
+              label = "Mettre \u00e0 jour les choix "
             )
           )
         )

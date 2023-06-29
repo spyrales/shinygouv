@@ -8,70 +8,69 @@
 #' @noRd
 #' @examples
 #' if (interactive()) {
-#'     library(shiny)
-#'     ui <- fluidPage_dsfr(
-#'         toggleSwitch_dsfr(inputId = "test", label = "test"),
-#'         actionButton_dsfr("update", "Update toggle")
-#'     )
-#' 
-#'     server <- function(input, output, session) {
-#'         observeEvent(input$test, {
-#'             message(input$test)
-#'             message("coucou")
-#'         })
-#' 
-#'         observeEvent(input$update, {
-#'             updateToggleSwitch_dsfr(
-#'                 session = session,
-#'                 inputId = "test",
-#'                 value = TRUE,
-#'                 label = "Update",
-#'                 activate = "test",
-#'                 deactivate = ""
-#'             )
-#'         })
-#'     }
-#' 
-#'     shinyApp(ui, server)
+#'   library(shiny)
+#'   ui <- fluidPage_dsfr(
+#'     toggleSwitch_dsfr(inputId = "test", label = "test"),
+#'     actionButton_dsfr("update", "Update toggle")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     observeEvent(input$test, {
+#'       message(input$test)
+#'       message("coucou")
+#'     })
+#'
+#'     observeEvent(input$update, {
+#'       updateToggleSwitch_dsfr(
+#'         session = session,
+#'         inputId = "test",
+#'         value = TRUE,
+#'         label = "Update",
+#'         activate = "test",
+#'         deactivate = ""
+#'       )
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
 #' }
 updateToggleSwitch_dsfr <- function(
-    session,
-    inputId,
-    label = NULL,
-    value = NULL,
-    activate = NULL,
-    deactivate = NULL
-
+  session,
+  inputId,
+  label = NULL,
+  value = NULL,
+  activate = NULL,
+  deactivate = NULL
     ) {
-    shiny:::validate_session_object(session)
-  
-    ns <- session$ns
-  
-    message <- utils::getFromNamespace("dropNulls", "shiny")(
-        list(
-            label = label,
-            value = value
-        )
-    )
+  shiny:::validate_session_object(session)
 
-    session$sendInputMessage(
-        ns(inputId),
-        message
-    )
+  ns <- session$ns
 
-    session$sendCustomMessage(
-        "activate_toggle",
-        list(
-            inputId = ns(inputId),
-            activate = activate
-        )
+  message <- utils::getFromNamespace("dropNulls", "shiny")(
+    list(
+      label = label,
+      value = value
     )
+  )
 
-    session$sendCustomMessage(
-        "deactivate_toggle",
-        list(
-            inputId = ns(inputId),
-            deactivate = deactivate
-        )
+  session$sendInputMessage(
+    ns(inputId),
+    message
+  )
+
+  session$sendCustomMessage(
+    "activate_toggle",
+    list(
+      inputId = ns(inputId),
+      activate = activate
     )
+  )
+
+  session$sendCustomMessage(
+    "deactivate_toggle",
+    list(
+      inputId = ns(inputId),
+      deactivate = deactivate
+    )
+  )
 }

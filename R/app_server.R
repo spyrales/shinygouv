@@ -91,7 +91,7 @@ app_server <- function(input, output, session) {
     updateToggleSwitch_dsfr(
       session = session,
       inputId = "toggleswitch",
-      value = sample(c(TRUE,FALSE), 1),
+      value = sample(c(TRUE, FALSE), 1),
       label = sample(r$choices, 1),
       activate = sample(r$choices, 1),
       deactivate = sample(r$choices, 1)
@@ -117,4 +117,24 @@ app_server <- function(input, output, session) {
     )
   })
 
+  ## checkboxgroupinput
+
+  # TODO quand l'update pourra changer uniquement le label:
+  # observeEvent(input$updatelab_checkboxGroupInput, {
+  #   updateCheckboxGroupInput_dsfr(
+  #     session = session,
+  #     inputId = "mycheckboxgroupInput",
+  #     label = sample(r$choices, 1)
+  #   )
+  #
+  # })
+
+  # TODO quand l'update pourra changer uniquement les choices:
+  # observeEvent(input$updateval_checkboxGroupInput, {
+  #   updateCheckboxGroupInput_dsfr(
+  #     session = session,
+  #     inputId = "mycheckboxgroupInput",
+  #     choices = sample(r$choices,3),
+  #   )
+  # })
 }
