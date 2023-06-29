@@ -6,23 +6,22 @@
 #' @return html
 #' @noRd
 toggleSwitch_dsfr_template <- function(
-    inputId,
-    label,
-    activate,
-    deactivate # ajouter vos params
+  inputId,
+  label,
+  activate,
+  deactivate # ajouter vos params
     ) {
-
-    htmltools::htmlTemplate(
-        filename = system.file(
-            get_dsfr_version(with_v = TRUE),
-            "composant",
-            "toggleswitch.html",
-            package = "shinygouv"
-        ),
-        inputId = inputId,
-        label = label,
-        activate = activate,
-        deactivate = deactivate
-        # ajouter vos params
-    )
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "toggleswitch.html",
+      package = "shinygouv"
+    ),
+    inputId = inputId,
+    label = label,
+    activate = activate,
+    deactivate = deactivate
+    # ajouter vos params
+  )
 }

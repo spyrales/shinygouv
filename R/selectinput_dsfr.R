@@ -28,30 +28,28 @@
 #'     title = "Exemple",
 #'     fluidRow_dsfr(
 #'       # sans vecteur nommé
-#' selectInput_dsfr(
-#'   inputId = "myselectInput",
-#'   label = "Mon label",
-#'   choices = c(
-#'     "cyl",
-#'     "am",
-#'     "gear"
-#'   )
-#' ),
-#' fluidRow_dsfr(
-#'   # avec un vecteur nommé et une valeur sélectionnée
-#' selectInput_dsfr(
-#'   inputId = "myselectInput2",
-#'   label = "Mon label2",
-#'   choices = c(
-#'     "Cylinders" = "cyl",
-#'     "Transmission" = "am",
-#'     "Gears" = "gear"
-#'   ),
-#'   selected = "gear"
-#' )
-#'   
-#' )
-#'
+#'       selectInput_dsfr(
+#'         inputId = "myselectInput",
+#'         label = "Mon label",
+#'         choices = c(
+#'           "cyl",
+#'           "am",
+#'           "gear"
+#'         )
+#'       ),
+#'       fluidRow_dsfr(
+#'         # avec un vecteur nommé et une valeur sélectionnée
+#'         selectInput_dsfr(
+#'           inputId = "myselectInput2",
+#'           label = "Mon label2",
+#'           choices = c(
+#'             "Cylinders" = "cyl",
+#'             "Transmission" = "am",
+#'             "Gears" = "gear"
+#'           ),
+#'           selected = "gear"
+#'         )
+#'       )
 #'     )
 #'   )
 #'   server <- function(input, output, session) {

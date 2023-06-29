@@ -12,9 +12,14 @@
 #' @return html
 #' @noRd
 header_dsfr_template <- function(
- intitule, officiel, url, titre, nom_site_service, baseline, class
-  ){
-
+  intitule,
+  officiel,
+  url,
+  titre,
+  nom_site_service,
+  baseline,
+  class
+    ) {
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
@@ -29,6 +34,5 @@ header_dsfr_template <- function(
     titre = titre,
     nom_site_service = nom_site_service,
     baseline = baseline
-    )
+  )
 }
-

@@ -36,8 +36,8 @@ html
 header_dsfr
 }
 \examples{
- header_dsfr(
-     intitule = "Prefet de",
-     officiel = "Bretagne",
-  )
+header_dsfr(
+  intitule = "Prefet de",
+  officiel = "Bretagne",
+)
 }

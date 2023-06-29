@@ -18,45 +18,45 @@ html
 Permet d'afficher un spinner lors d'un calcul prenant du temps, s'inspire du fonctionnement de [shiny::withProgress()]
 }
 \examples{
-if(interactive()) {
-library(shiny)
-library(shinygouv)
+if (interactive()) {
+  library(shiny)
+  library(shinygouv)
 
-ui <- fluidPage_dsfr(
-  header = header_dsfr(
-    intitule = "Intitule",
-    officiel = "Officiel",
-    nom_site_service = "Nom du site / service",
-    baseline = "baseline - precisions sur l organisation",
-    class = "fr-m-1w"
-  ),
-  title = "Exemple",
-  fluidRow_dsfr(
-    column_dsfr(
-      0,
-      shiny::p("Exemple colonne")
+  ui <- fluidPage_dsfr(
+    header = header_dsfr(
+      intitule = "Intitule",
+      officiel = "Officiel",
+      nom_site_service = "Nom du site / service",
+      baseline = "baseline - precisions sur l organisation",
+      class = "fr-m-1w"
     ),
-    actionButton_dsfr(
-      inputId = "showspinner",
-      label = "Afficher le spinner pendant 5 secondes"
+    title = "Exemple",
+    fluidRow_dsfr(
+      column_dsfr(
+        0,
+        shiny::p("Exemple colonne")
+      ),
+      actionButton_dsfr(
+        inputId = "showspinner",
+        label = "Afficher le spinner pendant 5 secondes"
+      )
     )
   )
-)
 
-server <- function(input, output, session) {
-  observeEvent(
-    input$showspinner,
-    {
-      withSpinner_dsfr(
-        expr = {
-          message("Je vais m'afficher pendant 5 secondes")
-          Sys.sleep(5)
-        }
-      )
-    }
-  )
-}
+  server <- function(input, output, session) {
+    observeEvent(
+      input$showspinner,
+      {
+        withSpinner_dsfr(
+          expr = {
+            message("Je vais m'afficher pendant 5 secondes")
+            Sys.sleep(5)
+          }
+        )
+      }
+    )
+  }
 
-shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 }
