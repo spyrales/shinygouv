@@ -44,6 +44,9 @@ updateToggleSwitch_dsfr <- function(
 
     ) {
     shiny:::validate_session_object(session)
+  
+    ns <- session$ns
+  
     message <- utils::getFromNamespace("dropNulls", "shiny")(
         list(
             label = label,
@@ -52,14 +55,14 @@ updateToggleSwitch_dsfr <- function(
     )
 
     session$sendInputMessage(
-        inputId,
+        ns(inputId),
         message
     )
 
     session$sendCustomMessage(
         "activate_toggle",
         list(
-            inputId = inputId,
+            inputId = ns(inputId),
             activate = activate
         )
     )
@@ -67,7 +70,7 @@ updateToggleSwitch_dsfr <- function(
     session$sendCustomMessage(
         "deactivate_toggle",
         list(
-            inputId = inputId,
+            inputId = ns(inputId),
             deactivate = deactivate
         )
     )

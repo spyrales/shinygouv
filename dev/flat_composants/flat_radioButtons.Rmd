@@ -653,7 +653,7 @@ updateRadioButtons_dsfr <- function(inputId,
     )
   )
 
-  session$sendInputMessage(inputId, message)
+  session$sendInputMessage(ns(inputId), message)
 }
     
 
@@ -707,7 +707,7 @@ test_that("updateRadioButtons_dsfr works", {
   
     resultA <- sessA$lastInputMessage
     # inputId
-    expect_equal("inRadioButtons", resultA$id)
+    expect_equal("modA-inRadioButtons", resultA$id)
     # label
     expect_equal("Un nouveau label", resultA$message$label)
     # HTML content

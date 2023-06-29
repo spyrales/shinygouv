@@ -15,7 +15,7 @@ test_that("updateSelectInput_dsfr works", {
 
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("variable", resultA$id)
+  expect_equal("modA-variable", resultA$id)
   # label
   expect_equal("Nouveau label", resultA$message$label)
   # HTML content
