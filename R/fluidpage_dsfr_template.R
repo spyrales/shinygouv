@@ -9,11 +9,10 @@
 #' @return html
 #' @noRd
 fluidPage_dsfr_template <- function(
-    header,
-    title,
-    body
+  header,
+  title,
+  body
     ) {
-
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),

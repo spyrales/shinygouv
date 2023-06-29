@@ -8,12 +8,15 @@
 
 ## feat
 
+
 * Ajout de `modalDialog_dsfr()`
 * Ajout de `withSpinner_dsfr()`  
 * Ajout de `selectInput_dsfr()`
 * Ajout de `toggleSwitch_dsfr()`
+* Ajout de `checkBoxInput_dsfr()`
 
 * Suivi de l'implémentation d'un nouveau composant (ici `toggleSwitch_dsfr()`) à partir d'un [commit](https://github.com/spyrales/shinygouv/pull/82/commits/ed19c583c45aa04d9ebd51b1984851891e360b98)
+
 
 # shinygouv 0.0.1
 

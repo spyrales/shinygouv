@@ -14,14 +14,17 @@ test_that("fluidRow_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "fluidRow_dsfr.Rda")
+      "fluidRow_dsfr.Rda"
+    )
   )
 
   #' @description Verifer que le HTML est correct en sortie
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html))
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
 
   # Si erreur au précedent test deux cas possible :
   #
@@ -36,5 +39,4 @@ test_that("fluidRow_dsfr works", {
   #                          "fluidRow_dsfr.Rda"
   #                          )
   #         )
-
 })
