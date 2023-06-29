@@ -105,7 +105,7 @@ app_ui <- function(request) {
         fluidRow_dsfr(
           column_dsfr(
             12,
-            h3("Demo showspinner()"),
+            h3("Demo withSpinner_dsfr()"),
             # Adding space to the column
             # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
             extra_class = "fr-my-6w"
@@ -120,7 +120,7 @@ app_ui <- function(request) {
         )
       ),
 
-      # Fourth tab
+      # Fifth tab
       navbarPanel_dsfr(
         title = "selectInput_dsfr()",
         fluidRow_dsfr(
@@ -149,7 +149,7 @@ app_ui <- function(request) {
             4,
             extra_class = "fr-my-6w",
             actionButton_dsfr(
-              inputId = "update",
+              inputId = "updateselectinput",
               label = "Mettre \u00e0 jour le label"
             )
           ),
@@ -157,7 +157,7 @@ app_ui <- function(request) {
             4,
             extra_class = "fr-my-6w",
             actionButton_dsfr(
-              inputId = "update2",
+              inputId = "updateselectinput2",
               label = "Mettre \u00e0 jour les choix"
             )
           ),
@@ -165,8 +165,39 @@ app_ui <- function(request) {
             4,
             extra_class = "fr-my-6w",
             actionButton_dsfr(
-              inputId = "update3",
+              inputId = "updateselectinput3",
               label = "Mettre \u00e0 jour l\'option s\u00e9lectionn\u00e9e"
+            )
+          )
+        )
+      ),
+      # Sixth tab
+      navbarPanel_dsfr(
+        title = "toggleSwitch_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo toggleSwitch_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
+            toggleSwitch_dsfr(
+              inputId = "toggleswitch",
+              label = "Toggle Switch",
+              activate = "Activ\u00e9",
+              deactivate = "D\u00e9sactiv\u00e9"
+              ),
+
+            verbatimTextOutput(
+              outputId = "toggleswitchvalue"
+            ),
+
+            actionButton_dsfr(
+              inputId = "updatetoggleswitch",
+              label = "Mettre \u00e0 jour le toggle switch"
             )
           )
         )
