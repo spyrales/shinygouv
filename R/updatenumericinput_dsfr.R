@@ -2,13 +2,15 @@
 
 #' updateSelectInput_dsfr
 #'
-#' @param inputId id de l'input
-#' @param label label du bouton
-#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param selected Element selectionné
-#' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' @param inputId inputId
+#' @param label label
+#' @param value  valeur par défaut
+#' @param min valeur minimale
+#' @param max valeur maximale
+#' @param step pas utilisé entre 2 valeurs
+#' @param session session shiny
 #'
-#' @importFrom shiny updateSelectInput
+#' @importFrom shiny updateNumericInput
 #' @return html
 #'
 #' @export
@@ -82,10 +84,8 @@
 #'       updateNumericInput_dsfr(
 #'         session = session,
 #'         inputId = "mynumericinput",
-#'         value = round(
-#'           runif(n = 1, min = 0, max = 1000)
+#'         value = sample(1:1000, size = 1)
 #'         )
-#'       )
 #'     })
 #'
 #'     observeEvent(input$updateMin, {
@@ -108,7 +108,7 @@
 #'       updateNumericInput_dsfr(
 #'         session = session,
 #'         inputId = "mynumericinput",
-#'         step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
+#'         step = sample(seq(0.1, 1, by = .1), size = 1)
 #'       )
 #'     })
 #'   }

@@ -148,9 +148,7 @@ app_server <- function(input, output, session) {
     updateNumericInput_dsfr(
       session = session,
       inputId = "mynumericinput",
-      value = round(
-        runif(n = 1, min = 0, max = 1000)
-      )
+      value = sample(1:1000, size = 1)
     )
   })
 
@@ -174,7 +172,7 @@ app_server <- function(input, output, session) {
     updateNumericInput_dsfr(
       session = session,
       inputId = "mynumericinput",
-      step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
+      step = sample(seq(0.1, 1, by = .1), size = 1)
     )
   })
 }

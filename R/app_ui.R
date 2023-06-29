@@ -277,11 +277,11 @@ app_ui <- function(request) {
             ),
             actionButton_dsfr(
               inputId = "updateMin",
-              label = "updateMin à la valeur en cours -10"
+              label = "updateMin \u00e0 la valeur en cours -10"
             ),
             actionButton_dsfr(
               inputId = "updateMax",
-              label = "updateMax à la valeur en cours +10"
+              label = "updateMax \u00e0 la valeur en cours +10"
             ),
             actionButton_dsfr(
               inputId = "updateStep",
