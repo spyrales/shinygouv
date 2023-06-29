@@ -191,11 +191,9 @@ app_ui <- function(request) {
               activate = "Activ\u00e9",
               deactivate = "D\u00e9sactiv\u00e9"
             ),
-
             verbatimTextOutput(
               outputId = "toggleswitchvalue"
             ),
-
             actionButton_dsfr(
               inputId = "updatetoggleswitch",
               label = "Mettre \u00e0 jour le toggle switch"
@@ -237,6 +235,51 @@ app_ui <- function(request) {
             actionButton_dsfr(
               inputId = "updateval_checkboxinput",
               label = "Mettre \u00e0 jour la value "
+            )
+          )
+        )
+      ),
+      # Sixth tab
+      navbarPanel_dsfr(
+        title = "tabSetPanel_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo checkboxInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
+            tabSetPanel_dsfr(
+              "coucou",
+              tabPanel_dsfr(
+                id = "tab1",
+                title = "Une prems tab",
+                content = tagList(
+                  h3("Coucou"),
+                  numericInput(
+                    inputId = "tabpaneln",
+                    label = "Nombre de points sur le graph",
+                    value = 100
+                  ),
+                  plotOutput("plot")
+                )
+              ),
+              tabPanel_dsfr(
+                id = "tab2",
+                title = "Une deuxieme tab",
+                content = tagList(
+                  h3("Salut"),
+                  numericInput(
+                    inputId = "tabpaneln2",
+                    label = "Nombre de points sur le plot",
+                    value = 10
+                  ),
+                  plotOutput("plot2")
+                )
+              )
             )
           )
         )

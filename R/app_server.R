@@ -91,7 +91,7 @@ app_server <- function(input, output, session) {
     updateToggleSwitch_dsfr(
       session = session,
       inputId = "toggleswitch",
-      value = sample(c(TRUE,FALSE), 1),
+      value = sample(c(TRUE, FALSE), 1),
       label = sample(r$choices, 1),
       activate = sample(r$choices, 1),
       deactivate = sample(r$choices, 1)
@@ -117,4 +117,12 @@ app_server <- function(input, output, session) {
     )
   })
 
+  output$plot <- renderPlot({
+    cli::cat_bullet("plot1")
+    plot(head(iris, input$tabpaneln))
+  })
+  output$plot2 <- renderPlot({
+    cli::cat_bullet("plot2")
+    plot(head(cars, input$tabpaneln2))
+  })
 }

@@ -1,0 +1,270 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# tabSetPanel_dsfr_template
+
+```{r function-tabSetPanel_dsfr_template}
+#' tabSetPanel_dsfr_template
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+#' @noRd
+tabSetPanel_dsfr_template <- function(
+  li = NULL,
+  divs = NULL
+    ) {
+  # Le tabset complet
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "tabsetPanel.html",
+      package = "shinygouv"
+    ),
+    li = li,
+    divs = divs
+  )
+}
+
+#' @noRd
+panel_one_li <- function(
+  id,
+  content
+    ) {
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "tabsetHeader.html",
+      package = "shinygouv"
+    ),
+    id = id,
+    name = content
+  )
+}
+#' @noRd
+panel_one_body <- function(
+    id,
+  content
+) {
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "tabBody.html",
+      package = "shinygouv"
+    ),
+    id = id,
+    content = content
+  )
+}
+tabSetPanel_dsfr_template(
+  li = panel_one_li(
+    "tab-1",
+    "Tab 1"
+  ),
+  divs = panel_one_body(
+    "tab-1",
+    "Tab 1"
+  )
+)
+
+```
+
+
+```{r tests-tabSetPanel_dsfr_template}
+test_that("tabSetPanel_dsfr_template works", {
+  expect_true(inherits(tabSetPanel_dsfr_template, "function"))
+
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "tabsetPanel.html",
+      package = "shinygouv"
+    )
+  )
+
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+
+  nms <- names(
+    as.list(
+      args(tabSetPanel_dsfr_template)
+    )
+  )
+  purrr::walk(
+    nms[nms != ""],
+    function(param) {
+      with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
+
+
+    test_html <- tabSetPanel_dsfr_template(
+      li = panel_one_li(
+        "tab-1",
+        "Tab 1"
+      ),
+      divs = panel_one_body(
+        "tab-1",
+        "Tab 1"
+      )
+    )
+
+
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+
+})
+```
+
+
+# tabSetPanel_dsfr
+
+```{r function-tabSetPanel_dsfr}
+#' tabSetPanel_dsfr
+#'
+#' @param id id du tabset/du tabPanel
+#' @param ... liste de tabPanel_dsfr
+#' @param title titre du tabset
+#' @param content contenu du tabset
+#'
+#' @return html
+#'
+#' @export
+#' @rdname tabPanel
+#'
+#' @examples
+tabSetPanel_dsfr <- function(
+  id,
+  ...
+  ) {
+    if (missing(id)){
+      stop("id is required")
+    }
+    contenu <- list(...)
+    tabSetPanel_dsfr_template(
+      li = purrr::map(contenu, ~ {
+      panel_one_li(
+        .x$id,
+        .x$title
+      )
+    }),
+      divs = purrr::map(contenu, ~ {
+        panel_one_body(
+          id = .x$id,
+          content = .x$content
+        )
+      })
+    )
+
+}
+
+#' @export
+#' @rdname tabPanel
+tabPanel_dsfr <- function(
+  id,
+  title,
+  content
+){
+  list(
+    id = id,
+    title = title,
+    content = content
+  )
+}
+
+```
+
+```{r examples-tabSetPanel_dsfr}
+if (interactive()){
+  library(shiny)
+  shinyApp(
+    ui = fluidPage_dsfr(
+      tabSetPanel_dsfr(
+        "coucou",
+        tabPanel_dsfr(
+          id = "tab1",
+          title = "Une prems tab",
+          content = tagList(
+            h3("Coucou"),
+            plotOutput("plot")
+          )
+        ),
+        tabPanel_dsfr(
+          id = "tab2",
+          title = "Une deuxieme tab",
+          content = tagList(
+            h3("Salut"),
+            plotOutput("plot2")
+          )
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$plot <- renderPlot({
+        plot(cars)
+      })
+      output$plot2 <- renderPlot({
+        plot(iris)
+      })
+    }
+  )
+}
+```
+
+```{r tests-tabSetPanel_dsfr}
+test_that("tabSetPanel_dsfr works", {
+  test_html <- tabSetPanel_dsfr(
+    "coucou",
+    tabPanel_dsfr(
+      id = "tab1",
+      title = "Une prems tab",
+      content = tagList(
+        h3("Coucou"),
+        plotOutput("plot")
+      )
+    ),
+    tabPanel_dsfr(
+      id = "tab2",
+      title = "Une deuxieme tab",
+      content = tagList(
+        h3("Salut"),
+        plotOutput("plot2")
+      )
+    )
+  )
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag.list")
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_panels.Rmd",
+  vignette_name = NA
+)
+```
+
