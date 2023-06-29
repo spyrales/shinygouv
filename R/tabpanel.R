@@ -13,7 +13,7 @@
 #' @rdname tabPanel
 #'
 #' @examples
-#' if (interactive()){
+#' if (interactive()) {
 #'   library(shiny)
 #'   shinyApp(
 #'     ui = fluidPage_dsfr(
@@ -50,26 +50,25 @@
 tabSetPanel_dsfr <- function(
   id,
   ...
-  ) {
-    if (missing(id)){
-      stop("id is required")
-    }
-    contenu <- list(...)
-    tabSetPanel_dsfr_template(
-      li = purrr::map(contenu, ~ {
+    ) {
+  if (missing(id)) {
+    stop("id is required")
+  }
+  contenu <- list(...)
+  tabSetPanel_dsfr_template(
+    li = purrr::map(contenu, ~ {
       panel_one_li(
         .x$id,
         .x$title
       )
     }),
-      divs = purrr::map(contenu, ~ {
-        panel_one_body(
-          id = .x$id,
-          content = .x$content
-        )
-      })
-    )
-
+    divs = purrr::map(contenu, ~ {
+      panel_one_body(
+        id = .x$id,
+        content = .x$content
+      )
+    })
+  )
 }
 
 #' @export
@@ -78,11 +77,10 @@ tabPanel_dsfr <- function(
   id,
   title,
   content
-){
+    ) {
   list(
     id = id,
     title = title,
     content = content
   )
 }
-

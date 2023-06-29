@@ -201,7 +201,6 @@ app_ui <- function(request) {
           )
         )
       ),
-
       # Sixth tab
       navbarPanel_dsfr(
         title = "checkboxInput_dsfr()",
@@ -235,6 +234,58 @@ app_ui <- function(request) {
             actionButton_dsfr(
               inputId = "updateval_checkboxinput",
               label = "Mettre \u00e0 jour la value "
+            )
+          )
+        )
+      ),
+
+      # Seventh tab
+      navbarPanel_dsfr(
+        title = "numericInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo numericInput_dsfr()"),
+            # Adding space to the column
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
+            numericInput_dsfr(
+              inputId = "mynumericinput",
+              label = "Numeric input",
+              value = 12,
+              min = 0,
+              max = NA,
+              step = 2
+            ),
+            verbatimTextOutput(
+              outputId = "numericinputvalue"
+            )
+          )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            actionButton_dsfr(
+              inputId = "updateLabel",
+              label = "updateLabel"
+            ),
+            actionButton_dsfr(
+              inputId = "updateValue",
+              label = "updateValue"
+            ),
+            actionButton_dsfr(
+              inputId = "updateMin",
+              label = "updateMin à la valeur en cours -10"
+            ),
+            actionButton_dsfr(
+              inputId = "updateMax",
+              label = "updateMax à la valeur en cours +10"
+            ),
+            actionButton_dsfr(
+              inputId = "updateStep",
+              label = "updateStep"
             )
           )
         )

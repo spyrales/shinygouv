@@ -40,9 +40,9 @@ panel_one_li <- function(
 }
 #' @noRd
 panel_one_body <- function(
-    id,
+  id,
   content
-) {
+    ) {
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
@@ -64,4 +64,3 @@ tabSetPanel_dsfr_template(
     "Tab 1"
   )
 )
-
