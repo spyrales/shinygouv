@@ -13,7 +13,8 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
     version = version,
     src = c(file = paste0("dsfr-v", version)),
     stylesheet = c(
-      "dist/dsfr.min.css"
+      "dist/dsfr.min.css",
+      "dist/utility/utility.min.css"
     ),
     script = list(
       list(type = "module", src = "dist/dsfr.module.min.js"),
