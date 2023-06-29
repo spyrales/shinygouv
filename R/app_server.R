@@ -91,11 +91,62 @@ app_server <- function(input, output, session) {
     updateToggleSwitch_dsfr(
       session = session,
       inputId = "toggleswitch",
-      value = sample(c(TRUE,FALSE), 1),
+      value = sample(c(TRUE, FALSE), 1),
       label = sample(r$choices, 1),
       activate = sample(r$choices, 1),
       deactivate = sample(r$choices, 1)
     )
   })
 
+
+  output$numericinputvalue <- renderText({
+    paste("La valeur de l'input est", input$mynumericinput)
+  })
+
+
+  observeEvent(input$mynumericinput, {
+    r$numeric_input_current_value <- input$mynumericinput
+  })
+
+  observeEvent(input$updateLabel, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      label = sample(LETTERS, 10)
+    )
+  })
+
+  observeEvent(input$updateValue, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      value = round(
+        runif(n = 1, min = 0, max = 1000)
+      )
+    )
+  })
+
+  observeEvent(input$updateMin, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      min = r$numeric_input_current_value - 10
+    )
+  })
+
+  observeEvent(input$updateMax, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      max = r$numeric_input_current_value + 10
+    )
+  })
+
+  observeEvent(input$updateStep, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
+    )
+  })
 }

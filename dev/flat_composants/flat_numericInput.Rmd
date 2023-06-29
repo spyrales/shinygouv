@@ -19,7 +19,7 @@ pkgload::load_all(export_all = TRUE)
     
 ```{r function-numericInput_dsfr_template}
 #' numericInput_dsfr_template
-#' 
+#'
 #' @importFrom htmltools htmlTemplate
 #' @return html
 #' @noRd
@@ -30,11 +30,7 @@ numericInput_dsfr_template <- function(
   min = NA,
   max = NA,
   step = NA
-  ){
-  
-  
-  
-  
+    ) {
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
@@ -48,16 +44,15 @@ numericInput_dsfr_template <- function(
     min = ifelse(is.na(min), "", min),
     max = ifelse(is.na(max), "", max),
     step = ifelse(is.na(step), "", step)
-    )
+  )
 }
-
 ```
   
   
 ```{r tests-numericInput_dsfr_template}
 test_that("numericInput_dsfr_template works", {
-  expect_true(inherits(numericInput_dsfr_template, "function")) 
-  
+  expect_true(inherits(numericInput_dsfr_template, "function"))
+
   htmlfile <- readLines(
     system.file(
       get_dsfr_version(with_v = TRUE),
@@ -67,89 +62,86 @@ test_that("numericInput_dsfr_template works", {
     )
   )
 
-  
+
   #' @description Comparer les parametres par rapport a ceux de la version precedente
-  
+
   purrr::walk(
     c(
       # ajouter vos params
-      ),
-    function(param){
-      with_moustache <- paste0("\\{\\{",param,"\\}\\}")
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
-                  label = paste0("sans moustache '", param, "'"))
-    })
-  
-  
-  
-      htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "numericinput.html",
-      package = "shinygouv"
     ),
-    
-    )
-  
-    test_html <- numericInput_dsfr_template(
-      inputId = "numericinputid",
+    function(param) {
+      with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
+
+
+
+  test_html <- numericInput_dsfr_template(
+    inputId = "numericinputid",
     label = "toto",
     value = 1,
     min = 1,
     max = "",
     step = ""
-    )
-  
+  )
+
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-  
-  
+
+
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
 
   purrr::walk(
     c(
-        inputId = "numericinputid",
-    label = "toto",
-    value = 1,
-    min = 1,
-    max = "",
-    step = ""
-      ),
-    function(param){
-      expect_true(any(grepl(pattern = param, test_html)), 
-                  label = paste0("remplacement de '", param, "'"))
-    })
-  
- ## lecture snapshot
+      inputId = "numericinputid",
+      label = "toto",
+      value = 1,
+      min = 1,
+      max = "",
+      step = ""
+    ),
+    function(param) {
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
+    }
+  )
+
+  ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
-      "snapshot", # pour passer les tests en production (apres le inflate), 
-      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate), 
-      "numericInput_dsfr_template.Rda")
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "numericInput_dsfr_template.Rda"
+    )
   )
-  
+
   #' @description Verifie le HTML créé
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
-    # Si erreur au précedent test deux cas possible :
-    #
-    # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
-    #
-    # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
-    #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
-    #  dans la fonction numericInput_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
 
- # saveRDS(test_html,
- #         file = file.path("tests/testthat/snapshot",
- #                          "numericInput_dsfr_template.Rda"
- #                          )
- #         )
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction numericInput_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
-  
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "numericInput_dsfr_template.Rda"
+  #                          )
+  #         )
 })
 ```
   
@@ -158,22 +150,21 @@ test_that("numericInput_dsfr_template works", {
 
 ```{r function-numericInput_dsfr}
 #' numericInput_dsfr
-#' 
-#' 
+#'
+#'
 #' @return html
-#' 
+#'
 #' @export
 #'
 #' @examples
 numericInput_dsfr <- function(
   inputId = inputId,
-    label = label,
-    value = value,
-    min = NA,
-    max = NA,
-    step = NA
-  ) {
-  
+  label = label,
+  value = value,
+  min = NA,
+  max = NA,
+  step = NA
+    ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
@@ -182,17 +173,16 @@ numericInput_dsfr <- function(
   assertthat::assert_that(is.na(max) | is.numeric(max))
   assertthat::assert_that(is.na(step) | is.numeric(step))
 
-  
-    numericInput_dsfr_template(
-      inputId = inputId,
+
+  numericInput_dsfr_template(
+    inputId = inputId,
     label = label,
     value = value,
     min = min,
     max = max,
     step = step
-    ) %>%
-      parse_html()
-
+  ) %>%
+    parse_html()
 }
 ```
 
@@ -212,26 +202,21 @@ if (interactive()) {
     ),
     title = "Exemple",
     fluidRow_dsfr(
-      
-numericInput_dsfr(
-  inputId = "mynumericinput",
-    label = "Numeric input",
-    value = 12,
-    min = 0,
-    max = NA,
-    step = 2
-),
-verbatimTextOutput(outputId = "numericinputvalue")
-  
-)
-
+      numericInput_dsfr(
+        inputId = "mynumericinput",
+        label = "Numeric input",
+        value = 12,
+        min = 0,
+        max = NA,
+        step = 2
+      ),
+      verbatimTextOutput(outputId = "numericinputvalue")
+    )
   )
   server <- function(input, output, session) {
-    
     output$numericinputvalue <- renderText({
       paste("La valeur de l'input est", input$mynumericinput)
     })
-    
   }
 
   shinyApp(ui, server)
@@ -241,25 +226,33 @@ verbatimTextOutput(outputId = "numericinputvalue")
 ```{r tests-numericInput_dsfr}
 test_that("numericInput_dsfr works", {
   test_html <- numericInput_dsfr(
-    # ajouter vos params
+    inputId = "mynumericinput",
+    label = "Numeric input",
+    value = 12,
+    min = 0,
+    max = NA,
+    step = 2
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
-  
+
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "numericInput_dsfr.Rda")
+      "numericInput_dsfr.Rda"
+    )
   )
-  
+
   #' @description Verifer que le HTML est correct en sortie
-  # Retire tous les espaces et saut de ligne pour la comparaison 
+  # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-               gsub("\\s|\\n", "", snapshot_html)) 
-  
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
+
   # Si erreur au précedent test deux cas possible :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -267,22 +260,73 @@ test_that("numericInput_dsfr works", {
   # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
   #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
   #  dans la fonction numericInput_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
-  
+
   # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
   #                          "numericInput_dsfr.Rda"
   #                          )
   #         )
-  
-  
+
+
   # Ajouter des tests pour controler le type des parametres d'entree
   # Cela verifie que les 'assertthat' fonctionnent correctement
-  
-  #' @description tester le type du param `monparam`
-  expect_error( numericInput_dsfr(
-    # ajouter vos params 
-    # changer le type de `monparam` 
-  ))
+
+  #' @description tester le type du param `inputId`
+  expect_error(
+    numericInput_dsfr(
+      inputId = 1234,
+      label = "toto",
+      value = 1
+    )
+  )
+
+  #' @description tester le type du param `label`
+  expect_error(
+    numericInput_dsfr(
+      inputId = "1234",
+      label = 1234,
+      value = 1
+    )
+  )
+
+  #' @description tester le type du param `value`
+  expect_error(
+    numericInput_dsfr(
+      inputId = "1234",
+      label = "1234",
+      value = "aaaa"
+    )
+  )
+
+  #' @description tester le type du param `min`
+  expect_error(
+    numericInput_dsfr(
+      inputId = "1234",
+      label = "1234",
+      value = 1,
+      min = "aaaa"
+    )
+  )
+
+  #' @description tester le type du param `max`
+  expect_error(
+    numericInput_dsfr(
+      inputId = "1234",
+      label = "1234",
+      value = 1,
+      max = "aaaa"
+    )
+  )
+
+  #' @description tester le type du param `step`
+  expect_error(
+    numericInput_dsfr(
+      inputId = "1234",
+      label = "1234",
+      value = 1,
+      step = "aaaa"
+    )
+  )
 })
 ```
 
@@ -302,7 +346,7 @@ test_that("numericInput_dsfr works", {
 #'
 #' @export
 updateNumericInput_dsfr <- function(
-    inputId,
+  inputId,
   label = NULL,
   value = NULL,
   min = NULL,
@@ -313,14 +357,14 @@ updateNumericInput_dsfr <- function(
   ns <- session$ns
 
   updateNumericInput(
-  session = session,
-  inputId = ns(inputId),
-  label = label,
-  value = value,
-  min = min,
-  max = max,
-  step = step
-)
+    session = session,
+    inputId = ns(inputId),
+    label = label,
+    value = value,
+    min = min,
+    max = max,
+    step = step
+  )
 }
 ```
 
@@ -341,106 +385,134 @@ if (interactive()) {
     ),
     title = "Exemple",
     fluidRow_dsfr(
-      
-numericInput_dsfr(
-  inputId = "mynumericinput",
-    label = "Numeric input",
-    value = 12,
-    min = 0,
-    max = NA,
-    step = 2
-),
-actionButton_dsfr(
-  inputId = "updateLabel",
-  label = "updateLabel"
-),
-actionButton_dsfr(
-  inputId = "updateValue",
-  label = "updateValue"
-),
-actionButton_dsfr(
-  inputId = "updateMin",
-  label = "updateMin à la valeur en cours"
-),
-actionButton_dsfr(
-  inputId = "updateMax",
-  label = "updateMax à la valeur en cours"
-),
-actionButton_dsfr(
-  inputId = "updateStep",
-  label = "updateStep"
-),
-verbatimTextOutput(outputId = "numericinputvalue")
-  
-)
-
+      numericInput_dsfr(
+        inputId = "mynumericinput",
+        label = "Numeric input",
+        value = 12,
+        min = 0,
+        max = NA,
+        step = 2
+      ),
+      actionButton_dsfr(
+        inputId = "updateLabel",
+        label = "updateLabel"
+      ),
+      actionButton_dsfr(
+        inputId = "updateValue",
+        label = "updateValue"
+      ),
+      actionButton_dsfr(
+        inputId = "updateMin",
+        label = "updateMin à la valeur en cours"
+      ),
+      actionButton_dsfr(
+        inputId = "updateMax",
+        label = "updateMax à la valeur en cours"
+      ),
+      actionButton_dsfr(
+        inputId = "updateStep",
+        label = "updateStep"
+      ),
+      verbatimTextOutput(outputId = "numericinputvalue")
+    )
   )
   server <- function(input, output, session) {
-    
     output$numericinputvalue <- renderText({
       paste("La valeur de l'input est", input$mynumericinput)
     })
-    
+
     r <- reactiveValues()
-    
+
     observeEvent(input$mynumericinput, {
-     r$current_value <-  input$mynumericinput
+      r$current_value <- input$mynumericinput
     })
-    
+
     observeEvent(input$updateLabel, {
-                 updateNumericInput_dsfr(
-                   session = session,
-                   inputId = "mynumericinput",
-                   label = sample(LETTERS, 10)
-                 )
-                 })
-    
-       observeEvent(input$updateValue, {
-                 updateNumericInput_dsfr(
-                   session = session,
-                   inputId = "mynumericinput",
-                   value = round(
-                     runif(n = 1, min = 0, max = 1000)
-                   )
-                 )
-                 })
-       
-         observeEvent(input$updateMin, {
-                 updateNumericInput_dsfr(
-                   session = session,
-                   inputId = "mynumericinput",
-                   min = r$current_value
-                 )
-                 })
-         
-         observeEvent(input$updateMax, {
-                 updateNumericInput_dsfr(
-                   session = session,
-                   inputId = "mynumericinput",
-                   max = r$current_value
-                 )
-                 })
-         
-         observeEvent(input$updateStep, {
-                 updateNumericInput_dsfr(
-                   session = session,
-                   inputId = "mynumericinput",
-                   step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
-                 )
-                 })
-    
+      updateNumericInput_dsfr(
+        session = session,
+        inputId = "mynumericinput",
+        label = sample(LETTERS, 10)
+      )
+    })
+
+    observeEvent(input$updateValue, {
+      updateNumericInput_dsfr(
+        session = session,
+        inputId = "mynumericinput",
+        value = round(
+          runif(n = 1, min = 0, max = 1000)
+        )
+      )
+    })
+
+    observeEvent(input$updateMin, {
+      updateNumericInput_dsfr(
+        session = session,
+        inputId = "mynumericinput",
+        min = r$current_value
+      )
+    })
+
+    observeEvent(input$updateMax, {
+      updateNumericInput_dsfr(
+        session = session,
+        inputId = "mynumericinput",
+        max = r$current_value
+      )
+    })
+
+    observeEvent(input$updateStep, {
+      updateNumericInput_dsfr(
+        session = session,
+        inputId = "mynumericinput",
+        step = round(runif(n = 1, min = 0.1, max = 1), digits = 1)
+      )
+    })
   }
 
   shinyApp(ui, server)
 }
 ```
 
+```{r tests-updateNumericInput_dsfr}
+test_that("updateNumericInput_dsfr works", {
+  expect_true(inherits(updateNumericInput_dsfr, "function"))
+
+  sessA <- createModuleSession("modA")
+
+  updateNumericInput_dsfr(
+    session = sessA,
+    inputId = "myid",
+    label = "Numeric input",
+    value = 12,
+    min = 0,
+    max = NA,
+    step = 2
+  )
+
+
+  resultA <- sessA$lastInputMessage
+  # inputId
+  expect_equal("modA-myid", resultA$id)
+  # label
+  expect_equal("Numeric input", resultA$message$label)
+  # value
+  expect_equal("12", resultA$message$value)
+  # min
+  expect_equal("0", resultA$message$min)
+  # max
+  expect_equal("NA", resultA$message$max)
+  # step
+  expect_equal("2", resultA$message$step)
+})
+```
+
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-
-fusen::inflate(flat_file = "dev/flat_composants/chemin à modifier", 
-                vignette_name = "numericInput_dsfr")
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_numericInput.Rmd",
+  vignette_name = "numericInput_dsfr"
+)
 ```
-
