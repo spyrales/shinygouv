@@ -9,7 +9,7 @@
 ## feat
 
 + implémentation du système de modal
-+ implémentation de la case à cocher unique
++ implémentation de la case à cocher unique. Commit #dbf5074
 
 # shinygouv 0.0.1
 
