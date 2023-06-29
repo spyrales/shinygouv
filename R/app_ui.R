@@ -170,6 +170,43 @@ app_ui <- function(request) {
             )
           )
         )
+      ),
+      # Sixth tab
+      navbarPanel_dsfr(
+        title = "checkboxInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo checkboxInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            3,
+            checkboxInput_dsfr(
+              inputId = "mycheckboxInput",
+              label = "Une case \u00e0 cocher",
+              value = FALSE
+            )
+          )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "updatelab_checkboxinput",
+              label = "Mettre \u00e0 jour le label"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "updateval_checkboxinput",
+              label = "Mettre \u00e0 jour la value "
+            )
+          )
+        )
       )
     )
   )

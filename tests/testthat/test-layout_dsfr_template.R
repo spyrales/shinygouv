@@ -23,9 +23,12 @@ test_that("layout_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'"))
-    })
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
 
 
   test_html <- layout_dsfr_template(
@@ -46,21 +49,27 @@ test_that("layout_dsfr_template works", {
       other_class = "other_class"
     ),
     function(param) {
-      expect_true(any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'"))
-    })
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
+    }
+  )
 
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "layout_dsfr_template.Rda")
+      "layout_dsfr_template.Rda"
+    )
   )
 
   #' @description Verifie la presence du parametre class
-  expect_equal(gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html))
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
 
 
   # Si erreur au précedent test deux cas possible :
@@ -94,5 +103,4 @@ test_that("layout_dsfr_template works", {
   #                          "layout_dsfr_template.Rda"
   #                          )
   #         )
-
 })

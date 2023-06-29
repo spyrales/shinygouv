@@ -38,11 +38,11 @@ ui <- navbarPage_dsfr(
     title = "actionButton_dsfr()",
     fluidRow_dsfr(
       column_dsfr(
-       12,
-       h3('Demo actionButton_dsfr()'),
-       # Adding space to the column
-       # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
-       extra_class = "fr-my-6w"
+        12,
+        h3("Demo actionButton_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
       ),
       column_dsfr(
         4,
@@ -59,9 +59,7 @@ ui <- navbarPage_dsfr(
         )
       )
     )
-  )
-  ,
-
+  ),
   # Second tab
   navbarPanel_dsfr(
     title = "radioButtons_dsfr()",
@@ -101,13 +99,11 @@ server <- function(input, output) {
   output$output2 <- renderText({
     paste("You've selected", input$espece)
   })
-
 }
 
 if (interactive()) {
   # Run the application
   shinyApp(ui = ui, server = server)
 }
-
 
 }

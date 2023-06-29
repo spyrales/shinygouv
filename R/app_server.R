@@ -76,4 +76,22 @@ app_server <- function(input, output, session) {
       selected = sample(r$choices, 1)
     )
   })
+
+  ## checkboxinput
+
+  observeEvent(input$updatelab_checkboxinput, {
+    updateCheckboxInput_dsfr(
+      session = session,
+      inputId = "mycheckboxInput",
+      label = "Un nouveau label"
+    )
+  })
+
+  observeEvent(input$updateval_checkboxinput, {
+    updateCheckboxInput_dsfr(
+      session = session,
+      inputId = "mycheckboxInput",
+      value = TRUE
+    )
+  })
 }

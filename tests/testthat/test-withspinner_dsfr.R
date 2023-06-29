@@ -17,5 +17,5 @@ test_that("hideSpinner_dsfr works", {
 
 test_that("withSpinner_dsfr works", {
   expect_true(inherits(withSpinner_dsfr, "function"))
-# TODO
+  # TODO
 })
