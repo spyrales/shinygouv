@@ -8,3 +8,5 @@
 "7";"";"header_dsfr";"entete.html";"non"
 "8";"shinycssloaders::withSpinner()";"withSpinner_dsfr";"";"oui"
 "9";"selectInput";"selectInput_dsfr";"selectInput.html";"oui"
+"10";"modalDialog";"modalDialog_dsfr";"modalDialog.html";"oui"
+"11";"shinyWidgets::materialSwitch()";"toggleSwitch_dsfr";"toggleswitch.html";"oui"
