@@ -4,7 +4,13 @@
 \alias{checkboxGroupInput_dsfr}
 \title{checkboxGroupInput_dsfr}
 \usage{
-checkboxGroupInput_dsfr(inputId, label, choices = NULL, selected = NULL)
+checkboxGroupInput_dsfr(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE
+)
 }
 \arguments{
 \item{inputId}{id de l'input}
@@ -14,6 +20,8 @@ checkboxGroupInput_dsfr(inputId, label, choices = NULL, selected = NULL)
 \item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
 
 \item{selected}{Valeurs préselectionnées}
+
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
 }
 \value{
 html
@@ -23,27 +31,23 @@ checkboxGroupInput_dsfr
 }
 \examples{
 
-if (interactive()) {
+if (interactive()){
+  
   library(shiny)
-
+  
   ui <- fluidPage_dsfr(
-    checkboxGroupInput_dsfr(
-      "variable",
-      "Variables to show:",
-      c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      )
-    )
+      checkboxGroupInput_dsfr("checkboxes", "Variables to show:",
+                     c("Cylinders" = "cyl",
+                       "Transmission" = "am",
+                       "Gears" = "gear"), inline = TRUE)
   )
-
+  
   server <- function(input, output, session) {
-    observeEvent(input$variable, {
+    observeEvent(input$variable,{
       print(input$variable)
     })
   }
-
+  
   shinyApp(ui, server)
 }
 

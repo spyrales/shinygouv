@@ -29,24 +29,25 @@ Change la valeur d'un checkboxInput
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {
-  ui <- fluidPage_dsfr(
-    checkboxInput_dsfr(inputId = "inCheckboxInput", label = "test", value = FALSE),
-    actionButton_dsfr("go", "Change")
-  )
-  server <- function(input, output, session) {
-    observeEvent(input$go, {
-      updateCheckboxInput_dsfr(
-        session = session,
-        inputId = "inCheckboxInput",
-        label = "Un nouveau label",
-        value = TRUE
-      )
-    })
-
-    observeEvent(input$inCheckboxInput, {
-      message(input$inCheckboxInput)
-    })
-  }
-  shinyApp(ui, server)
+ui <- fluidPage_dsfr(
+  checkboxInput_dsfr(inputId = 'inCheckboxInput', label = 'test', value = FALSE),
+  actionButton_dsfr("go","Change")
+)
+server <- function(input, output, session) {
+  
+  observeEvent(input$go,{
+    updateCheckboxInput_dsfr(
+      session = session, 
+      inputId = "inCheckboxInput",
+      label = "Un nouveau label",
+      value = TRUE
+    )
+  })
+  
+  observeEvent(input$inCheckboxInput,{
+    message(input$inCheckboxInput)
+  })
+}
+shinyApp(ui, server)
 }
 }

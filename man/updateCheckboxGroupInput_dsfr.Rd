@@ -9,6 +9,7 @@ updateCheckboxGroupInput_dsfr(
   label = NULL,
   choices = NULL,
   selected = NULL,
+  inline = FALSE,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -21,6 +22,8 @@ updateCheckboxGroupInput_dsfr(
 
 \item{selected}{Valeurs préselectionnées}
 
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
+
 \item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
 }
 \value{
@@ -32,40 +35,37 @@ updateCheckboxGroupInput_dsfr
 \examples{
 ## Only run examples in interactive R sessions
 
-if (interactive()) {
+if (interactive()){
+  
   library(shiny)
-
+  
   ui <- fluidPage_dsfr(
-    checkboxGroupInput_dsfr(
-      "variable",
-      "Variables to show:",
-      c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      )
-    ),
-    actionButton_dsfr("go", "Change")
+      checkboxGroupInput_dsfr("variable", "Variables to show:",
+                     c("Cylinders" = "cyl",
+                       "Transmission" = "am",
+                       "Gears" = "gear"), inline = TRUE),
+  actionButton_dsfr("go","Change")
   )
-
+  
   server <- function(input, output, session) {
-    observeEvent(input$variable, {
+    observeEvent(input$variable,{
       print(input$variable)
     })
-
-
-    observeEvent(input$go, {
-      updateCheckboxGroupInput_dsfr(
-        session = session,
-        inputId = "variable",
-        label = "Un nouveau label",
-        # choices = c("A" = "a", "B" = "b"),
-        selected = "a"
-      )
-    })
+    
+    
+    observeEvent(input$go,{
+    updateCheckboxGroupInput_dsfr(
+      session = session, 
+      inputId = "variable",
+      label = "Un nouveau label",
+      # choices = c("A" = "a", "B" = "b"),
+      selected = "a"
+    )
+  })
   }
-
+  
   shinyApp(ui, server)
 }
+
 
 }

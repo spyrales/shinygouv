@@ -1,10 +1,10 @@
-    <div class="fr-fieldset__element">
+    <div class="fr-fieldset__element {{inline}}">
         <div class="fr-checkbox-group">
             <input {{checked}} name="{{inputId}}" id="{{name}}" type="checkbox" value = "{{value}}" aria-describedby="{{inputId}}-messages">
             <label class="fr-label" for="{{name}}">
                 <span>{{value_label}}</span>
             </label>
-            <div class="fr-messages-group" id="{{inputId}}-messages" aria-live="assertive">
+            <div class="fr-messages-group " id="{{inputId}}-messages" aria-live="assertive">
             </div>
         </div>
     </div>
