@@ -14,40 +14,38 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'     library(shiny)
-#'     ui <- fluidPage_dsfr(
-#'         toggleSwitch_dsfr(inputId = "test", label = "test")
-#'     )
-#' 
-#'     server <- function(input, output, session) {
-#'         observeEvent(input$test, {
-#'             message(input$test)
-#'             message("coucou")
-#'         })
-#'     }
-#' 
-#'     shinyApp(ui, server)
+#'   library(shiny)
+#'   ui <- fluidPage_dsfr(
+#'     toggleSwitch_dsfr(inputId = "test", label = "test")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     observeEvent(input$test, {
+#'       message(input$test)
+#'       message("coucou")
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
 #' }
 toggleSwitch_dsfr <- function(
-    inputId,
-    label,
-    activate = "",
-    deactivate = ""
+  inputId,
+  label,
+  activate = "",
+  deactivate = ""
     ) {
+  # check les params
+  assertthat::assert_that(is.character(label))
+  assertthat::assert_that(is.character(inputId))
+  assertthat::assert_that(is.character(activate))
+  assertthat::assert_that(is.character(deactivate))
 
-    # check les params
-    assertthat::assert_that(is.character(label))
-    assertthat::assert_that(is.character(inputId))
-    assertthat::assert_that(is.character(activate))
-    assertthat::assert_that(is.character(deactivate))
 
-
-    toggleSwitch_dsfr_template(
-        inputId = inputId,
-        label = label,
-        activate = activate,
-        deactivate = deactivate
-    ) %>%
-        parse_html()
-
+  toggleSwitch_dsfr_template(
+    inputId = inputId,
+    label = label,
+    activate = activate,
+    deactivate = deactivate
+  ) %>%
+    parse_html()
 }

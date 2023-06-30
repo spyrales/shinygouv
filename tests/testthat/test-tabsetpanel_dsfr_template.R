@@ -31,19 +31,18 @@ test_that("tabSetPanel_dsfr_template works", {
   )
 
 
-    test_html <- tabSetPanel_dsfr_template(
-      li = panel_one_li(
-        "tab-1",
-        "Tab 1"
-      ),
-      divs = panel_one_body(
-        "tab-1",
-        "Tab 1"
-      )
+  test_html <- tabSetPanel_dsfr_template(
+    li = panel_one_li(
+      "tab-1",
+      "Tab 1"
+    ),
+    divs = panel_one_body(
+      "tab-1",
+      "Tab 1"
     )
+  )
 
 
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-
 })

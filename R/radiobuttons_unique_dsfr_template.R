@@ -13,32 +13,32 @@
 #' @return html
 #' @noRd
 radioButtons_unique_dsfr_template <-
-  function(inputId,
-           choix,
-           nom_choix,
-           name,
-           checked = FALSE,
-           inline = FALSE
+  function(
+  inputId,
+  choix,
+  nom_choix,
+  name,
+  checked = FALSE,
+  inline = FALSE
+      ) {
+    if (isTRUE(inline)) {
+      class_inline <- "-inline"
+    } else {
+      class_inline <- NULL
+    }
 
-  ){
-  if(isTRUE(inline)){
-    class_inline <- "-inline"
-  } else {
-    class_inline <- NULL}
-
-  htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "radiobouton.html",
-      package = "shinygouv"
-    ),
-    inputId = inputId,
-    name = name,
-    nom_choix = nom_choix,
-    value_choix = choix,
-    checked = if (isTRUE(checked)) 'checked=""' else NULL,
-    class_inline = class_inline
+    htmltools::htmlTemplate(
+      filename = system.file(
+        get_dsfr_version(with_v = TRUE),
+        "composant",
+        "radiobouton.html",
+        package = "shinygouv"
+      ),
+      inputId = inputId,
+      name = name,
+      nom_choix = nom_choix,
+      value_choix = choix,
+      checked = if (isTRUE(checked)) 'checked=""' else NULL,
+      class_inline = class_inline
     )
-}
-
+  }
