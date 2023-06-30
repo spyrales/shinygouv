@@ -135,6 +135,20 @@ flat_selectInput.Rmd:
     check: no
     document: yes
     overwrite: ask
+flat_slider.Rmd:
+  path: dev/flat_composants/flat_slider.Rmd
+  state: active
+  R: R/sliderinput_dsfr.R
+  tests: []
+  vignettes: []
+  inflate:
+    pkg: shinygouv
+    flat_file: dev/flat_composants/flat_slider.Rmd
+    vignette_name: .na
+    open_vignette: yes
+    check: yes
+    document: yes
+    overwrite: ask
 flat_toggleswitch.Rmd:
   path: dev/flat_composants/flat_toggleswitch.Rmd
   state: active
