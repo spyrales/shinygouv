@@ -118,12 +118,10 @@ app_server <- function(input, output, session) {
   })
 
   output$plot <- renderPlot({
-    cli::cat_bullet("plot1")
-    plot(head(iris, input$tabpaneln))
+    plot(utils::head(datasets::iris, input$tabpaneln))
   })
   output$plot2 <- renderPlot({
-    cli::cat_bullet("plot2")
-    plot(head(cars, input$tabpaneln2))
+    plot(utils::head(datasets::cars, input$tabpaneln2))
   })
 
   ## numeric input
@@ -175,4 +173,18 @@ app_server <- function(input, output, session) {
       step = sample(seq(0.1, 1, by = .1), size = 1)
     )
   })
+  output$sliderinputvalue <- renderText({
+    paste0("La valeur du slider est ", input$sliderinput)
+  })
+
+  observeEvent(
+    input$updatesliderinput,
+    {
+      updateSliderInput_dsfr(
+        session = session,
+        inputId = "sliderinput",
+        value = sample(1:100, 1)
+      )
+    }
+  )
 }

@@ -31,6 +31,13 @@ app_ui <- function(request) {
           ),
           column_dsfr(
             4,
+            sliderInput(
+              inputId = "slider",
+              label = "Slider",
+              min = 1,
+              max = 100,
+              value = 50
+            ),
             actionButton_dsfr(
               "go",
               label = "Un bouton avec un \u00e9!"
@@ -291,6 +298,7 @@ app_ui <- function(request) {
         )
       ),
       # Sixth tab
+      # Seventh tab
       navbarPanel_dsfr(
         title = "tabSetPanel_dsfr()",
         fluidRow_dsfr(
@@ -332,6 +340,37 @@ app_ui <- function(request) {
                 )
               )
             )
+          )
+        )
+      ),
+      # Eigth tab
+      navbarPanel_dsfr(
+        title = "sliderInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo sliderInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            6,
+            sliderInput_dsfr(
+              inputId = "sliderinput",
+              label = "Un slider",
+              min = 0,
+              max = 100,
+              value = 50
+            ),
+            actionButton_dsfr(
+              inputId = "updatesliderinput",
+              label = "Mettre \u00e0 jour le slider"
+            )
+          ),
+          column_dsfr(
+            6,
+            textOutput("sliderinputvalue")
           )
         )
       )

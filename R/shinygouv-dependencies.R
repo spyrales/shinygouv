@@ -28,11 +28,14 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000091">'
     ),
-    modal = htmlDependency(
+    external = htmlDependency(
       name = "modal",
       version = version,
       package = "shinygouv",
       src = c(file = "external_deps"),
+      stylesheet = c(
+        "slider.css"
+      ),
       script = list(
         list(type = "text/javascript", src = "shiny-compat.js"),
         list(type = "text/javascript", src = "navbarPage.js")
