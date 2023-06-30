@@ -25,7 +25,7 @@ html
 tabSetPanel_dsfr
 }
 \examples{
-if (interactive()){
+if (interactive()) {
   library(shiny)
   shinyApp(
     ui = fluidPage_dsfr(

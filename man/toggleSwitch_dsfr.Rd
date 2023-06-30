@@ -23,18 +23,18 @@ toggleSwitch_dsfr
 }
 \examples{
 if (interactive()) {
-    library(shiny)
-    ui <- fluidPage_dsfr(
-        toggleSwitch_dsfr(inputId = "test", label = "test")
-    )
+  library(shiny)
+  ui <- fluidPage_dsfr(
+    toggleSwitch_dsfr(inputId = "test", label = "test")
+  )
 
-    server <- function(input, output, session) {
-        observeEvent(input$test, {
-            message(input$test)
-            message("coucou")
-        })
-    }
+  server <- function(input, output, session) {
+    observeEvent(input$test, {
+      message(input$test)
+      message("coucou")
+    })
+  }
 
-    shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 }

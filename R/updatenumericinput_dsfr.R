@@ -85,7 +85,7 @@
 #'         session = session,
 #'         inputId = "mynumericinput",
 #'         value = sample(1:1000, size = 1)
-#'         )
+#'       )
 #'     })
 #'
 #'     observeEvent(input$updateMin, {
