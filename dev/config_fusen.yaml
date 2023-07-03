@@ -11,9 +11,9 @@ flat_actionButton.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_actionButton.Rmd
     vignette_name: actionButton_dsfr
-    open_vignette: yes
-    check: no
-    document: yes
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_checkBoxInput.Rmd:
   path: dev/flat_composants/flat_checkBoxInput.Rmd
@@ -57,9 +57,9 @@ flat_convert_to_dsfr.Rmd:
   inflate:
     flat_file: dev/flat_convert_to_dsfr.Rmd
     vignette_name: Convertir une app shiny en app shiny dsfr
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_fluidpage.Rmd:
   path: dev/flat_composants/flat_fluidpage.Rmd
@@ -81,9 +81,9 @@ flat_fluidpage.Rmd:
     pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
     vignette_name: fluidPage_dsfr
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_modal.Rmd:
   path: dev/flat_composants/flat_modal.Rmd
@@ -98,9 +98,9 @@ flat_modal.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_modal.Rmd
     vignette_name: .na
-    open_vignette: yes
-    check: no
-    document: yes
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_panels.Rmd:
   path: dev/flat_composants/flat_panels.Rmd
@@ -116,9 +116,9 @@ flat_panels.Rmd:
     pkg: shinygouv
     flat_file: dev/flat_composants/flat_panels.Rmd
     vignette_name: .na
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_radioButtons.Rmd:
   path: dev/flat_composants/flat_radioButtons.Rmd
@@ -137,9 +137,9 @@ flat_radioButtons.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_radioButtons.Rmd
     vignette_name: radioButtons_dsfr
-    open_vignette: no
-    check: yes
-    document: yes
+    open_vignette: false
+    check: true
+    document: true
     overwrite: ask
 flat_selectInput.Rmd:
   path: dev/flat_composants/flat_selectInput.Rmd
@@ -158,9 +158,9 @@ flat_selectInput.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_selectInput.Rmd
     vignette_name: selectInput_dsfr
-    open_vignette: yes
-    check: no
-    document: yes
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_slider.Rmd:
   path: dev/flat_composants/flat_slider.Rmd
@@ -172,9 +172,9 @@ flat_slider.Rmd:
     pkg: shinygouv
     flat_file: dev/flat_composants/flat_slider.Rmd
     vignette_name: .na
-    open_vignette: yes
-    check: yes
-    document: yes
+    open_vignette: true
+    check: true
+    document: true
     overwrite: ask
 flat_toggleswitch.Rmd:
   path: dev/flat_composants/flat_toggleswitch.Rmd
@@ -190,9 +190,9 @@ flat_toggleswitch.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_toggleswitch.Rmd
     vignette_name: .na
-    open_vignette: yes
-    check: no
-    document: yes
+    open_vignette: true
+    check: false
+    document: true
     overwrite: ask
 flat_withSpinner.Rmd:
   path: dev/flat_composants/flat_withSpinner.Rmd
@@ -203,7 +203,7 @@ flat_withSpinner.Rmd:
   inflate:
     flat_file: dev/flat_composants/flat_withSpinner.Rmd
     vignette_name: withSpinner_dsfr
-    open_vignette: no
-    check: no
-    document: yes
+    open_vignette: false
+    check: false
+    document: true
     overwrite: 'yes'

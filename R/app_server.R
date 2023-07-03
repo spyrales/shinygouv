@@ -124,7 +124,6 @@ app_server <- function(input, output, session) {
       inputId = "mycheckboxgroupInput",
       label = sample(r$choices, 1)
     )
-
   })
 
 
