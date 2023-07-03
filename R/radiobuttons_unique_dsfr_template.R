@@ -23,10 +23,11 @@ radioButtons_unique_dsfr_template <-
       ) {
     if (isTRUE(inline)) {
       class_inline <- "-inline"
+      inline <- "fr-fieldset__element--inline"
     } else {
       class_inline <- NULL
+      inline <- ""
     }
-
     htmltools::htmlTemplate(
       filename = system.file(
         get_dsfr_version(with_v = TRUE),
@@ -38,6 +39,7 @@ radioButtons_unique_dsfr_template <-
       name = name,
       nom_choix = nom_choix,
       value_choix = choix,
+      inline = inline,
       checked = if (isTRUE(checked)) 'checked=""' else NULL,
       class_inline = class_inline
     )

@@ -21,7 +21,6 @@ radioButtons_dsfr_template <- function(
   inline = FALSE,
   class = NULL
     ) {
-  inline <- FALSE # TODO
   if (isTRUE(inline)) {
     class_inline <- "fr-fieldset--inline"
     class <- "shiny-input-container-inline"
@@ -50,7 +49,7 @@ radioButtons_dsfr_template <- function(
         .y = nom_choix,
         .nb = seq_along(choix)
       ),
-      function(.x, .y, .nb) {
+      function(.x, .y, .nb, .class_inline) {
         radioButtons_unique_dsfr_template(
           inputId = paste0(inputId, "-", .nb),
           name = inputId,

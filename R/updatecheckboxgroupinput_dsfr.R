@@ -81,7 +81,7 @@ updateCheckboxGroupInput_dsfr <- function(
   if (!is.null(choices)) {
     tag <- checkboxGroupInput_dsfr(
       inputId = ns(inputId),
-      label = label,
+      label = if (!is.null(label)) label else "",
       choices = choices,
       inline = inline,
       selected = selected
