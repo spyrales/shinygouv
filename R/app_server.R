@@ -198,7 +198,6 @@ app_server <- function(input, output, session) {
 
 
   observeEvent(input$update_radiogroupbutton_label, {
-
     updateRadioGroupButtons_dsfr(
       inputId = "espece_radiogroupbutton",
       label = paste0(sample(LETTERS, size = 12), collapse = ""),
@@ -207,18 +206,16 @@ app_server <- function(input, output, session) {
   })
 
   observeEvent(input$update_radiogroupbutton_choices, {
-
     r$radiogroupubutton_choices <- sapply(1:5, function(x) paste0(sample(LETTERS, size = 3), collapse = ""))
 
-               updateRadioGroupButtons_dsfr(
-                 inputId = "espece_radiogroupbutton",
-                 choices = r$radiogroupubutton_choices,
-                 session = session
-               )
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton",
+      choices = r$radiogroupubutton_choices,
+      session = session
+    )
   })
 
   observeEvent(input$update_radiogroupbutton_selected, {
-
     updateRadioGroupButtons_dsfr(
       inputId = "espece_radiogroupbutton",
       selected = sample(r$radiogroupubutton_choices, size = 1),

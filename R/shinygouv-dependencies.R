@@ -52,7 +52,7 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       all_files = TRUE
     ),
     radiogroupbutton_deps = htmlDependency(
-      name = "radiogroupbutton",
+      name = "radiogroupbuttons",
       version = version,
       src = c(file = "external_deps"),
       script = "radiogroupbuttons.js",

@@ -384,6 +384,7 @@ app_ui <- function(request) {
               inputId = "espece_radiogroupbutton",
               label = "Especes (radio group button avec inline = FALSE)",
               choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
+              selected = "virginica",
               inline = FALSE
             ),
             extra_class = "fr-m-1w"
@@ -419,7 +420,6 @@ app_ui <- function(request) {
             )
           )
         ),
-
         fluidRow_dsfr(
           column_dsfr(
             4,

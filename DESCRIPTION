@@ -19,6 +19,7 @@ Imports:
     assertthat (>= 0.2.1),
     attempt,
     config (>= 0.3.1),
+    datasets,
     glue (>= 1.6.2),
     golem (>= 0.3.2),
     htmltools (>= 0.5.2),
@@ -42,7 +43,7 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
-Config/fusen/version: 0.5.0.9001
+Config/fusen/version: 0.5.0.9008
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
