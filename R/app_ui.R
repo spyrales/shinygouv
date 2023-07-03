@@ -245,6 +245,31 @@ app_ui <- function(request) {
           )
         )
       ),
+      # Seventh tab
+      navbarPanel_dsfr(
+        title = "checkboxGroupInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo checkboxGroupInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            3,
+            checkboxGroupInput_dsfr(
+              "mycheckboxgroupInput",
+              "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
+              )
+            )
+          )
+        )
+      ),
 
       # Seventh tab
       navbarPanel_dsfr(
@@ -273,27 +298,41 @@ app_ui <- function(request) {
         ),
         fluidRow_dsfr(
           column_dsfr(
-            12,
+            4,
             actionButton_dsfr(
-              inputId = "updateLabel",
-              label = "updateLabel"
-            ),
-            actionButton_dsfr(
-              inputId = "updateValue",
-              label = "updateValue"
-            ),
-            actionButton_dsfr(
-              inputId = "updateMin",
-              label = "updateMin \u00e0 la valeur en cours -10"
-            ),
-            actionButton_dsfr(
-              inputId = "updateMax",
-              label = "updateMax \u00e0 la valeur en cours +10"
-            ),
-            actionButton_dsfr(
-              inputId = "updateStep",
-              label = "updateStep"
+              inputId = "updatelab_checkboxGroupInput",
+              label = "Mettre \u00e0 jour le label"
             )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "updateval_checkboxGroupInput",
+              label = "Mettre \u00e0 jour les choix "
+            )
+          )
+        ),
+        column_dsfr(
+          12,
+          actionButton_dsfr(
+            inputId = "updateLabel",
+            label = "updateLabel"
+          ),
+          actionButton_dsfr(
+            inputId = "updateValue",
+            label = "updateValue"
+          ),
+          actionButton_dsfr(
+            inputId = "updateMin",
+            label = "updateMin \u00e0 la valeur en cours -10"
+          ),
+          actionButton_dsfr(
+            inputId = "updateMax",
+            label = "updateMax \u00e0 la valeur en cours +10"
+          ),
+          actionButton_dsfr(
+            inputId = "updateStep",
+            label = "updateStep"
           )
         )
       ),

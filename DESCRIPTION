@@ -1,6 +1,6 @@
 Package: shinygouv
 Title: Implement the DSFR for your shiny applications
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: c(
     person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
@@ -19,6 +19,7 @@ Imports:
     assertthat (>= 0.2.1),
     attempt,
     config (>= 0.3.1),
+    datasets,
     glue (>= 1.6.2),
     golem (>= 0.3.2),
     htmltools (>= 0.5.2),
@@ -42,7 +43,7 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
-Config/fusen/version: 0.5.0.9001
+Config/fusen/version: 0.5.0.9006
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
