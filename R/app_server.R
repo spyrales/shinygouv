@@ -117,6 +117,24 @@ app_server <- function(input, output, session) {
     )
   })
 
+  ## checkboxgroupinput
+  observeEvent(input$updatelab_checkboxGroupInput, {
+    updateCheckboxGroupInput_dsfr(
+      session = session,
+      inputId = "mycheckboxgroupInput",
+      label = sample(r$choices, 1)
+    )
+  })
+
+
+  observeEvent(input$updateval_checkboxGroupInput, {
+    updateCheckboxGroupInput_dsfr(
+      session = session,
+      inputId = "mycheckboxgroupInput",
+      choices = sample(r$choices, 3),
+    )
+  })
+
   output$plot <- renderPlot({
     plot(utils::head(datasets::iris, input$tabpaneln))
   })
