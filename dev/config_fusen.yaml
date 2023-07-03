@@ -15,6 +15,33 @@ flat_actionButton.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_checkBoxInput.Rmd:
+  path: dev/flat_composants/flat_checkBoxInput.Rmd
+  state: active
+  R:
+  - R/checkboxgroupinput_dsfr.R
+  - R/checkboxgroupinput_dsfr_template.R
+  - R/checkboxgroupinput_unique_dsfr_template.R
+  - R/checkboxinput_dsfr.R
+  - R/checkboxinput_dsfr_template.R
+  - R/updatecheckboxgroupinput_dsfr.R
+  - R/updatecheckboxinput_dsfr.R
+  tests:
+  - tests/testthat/test-checkboxinput_dsfr_template.R
+  - tests/testthat/test-checkboxinput_dsfr.R
+  - tests/testthat/test-updatecheckboxinput_dsfr.R
+  - tests/testthat/test-checkboxgroupinput_unique_dsfr_template.R
+  - tests/testthat/test-checkboxgroupinput_dsfr_template.R
+  - tests/testthat/test-checkboxgroupinput_dsfr.R
+  - tests/testthat/test-updatecheckboxgroupinput_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_checkBoxInput.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
 flat_convert_to_dsfr.Rmd:
   path: dev/flat_convert_to_dsfr.Rmd
   state: active

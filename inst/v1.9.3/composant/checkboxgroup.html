@@ -1,10 +1,10 @@
-<div id = {{inputId}} class="fr-form-group shiny-input-checkboxgroup shiny-input-container {{container_inline}}" >
+<div id={{inputId}} class="fr-form-group shiny-input-checkboxgroup shiny-input-container {{container_inline}}">
     <fieldset class="fr-fieldset" aria-labelledby="{{inputId}}-legend {{inputId}}-messages">
         <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="{{inputId}}-legend" for="{{inputId}}">
-            <span>{{label}}</span>
+            <label class="control-label" id="{{inputId}}-label" for="{{inputId}}">{{label}}</label>
         </legend>
-
-          {{choice}}
-
+        <div class="shiny-options-group" style="display: contents;">
+            {{choice}}
+        </div>
     </fieldset>
 </div>

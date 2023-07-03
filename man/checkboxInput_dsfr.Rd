@@ -24,5 +24,5 @@ checkboxInput_dsfr(
   inputId = 'test', label = 'test', value = FALSE)
 checkboxInput_dsfr(
   inputId = 'test', label = 'test', value = TRUE
-  )
+)
 }
