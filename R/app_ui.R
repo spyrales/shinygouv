@@ -382,10 +382,9 @@ app_ui <- function(request) {
             4,
             radioGroupButtons_dsfr(
               inputId = "espece_radiogroupbutton",
-              label = "Especes",
-              choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
-              class = NULL,
-              inline = TRUE
+              label = "Especes (radio group button avec inline = FALSE)",
+              choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
+              inline = FALSE
             ),
             extra_class = "fr-m-1w"
           ),
@@ -393,6 +392,49 @@ app_ui <- function(request) {
             6,
             textOutput(
               "outputespece_radiogroupbutton"
+            ),
+            extra_class = "fr-m-1w"
+          )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiogroupbutton_label",
+              label = "Update label"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiogroupbutton_choices",
+              label = "Update choices"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiogroupbutton_selected",
+              label = "Update selected"
+            )
+          )
+        ),
+
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            radioGroupButtons_dsfr(
+              inputId = "espece_radiogroupbutton2",
+              label = "Especes (radio group button avec inline = TRUE)",
+              choices = c("Virginica" = "virginica", "Versicolor" = "versicolor"),
+              inline = TRUE
+            ),
+            extra_class = "fr-m-1w"
+          ),
+          column_dsfr(
+            6,
+            textOutput(
+              "outputespece_radiogroupbutton2"
             ),
             extra_class = "fr-m-1w"
           )

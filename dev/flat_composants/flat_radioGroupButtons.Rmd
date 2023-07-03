@@ -38,10 +38,7 @@ radioGroupButtons_unique_dsfr_template <-
            inline = FALSE
            
   ){
-  if(isTRUE(inline)){
-    class_inline <- "-inline"  
-  } else { 
-    class_inline <- NULL}
+
   
   htmltools::htmlTemplate(
     filename = system.file(
@@ -55,7 +52,7 @@ radioGroupButtons_unique_dsfr_template <-
     nom_choix = nom_choix,
     value_choix = choix,
     checked = if (isTRUE(checked)) 'checked=""' else NULL,
-    class_inline = class_inline 
+    inline = inline
     )
 }
 
@@ -191,59 +188,6 @@ Cette fonction repose sur `radioGroupButtons_unique_dsfr_template()` qui devra Ã
 <!-- Pour l'exemple de la doc, nous presentons ce chunk deux fois
 Une fois pour la vignette, une seconde pour {fusen} -->
 
-```{r, eval = FALSE}
-radioGroupButtons_dsfr_template <-
-  function(inputId,
-           label,
-           choix,
-           selected = NULL,
-           inline = FALSE,
-           class = NULL
-           
-  ){
-  inline <- FALSE #TODO 
-  if (isTRUE(inline)){
-    class_inline <- "fr-fieldset--inline"
-    class <- "shiny-input-container-inline"
-  } else {
-    class_inline = NULL
-  }
-
-  if (is.null(names(choix))) {
-    nom_choix <- choix
-  } else {
-    nom_choix <- names(choix)
-  }
-
-  htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "radiogroupbutton.html",
-      package = "shinygouv"
-    ),
-    inputId = inputId,
-    label = label,
-    choix = pmap(list(.x = choix,
-                        .y = nom_choix,
-                        .nb = seq_along(choix)),
-                       function(.x, .y, .nb) {
-                         radioGroupButtons_unique_dsfr_template(
-                           inputId = paste0(inputId,"-", .nb),
-                           name = inputId,
-                           choix = .x,
-                           nom_choix = nom_choix,
-                           checked = identical(.x, selected), 
-                           inline = inline
-                         )
-                       }) %>%
-      htmltools::tagList(),
-    inline = class_inline, 
-    class = class
-  )
-}
-```
-
 ```{r function-radioGroupButtons_dsfr_template}
 #' radioGroupButtons_dsfr_template
 #' 
@@ -257,15 +201,17 @@ radioGroupButtons_dsfr_template <-
 #' @importFrom htmltools htmlTemplate tagList
 #' @importFrom purrr pmap map_chr
 #' @return html
-radioGroupButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE,  class = NULL
+radioGroupButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE
   ){
-  inline <- FALSE #TODO 
-  if (isTRUE(inline)){
-    class_inline <- "fr-fieldset--inline"
-    class <- "shiny-input-container-inline"
-  } else {
-    class_inline = NULL
-  }
+  
+  if(isTRUE(inline)){
+    inline_value <- "fr-fieldset__element--inline"
+    container_inline <- "shiny-input-container-inline"
+  } else { 
+    inline_value <- ""
+    container_inline <- ""
+    }
+  
   
   if (is.null(names(choix))) {
     nom_choix <- choix
@@ -282,22 +228,24 @@ radioGroupButtons_dsfr_template <- function(inputId, label, choix, selected = NU
     ),
     inputId = inputId,
     label = label,
+    container_inline = container_inline,
     choix = pmap(list(.x = choix,
                         .y = nom_choix,
-                        .nb = seq_along(choix)),
-                       function(.x, .y, .nb) {
+                        .nb = seq_along(choix),
+                        .inline = rep(inline_value, length(choix)
+                                      )),
+                       function(.x, .y, .nb, .inline) {
                          radioGroupButtons_unique_dsfr_template(
-                           inputId = paste0(inputId, "-", .nb),
+                           # inputId = paste0(inputId, "-", .nb),
+                           inputId = paste0(inputId, "-", .x),
                            name = inputId,
                            choix = .x,
                            nom_choix = .y,
                            checked = identical(.x, selected),
-                           inline = inline
+                           inline = .inline
                          )
                        }) %>%
-      htmltools::tagList(),
-    inline = class_inline, 
-    class = class
+      htmltools::tagList()
   )
 }
 
@@ -434,7 +382,7 @@ L'implementation de la fonction `radioGroupButtons_dsfr()` reste quant Ã  elle s
 #'
 #' @examples
 radioGroupButtons_dsfr <- function(
-  inputId, label, choices, selected = NULL, inline = FALSE, class = NULL  
+  inputId, label, choices, selected = NULL, inline = FALSE
   ) {
   
   # check les params
@@ -449,8 +397,7 @@ radioGroupButtons_dsfr <- function(
     label = label,
     choix = choices,
     selected = selected,
-    inline = inline, 
-    class = class
+    inline = inline
     ) %>%
       parse_html()
 
@@ -459,15 +406,14 @@ radioGroupButtons_dsfr <- function(
 
 ```{r examples-radioGroupButtons_dsfr}
 radioGroupButtons_dsfr(
-      inputId = "test", label = "Test", choices = c("A","B"), class = NULL
+      inputId = "test", label = "Test", choices = c("A","B")
 )
 
 radioGroupButtons_dsfr(
       inputId = "test2",
       label = "Test",
       choices = c("Choix A" = "A","Choix B" = "B"),
-      selected = "B",
-      class = NULL
+      selected = "B"
 )
 ```
 
@@ -543,37 +489,47 @@ updateRadioGroupButtons_dsfr <- function(inputId,
                                     label = NULL,
                                     choices = NULL,
                                     selected = NULL,
+                                    inline = FALSE,
                                     session = shiny::getDefaultReactiveDomain()) {
   ns <- session$ns
 
-  if (!is.null(choices)) {
-    choices <- tags$div(
-      class = "fr-fieldset__content shiny-options-group",
-      tagList(
-    choix = pmap(list(.x = choices,
-                        .y = names(choices),
-                        .nb = seq_along(choices)),
-        function(.x, .y, .nb) {
-          radioGroupButtons_unique_dsfr_template(
-            inputId = paste0(ns(inputId), "-", .nb),
-            name = ns(inputId),
-            choix = .x,
-            nom_choix = .y,
-            checked = identical(.x, selected),
-            inline = FALSE
-          )
-        }
-      ))
-    )
+  if (is.null(names(choices))) {
+    nom_choix <- choices
+  } else {
+    nom_choix <- names(choices)
   }
 
+  if (!is.null(choices)) {
+
+    tag <- radioGroupButtons_dsfr(
+      inputId = ns(inputId),
+      label = if (!is.null(label)) label else "",
+      choices = choices,
+      selected = selected,
+      inline = inline
+
+    ) %>%
+      htmltools::tagQuery()
+
+    choices <- tag$find(".shiny-options-group")$selectedTags()
+    choices <- as.character(choices)
+  }
+
+  message <- utils::getFromNamespace("dropNulls", "shiny")(list(
+    label = label,
+    options = choices,
+    value = selected
+  ))
   
-  message <- utils::getFromNamespace("dropNulls", "shiny")(
-    list(
-      label = label,
-      options = as.character(choices)
+  if(!is.null(selected)) {
+    selected <- as.character(selected)
+    button_to_color <- paste0(ns(inputId),"-",selected)
+    session$sendCustomMessage(
+      "updateRadioGroupColorButton",
+      list(buttonId = button_to_color)
     )
-  )
+    print(button_to_color)
+  }
 
   session$sendInputMessage(ns(inputId), message)
 }
