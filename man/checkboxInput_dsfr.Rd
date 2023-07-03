@@ -21,8 +21,13 @@ La case à cocher permet à l’utilisateur de sélectionner ou désélectionner
 }
 \examples{
 checkboxInput_dsfr(
-  inputId = 'test', label = 'test', value = FALSE)
+  inputId = "test",
+  label = "test",
+  value = FALSE
+)
 checkboxInput_dsfr(
-  inputId = 'test', label = 'test', value = TRUE
+  inputId = "test",
+  label = "test",
+  value = TRUE
 )
 }

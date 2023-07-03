@@ -36,15 +36,19 @@ updateCheckboxGroupInput_dsfr
 ## Only run examples in interactive R sessions
 
 if (interactive()) {
-
   library(shiny)
 
   ui <- fluidPage_dsfr(
-    checkboxGroupInput_dsfr("variable", "Variables to show:",
-      c("Cylinders" = "cyl",
+    checkboxGroupInput_dsfr(
+      "variable",
+      "Variables to show:",
+      c(
+        "Cylinders" = "cyl",
         "Transmission" = "am",
-        "Gears" = "gear"),
-      inline = TRUE),
+        "Gears" = "gear"
+      ),
+      inline = TRUE
+    ),
     checkboxGroupInput("ok", "ok", c("test")),
     actionButton_dsfr("go", "Change")
   )

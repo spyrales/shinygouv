@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  debugger;
   $(".navbarPanel_dsfr").hide();
 
   // window.location.hash

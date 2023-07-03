@@ -1,7 +1,7 @@
 ---
 title: "flat_checkBoxInput.Rmd empty"
 output: html_document
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
@@ -108,8 +108,10 @@ test_that("checkboxInput_dsfr_template works", {
   #' @description Verifie le HTML créé
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html))
+  expect_equal(
+    gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html)
+  )
 
 
   # Si erreur au précedent test deux cas possibles :
@@ -157,7 +159,8 @@ checkboxInput_dsfr <- function(inputId,
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.logical(value))
 
-  checkboxInput_dsfr_template(inputId,
+  checkboxInput_dsfr_template(
+    inputId,
     label = label,
     value = value) %>%
     parse_html()

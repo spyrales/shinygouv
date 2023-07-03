@@ -467,7 +467,7 @@ test_that("selectInput_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "sliderInput_dsfr.Rda"
+      "selectInput_dsfr.Rda"
     )
   )
   #' @description Verifie le parametre selected dans le HTML
@@ -487,7 +487,7 @@ test_that("selectInput_dsfr works", {
 
   #  saveRDS(test_html,
   #          file = file.path("tests/testthat/snapshot",
-  #                           "sliderInput_dsfr.Rda"
+  #                           "selectInput_dsfr.Rda"
   #                           )
   #          )
   #

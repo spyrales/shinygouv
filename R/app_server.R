@@ -118,23 +118,92 @@ app_server <- function(input, output, session) {
   })
 
   ## checkboxgroupinput
+  observeEvent(input$updatelab_checkboxGroupInput, {
+    updateCheckboxGroupInput_dsfr(
+      session = session,
+      inputId = "mycheckboxgroupInput",
+      label = sample(r$choices, 1)
+    )
 
-  # TODO quand l'update pourra changer uniquement le label:
-  # observeEvent(input$updatelab_checkboxGroupInput, {
-  #   updateCheckboxGroupInput_dsfr(
-  #     session = session,
-  #     inputId = "mycheckboxgroupInput",
-  #     label = sample(r$choices, 1)
-  #   )
-  #
-  # })
+  })
 
-  # TODO quand l'update pourra changer uniquement les choices:
-  # observeEvent(input$updateval_checkboxGroupInput, {
-  #   updateCheckboxGroupInput_dsfr(
-  #     session = session,
-  #     inputId = "mycheckboxgroupInput",
-  #     choices = sample(r$choices,3),
-  #   )
-  # })
+
+  observeEvent(input$updateval_checkboxGroupInput, {
+    updateCheckboxGroupInput_dsfr(
+      session = session,
+      inputId = "mycheckboxgroupInput",
+      choices = sample(r$choices, 3),
+    )
+  })
+
+  output$plot <- renderPlot({
+    plot(utils::head(datasets::iris, input$tabpaneln))
+  })
+  output$plot2 <- renderPlot({
+    plot(utils::head(datasets::cars, input$tabpaneln2))
+  })
+
+  ## numeric input
+  output$numericinputvalue <- renderText({
+    paste("La valeur de l'input est", input$mynumericinput)
+  })
+
+
+  observeEvent(input$mynumericinput, {
+    r$numeric_input_current_value <- input$mynumericinput
+  })
+
+  observeEvent(input$updateLabel, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      label = sample(LETTERS, 10)
+    )
+  })
+
+  observeEvent(input$updateValue, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      value = sample(1:1000, size = 1)
+    )
+  })
+
+  observeEvent(input$updateMin, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      min = r$numeric_input_current_value - 10
+    )
+  })
+
+  observeEvent(input$updateMax, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      max = r$numeric_input_current_value + 10
+    )
+  })
+
+  observeEvent(input$updateStep, {
+    updateNumericInput_dsfr(
+      session = session,
+      inputId = "mynumericinput",
+      step = sample(seq(0.1, 1, by = .1), size = 1)
+    )
+  })
+  output$sliderinputvalue <- renderText({
+    paste0("La valeur du slider est ", input$sliderinput)
+  })
+
+  observeEvent(
+    input$updatesliderinput,
+    {
+      updateSliderInput_dsfr(
+        session = session,
+        inputId = "sliderinput",
+        value = sample(1:100, 1)
+      )
+    }
+  )
 }

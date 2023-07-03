@@ -31,6 +31,13 @@ app_ui <- function(request) {
           ),
           column_dsfr(
             4,
+            sliderInput(
+              inputId = "slider",
+              label = "Slider",
+              min = 1,
+              max = 100,
+              value = 50
+            ),
             actionButton_dsfr(
               "go",
               label = "Un bouton avec un \u00e9!"
@@ -201,7 +208,6 @@ app_ui <- function(request) {
           )
         )
       ),
-
       # Sixth tab
       navbarPanel_dsfr(
         title = "checkboxInput_dsfr()",
@@ -262,6 +268,33 @@ app_ui <- function(request) {
               )
             )
           )
+        )
+      ),
+
+      # Seventh tab
+      navbarPanel_dsfr(
+        title = "numericInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo numericInput_dsfr()"),
+            # Adding space to the column
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
+            numericInput_dsfr(
+              inputId = "mynumericinput",
+              label = "Numeric input",
+              value = 12,
+              min = 0,
+              max = NA,
+              step = 2
+            ),
+            verbatimTextOutput(
+              outputId = "numericinputvalue"
+            )
+          )
         ),
         fluidRow_dsfr(
           column_dsfr(
@@ -277,6 +310,106 @@ app_ui <- function(request) {
               inputId = "updateval_checkboxGroupInput",
               label = "Mettre \u00e0 jour les choix "
             )
+          )
+        ),
+        column_dsfr(
+          12,
+          actionButton_dsfr(
+            inputId = "updateLabel",
+            label = "updateLabel"
+          ),
+          actionButton_dsfr(
+            inputId = "updateValue",
+            label = "updateValue"
+          ),
+          actionButton_dsfr(
+            inputId = "updateMin",
+            label = "updateMin \u00e0 la valeur en cours -10"
+          ),
+          actionButton_dsfr(
+            inputId = "updateMax",
+            label = "updateMax \u00e0 la valeur en cours +10"
+          ),
+          actionButton_dsfr(
+            inputId = "updateStep",
+            label = "updateStep"
+          )
+        )
+      ),
+      # Sixth tab
+      # Seventh tab
+      navbarPanel_dsfr(
+        title = "tabSetPanel_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo checkboxInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            12,
+            tabSetPanel_dsfr(
+              "coucou",
+              tabPanel_dsfr(
+                id = "tab1",
+                title = "Une prems tab",
+                content = tagList(
+                  h3("Coucou"),
+                  numericInput(
+                    inputId = "tabpaneln",
+                    label = "Nombre de points sur le graph",
+                    value = 100
+                  ),
+                  plotOutput("plot")
+                )
+              ),
+              tabPanel_dsfr(
+                id = "tab2",
+                title = "Une deuxieme tab",
+                content = tagList(
+                  h3("Salut"),
+                  numericInput(
+                    inputId = "tabpaneln2",
+                    label = "Nombre de points sur le plot",
+                    value = 10
+                  ),
+                  plotOutput("plot2")
+                )
+              )
+            )
+          )
+        )
+      ),
+      # Eigth tab
+      navbarPanel_dsfr(
+        title = "sliderInput_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo sliderInput_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            6,
+            sliderInput_dsfr(
+              inputId = "sliderinput",
+              label = "Un slider",
+              min = 0,
+              max = 100,
+              value = 50
+            ),
+            actionButton_dsfr(
+              inputId = "updatesliderinput",
+              label = "Mettre \u00e0 jour le slider"
+            )
+          ),
+          column_dsfr(
+            6,
+            textOutput("sliderinputvalue")
           )
         )
       )
