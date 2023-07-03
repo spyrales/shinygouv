@@ -187,4 +187,8 @@ app_server <- function(input, output, session) {
       )
     }
   )
+
+  output$outputespece_radiogroupbutton <- renderText({
+    paste("Esp\u00e8ce radiogroupbutton :", input$espece_radiogroupbutton)
+  })
 }

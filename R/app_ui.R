@@ -31,13 +31,6 @@ app_ui <- function(request) {
           ),
           column_dsfr(
             4,
-            sliderInput(
-              inputId = "slider",
-              label = "Slider",
-              min = 1,
-              max = 100,
-              value = 50
-            ),
             actionButton_dsfr(
               "go",
               label = "Un bouton avec un \u00e9!"
@@ -70,7 +63,8 @@ app_ui <- function(request) {
               inputId = "espece",
               label = "Especes",
               choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
-              class = NULL
+              class = NULL,
+              inline = TRUE
             ),
             extra_class = "fr-m-1w"
           ),
@@ -297,8 +291,7 @@ app_ui <- function(request) {
           )
         )
       ),
-      # Sixth tab
-      # Seventh tab
+      # Eigth tab
       navbarPanel_dsfr(
         title = "tabSetPanel_dsfr()",
         fluidRow_dsfr(
@@ -343,7 +336,7 @@ app_ui <- function(request) {
           )
         )
       ),
-      # Eigth tab
+      # Ninth tab
       navbarPanel_dsfr(
         title = "sliderInput_dsfr()",
         fluidRow_dsfr(
@@ -371,6 +364,37 @@ app_ui <- function(request) {
           column_dsfr(
             6,
             textOutput("sliderinputvalue")
+          )
+        )
+      ),
+      # Tenth tab
+      navbarPanel_dsfr(
+        title = "radioGroupButtons_dsfr()",
+        fluidRow_dsfr(
+          column_dsfr(
+            12,
+            h3("Demo radioGroupButtons_dsfr()"),
+            # Adding space to the column
+            # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+            extra_class = "fr-my-6w"
+          ),
+          column_dsfr(
+            4,
+            radioGroupButtons_dsfr(
+              inputId = "espece_radiogroupbutton",
+              label = "Especes",
+              choices = c("Setosa" = "setosa", "Versicolor" = "versicolor"),
+              class = NULL,
+              inline = TRUE
+            ),
+            extra_class = "fr-m-1w"
+          ),
+          column_dsfr(
+            6,
+            textOutput(
+              "outputespece_radiogroupbutton"
+            ),
+            extra_class = "fr-m-1w"
           )
         )
       )
