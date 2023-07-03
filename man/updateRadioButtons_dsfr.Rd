@@ -9,6 +9,7 @@ updateRadioButtons_dsfr(
   label = NULL,
   choices = NULL,
   selected = NULL,
+  inline = FALSE,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -20,6 +21,8 @@ updateRadioButtons_dsfr(
 \item{choices}{Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)}
 
 \item{selected}{Element selectionné}
+
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
 
 \item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
 }
@@ -33,22 +36,24 @@ updateRadioButtons_dsfr
 ## Only run examples in interactive R sessions
 if (interactive()) {
   ui <- fluidPage_dsfr(
-    radioButtons_dsfr(
-      inputId = "inRadioButtons",
+    radioButtons_dsfr(inputId = "inRadioButtons",
       label = "Input radio buttons",
-      choices = c("Item A", "Item B", "Item C")
-    ),
+      choices = c("Item A", "Item B", "Item C"),
+      # ),
+      inline = TRUE),
     actionButton_dsfr("go", "Change")
   )
 
   server <- function(input, output, session) {
+
     observeEvent(input$go, {
       updateRadioButtons_dsfr(
         session = session,
         inputId = "inRadioButtons",
         label = "Un nouveau label",
-        choices = c("A" = "a"),
-        selected = "a"
+        choices = c("A" = "a", "B" = "b"),
+        selected = "a",
+        inline = FALSE
       )
     })
 
@@ -59,5 +64,4 @@ if (interactive()) {
 
   shinyApp(ui, server)
 }
-
 }

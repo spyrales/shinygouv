@@ -22,5 +22,5 @@ test_that("updateRadioButtons_dsfr works", {
   expect_true(grepl('id\\s*=\\s*\"modA-inRadioButtons-1\"', resultA$message$options))
   expect_true(grepl('value\\s*=\\s*"a"', resultA$message$options))
   expect_true(grepl("choice-a", resultA$message$options))
-  expect_true(grepl('checked\\s*=\\s*""', resultA$message$options))
+  expect_true(grepl("checked", resultA$message$options))
 })

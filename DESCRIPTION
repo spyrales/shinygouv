@@ -17,13 +17,13 @@ Description: Components and tools to build or transform shiny applications
 License: EUPL (>= 1.2) | file LICENSE
 Imports: 
     assertthat (>= 0.2.1),
-    attempt,
+    attempt (>= 0.3.1),
     config (>= 0.3.1),
     datasets,
     glue (>= 1.6.2),
     golem (>= 0.3.2),
     htmltools (>= 0.5.2),
-    janitor,
+    janitor (>= 2.2.0),
     magrittr (>= 2.0.3),
     purrr (>= 0.3.4),
     shiny (>= 1.7.1),

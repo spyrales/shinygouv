@@ -20,7 +20,7 @@ test_that("radioButtons_unique_dsfr_template works", {
       "name",
       "nom_choix",
       "value_choix",
-      "class_inline"
+      "inline"
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
@@ -36,11 +36,17 @@ test_that("radioButtons_unique_dsfr_template works", {
     inputId = "test-1",
     name = "test",
     choix = c("A"),
-    nom_choix = "Choix A"
+    nom_choix = "Choix A",
+    inline = TRUE
   )
 
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test_html))
+  expect_false(
+    grepl(
+      pattern = "\\{\\{",
+      test_html
+    )
+  )
 
 
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
@@ -111,11 +117,11 @@ test_that("radioButtons_unique_dsfr_template works", {
   #                              dans la fonction radioButtons_unique_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
   #
   # saveRDS(test_html,
-  #         file = file.path("tests/testthat/snapshot",
-  #                          "radioButtons_unique_dsfr_template.Rda"
-  #                          )
-  #         )
-  #
+  #   file = file.path("tests/testthat/snapshot",
+  #     "radioButtons_unique_dsfr_template.Rda"
+  #   )
+  # )
+
   # saveRDS(test_html_selected,
   #         file = file.path("tests/testthat/snapshot",
   #                          "radioButtons_unique_dsfr_template_selected.Rda"

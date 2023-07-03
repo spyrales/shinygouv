@@ -39,11 +39,17 @@ test_that("radioButtons_dsfr_template works", {
     inputId = "test",
     label = "Test",
     choix = c("A", "B"),
-    class = NULL
+    class = NULL,
+    inline = TRUE
   )
 
   #' @description tester si tous les params sont remplaces
-  expect_false(grepl(pattern = "\\{\\{", test_html))
+  expect_false(
+    grepl(
+      pattern = "\\{\\{",
+      test_html
+    )
+  )
 
 
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs

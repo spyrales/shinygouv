@@ -25,7 +25,8 @@
 #'   label = "Test",
 #'   choices = c("Choix A" = "A", "Choix B" = "B"),
 #'   selected = "B",
-#'   class = NULL
+#'   class = NULL,
+#'   inline = TRUE
 #' )
 radioButtons_dsfr <- function(
   inputId,

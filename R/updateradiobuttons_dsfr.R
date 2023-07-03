@@ -7,6 +7,8 @@
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#'
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
@@ -19,7 +21,9 @@
 #'     radioButtons_dsfr(
 #'       inputId = "inRadioButtons",
 #'       label = "Input radio buttons",
-#'       choices = c("Item A", "Item B", "Item C")
+#'       choices = c("Item A", "Item B", "Item C"),
+#'       # ),
+#'       inline = TRUE
 #'     ),
 #'     actionButton_dsfr("go", "Change")
 #'   )
@@ -30,8 +34,9 @@
 #'         session = session,
 #'         inputId = "inRadioButtons",
 #'         label = "Un nouveau label",
-#'         choices = c("A" = "a"),
-#'         selected = "a"
+#'         choices = c("A" = "a", "B" = "b"),
+#'         selected = "a",
+#'         inline = FALSE
 #'       )
 #'     })
 #'
@@ -42,48 +47,45 @@
 #'
 #'   shinyApp(ui, server)
 #' }
-#'
 updateRadioButtons_dsfr <- function(
   inputId,
   label = NULL,
   choices = NULL,
   selected = NULL,
+  inline = FALSE,
   session = shiny::getDefaultReactiveDomain()
     ) {
   ns <- session$ns
 
-  if (!is.null(choices)) {
-    choices <- tags$div(
-      class = "fr-fieldset__content shiny-options-group",
-      tagList(
-        choix = pmap(
-          list(
-            .x = choices,
-            .y = names(choices),
-            .nb = seq_along(choices)
-          ),
-          function(.x, .y, .nb) {
-            radioButtons_unique_dsfr_template(
-              inputId = paste0(ns(inputId), "-", .nb),
-              name = ns(inputId),
-              choix = .x,
-              nom_choix = .y,
-              checked = identical(.x, selected),
-              inline = FALSE
-            )
-          }
-        )
-      )
-    )
+  if (!is.null(selected)) {
+    selected <- as.character(selected)
   }
 
+  if (is.null(names(choices))) {
+    nom_choix <- choices
+  } else {
+    nom_choix <- names(choices)
+  }
 
-  message <- utils::getFromNamespace("dropNulls", "shiny")(
-    list(
-      label = label,
-      options = as.character(choices)
-    )
-  )
+  if (!is.null(choices)) {
+    tag <- radioButtons_dsfr(
+      inputId = ns(inputId),
+      label = if (!is.null(label)) label else "",
+      choices = choices,
+      inline = inline,
+      selected = selected
+    ) %>%
+      htmltools::tagQuery()
+
+    choices <- tag$find(".shiny-options-group")$selectedTags()
+    choices <- as.character(choices)
+  }
+
+  message <- utils::getFromNamespace("dropNulls", "shiny")(list(
+    label = label,
+    options = choices,
+    value = selected
+  ))
 
   session$sendInputMessage(ns(inputId), message)
 }
