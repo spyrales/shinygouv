@@ -11,8 +11,55 @@
 #### CURRENT FILE: DEV SCRIPT #####
 ###################################
 
+
+# ==== Each time needed ====
+# Dependencies ----
+## Ce qu'il faut avant d'envoyer sur le serveur
+# devtools::install_github("ThinkR-open/attachment")
+# attachment::att_amend_desc(extra.suggests = c("bookdown"))
+# attachment::create_dependencies_file()
+attachment::att_amend_desc()
+# Cela est normal : "Error in eval(x, envir = envir) : object 'db_local' not found"
+
+devtools::build_readme()
+
+check_n_covr <- function() {
+    res <- devtools::check(args = c("--no-tests"))
+    print(res)
+    covr::package_coverage(type = "tests", quiet = TRUE)
+}
+
+check_n_covr()
+# fusen::check_n_covr()
+
+# Verifier que les md sont disponibles dans le dossier dev/documentation,
+# sinon knit les Rmd en modifiant l'output par github_document
+
+# Utils for dev ----
+# Get global variables
+checkhelper::print_globals()
+# styler the package
+# install.packages("grkstyle", repos = "https://gadenbuie.r-universe.dev")
+grkstyle::grk_style_pkg(pkg = ".")
+# linter
+lintr::lint_package()
+# bump version
+desc::desc_bump_version("patch")
+# Install
+devtools::install(upgrade = "never")
+# devtools::load_all()
+devtools::check(vignettes = TRUE)
+# ascii
+stringi::stri_trans_general("è", "hex")
+# Create a summary readme for the testthat subdirectory
+covrpage::covrpage()
+
+# Documentation and dev ----
+charpente::get_dependency_versions("@gouvfr/dsfr")
+
 # Engineering: to do everytime
 # => In dev/dev_history_package.R
+
 
 
 # ==== To do once with {golem} ====

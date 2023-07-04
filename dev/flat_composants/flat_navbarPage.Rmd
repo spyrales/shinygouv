@@ -36,10 +36,10 @@ La `navbarPage_dsfr()` se compose de :
 #'
 #' @examples
 navbarPage_dsfr <- function(
-  title,
-  ...,
-  header = NULL,
-  id = NULL
+    title,
+    ...,
+    header = NULL,
+    id = NULL
     ) {
   all_navs <- list(...)
   # Making the first tab the current one
@@ -120,9 +120,9 @@ navbarPage_dsfr <- function(
 #'
 #' @export
 navbarPanel_dsfr <- function(
-  title,
-  ...
-){
+    title,
+    ...
+    ) {
 
   list(
     title = title,
@@ -152,11 +152,11 @@ ui <- navbarPage_dsfr(
     title = "actionButton_dsfr()",
     fluidRow_dsfr(
       column_dsfr(
-       12,
-       h3('Demo actionButton_dsfr()'),
-       # Adding space to the column
-       # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
-       extra_class = "fr-my-6w"
+        12,
+        h3('Demo actionButton_dsfr()'),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
       ),
       column_dsfr(
         4,
@@ -222,8 +222,6 @@ if (interactive()) {
   # Run the application
   shinyApp(ui = ui, server = server)
 }
-
-
 ```
 
 ```{r tests-navbarPage_dsfr}
@@ -283,7 +281,7 @@ test_that("navbarPage_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_navbarPage.Rmd",
-  vignette_name = "navbarPage_dsfr",
+  vignette_name = NA,
   check = FALSE
 )
 ```

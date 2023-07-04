@@ -681,7 +681,7 @@ spec_inflate <- function() {
   nom <- "fluidPage_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_fluidpage.Rmd",
-    vignette_name = nom)
+    vignette_name = NA)
 
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")

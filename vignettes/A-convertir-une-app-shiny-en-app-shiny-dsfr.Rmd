@@ -2,7 +2,7 @@
 title: "Convertir une app shiny en app shiny dsfr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{convertir-une-app-shiny-en-app-shiny-dsfr}
+  %\VignetteIndexEntry{A-convertir-une-app-shiny-en-app-shiny-dsfr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

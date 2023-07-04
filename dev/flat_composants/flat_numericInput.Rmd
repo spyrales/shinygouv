@@ -24,12 +24,12 @@ pkgload::load_all(export_all = TRUE)
 #' @return html
 #' @noRd
 numericInput_dsfr_template <- function(
-  inputId,
-  label,
-  value,
-  min = NA,
-  max = NA,
-  step = NA
+    inputId,
+    label,
+    value,
+    min = NA,
+    max = NA,
+    step = NA
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -165,12 +165,12 @@ test_that("numericInput_dsfr_template works", {
 #'
 #' @examples
 numericInput_dsfr <- function(
-  inputId = inputId,
-  label = label,
-  value = value,
-  min = NA,
-  max = NA,
-  step = NA
+    inputId = inputId,
+    label = label,
+    value = value,
+    min = NA,
+    max = NA,
+    step = NA
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
@@ -355,13 +355,13 @@ test_that("numericInput_dsfr works", {
 #'
 #' @export
 updateNumericInput_dsfr <- function(
-  inputId,
-  label = NULL,
-  value = NULL,
-  min = NULL,
-  max = NULL,
-  step = NULL,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    label = NULL,
+    value = NULL,
+    min = NULL,
+    max = NULL,
+    step = NULL,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   ns <- session$ns
 
@@ -449,7 +449,7 @@ if (interactive()) {
         session = session,
         inputId = "mynumericinput",
         value = sample(1:1000, size = 1)
-        )
+      )
     })
 
     observeEvent(input$updateMin, {
@@ -520,7 +520,7 @@ test_that("updateNumericInput_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_numericInput.Rmd",
-  vignette_name = "numericInput_dsfr",
+  vignette_name = NA,
   check = FALSE
 )
 ```

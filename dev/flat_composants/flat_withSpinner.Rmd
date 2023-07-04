@@ -49,8 +49,8 @@ test_that("addWithSpinner works", {
 #' @filename withSpinner_dsfr
 #' @noRd
 showSpinner_dsfr <- function(
-  inputId,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("show_spinner", inputId)
 }
@@ -76,8 +76,8 @@ test_that("showSpinner_dsfr works", {
 #' @filename withSpinner_dsfr
 #' @noRd
 hideSpinner_dsfr <- function(
-  inputId,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("hide_spinner", inputId)
 }
@@ -103,8 +103,8 @@ test_that("hideSpinner_dsfr works", {
 #' @return html
 #' @export
 withSpinner_dsfr <- function(
-  expr,
-  session = shiny::getDefaultReactiveDomain()
+    expr,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   showSpinner_dsfr(inputId = "lds-ring", session = session)
   force(expr)
@@ -113,60 +113,60 @@ withSpinner_dsfr <- function(
 ```
 
 ```{r examples-withSpinner_dsfr}
-if(interactive()) {
-library(shiny)
-library(shinygouv)
+if (interactive()) {
+  library(shiny)
+  library(shinygouv)
 
-ui <- fluidPage_dsfr(
-  header = header_dsfr(
-    intitule = "Intitule",
-    officiel = "Officiel",
-    nom_site_service = "Nom du site / service",
-    baseline = "baseline - precisions sur l organisation",
-    class = "fr-m-1w"
-  ),
-  title = "Exemple",
-  fluidRow_dsfr(
-    column_dsfr(
-      0,
-      shiny::p("Exemple colonne")
+  ui <- fluidPage_dsfr(
+    header = header_dsfr(
+      intitule = "Intitule",
+      officiel = "Officiel",
+      nom_site_service = "Nom du site / service",
+      baseline = "baseline - precisions sur l organisation",
+      class = "fr-m-1w"
     ),
-    actionButton_dsfr(
-      inputId = "showspinner",
-      label = "Afficher le spinner pendant 5 secondes"
+    title = "Exemple",
+    fluidRow_dsfr(
+      column_dsfr(
+        0,
+        shiny::p("Exemple colonne")
+      ),
+      actionButton_dsfr(
+        inputId = "showspinner",
+        label = "Afficher le spinner pendant 5 secondes"
+      )
     )
   )
-)
 
-server <- function(input, output, session) {
-  observeEvent(
-    input$showspinner,
-    {
-      withSpinner_dsfr(
-        expr = {
-          message("Je vais m'afficher pendant 5 secondes")
-          Sys.sleep(5)
-        }
-      )
-    }
-  )
-}
+  server <- function(input, output, session) {
+    observeEvent(
+      input$showspinner,
+      {
+        withSpinner_dsfr(
+          expr = {
+            message("Je vais m'afficher pendant 5 secondes")
+            Sys.sleep(5)
+          }
+        )
+      }
+    )
+  }
 
-shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 ```
 
 ```{r tests-withSpinner_dsfr}
 test_that("withSpinner_dsfr works", {
   expect_true(inherits(withSpinner_dsfr, "function"))
-# TODO
+  # TODO
 })
 ```
 
 ```{r development-inflate, eval=FALSE}
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_withSpinner.Rmd",
-  vignette_name = "withSpinner_dsfr",
+  vignette_name = NA,
   check = FALSE,
   overwrite = TRUE,
   open_vignette = FALSE

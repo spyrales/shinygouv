@@ -622,7 +622,7 @@ test_that("updateSelectInput_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_selectInput.Rmd",
-  vignette_name = "selectInput_dsfr",
+  vignette_name = NA,
   check = FALSE
 )
 ```

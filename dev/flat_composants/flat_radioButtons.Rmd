@@ -763,7 +763,7 @@ spec_inflate <- function() {
   nom <- "radioButtons_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_radioButtons.Rmd",
-    vignette_name = nom, open_vignette = FALSE)
+    vignette_name = NA, open_vignette = FALSE)
 
   nom_c <- gsub(x = tolower(nom), "\\s", "-")
   nom_file <- paste0(nom_c, ".Rmd")

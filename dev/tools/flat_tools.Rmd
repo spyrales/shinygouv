@@ -25,18 +25,18 @@ pkgload::load_all(export_all = FALSE)
 #' @param html_code resultat de la fonction htmlTemplate
 #' @importFrom XML htmlParse getNodeSet
 #'
-parse_to_xml <- function(html_code, zone = "/html/body/*"){
-  if(inherits(html_code, "XMLInternalElementNode")){
+parse_to_xml <- function(html_code, zone = "/html/body/*") {
+  if (inherits(html_code, "XMLInternalElementNode")) {
     stop("Use this function with character or shiny.tag.list")
   }
 
-  if(!is.character(html_code)){
+  if (!is.character(html_code)) {
     html_code <- as.character(html_code)
   }
-    html_code %>%
-      XML::htmlParse(encoding = "UTF-8") %>%
-      XML::getNodeSet(zone) %>%
-      getElement(1)
+  html_code %>%
+    XML::htmlParse(encoding = "UTF-8") %>%
+    XML::getNodeSet(zone) %>%
+    getElement(1)
 }
 ```
 
@@ -64,7 +64,7 @@ test_that("parse_to_xml works", {
   #' @description tester la classe du resultat de la fonction sur un shiny.tag
   expect_s3_class(test2, "XMLInternalElementNode")
 
-  })
+})
 ```
 
 
@@ -81,27 +81,27 @@ test_that("parse_to_xml works", {
 #' @importFrom stringr str_pad
 #' @importFrom purrr partial
 #'
-render_node <- function (node, indent = 0, prefix = FALSE) {
+render_node <- function(node, indent = 0, prefix = FALSE) {
   if (xmlName(node) == "text") {
     txt <- xmlValue(node)
     if (nchar(trimws(txt)) > 0) {
       paste0("\"", trimws(txt), "\"")
     }
-  }else {
-    tagName <- if (prefix){
+  } else {
+    tagName <- if (prefix) {
       paste0("tags$", xmlName(node))
-      }else {
+    } else {
       xmlName(node)
     }
 
     my_render <- partial(render_node, indent = newIndent,
-                         prefix = prefix)
+      prefix = prefix)
     newIndent <- indent + length(tagName) + 1
     xmlChildren(node) %>%
       Keep(my_render, .) %>%
       append(make_attrs(node), .) %>%
       paste(collapse = str_pad(",\n", width = newIndent,
-                                 side = c("right"))) %>%
+        side = c("right"))) %>%
       trimws(which = c("left")) %>%
       paste0(tagName, "(", ., ")")
   }
@@ -110,7 +110,7 @@ render_node <- function (node, indent = 0, prefix = FALSE) {
 #' @noRd
 #' @importFrom XML xmlAttrs
 #' @importFrom stringr str_detect
-make_attrs <- function (node) {
+make_attrs <- function(node) {
   attrs <- xmlAttrs(node)
   names(attrs) %>% Map(function(name) {
     val <- attrs[[name]]
@@ -118,16 +118,14 @@ make_attrs <- function (node) {
       pattern = "for")) {
       name <- paste0("`", name, "`")
     }
-    paste0(name, " = ", if (val == "") {"NA"}else{ paste0("\"", val, "\"")})
+    paste0(name, " = ", if (val == "") {"NA"} else { paste0("\"", val, "\"")})
   }, .)
 }
 
 #' @noRd
-Keep <- function (fun, xs) {
+Keep <- function(fun, xs) {
   Map(fun, xs) %>% Filter(Negate(is.null), .)
 }
-
-
 ```
 
 
@@ -189,6 +187,6 @@ test_that("tester parse_html", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/flat_tools.Rmd", vignette_name = "html vers shiny.tag", check = FALSE, overwrite = TRUE)
+fusen::inflate(flat_file = "dev/tools/flat_tools.Rmd", vignette_name = NA, check = FALSE, overwrite = TRUE)
 ```
 
