@@ -14,14 +14,20 @@
 #'
 #' @examples
 #' checkboxInput_dsfr(
-#'   inputId = 'test', label = 'test', value = FALSE)
-#' checkboxInput_dsfr(
-#'   inputId = 'test', label = 'test', value = TRUE
+#'   inputId = "test",
+#'   label = "test",
+#'   value = FALSE
 #' )
-checkboxInput_dsfr <- function(inputId,
-                               label,
-                               value = FALSE) {
-
+#' checkboxInput_dsfr(
+#'   inputId = "test",
+#'   label = "test",
+#'   value = TRUE
+#' )
+checkboxInput_dsfr <- function(
+  inputId,
+  label,
+  value = FALSE
+    ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
@@ -30,6 +36,7 @@ checkboxInput_dsfr <- function(inputId,
   checkboxInput_dsfr_template(
     inputId,
     label = label,
-    value = value) %>%
+    value = value
+  ) %>%
     parse_html()
 }

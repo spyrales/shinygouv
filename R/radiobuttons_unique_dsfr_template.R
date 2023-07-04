@@ -13,15 +13,14 @@
 #' @return html
 #' @noRd
 radioButtons_unique_dsfr_template <-
-  function(inputId,
-           choix,
-           nom_choix,
-           name,
-           checked = FALSE,
-           inline = FALSE
-
-  ) {
-
+  function(
+  inputId,
+  choix,
+  nom_choix,
+  name,
+  checked = FALSE,
+  inline = FALSE
+      ) {
     if (isTRUE(inline)) {
       class_inline <- "-inline"
       inline <- "fr-fieldset__element--inline"

@@ -13,14 +13,19 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'
 #'   library(shiny)
 #'
 #'   ui <- fluidPage_dsfr(
-#'     checkboxGroupInput_dsfr("checkboxes", "Variables to show:",
-#'       c("Cylinders" = "cyl",
+#'     checkboxGroupInput_dsfr(
+#'       "checkboxes",
+#'       "Variables to show:",
+#'       c(
+#'         "Cylinders" = "cyl",
 #'         "Transmission" = "am",
-#'         "Gears" = "gear"), inline = TRUE)
+#'         "Gears" = "gear"
+#'       ),
+#'       inline = TRUE
+#'     )
 #'   )
 #'
 #'   server <- function(input, output, session) {
@@ -31,9 +36,13 @@
 #'
 #'   shinyApp(ui, server)
 #' }
-checkboxGroupInput_dsfr <- function(inputId,
-                                    label, choices = NULL, selected = NULL, inline = FALSE) {
-
+checkboxGroupInput_dsfr <- function(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE
+    ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
@@ -42,10 +51,12 @@ checkboxGroupInput_dsfr <- function(inputId,
   # if choices is null then choices_value and choice_names must be not empty with the same length
   # assertthat::assert_that(!is.null(choices) | (length(choice_values) > 0 & length(choice_values) == length(choice_names)))
   #
-  checkboxGroupInput_dsfr_template(inputId,
+  checkboxGroupInput_dsfr_template(
+    inputId,
     label = label,
     choix = choices,
     checked = selected,
-    inline = inline) %>%
+    inline = inline
+  ) %>%
     parse_html()
 }

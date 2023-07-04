@@ -61,11 +61,11 @@
 #'   shinyApp(ui, server)
 #' }
 radioGroupButtons_dsfr <- function(
-    inputId,
-    label,
-    choices,
-    selected = NULL,
-    inline = FALSE
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  inline = FALSE
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))

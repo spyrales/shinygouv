@@ -11,7 +11,6 @@
 #' @return html
 #' @noRd
 checkboxGroupInput_unique_dsfr_template <- function(inputId, name, label, value, checked = NULL, inline) {
-
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),

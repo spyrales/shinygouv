@@ -9,7 +9,7 @@ test_that("updateRadioButtons_dsfr works", {
     session = sessA,
     inputId = "inRadioButtons",
     label = "Un nouveau label"
-    )
+  )
 
   resultA <- sessA$lastInputMessage
   # inputId

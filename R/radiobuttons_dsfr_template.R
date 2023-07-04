@@ -13,8 +13,14 @@
 #' @importFrom purrr pmap map_chr
 #' @return html
 #' @noRd
-radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, inline = FALSE, class = NULL
-) {
+radioButtons_dsfr_template <- function(
+  inputId,
+  label,
+  choix,
+  selected = NULL,
+  inline = FALSE,
+  class = NULL
+    ) {
   if (isTRUE(inline)) {
     class_inline <- "fr-fieldset--inline"
     class <- "shiny-input-container-inline"
@@ -37,20 +43,23 @@ radioButtons_dsfr_template <- function(inputId, label, choix, selected = NULL, i
     ),
     inputId = inputId,
     label = label,
-    choix = pmap(list(.x = choix,
-      .y = nom_choix,
-      .nb = seq_along(choix)
-    ),
-    function(.x, .y, .nb, .class_inline) {
-      radioButtons_unique_dsfr_template(
-        inputId = paste0(inputId, "-", .nb),
-        name = inputId,
-        choix = .x,
-        nom_choix = .y,
-        checked = identical(.x, selected),
-        inline = inline
-      )
-    }) %>%
+    choix = pmap(
+      list(
+        .x = choix,
+        .y = nom_choix,
+        .nb = seq_along(choix)
+      ),
+      function(.x, .y, .nb, .class_inline) {
+        radioButtons_unique_dsfr_template(
+          inputId = paste0(inputId, "-", .nb),
+          name = inputId,
+          choix = .x,
+          nom_choix = .y,
+          checked = identical(.x, selected),
+          inline = inline
+        )
+      }
+    ) %>%
       htmltools::tagList(),
     inline = class_inline,
     class = class

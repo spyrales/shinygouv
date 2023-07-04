@@ -99,12 +99,12 @@
 #'   shinyApp(ui, server)
 #' }
 updateRadioGroupButtons_dsfr <- function(
-    inputId,
-    label = NULL,
-    choices = NULL,
-    selected = NULL,
-    inline = FALSE,
-    session = shiny::getDefaultReactiveDomain()
+  inputId,
+  label = NULL,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE,
+  session = shiny::getDefaultReactiveDomain()
     ) {
   ns <- session$ns
 
@@ -148,5 +148,4 @@ updateRadioGroupButtons_dsfr <- function(
   if (!is.null(choices)) {
     update_inline(ns(inputId), inline, session)
   }
-
 }

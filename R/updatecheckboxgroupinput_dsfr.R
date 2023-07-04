@@ -15,15 +15,19 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
 #'   library(shiny)
 #'
 #'   ui <- fluidPage_dsfr(
-#'     checkboxGroupInput_dsfr("variable", "Variables to show:",
-#'       c("Cylinders" = "cyl",
+#'     checkboxGroupInput_dsfr(
+#'       "variable",
+#'       "Variables to show:",
+#'       c(
+#'         "Cylinders" = "cyl",
 #'         "Transmission" = "am",
-#'         "Gears" = "gear"),
-#'       inline = FALSE),
+#'         "Gears" = "gear"
+#'       ),
+#'       inline = FALSE
+#'     ),
 #'     checkboxGroupInput("ok", "ok", c("test")),
 #'     actionButton_dsfr("go", "Change")
 #'   )
@@ -53,13 +57,14 @@
 #'   }
 #'   shinyApp(ui, server)
 #' }
-updateCheckboxGroupInput_dsfr <- function(inputId,
-                                          label = NULL,
-                                          choices = NULL,
-                                          selected = NULL,
-                                          inline = FALSE,
-                                          session = shiny::getDefaultReactiveDomain()) {
-
+updateCheckboxGroupInput_dsfr <- function(
+  inputId,
+  label = NULL,
+  choices = NULL,
+  selected = NULL,
+  inline = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+    ) {
   ns <- session$ns
 
   if (!is.null(selected)) {

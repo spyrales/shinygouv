@@ -302,41 +302,27 @@ app_ui <- function(request) {
         ),
         fluidRow_dsfr(
           column_dsfr(
-            4,
+            12,
             actionButton_dsfr(
-              inputId = "updatelab_checkboxGroupInput",
-              label = "Mettre \u00e0 jour le label"
-            )
-          ),
-          column_dsfr(
-            4,
+              inputId = "updateLabel",
+              label = "updateLabel"
+            ),
             actionButton_dsfr(
-              inputId = "updateval_checkboxGroupInput",
-              label = "Mettre \u00e0 jour les choix "
+              inputId = "updateValue",
+              label = "updateValue"
+            ),
+            actionButton_dsfr(
+              inputId = "updateMin",
+              label = "updateMin \u00e0 la valeur en cours -10"
+            ),
+            actionButton_dsfr(
+              inputId = "updateMax",
+              label = "updateMax \u00e0 la valeur en cours +10"
+            ),
+            actionButton_dsfr(
+              inputId = "updateStep",
+              label = "updateStep"
             )
-          )
-        ),
-        column_dsfr(
-          12,
-          actionButton_dsfr(
-            inputId = "updateLabel",
-            label = "updateLabel"
-          ),
-          actionButton_dsfr(
-            inputId = "updateValue",
-            label = "updateValue"
-          ),
-          actionButton_dsfr(
-            inputId = "updateMin",
-            label = "updateMin \u00e0 la valeur en cours -10"
-          ),
-          actionButton_dsfr(
-            inputId = "updateMax",
-            label = "updateMax \u00e0 la valeur en cours +10"
-          ),
-          actionButton_dsfr(
-            inputId = "updateStep",
-            label = "updateStep"
           )
         )
       ),

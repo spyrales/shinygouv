@@ -4,9 +4,11 @@ test_that("checkboxGroupInput_dsfr works", {
   test_html <- checkboxGroupInput_dsfr(
     "variable",
     "Variables to show:",
-    c("Cylinders" = "cyl",
+    c(
+      "Cylinders" = "cyl",
       "Transmission" = "am",
-      "Gears" = "gear")
+      "Gears" = "gear"
+    )
   )
 
   #' @description tester si shiny.tag
@@ -17,7 +19,8 @@ test_that("checkboxGroupInput_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "checkboxGroupInput_dsfr.Rda")
+      "checkboxGroupInput_dsfr.Rda"
+    )
   )
   #' @description Verifie le parametre selected dans le HTML
   expect_equal(
@@ -45,30 +48,40 @@ test_that("checkboxGroupInput_dsfr works", {
     checkboxGroupInput_dsfr(
       111,
       "Variables to show:",
-      c("Cylinders" = "cyl",
+      c(
+        "Cylinders" = "cyl",
         "Transmission" = "am",
-        "Gears" = "gear")
+        "Gears" = "gear"
+      )
     ),
-    regexp = "inputId is not a character vector")
+    regexp = "inputId is not a character vector"
+  )
 
 
   expect_error(
     checkboxGroupInput_dsfr(
       "variable",
       444,
-      c("Cylinders" = "cyl",
+      c(
+        "Cylinders" = "cyl",
         "Transmission" = "am",
-        "Gears" = "gear")
+        "Gears" = "gear"
+      )
     ),
-    regexp = "label is not a character vector")
+    regexp = "label is not a character vector"
+  )
 
   expect_error(
     checkboxGroupInput_dsfr(
       "variable",
       "A label",
-      c("Cylinders" = "cyl",
+      c(
+        "Cylinders" = "cyl",
         "Transmission" = "am",
-        "Gears" = "gear"),
-      inline = "fake"),
-    regexp = "is.logical\\(inline\\) is not TRUE")
+        "Gears" = "gear"
+      ),
+      inline = "fake"
+    ),
+    regexp = "is.logical\\(inline\\) is not TRUE"
+  )
 })
