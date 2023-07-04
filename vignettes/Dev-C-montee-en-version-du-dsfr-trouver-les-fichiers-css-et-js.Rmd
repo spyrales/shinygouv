@@ -49,7 +49,11 @@ nouvelle_version <- "1.9.3"
 tmp_ <- tempfile(fileext = ".zip")
 download.file(
   paste0(
-    "https://github.com/GouvernementFR/dsfr/releases/download/v", nouvelle_version, "/dsfr-v", nouvelle_version, ".zip"
+    "https://github.com/GouvernementFR/dsfr/releases/download/v",
+    nouvelle_version,
+    "/dsfr-v",
+    nouvelle_version,
+    ".zip"
   ),
   tmp_
 )
@@ -118,11 +122,15 @@ all_versions <- list.files("inst", pattern = "^v\\d")
 if (length(all_versions > 2)) {
   unlink(file.path("inst", min(all_versions)), recursive = TRUE)
   unlink(
-    file.path("inst",
-      paste0("dsfr-", min(all_versions)
+    file.path(
+      "inst",
+      paste0(
+        "dsfr-",
+        min(all_versions)
       )
     ),
-    recursive = TRUE)
+    recursive = TRUE
+  )
 }
 ```
 

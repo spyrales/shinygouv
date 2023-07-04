@@ -800,15 +800,6 @@ updateCheckboxGroupInput_dsfr <- function(inputId,
     update_inline(ns(inputId), inline, session)
   }
 }
-
-#' @noRd
-update_inline <- function(inputId, inline, session) {
-  if (inline) {
-    session$sendCustomMessage("inline", inputId)
-  } else {
-    session$sendCustomMessage("not_inline", inputId)
-  }
-}
 ```
 
 ```{r examples-updateCheckboxGroupInput_dsfr}
@@ -818,13 +809,14 @@ if (interactive()) {
   library(shiny)
 
   ui <- fluidPage_dsfr(
-    checkboxGroupInput_dsfr("variable", "Variables to show:",
+    checkboxGroupInput_dsfr(
+      "variable", "Variables to show:",
       c("Cylinders" = "cyl",
         "Transmission" = "am",
         "Gears" = "gear"),
       inline = FALSE),
-    checkboxGroupInput("ok", "ok", c("test")),
-    actionButton_dsfr("go", "Change")
+    actionButton_dsfr("go", "Change for inline and choices"),
+    actionButton_dsfr("go2", "Change without inline and choices")
   )
 
   server <- function(input, output, session) {
@@ -843,12 +835,21 @@ if (interactive()) {
         inline = TRUE
       )
 
-      updateCheckboxGroupInput(
-        session = session,
-        inputId = "ok",
-        label = paste0("test", rnorm(1))
-      )
     })
+
+
+    observeEvent(input$go2, {
+      updateCheckboxGroupInput_dsfr(
+        session = session,
+        inputId = "variable",
+        label = paste0("test", rnorm(1)),
+        choices = c("A" = "a", "B" = "b"),
+        selected = "a",
+        inline = FALSE
+      )
+
+    })
+
   }
   shinyApp(ui, server)
 }

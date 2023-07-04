@@ -215,6 +215,26 @@ flat_toggleswitch.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_tools.Rmd:
+  path: dev/tools/flat_tools.Rmd
+  state: active
+  R:
+  - R/parse_html.R
+  - R/parse_to_xml.R
+  - R/render_node.R
+  - R/update_inline.R
+  tests:
+  - tests/testthat/test-parse_to_xml.R
+  - tests/testthat/test-render_node.R
+  - tests/testthat/test-parse_html.R
+  vignettes: []
+  inflate:
+    flat_file: dev/tools/flat_tools.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: 'yes'
 flat_withSpinner.Rmd:
   path: dev/flat_composants/flat_withSpinner.Rmd
   state: active

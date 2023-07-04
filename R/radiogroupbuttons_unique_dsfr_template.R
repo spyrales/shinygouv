@@ -20,7 +20,7 @@ radioGroupButtons_unique_dsfr_template <-
   name,
   selected = FALSE,
   inline = FALSE
-  ) {
+      ) {
     htmltools::htmlTemplate(
       filename = system.file(
         get_dsfr_version(with_v = TRUE),
