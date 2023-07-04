@@ -1,5 +1,5 @@
 default:
-  golem_name: appshinydemo
+  golem_name: test.convert.dsfr
   golem_version: 0.0.0.9000
   app_prod: no
 production:

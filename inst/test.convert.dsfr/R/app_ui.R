@@ -10,7 +10,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      navbarPage("App shiny demo",
+      navbarPage("Test convert dsfr",
                  tabPanel("exploration",
                           column(width = 4,
                           mod_gauche_ui("gauche_1")
@@ -42,7 +42,7 @@ golem_add_external_resources <- function() {
     favicon(),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "appshinydemo"
+      app_title = "test.convert.dsfr"
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()
