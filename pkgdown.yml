@@ -2,17 +2,14 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  actionbutton_dsfr: actionbutton_dsfr.html
-  comment-demarrer-une-nouvelle-application-shiny-dsfr: comment-demarrer-une-nouvelle-application-shiny-dsfr.html
-  convertir-une-app-shiny-en-app-shiny-dsfr: convertir-une-app-shiny-en-app-shiny-dsfr.html
-  documentation-inventaire: documentation-inventaire.html
-  html-vers-shiny-tag: html-vers-shiny-tag.html
-  montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js: montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html
-  navbarpage_dsfr: navbarpage_dsfr.html
-  numericinput_dsfr: numericinput_dsfr.html
-  recommandation-pour-l-implementation-de-dsfr: recommandation-pour-l-implementation-de-dsfr.html
-  selectinput_dsfr: selectinput_dsfr.html
-  tests_and_coverage: tests_and_coverage.html
-  withspinner_dsfr: withspinner_dsfr.html
-last_built: 2023-07-04T07:10Z
+  A-convertir-une-app-shiny-en-app-shiny-dsfr: A-convertir-une-app-shiny-en-app-shiny-dsfr.html
+  B-comment-demarrer-une-nouvelle-application-shiny-dsfr: B-comment-demarrer-une-nouvelle-application-shiny-dsfr.html
+  Dev-A-guide-du-developpeur: Dev-A-guide-du-developpeur.html
+  Dev-B-comment-faire-un-composant-shiny: Dev-B-comment-faire-un-composant-shiny.html
+  Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js: Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html
+  Dev-D-retour-sur-shiny.dsfr: Dev-D-retour-sur-shiny.dsfr.html
+  Dev-E-recommandation-pour-l-implementation-de-dsfr: Dev-E-recommandation-pour-l-implementation-de-dsfr.html
+  Dev-F-documentation-inventaire: Dev-F-documentation-inventaire.html
+  Dev-G-test-and-coverage: Dev-G-test-and-coverage.html
+last_built: 2023-07-04T09:52Z
 

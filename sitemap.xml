@@ -13,43 +13,34 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/articles/actionbutton_dsfr.html</loc>
+    <loc>/articles/A-convertir-une-app-shiny-en-app-shiny-dsfr.html</loc>
   </url>
   <url>
-    <loc>/articles/comment-demarrer-une-nouvelle-application-shiny-dsfr.html</loc>
+    <loc>/articles/B-comment-demarrer-une-nouvelle-application-shiny-dsfr.html</loc>
   </url>
   <url>
-    <loc>/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html</loc>
+    <loc>/articles/Dev-A-guide-du-developpeur.html</loc>
   </url>
   <url>
-    <loc>/articles/documentation-inventaire.html</loc>
+    <loc>/articles/Dev-B-comment-faire-un-composant-shiny.html</loc>
   </url>
   <url>
-    <loc>/articles/html-vers-shiny-tag.html</loc>
+    <loc>/articles/Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Dev-D-retour-sur-shiny.dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Dev-E-recommandation-pour-l-implementation-de-dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Dev-F-documentation-inventaire.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Dev-G-test-and-coverage.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html</loc>
-  </url>
-  <url>
-    <loc>/articles/navbarpage_dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/numericinput_dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/recommandation-pour-l-implementation-de-dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/selectinput_dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tests_and_coverage.html</loc>
-  </url>
-  <url>
-    <loc>/articles/withspinner_dsfr.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
