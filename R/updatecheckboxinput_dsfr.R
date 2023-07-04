@@ -17,10 +17,11 @@
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'   ui <- fluidPage_dsfr(
-#'     checkboxInput_dsfr(inputId = "inCheckboxInput", label = "test", value = FALSE),
+#'     checkboxInput_dsfr(inputId = 'inCheckboxInput', label = 'test', value = FALSE),
 #'     actionButton_dsfr("go", "Change")
 #'   )
 #'   server <- function(input, output, session) {
+#'
 #'     observeEvent(input$go, {
 #'       updateCheckboxInput_dsfr(
 #'         session = session,
@@ -36,18 +37,16 @@
 #'   }
 #'   shinyApp(ui, server)
 #' }
-updateCheckboxInput_dsfr <- function(
-  inputId,
-  label = NULL,
-  value = NULL,
-  session = shiny::getDefaultReactiveDomain()
-    ) {
+updateCheckboxInput_dsfr <- function(inputId,
+                                     label = NULL,
+                                     value = NULL,
+                                     session = shiny::getDefaultReactiveDomain()) {
+
   ns <- session$ns
 
-  updateCheckboxInput(
-    session = session,
+  updateCheckboxInput(session = session,
     inputId = ns(inputId),
     label = label,
-    value = value
-  )
+    value = value)
+
 }

@@ -12,6 +12,8 @@
 #' @return html
 #' @noRd
 checkboxGroupInput_dsfr_template <- function(inputId, label, choix, checked = NULL, inline = FALSE) {
+
+
   if (isTRUE(inline)) {
     inline_value <- "fr-fieldset__element--inline"
     container_inline <- "shiny-input-container-inline"
@@ -40,25 +42,22 @@ checkboxGroupInput_dsfr_template <- function(inputId, label, choix, checked = NU
     inputId = inputId,
     label = label,
     container_inline = container_inline,
-    choice = pmap(
-      list(
-        .x = choix,
-        .y = nom_choix,
-        .z = checked_value,
-        .nb = seq_along(choix),
-        .inline = rep(inline_value, length(choix))
-      ),
-      function(.x, .y, .z, .nb, .inline) {
-        checkboxGroupInput_unique_dsfr_template(
-          inputId = inputId,
-          name = paste0(inputId, "-", .nb),
-          label = .y,
-          value = .x,
-          checked = .z,
-          inline = .inline
-        )
-      }
-    ) %>%
+    choice = pmap(list(.x = choix,
+      .y = nom_choix,
+      .z = checked_value,
+      .nb = seq_along(choix),
+      .inline = rep(inline_value, length(choix))
+    ),
+    function(.x, .y, .z, .nb, .inline) {
+      checkboxGroupInput_unique_dsfr_template(
+        inputId = inputId,
+        name = paste0(inputId, "-", .nb),
+        label = .y,
+        value = .x,
+        checked = .z,
+        inline = .inline
+      )
+    }) %>%
       htmltools::tagList()
   )
 }

@@ -2,10 +2,7 @@
 
 test_that("checkboxInput_dsfr works", {
   test_html <- checkboxInput_dsfr(
-    inputId = "test",
-    label = "test",
-    value = FALSE
-  )
+    inputId = 'test', label = 'test', value = FALSE)
 
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
@@ -16,15 +13,12 @@ test_that("checkboxInput_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "checkboxInput_dsfr.Rda"
-    )
+      "checkboxInput_dsfr.Rda")
   )
 
   #' @description Verifie le HTML créé
-  expect_equal(
-    gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html)
-  )
+  expect_equal(gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html))
 
   # Si erreur au précedent test deux cas possible :
   #
@@ -38,27 +32,25 @@ test_that("checkboxInput_dsfr works", {
   #                          "checkboxInput_dsfr.Rda"
   #                          )
   #         )
+
 })
 #
 test_that("checkboxInput_dsfr", {
   test <- checkboxInput_dsfr(
-    inputId = "test",
-    label = "test",
-    value = FALSE
-  )
+    inputId = 'test', label = 'test', value = FALSE)
 
   #' @description tester si shiny.tag
   expect_s3_class(test, "shiny.tag")
 
   expect_error(
-    checkboxInput_dsfr(inputId = "test", label = "test", value = "char")
+    checkboxInput_dsfr(inputId = "test", label = 'test', value = "char")
   )
 
   expect_error(
-    checkboxInput_dsfr(inputId = "test", label = 11, value = FALSE)
+    checkboxInput_dsfr(inputId = 'test', label = 11, value = FALSE)
   )
 
   expect_error(
-    checkboxInput_dsfr(inputId = 11, label = "test", value = FALSE)
+    checkboxInput_dsfr(inputId = 11, label = 'test', value = FALSE)
   )
 })

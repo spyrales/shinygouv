@@ -24,12 +24,10 @@ test_that("radioButtons_unique_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(
-        any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'"))
+
+    })
 
 
   test_html <- radioButtons_unique_dsfr_template(
@@ -44,8 +42,8 @@ test_that("radioButtons_unique_dsfr_template works", {
   expect_false(
     grepl(
       pattern = "\\{\\{",
-      test_html
-    )
+      test_html)
+
   )
 
 
@@ -59,20 +57,16 @@ test_that("radioButtons_unique_dsfr_template works", {
       nom_choix = "Choix A"
     ),
     function(param) {
-      expect_true(
-        any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'"))
+    })
 
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "radioButtons_unique_dsfr_template.Rda"
-    )
+      "radioButtons_unique_dsfr_template.Rda")
   )
 
   #' @description Verifie le HTML créé
@@ -96,8 +90,7 @@ test_that("radioButtons_unique_dsfr_template works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "radioButtons_unique_dsfr_template_selected.Rda"
-    )
+      "radioButtons_unique_dsfr_template_selected.Rda")
   )
 
   #' @description Verifie la presence du parametre selected
@@ -127,4 +120,7 @@ test_that("radioButtons_unique_dsfr_template works", {
   #                          "radioButtons_unique_dsfr_template_selected.Rda"
   #                          )
   #         )
+
+
+
 })

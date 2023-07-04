@@ -75,6 +75,22 @@ app_ui <- function(request) {
             ),
             extra_class = "fr-m-1w"
           )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiobutton_inline_true",
+              label = "Mettre le inline \u00e0 TRUE"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiobutton_inline_false",
+              label = "Mettre le inline \u00e0 FALSE"
+            )
+          )
         )
       ),
       # Third tab
@@ -262,6 +278,22 @@ app_ui <- function(request) {
               )
             )
           )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_checkboxgroup_inline_true",
+              label = "Mettre le inline \u00e0 TRUE"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_checkboxgroup_inline_false",
+              label = "Mettre le inline \u00e0 FALSE"
+            )
+          )
         )
       ),
 
@@ -418,7 +450,7 @@ app_ui <- function(request) {
             extra_class = "fr-my-6w"
           ),
           column_dsfr(
-            4,
+            6,
             radioGroupButtons_dsfr(
               inputId = "espece_radiogroupbutton",
               label = "Especes (radio group button avec inline = TRUE)",
@@ -461,11 +493,11 @@ app_ui <- function(request) {
         ),
         fluidRow_dsfr(
           column_dsfr(
-            4,
+            6,
             radioGroupButtons_dsfr(
               inputId = "espece_radiogroupbutton2",
               label = "Especes (radio group button avec inline = FALSE)",
-              choices = c("Virginica" = "virginica", "Versicolor" = "versicolor"),
+              choices = c("Virginica" = "virginica", "Versicolor" = "versicolor", "Setosa" = "setosa"),
               inline = FALSE
             ),
             extra_class = "fr-m-1w"
@@ -476,6 +508,22 @@ app_ui <- function(request) {
               "outputespece_radiogroupbutton2"
             ),
             extra_class = "fr-m-1w"
+          )
+        ),
+        fluidRow_dsfr(
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiogroupbutton_inline_true",
+              label = "Mettre le inline \u00e0 TRUE"
+            )
+          ),
+          column_dsfr(
+            4,
+            actionButton_dsfr(
+              inputId = "update_radiogroupbutton_inline_false",
+              label = "Mettre le inline \u00e0 FALSE"
+            )
           )
         )
       )

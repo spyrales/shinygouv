@@ -22,12 +22,9 @@ test_that("checkboxInput_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(
-        any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'"))
+    })
 
 
   test_html <- checkboxInput_dsfr_template(
@@ -48,20 +45,16 @@ test_that("checkboxInput_dsfr_template works", {
       checked = "checked"
     ),
     function(param) {
-      expect_true(
-        any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'"))
+    })
 
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "checkboxInput_dsfr_template.Rda"
-    )
+      "checkboxInput_dsfr_template.Rda")
   )
 
   #' @description Verifie le HTML créé
@@ -85,4 +78,6 @@ test_that("checkboxInput_dsfr_template works", {
   #                          "checkboxInput_dsfr_template.Rda"
   #                          )
   #         )
+
+
 })

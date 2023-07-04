@@ -34,10 +34,7 @@ radioButtons_dsfr
 }
 \examples{
 radioButtons_dsfr(
-  inputId = "test",
-  label = "Test",
-  choices = c("A", "B"),
-  class = NULL
+  inputId = "test", label = "Test", choices = c("A", "B"), class = NULL
 )
 
 radioButtons_dsfr(

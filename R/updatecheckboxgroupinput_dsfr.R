@@ -14,23 +14,20 @@
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
-#'
 #' if (interactive()) {
+#'
 #'   library(shiny)
 #'
 #'   ui <- fluidPage_dsfr(
-#'     checkboxGroupInput_dsfr(
-#'       "variable",
-#'       "Variables to show:",
-#'       c(
-#'         "Cylinders" = "cyl",
+#'     checkboxGroupInput_dsfr("variable", "Variables to show:",
+#'       c("Cylinders" = "cyl",
 #'         "Transmission" = "am",
-#'         "Gears" = "gear"
-#'       ),
-#'       inline = TRUE
-#'     ),
+#'         "Gears" = "gear"),
+#'       inline = FALSE),
 #'     checkboxGroupInput("ok", "ok", c("test")),
-#'     actionButton_dsfr("go", "Change")
+#'     actionButton_dsfr("go", "Change"),
+#'     actionButton_dsfr("inline", "Mettre en inline"),
+#'     actionButton_dsfr("notinline", "Enlever le inline")
 #'   )
 #'
 #'   server <- function(input, output, session) {
@@ -45,8 +42,7 @@
 #'         inputId = "variable",
 #'         label = paste0("test", rnorm(1)),
 #'         choices = c("A" = "a", "B" = "b"),
-#'         selected = "a",
-#'         inline = FALSE
+#'         selected = "a"
 #'       )
 #'
 #'       updateCheckboxGroupInput(
@@ -55,17 +51,34 @@
 #'         label = paste0("test", rnorm(1))
 #'       )
 #'     })
+#'     
+#'     
+#'     observeEvent(input$inline, {
+#'       updateCheckboxGroupInput_dsfr(
+#'         session = session,
+#'         inputId = "variable",
+#'         inline = TRUE
+#'       )
+#'     })
+#'     
+#'     observeEvent(input$notinline, {
+#'       updateCheckboxGroupInput_dsfr(
+#'         session = session,
+#'         inputId = "variable",
+#'         inline = FALSE
+#'       )
+#'     })
+#'     
 #'   }
 #'   shinyApp(ui, server)
 #' }
-updateCheckboxGroupInput_dsfr <- function(
-  inputId,
-  label = NULL,
-  choices = NULL,
-  selected = NULL,
-  inline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
-    ) {
+updateCheckboxGroupInput_dsfr <- function(inputId,
+                                          label = NULL,
+                                          choices = NULL,
+                                          selected = NULL,
+                                          inline = FALSE,
+                                          session = shiny::getDefaultReactiveDomain()) {
+
   ns <- session$ns
 
   if (!is.null(selected)) {
@@ -97,6 +110,15 @@ updateCheckboxGroupInput_dsfr <- function(
     options = choices,
     value = selected
   ))
-
   session$sendInputMessage(ns(inputId), message)
+  update_inline(ns(inputId), inline, session)
+}
+
+#' @noRd 
+update_inline <- function(inputId, inline, session) {
+  if (inline) {
+    session$sendCustomMessage("inline", inputId)
+  } else {
+    session$sendCustomMessage("not_inline", inputId)
+  }
 }

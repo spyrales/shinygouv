@@ -15,6 +15,22 @@ app_server <- function(input, output, session) {
     paste("Esp\u00e8ce :", input$espece)
   })
 
+  observeEvent(input$update_radiobutton_inline_true, {
+    updateRadioButtons_dsfr(
+      inputId = "espece",
+      inline = TRUE,
+      session = session
+    )
+  })
+
+  observeEvent(input$update_radiobutton_inline_false, {
+    updateRadioButtons_dsfr(
+      inputId = "espece",
+      inline = FALSE,
+      session = session
+    )
+  })
+
   observeEvent(input$show_modal, {
     showModal_dsfr(
       ui = modalDialog_dsfr(
@@ -135,6 +151,24 @@ app_server <- function(input, output, session) {
     )
   })
 
+
+  observeEvent(input$update_checkboxgroup_inline_true, {
+    updateCheckboxGroupInput_dsfr(
+      inputId = "mycheckboxgroupInput",
+      inline = TRUE,
+      session = session
+    )
+  })
+
+  observeEvent(input$update_checkboxgroup_inline_false, {
+    updateCheckboxGroupInput_dsfr(
+      inputId = "mycheckboxgroupInput",
+      inline = FALSE,
+      session = session
+    )
+  })
+
+
   output$plot <- renderPlot({
     plot(utils::head(datasets::iris, input$tabpaneln))
   })
@@ -237,6 +271,22 @@ app_server <- function(input, output, session) {
     updateRadioGroupButtons_dsfr(
       inputId = "espece_radiogroupbutton",
       selected = sample(r$radiogroupubutton_choices, size = 1),
+      session = session
+    )
+  })
+
+  observeEvent(input$update_radiogroupbutton_inline_true, {
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton2",
+      inline = TRUE,
+      session = session
+    )
+  })
+
+  observeEvent(input$update_radiogroupbutton_inline_false, {
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton2",
+      inline = FALSE,
       session = session
     )
   })

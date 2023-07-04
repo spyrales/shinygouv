@@ -10,10 +10,11 @@
 #' @return html
 #' @noRd
 checkboxInput_dsfr_template <- function(inputId, label, value = FALSE) {
+
   if (isTRUE(value)) {
-    checked <- 'checked = "checked"'
+    checked = 'checked = "checked"'
   } else {
-    checked <- NULL
+    checked = NULL
   }
 
   htmltools::htmlTemplate(

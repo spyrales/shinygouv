@@ -30,10 +30,11 @@ Change la valeur d'un checkboxInput
 ## Only run examples in interactive R sessions
 if (interactive()) {
   ui <- fluidPage_dsfr(
-    checkboxInput_dsfr(inputId = "inCheckboxInput", label = "test", value = FALSE),
+    checkboxInput_dsfr(inputId = 'inCheckboxInput', label = 'test', value = FALSE),
     actionButton_dsfr("go", "Change")
   )
   server <- function(input, output, session) {
+
     observeEvent(input$go, {
       updateCheckboxInput_dsfr(
         session = session,

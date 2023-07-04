@@ -138,9 +138,9 @@ flat_radioButtons.Rmd:
     flat_file: dev/flat_composants/flat_radioButtons.Rmd
     vignette_name: radioButtons_dsfr
     open_vignette: false
-    check: true
+    check: false
     document: true
-    overwrite: ask
+    overwrite: 'yes'
 flat_radioGroupButtons.Rmd:
   path: dev/flat_composants/flat_radioGroupButtons.Rmd
   state: active

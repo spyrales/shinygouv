@@ -142,4 +142,6 @@ updateRadioGroupButtons_dsfr <- function(
     )
   }
   session$sendInputMessage(ns(inputId), message)
+  update_inline(ns(inputId), inline, session)
+
 }

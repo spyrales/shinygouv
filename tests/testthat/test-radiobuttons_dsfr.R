@@ -2,10 +2,7 @@
 
 test_that("radioButtons_dsfr works", {
   test_html <- radioButtons_dsfr(
-    inputId = "test",
-    label = "Test",
-    choices = c("A", "B"),
-    class = NULL
+    inputId = "test", label = "Test", choices = c("A", "B"), class = NULL
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
@@ -16,10 +13,8 @@ test_that("radioButtons_dsfr works", {
       label = "Test error selected with more than one element",
       choices = c("A", "B"),
       selected = c("A", "B"),
-      class = NULL
-    ),
-    regexp = "selected"
-  )
+      class = NULL),
+    regexp = "selected")
 
   # test selected
   test_html_selected <- radioButtons_dsfr(
@@ -27,21 +22,17 @@ test_that("radioButtons_dsfr works", {
     label = "Selected",
     choices = c("A", "B"),
     selected = "A",
-    class = NULL
-  )
+    class = NULL)
 
   snapshot_html_selected <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "radioButtons_dsfr_selected.Rda"
-    )
+      "radioButtons_dsfr_selected.Rda")
   )
   #' @description Verifie le parametre selected dans le HTML
-  expect_equal(
-    gsub("\\s|\\n", "", test_html_selected),
-    gsub("\\s|\\n", "", snapshot_html_selected)
-  )
+  expect_equal(gsub("\\s|\\n", "", test_html_selected),
+    gsub("\\s|\\n", "", snapshot_html_selected))
 
 
   # Si erreur au précedent test deux cas possible :

@@ -18,17 +18,16 @@
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'   ui <- fluidPage_dsfr(
-#'     radioButtons_dsfr(
-#'       inputId = "inRadioButtons",
+#'     radioButtons_dsfr(inputId = "inRadioButtons",
 #'       label = "Input radio buttons",
 #'       choices = c("Item A", "Item B", "Item C"),
 #'       # ),
-#'       inline = TRUE
-#'     ),
+#'       inline = TRUE),
 #'     actionButton_dsfr("go", "Change")
 #'   )
 #'
 #'   server <- function(input, output, session) {
+#'
 #'     observeEvent(input$go, {
 #'       updateRadioButtons_dsfr(
 #'         session = session,
@@ -47,14 +46,13 @@
 #'
 #'   shinyApp(ui, server)
 #' }
-updateRadioButtons_dsfr <- function(
-  inputId,
-  label = NULL,
-  choices = NULL,
-  selected = NULL,
-  inline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
-    ) {
+updateRadioButtons_dsfr <- function(inputId,
+                                    label = NULL,
+                                    choices = NULL,
+                                    selected = NULL,
+                                    inline = FALSE,
+                                    session = shiny::getDefaultReactiveDomain()) {
+
   ns <- session$ns
 
   if (!is.null(selected)) {
@@ -88,4 +86,6 @@ updateRadioButtons_dsfr <- function(
   ))
 
   session$sendInputMessage(ns(inputId), message)
+  update_inline(ns(inputId), inline, session)
+
 }

@@ -31,6 +31,25 @@ $(document).ready(function () {
     element.setAttribute('data-fr-unchecked-label', args.deactivate) // Méthode pour fermer manuellement la modale
   });
 
+  Shiny.addCustomMessageHandler('inline', function (inputId) {
+    setTimeout(function () {
+      console.log("inline");
+      var elt = $("#" + inputId).find(".shiny-options-group");
+      elt.children().addClass("fr-fieldset__element--inline");
+      elt.find(".shiny-options-group").css("display", "flex");
+    }, 10)
+
+  });
+
+  Shiny.addCustomMessageHandler('not_inline', function (inputId) {
+    setTimeout(function () {
+      console.log("noinline");
+      var elt = $("#" + inputId).find(".shiny-options-group");
+      elt.children().removeClass("fr-fieldset__element--inline");
+      elt.find(".shiny-options-group").css("display", "block");
+    }, 10)
+  });
+
 });
 
 
