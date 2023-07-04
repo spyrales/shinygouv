@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   actionbutton_dsfr: actionbutton_dsfr.html
@@ -8,7 +8,11 @@ articles:
   documentation-inventaire: documentation-inventaire.html
   html-vers-shiny-tag: html-vers-shiny-tag.html
   montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js: montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html
+  navbarpage_dsfr: navbarpage_dsfr.html
+  numericinput_dsfr: numericinput_dsfr.html
   recommandation-pour-l-implementation-de-dsfr: recommandation-pour-l-implementation-de-dsfr.html
+  selectinput_dsfr: selectinput_dsfr.html
   tests_and_coverage: tests_and_coverage.html
-last_built: 2022-09-07T15:20Z
+  withspinner_dsfr: withspinner_dsfr.html
+last_built: 2023-07-04T07:10Z
 

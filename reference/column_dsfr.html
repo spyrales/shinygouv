@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygouv</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
       </span>
     </div>
 
@@ -50,10 +50,22 @@
       <a href="../articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee en version du dsfr : trouver les fichiers CSS et JS</a>
     </li>
     <li>
+      <a href="../articles/navbarpage_dsfr.html">navbarPage_dsfr</a>
+    </li>
+    <li>
+      <a href="../articles/numericinput_dsfr.html">numericInput_dsfr</a>
+    </li>
+    <li>
       <a href="../articles/recommandation-pour-l-implementation-de-dsfr.html">Recommandation pour l'implementation de DSFR</a>
     </li>
     <li>
+      <a href="../articles/selectinput_dsfr.html">selectInput_dsfr</a>
+    </li>
+    <li>
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
+      <a href="../articles/withspinner_dsfr.html">withSpinner_dsfr</a>
     </li>
   </ul></li>
 <li>
@@ -78,7 +90,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">column_dsfr</span><span class="op">(</span>width <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">column_dsfr</span><span class="op">(</span>width <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, extra_class <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,6 +101,10 @@
 
 <dt>...</dt>
 <dd><p>differents tag pour construire la page</p></dd>
+
+
+<dt>extra_class</dt>
+<dd><p>ajout de class pour la column_dsfr (voir la page officiel du CSS)</p></dd>
 
 </dl></div>
     <div id="value">
@@ -101,18 +117,18 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  ui <span class="op">=</span> <span class="fu"><a href="fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"exemple"</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="fluidRow_dsfr.html">fluidRow_dsfr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span><span class="op">{</span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"exemple"</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="fluidRow_dsfr.html">fluidRow_dsfr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu">column_dsfr</span><span class="op">(</span><span class="fl">0</span>, <span class="st">"test"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
@@ -130,7 +146,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

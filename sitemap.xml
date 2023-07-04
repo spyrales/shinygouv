@@ -34,10 +34,22 @@
     <loc>/articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html</loc>
   </url>
   <url>
+    <loc>/articles/navbarpage_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/articles/numericinput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/articles/recommandation-pour-l-implementation-de-dsfr.html</loc>
   </url>
   <url>
+    <loc>/articles/selectinput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/articles/tests_and_coverage.html</loc>
+  </url>
+  <url>
+    <loc>/articles/withspinner_dsfr.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -56,6 +68,12 @@
   </url>
   <url>
     <loc>/reference/add_dsfr_deps.html</loc>
+  </url>
+  <url>
+    <loc>/reference/checkboxGroupInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/checkboxInput_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/column_dsfr.html</loc>
@@ -79,6 +97,18 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/modalDialog_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/navbarPage_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/navbarPanel_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/numericInput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/parse_html.html</loc>
   </url>
   <url>
@@ -88,15 +118,48 @@
     <loc>/reference/radioButtons_dsfr.html</loc>
   </url>
   <url>
+    <loc>/reference/removeModal_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/render_node.html</loc>
   </url>
   <url>
     <loc>/reference/run_app.html</loc>
   </url>
   <url>
+    <loc>/reference/selectInput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/shinygouv-package.html</loc>
   </url>
   <url>
+    <loc>/reference/showModal_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sliderInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tabPanel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/toggleSwitch_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateCheckboxGroupInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateCheckboxInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateNumericInput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/updateRadioButtons_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateSelectInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/withSpinner_dsfr.html</loc>
   </url>
 </urlset>

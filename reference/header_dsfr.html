@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinygouv</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
       </span>
     </div>
 
@@ -50,10 +50,22 @@
       <a href="../articles/montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee en version du dsfr : trouver les fichiers CSS et JS</a>
     </li>
     <li>
+      <a href="../articles/navbarpage_dsfr.html">navbarPage_dsfr</a>
+    </li>
+    <li>
+      <a href="../articles/numericinput_dsfr.html">numericInput_dsfr</a>
+    </li>
+    <li>
       <a href="../articles/recommandation-pour-l-implementation-de-dsfr.html">Recommandation pour l'implementation de DSFR</a>
     </li>
     <li>
+      <a href="../articles/selectinput_dsfr.html">selectInput_dsfr</a>
+    </li>
+    <li>
       <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
+      <a href="../articles/withspinner_dsfr.html">withSpinner_dsfr</a>
     </li>
   </ul></li>
 <li>
@@ -128,8 +140,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">header_dsfr</span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">header_dsfr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  intitule <span class="op">=</span> <span class="st">"Prefet de"</span>,</span></span>
 <span class="r-in"><span>  officiel <span class="op">=</span> <span class="st">"Bretagne"</span>,</span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -140,11 +151,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;div class="fr-header__brand fr-enlarge-link"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div class="fr-header__brand-top"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;div class="fr-header__logo"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;p class="fr-logo"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Prefet de</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;br/&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 Bretagne</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;a href="/" title="Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;p class="fr-logo"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Prefet de</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;br/&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   Bretagne</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;/p&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;/a&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/div&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;div class="fr-header__navbar"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-7145" aria-haspopup="menu" id="button-7146" title="Menu"&gt;Menu&lt;/button&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/div&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div class="fr-header__service"&gt;</span>
@@ -172,7 +188,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
