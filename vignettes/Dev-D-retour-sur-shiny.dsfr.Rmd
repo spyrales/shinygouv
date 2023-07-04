@@ -1,11 +1,14 @@
 ---
-title: "Retour sur {shiny.dsfr}"
+title: 'Retour sur shiny.dsfr'
 output: github_document
-date: "2022-08-08"
+vignette: >
+  %\VignetteIndexEntry{Dev-D-retour-sur-shiny.dsfr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
 Le package {shiny.dsfr} disponible [ici](https://gitlab-forge.din.developpement-durable.gouv.fr/dreal-pdl/csd/shiny.dsfr/-/tree/main/) utilise {charpente} et reprend la structure "classique" d'un package qui implémente une nouvelle interface utilisateur.
