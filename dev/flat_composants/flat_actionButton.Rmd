@@ -27,9 +27,9 @@ pkgload::load_all(export_all = TRUE)
 #' @importFrom htmltools htmlTemplate
 #' @return html
 actionButton_dsfr_template <- function(
-  inputId,
-  label,
-  class
+    inputId,
+    label,
+    class
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -144,9 +144,9 @@ test_that("actionButton_dsfr_template works", {
 #'
 #' @examples
 actionButton_dsfr <- function(
-  inputId,
-  label,
-  class = NULL
+    inputId,
+    label,
+    class = NULL
     ) {
   actionButton_dsfr_template(
     inputId,
@@ -240,7 +240,7 @@ test_that("actionButton_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_actionButton.Rmd",
-  vignette_name = "actionButton_dsfr",
+  vignette_name = NA,
   check = FALSE
 )
 ```

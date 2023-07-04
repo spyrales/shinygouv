@@ -1,12 +1,14 @@
 ---
 title: 'Guide du développeur'
 output: github_document
-editor_options: 
-  chunk_output_type: console
+vignette: >
+  %\VignetteIndexEntry{Dev-A-guide-du-developpeur}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
 Ceci est un dossier de documentation dédié aux développeurs et développeuses. Il contient les choix de mode de développement et tout autre document qui ne s'adresserait pas directement aux utilisateurs.
@@ -99,15 +101,15 @@ Le workflow se découpe en deux possibilités :
 
 Ces deux possibilités se basent sur le même principe : **l'utilisation des templates html**. La trame générale de ce workflow est définie dans la documentation : 
 
-- [Comment faire un composant shiny](comment-faire-un-composant-shiny.md)
+- [Comment faire un composant shiny](Dev-B-comment-faire-un-composant-shiny.md)
 
 Vous trouverez des exemples pour d'autres composants :
 
 - Avec réactivité:
-  - [radio buttons](radiobuttons-dsfr.md)
+  - [radio buttons](reference/radiobuttons-dsfr.html)
   
 - Sans réactivité:
-  - [Fluid page](fluidpage_dsfr.md)
+  - [Fluid page](reference/fluidpage_dsfr.html)
  
 N'hésitez pas à amender cette liste au fur et à mesure de vos développements 
 
