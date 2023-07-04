@@ -44,7 +44,7 @@
 #'       ),
 #'       actionButton_dsfr(
 #'         inputId = "update_radiogroupbutton_choices",
-#'         label = "Update choices"
+#'         label = "Update choices and inline"
 #'       ),
 #'       actionButton_dsfr(
 #'         inputId = "update_radiogroupbutton_selected",
@@ -77,11 +77,12 @@
 #'     })
 #'
 #'     observeEvent(input$update_radiogroupbutton_choices, {
-#'       r$radiogroupubutton_choices <- sapply(1:5, function(x) paste0(sample(LETTERS, size = 3), collapse = ""))
+#'       r$radiogroupubutton_choices <- sapply(1:3, function(x) paste0(sample(LETTERS, size = 3), collapse = ""))
 #'
 #'       updateRadioGroupButtons_dsfr(
 #'         inputId = "espece_radiogroupbutton",
 #'         choices = r$radiogroupubutton_choices,
+#'         inline = TRUE,
 #'         session = session
 #'       )
 #'     })

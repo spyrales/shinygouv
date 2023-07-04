@@ -75,22 +75,6 @@ app_ui <- function(request) {
             ),
             extra_class = "fr-m-1w"
           )
-        ),
-        fluidRow_dsfr(
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_radiobutton_inline_true",
-              label = "Mettre le inline \u00e0 TRUE"
-            )
-          ),
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_radiobutton_inline_false",
-              label = "Mettre le inline \u00e0 FALSE"
-            )
-          )
         )
       ),
       # Third tab
@@ -280,19 +264,13 @@ app_ui <- function(request) {
           )
         ),
         fluidRow_dsfr(
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_checkboxgroup_inline_true",
-              label = "Mettre le inline \u00e0 TRUE"
-            )
+          actionButton_dsfr(
+            inputId = "updateval_checkboxGroupInput",
+            label = "Mettre \u00e0 jour la value "
           ),
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_checkboxgroup_inline_false",
-              label = "Mettre le inline \u00e0 FALSE"
-            )
+          actionButton_dsfr(
+            inputId = "updatelab_checkboxGroupInput",
+            label = "Mettre \u00e0 jour le label "
           )
         )
       ),
@@ -508,22 +486,6 @@ app_ui <- function(request) {
               "outputespece_radiogroupbutton2"
             ),
             extra_class = "fr-m-1w"
-          )
-        ),
-        fluidRow_dsfr(
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_radiogroupbutton_inline_true",
-              label = "Mettre le inline \u00e0 TRUE"
-            )
-          ),
-          column_dsfr(
-            4,
-            actionButton_dsfr(
-              inputId = "update_radiogroupbutton_inline_false",
-              label = "Mettre le inline \u00e0 FALSE"
-            )
           )
         )
       )

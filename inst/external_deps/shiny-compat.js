@@ -36,7 +36,7 @@ $(document).ready(function () {
       console.log("inline");
       var elt = $("#" + inputId).find(".shiny-options-group");
       elt.children().addClass("fr-fieldset__element--inline");
-      elt.find(".shiny-options-group").css("display", "flex");
+      elt.css("display", "flex");
     }, 10)
 
   });
@@ -46,7 +46,7 @@ $(document).ready(function () {
       console.log("noinline");
       var elt = $("#" + inputId).find(".shiny-options-group");
       elt.children().removeClass("fr-fieldset__element--inline");
-      elt.find(".shiny-options-group").css("display", "block");
+      elt.css("display", "block");
     }, 10)
   });
 

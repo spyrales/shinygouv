@@ -22,7 +22,7 @@
 #'       label = "Input radio buttons",
 #'       choices = c("Item A", "Item B", "Item C"),
 #'       # ),
-#'       inline = TRUE),
+#'       inline = FALSE),
 #'     actionButton_dsfr("go", "Change")
 #'   )
 #'
@@ -33,9 +33,9 @@
 #'         session = session,
 #'         inputId = "inRadioButtons",
 #'         label = "Un nouveau label",
-#'         # choices = c("A" = "a", "B" = "b"),
-#'         # selected = "a",
-#'         inline = FALSE
+#'         choices = c("A" = "a", "B" = "b"),
+#'         selected = "a",
+#'         inline = TRUE
 #'       )
 #'     })
 #'

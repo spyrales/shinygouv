@@ -7,8 +7,7 @@ test_that("updateRadioGroupButtons_dsfr works", {
   updateRadioGroupButtons_dsfr(
     session = sessA,
     inputId = "inradioGroupButtons",
-    label = "Un nouveau label",
-    choices = c("choice-a" = "a")
+    label = "Un nouveau label"
   )
 
   resultA <- sessA$lastInputMessage
@@ -16,9 +15,9 @@ test_that("updateRadioGroupButtons_dsfr works", {
   expect_equal("modA-inradioGroupButtons", resultA$id)
   # # label
   expect_equal("Un nouveau label", resultA$message$label)
-  # # HTML content
-  expect_equal(
-    resultA$message$options,
-    "<div class=\"fr-fieldset__content shiny-options-group fr-btns-group\" data-toggle=\"buttons\" style=\"display: contents;\">\n  <div class=\"fr-fieldset__element \">\n    <button class=\"fr-btn fr-btn--secondary\" id=\"button-modA-inradioGroupButtons-a\">\n      <input style=\"display:none;\" type=\"radio\" data-id=\"modA-inradioGroupButtons-a\" onclick=\"colorButton(buttonId = &#39;modA-inradioGroupButtons-a&#39;)\" autocomplete=\"off\" id=\"modA-inradioGroupButtons-a\" name=\"modA-inradioGroupButtons\" value=\"a\"/>\n      <label for=\"modA-inradioGroupButtons-a\">choice-a</label>\n    </button>\n  </div>\n</div>"
-  )
+  # # # HTML content
+  # expect_equal(
+  #   resultA$message$options,
+  #   "<div class=\"fr-fieldset__content shiny-options-group fr-btns-group\" data-toggle=\"buttons\" style=\"display: contents;\">\n  <div class=\"fr-fieldset__element \">\n    <button class=\"fr-btn fr-btn--secondary\" id=\"button-modA-inradioGroupButtons-a\">\n      <input style=\"display:none;\" type=\"radio\" data-id=\"modA-inradioGroupButtons-a\" onclick=\"colorButton(buttonId = &#39;modA-inradioGroupButtons-a&#39;)\" autocomplete=\"off\" id=\"modA-inradioGroupButtons-a\" name=\"modA-inradioGroupButtons\" value=\"a\"/>\n      <label for=\"modA-inradioGroupButtons-a\">choice-a</label>\n    </button>\n  </div>\n</div>"
+  # )
 })

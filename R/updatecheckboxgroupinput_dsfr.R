@@ -25,9 +25,7 @@
 #'         "Gears" = "gear"),
 #'       inline = FALSE),
 #'     checkboxGroupInput("ok", "ok", c("test")),
-#'     actionButton_dsfr("go", "Change"),
-#'     actionButton_dsfr("inline", "Mettre en inline"),
-#'     actionButton_dsfr("notinline", "Enlever le inline")
+#'     actionButton_dsfr("go", "Change")
 #'   )
 #'
 #'   server <- function(input, output, session) {
@@ -42,7 +40,8 @@
 #'         inputId = "variable",
 #'         label = paste0("test", rnorm(1)),
 #'         choices = c("A" = "a", "B" = "b"),
-#'         selected = "a"
+#'         selected = "a",
+#'         inline = TRUE
 #'       )
 #'
 #'       updateCheckboxGroupInput(
@@ -51,24 +50,6 @@
 #'         label = paste0("test", rnorm(1))
 #'       )
 #'     })
-#'
-#'
-#'     observeEvent(input$inline, {
-#'       updateCheckboxGroupInput_dsfr(
-#'         session = session,
-#'         inputId = "variable",
-#'         inline = TRUE
-#'       )
-#'     })
-#'
-#'     observeEvent(input$notinline, {
-#'       updateCheckboxGroupInput_dsfr(
-#'         session = session,
-#'         inputId = "variable",
-#'         inline = FALSE
-#'       )
-#'     })
-#'
 #'   }
 #'   shinyApp(ui, server)
 #' }
