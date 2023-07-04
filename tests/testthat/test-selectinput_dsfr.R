@@ -62,6 +62,18 @@ test_that("selectInput_dsfr works", {
     )
   )
 
+  expect_error(
+    selectInput_dsfr(
+      inputId = "variable",
+      label = "Variable:",
+      choices = list(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      )
+    ),
+    regexp = NA
+  )
 
   snapshot_html <- readRDS(
     file = file.path(

@@ -22,6 +22,7 @@ pkgload::load_all(export_all = TRUE)
 #'
 #' @inherit shiny::sliderInput
 #' @inherit shiny::updateSliderInput
+#' @export
 sliderInput_dsfr <- shiny::sliderInput
 updateSliderInput_dsfr <- shiny::updateSliderInput
 ```
@@ -36,7 +37,8 @@ Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd"
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_slider.Rmd",
-  vignette_name = NA
+  vignette_name = NA,
+  check = FALSE
 )
 ```
 

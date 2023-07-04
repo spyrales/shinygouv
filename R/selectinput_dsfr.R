@@ -16,7 +16,7 @@
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinygouv)
-#'
+#' 
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
@@ -28,33 +28,35 @@
 #'     title = "Exemple",
 #'     fluidRow_dsfr(
 #'       # sans vecteur nommé
-#'       selectInput_dsfr(
-#'         inputId = "myselectInput",
-#'         label = "Mon label",
-#'         choices = c(
-#'           "cyl",
-#'           "am",
-#'           "gear"
-#'         )
-#'       ),
-#'       fluidRow_dsfr(
-#'         # avec un vecteur nommé et une valeur sélectionnée
-#'         selectInput_dsfr(
-#'           inputId = "myselectInput2",
-#'           label = "Mon label2",
-#'           choices = c(
-#'             "Cylinders" = "cyl",
-#'             "Transmission" = "am",
-#'             "Gears" = "gear"
-#'           ),
-#'           selected = "gear"
-#'         )
-#'       )
+#' selectInput_dsfr(
+#'   inputId = "myselectInput",
+#'   label = "Mon label",
+#'   choices = c(
+#'     "cyl",
+#'     "am",
+#'     "gear"
+#'   )
+#' ),
+#' fluidRow_dsfr(
+#'   # avec un vecteur nommé et une valeur sélectionnée
+#' selectInput_dsfr(
+#'   inputId = "myselectInput2",
+#'   label = "Mon label2",
+#'   choices = c(
+#'     "Cylinders" = "cyl",
+#'     "Transmission" = "am",
+#'     "Gears" = "gear"
+#'   ),
+#'   selected = "gear"
+#' )
+#'   
+#' )
+#' 
 #'     )
 #'   )
 #'   server <- function(input, output, session) {
 #'   }
-#'
+#' 
 #'   shinyApp(ui, server)
 #' }
 selectInput_dsfr <- function(
@@ -66,7 +68,8 @@ selectInput_dsfr <- function(
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
-  assertthat::assert_that(is.character(choices))
+  # assertthat::assert_that(is.character(choices))
+  purrr::map(choices, ~ assertthat::assert_that(is.character(.x)))
   assertthat::assert_that(length(selected) <= 1)
 
 
