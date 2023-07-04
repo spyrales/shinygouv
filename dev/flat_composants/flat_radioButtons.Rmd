@@ -638,7 +638,7 @@ test_that("radioButtons_dsfr works", {
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates
 #'
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
@@ -676,6 +676,7 @@ updateRadioButtons_dsfr <- function(inputId,
 
     choices <- tag$find(".shiny-options-group")$selectedTags()
     choices <- as.character(choices)
+
   }
 
   message <- utils::getFromNamespace("dropNulls", "shiny")(list(
@@ -685,7 +686,11 @@ updateRadioButtons_dsfr <- function(inputId,
   ))
 
   session$sendInputMessage(ns(inputId), message)
-  update_inline(ns(inputId), inline, session)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
 
 }
 ```
@@ -709,8 +714,8 @@ if (interactive()) {
         session = session,
         inputId = "inRadioButtons",
         label = "Un nouveau label",
-        choices = c("A" = "a", "B" = "b"),
-        selected = "a",
+        # choices = c("A" = "a", "B" = "b"),
+        # selected = "a",
         inline = FALSE
       )
     })
@@ -765,7 +770,7 @@ spec_inflate <- function() {
   nom <- "radioButtons_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_radioButtons.Rmd",
-    vignette_name = nom, open_vignette = FALSE, 
+    vignette_name = nom, open_vignette = FALSE,
     check = FALSE, overwrite = TRUE)
 
   nom_c <- gsub(x = tolower(nom), "\\s", "-")

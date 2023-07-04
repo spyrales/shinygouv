@@ -71,8 +71,8 @@ if (interactive()) {
         label = paste0("test", rnorm(1))
       )
     })
-    
-    
+
+
     observeEvent(input$inline, {
       updateCheckboxGroupInput_dsfr(
         session = session,
@@ -80,7 +80,7 @@ if (interactive()) {
         inline = TRUE
       )
     })
-    
+
     observeEvent(input$notinline, {
       updateCheckboxGroupInput_dsfr(
         session = session,
@@ -88,7 +88,7 @@ if (interactive()) {
         inline = FALSE
       )
     })
-    
+
   }
   shinyApp(ui, server)
 }

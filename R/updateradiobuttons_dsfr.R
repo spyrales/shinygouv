@@ -7,7 +7,7 @@
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates
 #'
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
@@ -33,8 +33,8 @@
 #'         session = session,
 #'         inputId = "inRadioButtons",
 #'         label = "Un nouveau label",
-#'         choices = c("A" = "a", "B" = "b"),
-#'         selected = "a",
+#'         # choices = c("A" = "a", "B" = "b"),
+#'         # selected = "a",
 #'         inline = FALSE
 #'       )
 #'     })
@@ -77,6 +77,7 @@ updateRadioButtons_dsfr <- function(inputId,
 
     choices <- tag$find(".shiny-options-group")$selectedTags()
     choices <- as.character(choices)
+
   }
 
   message <- utils::getFromNamespace("dropNulls", "shiny")(list(
@@ -86,6 +87,10 @@ updateRadioButtons_dsfr <- function(inputId,
   ))
 
   session$sendInputMessage(ns(inputId), message)
-  update_inline(ns(inputId), inline, session)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
 
 }

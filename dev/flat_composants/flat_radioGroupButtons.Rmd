@@ -31,12 +31,12 @@ pkgload::load_all(export_all = TRUE)
 #' @return html
 radioGroupButtons_unique_dsfr_template <-
   function(
-  inputId,
-  choix,
-  nom_choix,
-  name,
-  selected = FALSE,
-  inline = FALSE
+      inputId,
+      choix,
+      nom_choix,
+      name,
+      selected = FALSE,
+      inline = FALSE
       ) {
     htmltools::htmlTemplate(
       filename = system.file(
@@ -196,11 +196,11 @@ test_that("radioGroupButtons_unique_dsfr_template works", {
 #' @importFrom purrr pmap map_chr
 #' @return html
 radioGroupButtons_dsfr_template <- function(
-  inputId,
-  label,
-  choix,
-  selected = NULL,
-  inline = FALSE
+    inputId,
+    label,
+    choix,
+    selected = NULL,
+    inline = FALSE
     ) {
   if (isTRUE(inline)) {
     inline_value <- "fr-fieldset__element--inline"
@@ -391,11 +391,11 @@ L'implementation de la fonction `radioGroupButtons_dsfr()` reste quant à elle s
 #'
 #' @examples
 radioGroupButtons_dsfr <- function(
-  inputId,
-  label,
-  choices,
-  selected = NULL,
-  inline = FALSE
+    inputId,
+    label,
+    choices,
+    selected = NULL,
+    inline = FALSE
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
@@ -544,12 +544,12 @@ test_that("radioGroupButtons_dsfr works", {
 #'
 #' @export
 updateRadioGroupButtons_dsfr <- function(
-  inputId,
-  label = NULL,
-  choices = NULL,
-  selected = NULL,
-  inline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    label = NULL,
+    choices = NULL,
+    selected = NULL,
+    inline = FALSE,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   ns <- session$ns
 
@@ -588,7 +588,11 @@ updateRadioGroupButtons_dsfr <- function(
     )
   }
   session$sendInputMessage(ns(inputId), message)
-  update_inline(ns(inputId), inline, session)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
 
 }
 ```
@@ -708,7 +712,7 @@ test_that("updateRadioGroupButtons_dsfr works", {
 # Execute in the console directly
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_radioGroupButtons.Rmd",
-  vignette_name = "radioGroupButtons_dsfr",
+  vignette_name = NA,
   check = FALSE,
   overwrite = TRUE,
   open_vignette = FALSE

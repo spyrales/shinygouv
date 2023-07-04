@@ -154,10 +154,10 @@ flat_radioGroupButtons.Rmd:
   - tests/testthat/test-radiogroupbuttons_dsfr_template.R
   - tests/testthat/test-radiogroupbuttons_dsfr.R
   - tests/testthat/test-updateradiogroupbuttons_dsfr.R
-  vignettes: vignettes/radiogroupbuttons_dsfr.Rmd
+  vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_radioGroupButtons.Rmd
-    vignette_name: radioGroupButtons_dsfr
+    vignette_name: .na
     open_vignette: false
     check: false
     document: true

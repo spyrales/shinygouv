@@ -22,7 +22,7 @@ updateRadioButtons_dsfr(
 
 \item{selected}{Element selectionné}
 
-\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates}
 
 \item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
 }
@@ -51,8 +51,8 @@ if (interactive()) {
         session = session,
         inputId = "inRadioButtons",
         label = "Un nouveau label",
-        choices = c("A" = "a", "B" = "b"),
-        selected = "a",
+        # choices = c("A" = "a", "B" = "b"),
+        # selected = "a",
         inline = FALSE
       )
     })

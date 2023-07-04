@@ -51,8 +51,8 @@
 #'         label = paste0("test", rnorm(1))
 #'       )
 #'     })
-#'     
-#'     
+#'
+#'
 #'     observeEvent(input$inline, {
 #'       updateCheckboxGroupInput_dsfr(
 #'         session = session,
@@ -60,7 +60,7 @@
 #'         inline = TRUE
 #'       )
 #'     })
-#'     
+#'
 #'     observeEvent(input$notinline, {
 #'       updateCheckboxGroupInput_dsfr(
 #'         session = session,
@@ -68,7 +68,7 @@
 #'         inline = FALSE
 #'       )
 #'     })
-#'     
+#'
 #'   }
 #'   shinyApp(ui, server)
 #' }
@@ -111,10 +111,14 @@ updateCheckboxGroupInput_dsfr <- function(inputId,
     value = selected
   ))
   session$sendInputMessage(ns(inputId), message)
-  update_inline(ns(inputId), inline, session)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
 }
 
-#' @noRd 
+#' @noRd
 update_inline <- function(inputId, inline, session) {
   if (inline) {
     session$sendCustomMessage("inline", inputId)
