@@ -5,44 +5,98 @@
 #' @param inputId id de l'input
 #' @param label label du bouton
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param selected Element selectionné
+#' @param selected Element sélectionné (NULL par défaut)
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#'
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
 #'
 #' @export
 #' @examples
-#' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinygouv)
+#'
 #'   ui <- fluidPage_dsfr(
-#'     radioGroupButtons_dsfr(
-#'       inputId = "inradioGroupButtons",
-#'       label = "Input radio buttons",
-#'       choices = c("Item A", "Item B", "Item C")
+#'     header = header_dsfr(
+#'       intitule = "Intitule",
+#'       officiel = "Officiel",
+#'       nom_site_service = "Nom du site / service",
+#'       baseline = "baseline - precisions sur l organisation",
+#'       class = "fr-m-1w"
 #'     ),
-#'     actionButton_dsfr("go", "Change")
+#'     title = "Exemple",
+#'     fluidRow_dsfr(
+#'       radioGroupButtons_dsfr(
+#'         inputId = "espece_radiogroupbutton",
+#'         label = "Especes (radio group button avec inline = FALSE)",
+#'         choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
+#'         selected = "virginica",
+#'         inline = FALSE
+#'       )
+#'     ),
+#'     fluidRow_dsfr(
+#'       actionButton_dsfr(
+#'         inputId = "update_radiogroupbutton_label",
+#'         label = "Update label"
+#'       ),
+#'       actionButton_dsfr(
+#'         inputId = "update_radiogroupbutton_choices",
+#'         label = "Update choices"
+#'       ),
+#'       actionButton_dsfr(
+#'         inputId = "update_radiogroupbutton_selected",
+#'         label = "Update selected"
+#'       )
+#'     ),
+#'     fluidRow_dsfr(
+#'       verbatimTextOutput(outputId = "outputespece_radiogroupbutton")
+#'     )
 #'   )
 #'
 #'   server <- function(input, output, session) {
-#'     observeEvent(input$go, {
+#'     output$numericinputvalue <- renderText({
+#'       paste("La valeur de l'input est", input$mynumericinput)
+#'     })
+#'
+#'     r <- reactiveValues()
+#'
+#'     output$outputespece_radiogroupbutton <- renderText({
+#'       paste("Esp\u00e8ce radiogroupbutton :", input$espece_radiogroupbutton)
+#'     })
+#'
+#'
+#'     observeEvent(input$update_radiogroupbutton_label, {
 #'       updateRadioGroupButtons_dsfr(
-#'         session = session,
-#'         inputId = "inradioGroupButtons",
-#'         label = "Un nouveau label",
-#'         choices = c("A" = "a"),
-#'         selected = "a"
+#'         inputId = "espece_radiogroupbutton",
+#'         label = paste0(sample(LETTERS, size = 12), collapse = ""),
+#'         session = session
 #'       )
 #'     })
 #'
-#'     observeEvent(input$inradioGroupButtons, {
-#'       message(input$inradioGroupButtons)
+#'     observeEvent(input$update_radiogroupbutton_choices, {
+#'       r$radiogroupubutton_choices <- sapply(1:5, function(x) paste0(sample(LETTERS, size = 3), collapse = ""))
+#'
+#'       updateRadioGroupButtons_dsfr(
+#'         inputId = "espece_radiogroupbutton",
+#'         choices = r$radiogroupubutton_choices,
+#'         session = session
+#'       )
+#'     })
+#'
+#'     observeEvent(input$update_radiogroupbutton_selected, {
+#'       updateRadioGroupButtons_dsfr(
+#'         inputId = "espece_radiogroupbutton",
+#'         selected = sample(r$radiogroupubutton_choices, size = 1),
+#'         session = session
+#'       )
 #'     })
 #'   }
 #'
 #'   shinyApp(ui, server)
 #' }
-#'
 updateRadioGroupButtons_dsfr <- function(
   inputId,
   label = NULL,
@@ -86,8 +140,6 @@ updateRadioGroupButtons_dsfr <- function(
       "updateRadioGroupColorButton",
       list(inputId = button_to_color)
     )
-    print(button_to_color)
   }
-
   session$sendInputMessage(ns(inputId), message)
 }

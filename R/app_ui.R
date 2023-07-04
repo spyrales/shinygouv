@@ -421,10 +421,10 @@ app_ui <- function(request) {
             4,
             radioGroupButtons_dsfr(
               inputId = "espece_radiogroupbutton",
-              label = "Especes (radio group button avec inline = FALSE)",
+              label = "Especes (radio group button avec inline = TRUE)",
               choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
               selected = "virginica",
-              inline = FALSE
+              inline = TRUE
             ),
             extra_class = "fr-m-1w"
           ),
@@ -464,9 +464,9 @@ app_ui <- function(request) {
             4,
             radioGroupButtons_dsfr(
               inputId = "espece_radiogroupbutton2",
-              label = "Especes (radio group button avec inline = TRUE)",
+              label = "Especes (radio group button avec inline = FALSE)",
               choices = c("Virginica" = "virginica", "Versicolor" = "versicolor"),
-              inline = TRUE
+              inline = FALSE
             ),
             extra_class = "fr-m-1w"
           ),

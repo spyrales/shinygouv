@@ -58,6 +58,63 @@ if (interactive()) {
       )
     ),
     fluidRow_dsfr(
+      radioGroupButtons_dsfr(
+        inputId = "espece_radiogroupbutton2",
+        label = "Especes (radio group button avec inline = TRUE)",
+        choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
+        selected = "virginica",
+        inline = TRUE
+      )
+    ),
+    fluidRow_dsfr(
+      verbatimTextOutput(outputId = "outputespece_radiogroupbutton"),
+      verbatimTextOutput(outputId = "outputespece_radiogroupbutton2")
+    )
+  )
+
+  server <- function(input, output, session) {
+    output$outputespece_radiogroupbutton <- renderText({
+      paste("Esp\u00e8ce radiogroupbutton avec inline = FALSE :", input$espece_radiogroupbutton)
+    })
+    output$outputespece_radiogroupbutton2 <- renderText({
+      paste("Esp\u00e8ce radiogroupbutton avec inline = TRUE :", input$espece_radiogroupbutton2)
+    })
+  }
+
+  shinyApp(ui, server)
+}
+```
+
+# updateRadioGroupButtons_dsfr
+
+    
+
+  
+
+```{r example-updateRadioGroupButtons_dsfr}
+if (interactive()) {
+  library(shiny)
+  library(shinygouv)
+
+  ui <- fluidPage_dsfr(
+    header = header_dsfr(
+      intitule = "Intitule",
+      officiel = "Officiel",
+      nom_site_service = "Nom du site / service",
+      baseline = "baseline - precisions sur l organisation",
+      class = "fr-m-1w"
+    ),
+    title = "Exemple",
+    fluidRow_dsfr(
+      radioGroupButtons_dsfr(
+        inputId = "espece_radiogroupbutton",
+        label = "Especes (radio group button avec inline = FALSE)",
+        choices = c("Setosa" = "setosa", "Versicolor" = "versicolor", "Virginica" = "virginica"),
+        selected = "virginica",
+        inline = FALSE
+      )
+    ),
+    fluidRow_dsfr(
       actionButton_dsfr(
         inputId = "update_radiogroupbutton_label",
         label = "Update label"
@@ -119,50 +176,7 @@ if (interactive()) {
 }
 ```
 
-# updateRadioGroupButtons_dsfr
-
-    
-
-  
-
-```{r example-updateRadioGroupButtons_dsfr}
-## Only run examples in interactive R sessions
-if (interactive()) {
-  ui <- fluidPage_dsfr(
-    radioGroupButtons_dsfr(
-      inputId = "inradioGroupButtons",
-      label = "Input radio buttons",
-      choices = c("Item A", "Item B", "Item C")
-    ),
-    actionButton_dsfr("go", "Change")
-  )
-
-  server <- function(input, output, session) {
-    observeEvent(input$go, {
-      updateRadioGroupButtons_dsfr(
-        session = session,
-        inputId = "inradioGroupButtons",
-        label = "Un nouveau label",
-        choices = c("A" = "a"),
-        selected = "a"
-      )
-    })
-
-    observeEvent(input$inradioGroupButtons, {
-      message(input$inradioGroupButtons)
-    })
-  }
-
-  shinyApp(ui, server)
-}
-```
-
   
 
   
-
-
-
-
-
 

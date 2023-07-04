@@ -2,25 +2,23 @@
 
 test_that("updateRadioGroupButtons_dsfr works", {
   expect_true(inherits(updateRadioGroupButtons_dsfr, "function"))
+  sessA <- createModuleSession("modA")
 
-  # sessA <- createModuleSession("modA")
-  #
-  # updateRadioGroupButtons_dsfr(
-  #     session = sessA,
-  #     inputId = "inradioGroupButtons",
-  #     label = "Un nouveau label",
-  #     choices = c("choice-a" = "a"),
-  #     selected = "a"
-  #   )
-  #
-  #   resultA <- sessA$lastInputMessage
-  #   # inputId
-  #   expect_equal("modA-inradioGroupButtons", resultA$id)
-  #   # label
-  #   expect_equal("Un nouveau label", resultA$message$label)
-  #   # HTML content
-  #   expect_true(grepl('id\\s*=\\s*\"modA-inradioGroupButtons-1\"', resultA$message$options))
-  #   expect_true(grepl('value\\s*=\\s*"a"', resultA$message$options))
-  #   expect_true(grepl('choice-a', resultA$message$options))
-  #   expect_true(grepl('checked\\s*=\\s*""', resultA$message$options))
+  updateRadioGroupButtons_dsfr(
+    session = sessA,
+    inputId = "inradioGroupButtons",
+    label = "Un nouveau label",
+    choices = c("choice-a" = "a")
+  )
+
+  resultA <- sessA$lastInputMessage
+  # inputId
+  expect_equal("modA-inradioGroupButtons", resultA$id)
+  # # label
+  expect_equal("Un nouveau label", resultA$message$label)
+  # # HTML content
+  expect_equal(
+    resultA$message$options,
+    "<div class=\"fr-fieldset__content shiny-options-group fr-btns-group\" data-toggle=\"buttons\" style=\"display: contents;\">\n  <div class=\"fr-fieldset__element \">\n    <button class=\"fr-btn fr-btn--secondary\" id=\"button-modA-inradioGroupButtons-a\">\n      <input style=\"display:none;\" type=\"radio\" data-id=\"modA-inradioGroupButtons-a\" onclick=\"colorButton(buttonId = &#39;modA-inradioGroupButtons-a&#39;)\" autocomplete=\"off\" id=\"modA-inradioGroupButtons-a\" name=\"modA-inradioGroupButtons\" value=\"a\"/>\n      <label for=\"modA-inradioGroupButtons-a\">choice-a</label>\n    </button>\n  </div>\n</div>"
+  )
 })
