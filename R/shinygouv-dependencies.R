@@ -50,6 +50,17 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       script = "spinner.js",
       package = "shinygouv",
       all_files = TRUE
+    ),
+    radiogroupbutton_deps = htmlDependency(
+      name = "radiogroupbuttons",
+      version = version,
+      src = c(file = "external_deps"),
+      script = list(
+        list(type = "text/javascript", src = "radiogroupbuttons.js"),
+        list(type = "text/javascript", src = "radiogroupbuttonsShinyCustomMessage.js")
+      ),
+      package = "shinygouv",
+      all_files = TRUE
     )
   )
 

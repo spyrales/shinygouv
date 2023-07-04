@@ -14,7 +14,6 @@
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
-#'
 #' if (interactive()) {
 #'   library(shiny)
 #'
@@ -27,7 +26,7 @@
 #'         "Transmission" = "am",
 #'         "Gears" = "gear"
 #'       ),
-#'       inline = TRUE
+#'       inline = FALSE
 #'     ),
 #'     checkboxGroupInput("ok", "ok", c("test")),
 #'     actionButton_dsfr("go", "Change")
@@ -46,7 +45,7 @@
 #'         label = paste0("test", rnorm(1)),
 #'         choices = c("A" = "a", "B" = "b"),
 #'         selected = "a",
-#'         inline = FALSE
+#'         inline = TRUE
 #'       )
 #'
 #'       updateCheckboxGroupInput(
@@ -97,6 +96,19 @@ updateCheckboxGroupInput_dsfr <- function(
     options = choices,
     value = selected
   ))
-
   session$sendInputMessage(ns(inputId), message)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
+}
+
+#' @noRd
+update_inline <- function(inputId, inline, session) {
+  if (inline) {
+    session$sendCustomMessage("inline", inputId)
+  } else {
+    session$sendCustomMessage("not_inline", inputId)
+  }
 }

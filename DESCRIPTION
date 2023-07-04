@@ -33,7 +33,6 @@ Imports:
 Suggests: 
     desc (>= 1.4.1),
     DT (>= 0.23),
-    fs (>= 1.5.2),
     knitr (>= 1.39),
     readxl (>= 1.4.0),
     rmarkdown (>= 2.14),

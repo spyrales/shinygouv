@@ -34,7 +34,6 @@ updateCheckboxGroupInput_dsfr
 }
 \examples{
 ## Only run examples in interactive R sessions
-
 if (interactive()) {
   library(shiny)
 
@@ -47,7 +46,7 @@ if (interactive()) {
         "Transmission" = "am",
         "Gears" = "gear"
       ),
-      inline = TRUE
+      inline = FALSE
     ),
     checkboxGroupInput("ok", "ok", c("test")),
     actionButton_dsfr("go", "Change")
@@ -66,7 +65,7 @@ if (interactive()) {
         label = paste0("test", rnorm(1)),
         choices = c("A" = "a", "B" = "b"),
         selected = "a",
-        inline = FALSE
+        inline = TRUE
       )
 
       updateCheckboxGroupInput(

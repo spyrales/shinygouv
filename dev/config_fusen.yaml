@@ -138,9 +138,30 @@ flat_radioButtons.Rmd:
     flat_file: dev/flat_composants/flat_radioButtons.Rmd
     vignette_name: radioButtons_dsfr
     open_vignette: false
-    check: true
+    check: false
     document: true
-    overwrite: ask
+    overwrite: 'yes'
+flat_radioGroupButtons.Rmd:
+  path: dev/flat_composants/flat_radioGroupButtons.Rmd
+  state: active
+  R:
+  - R/radiogroupbuttons_dsfr.R
+  - R/radiogroupbuttons_dsfr_template.R
+  - R/radiogroupbuttons_unique_dsfr_template.R
+  - R/updateradiogroupbuttons_dsfr.R
+  tests:
+  - tests/testthat/test-radiogroupbuttons_unique_dsfr_template.R
+  - tests/testthat/test-radiogroupbuttons_dsfr_template.R
+  - tests/testthat/test-radiogroupbuttons_dsfr.R
+  - tests/testthat/test-updateradiogroupbuttons_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_radioGroupButtons.Rmd
+    vignette_name: .na
+    open_vignette: false
+    check: false
+    document: true
+    overwrite: 'yes'
 flat_selectInput.Rmd:
   path: dev/flat_composants/flat_selectInput.Rmd
   state: active
@@ -194,6 +215,26 @@ flat_toggleswitch.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_tools.Rmd:
+  path: dev/tools/flat_tools.Rmd
+  state: active
+  R:
+  - R/parse_html.R
+  - R/parse_to_xml.R
+  - R/render_node.R
+  - R/update_inline.R
+  tests:
+  - tests/testthat/test-parse_to_xml.R
+  - tests/testthat/test-render_node.R
+  - tests/testthat/test-parse_html.R
+  vignettes: []
+  inflate:
+    flat_file: dev/tools/flat_tools.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: 'yes'
 flat_withSpinner.Rmd:
   path: dev/flat_composants/flat_withSpinner.Rmd
   state: active

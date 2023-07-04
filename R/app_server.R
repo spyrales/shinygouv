@@ -15,6 +15,7 @@ app_server <- function(input, output, session) {
     paste("Esp\u00e8ce :", input$espece)
   })
 
+
   observeEvent(input$show_modal, {
     showModal_dsfr(
       ui = modalDialog_dsfr(
@@ -135,6 +136,8 @@ app_server <- function(input, output, session) {
     )
   })
 
+
+
   output$plot <- renderPlot({
     plot(utils::head(datasets::iris, input$tabpaneln))
   })
@@ -205,4 +208,39 @@ app_server <- function(input, output, session) {
       )
     }
   )
+
+  output$outputespece_radiogroupbutton <- renderText({
+    paste("Esp\u00e8ce radiogroupbutton :", input$espece_radiogroupbutton)
+  })
+
+  output$outputespece_radiogroupbutton2 <- renderText({
+    paste("Esp\u00e8ce radiogroupbutton :", input$espece_radiogroupbutton2)
+  })
+
+
+  observeEvent(input$update_radiogroupbutton_label, {
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton",
+      label = paste0(sample(LETTERS, size = 12), collapse = ""),
+      session = session
+    )
+  })
+
+  observeEvent(input$update_radiogroupbutton_choices, {
+    r$radiogroupubutton_choices <- sapply(1:5, function(x) paste0(sample(LETTERS, size = 3), collapse = ""))
+
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton",
+      choices = r$radiogroupubutton_choices,
+      session = session
+    )
+  })
+
+  observeEvent(input$update_radiogroupbutton_selected, {
+    updateRadioGroupButtons_dsfr(
+      inputId = "espece_radiogroupbutton",
+      selected = sample(r$radiogroupubutton_choices, size = 1),
+      session = session
+    )
+  })
 }

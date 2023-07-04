@@ -7,7 +7,7 @@
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
-#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
+#' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates
 #'
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
@@ -23,7 +23,7 @@
 #'       label = "Input radio buttons",
 #'       choices = c("Item A", "Item B", "Item C"),
 #'       # ),
-#'       inline = TRUE
+#'       inline = FALSE
 #'     ),
 #'     actionButton_dsfr("go", "Change")
 #'   )
@@ -36,7 +36,7 @@
 #'         label = "Un nouveau label",
 #'         choices = c("A" = "a", "B" = "b"),
 #'         selected = "a",
-#'         inline = FALSE
+#'         inline = TRUE
 #'       )
 #'     })
 #'
@@ -88,4 +88,9 @@ updateRadioButtons_dsfr <- function(
   ))
 
   session$sendInputMessage(ns(inputId), message)
+
+  # Choices have to changes to set up inline
+  if (!is.null(choices)) {
+    update_inline(ns(inputId), inline, session)
+  }
 }

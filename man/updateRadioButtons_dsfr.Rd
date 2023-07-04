@@ -22,7 +22,7 @@ updateRadioButtons_dsfr(
 
 \item{selected}{Element selectionné}
 
-\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).}
+\item{inline}{Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates}
 
 \item{session}{la session, la valeur par défaut est getDefaultReactiveDomain().}
 }
@@ -36,16 +36,17 @@ updateRadioButtons_dsfr
 ## Only run examples in interactive R sessions
 if (interactive()) {
   ui <- fluidPage_dsfr(
-    radioButtons_dsfr(inputId = "inRadioButtons",
+    radioButtons_dsfr(
+      inputId = "inRadioButtons",
       label = "Input radio buttons",
       choices = c("Item A", "Item B", "Item C"),
       # ),
-      inline = TRUE),
+      inline = FALSE
+    ),
     actionButton_dsfr("go", "Change")
   )
 
   server <- function(input, output, session) {
-
     observeEvent(input$go, {
       updateRadioButtons_dsfr(
         session = session,
@@ -53,7 +54,7 @@ if (interactive()) {
         label = "Un nouveau label",
         choices = c("A" = "a", "B" = "b"),
         selected = "a",
-        inline = FALSE
+        inline = TRUE
       )
     })
 

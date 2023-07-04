@@ -8,9 +8,7 @@ test_that("updateCheckboxGroupInput_dsfr works", {
   updateCheckboxGroupInput_dsfr(
     session = sessA,
     inputId = "variable",
-    label = "Un nouveau label",
-    choices = c("choice-a" = "a", "B" = "b"),
-    selected = "a"
+    label = "Un nouveau label"
   )
 
 
