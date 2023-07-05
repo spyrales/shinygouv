@@ -2,30 +2,18 @@
 % Please edit documentation in R/updatetabsetpanel_dsfr.R
 \name{updateTabsetPanel_dsfr}
 \alias{updateTabsetPanel_dsfr}
-\title{updateSelectInput_dsfr}
+\title{updateTabsetPanel_dsfr}
 \usage{
 updateTabsetPanel_dsfr(
   inputId,
-  label = NULL,
-  value = NULL,
-  min = NULL,
-  max = NULL,
-  step = NULL,
+  selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{inputId}
+\item{inputId}{inputId du tabsetPanel_dsfr}
 
-\item{label}{label}
-
-\item{value}{valeur par défaut}
-
-\item{min}{valeur minimale}
-
-\item{max}{valeur maximale}
-
-\item{step}{pas utilisé entre 2 valeurs}
+\item{selected}{titre du tab à afficher (paramètre `title` utilisé dans `tabPanel_dsfr()`)}
 
 \item{session}{session shiny}
 }
@@ -33,107 +21,72 @@ updateTabsetPanel_dsfr(
 html
 }
 \description{
-updateSelectInput_dsfr
+updateTabsetPanel_dsfr
 }
 \examples{
-## Only run examples in interactive R sessions
-if (interactive()) {
+if (interactive()){
   library(shiny)
   library(shinygouv)
-
-  ui <- fluidPage_dsfr(
-    header = header_dsfr(
-      intitule = "Intitule",
-      officiel = "Officiel",
-      nom_site_service = "Nom du site / service",
-      baseline = "baseline - precisions sur l organisation",
-      class = "fr-m-1w"
-    ),
-    title = "Exemple",
+  shinyApp(
+    ui = fluidPage_dsfr(
     fluidRow_dsfr(
-      TabsetPanel_dsfr(
-        inputId = "mynumericinput",
-        label = "Numeric input",
-        value = 12,
-        min = 0,
-        max = NA,
-        step = 2
+      column_dsfr(
+        12,
+        h3("Demo tabsetPanel_dsfr() et tabPanel_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
       ),
-      actionButton_dsfr(
-        inputId = "updateLabel",
-        label = "updateLabel"
-      ),
-      actionButton_dsfr(
-        inputId = "updateValue",
-        label = "updateValue"
-      ),
-      actionButton_dsfr(
-        inputId = "updateMin",
-        label = "updateMin à la valeur en cours"
-      ),
-      actionButton_dsfr(
-        inputId = "updateMax",
-        label = "updateMax à la valeur en cours"
-      ),
-      actionButton_dsfr(
-        inputId = "updateStep",
-        label = "updateStep"
-      ),
-      verbatimTextOutput(outputId = "numericinputvalue")
+      column_dsfr(
+        12,
+        tabsetPanel_dsfr(
+          "testtabpanel",
+          tabPanel_dsfr(
+            id = "tab1",
+            title = "Une prems tab",
+            content = tagList(
+              h3("Coucou le tab 1")
+            )
+          ),
+          tabPanel_dsfr(
+            id = "tab2",
+            title = "Une deuxieme tab",
+            content = tagList(
+              h3("Salut le tab 2")
+            )
+          )
+        )
+      )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        actionButton_dsfr(inputId = "showfirsttab",
+                     "Afficher le premier onglet"
+        ),
+        actionButton_dsfr(inputId = "showsecondtab",
+                     "Afficher le deuxi\u00e8me onglet"
+        )
+      )
     )
+    ),
+    server = function(input, output, session) {
+          observeEvent(input$showfirsttab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une prems tab",
+        session = session
+      )
+    })
+
+    observeEvent(input$showsecondtab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une deuxieme tab",
+        session = session
+      )
+    })
+    }
   )
-  server <- function(input, output, session) {
-    output$numericinputvalue <- renderText({
-      paste("La valeur de l'input est", input$mynumericinput)
-    })
-
-    r <- reactiveValues()
-
-    observeEvent(input$mynumericinput, {
-      r$current_value <- input$mynumericinput
-    })
-
-    observeEvent(input$updateLabel, {
-      updateTabsetPanel_dsfr(
-        session = session,
-        inputId = "mynumericinput",
-        label = sample(LETTERS, 10)
-      )
-    })
-
-    observeEvent(input$updateValue, {
-      updateTabsetPanel_dsfr(
-        session = session,
-        inputId = "mynumericinput",
-        value = sample(1:1000, size = 1)
-      )
-    })
-
-    observeEvent(input$updateMin, {
-      updateTabsetPanel_dsfr(
-        session = session,
-        inputId = "mynumericinput",
-        min = r$current_value
-      )
-    })
-
-    observeEvent(input$updateMax, {
-      updateTabsetPanel_dsfr(
-        session = session,
-        inputId = "mynumericinput",
-        max = r$current_value
-      )
-    })
-
-    observeEvent(input$updateStep, {
-      updateTabsetPanel_dsfr(
-        session = session,
-        inputId = "mynumericinput",
-        step = sample(seq(0.1, 1, by = .1), size = 1)
-      )
-    })
-  }
-
-  shinyApp(ui, server)
 }
 }

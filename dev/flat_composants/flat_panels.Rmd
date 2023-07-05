@@ -24,6 +24,7 @@ pkgload::load_all(export_all = TRUE)
 #' @return html
 #' @noRd
 tabsetPanel_dsfr_template <- function(
+  tabsetPanelId = NULL,
   li = NULL,
   divs = NULL
     ) {
@@ -35,6 +36,7 @@ tabsetPanel_dsfr_template <- function(
       "tabsetPanel.html",
       package = "shinygouv"
     ),
+    tabsetPanelId = tabsetPanelId,
     li = li,
     divs = divs
   )
@@ -112,13 +114,14 @@ test_that("tabsetPanel_dsfr_template works", {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
       expect_true(
         any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
+        label = paste0("sans moustache \'", param, "\'")
       )
     }
   )
 
 
     test_html <- tabsetPanel_dsfr_template(
+      tabsetPanelId = "toto",
       li = panel_one_li(
         "tab-1",
         "Tab 1"
@@ -162,6 +165,7 @@ tabsetPanel_dsfr <- function(
     }
     contenu <- list(...)
     tabsetPanel_dsfr_template(
+      tabsetPanelId = id,
       li = purrr::map(contenu, ~ {
       panel_one_li(
         .x$id,
@@ -257,10 +261,124 @@ test_that("tabsetPanel_dsfr works", {
 })
 ```
 
+# updateTabsetPanel_dsfr
+
+```{r function-updateTabsetPanel_dsfr}
+#' updateTabsetPanel_dsfr
+#'
+#' @param inputId inputId du tabsetPanel_dsfr
+#' @param selected titre du tab à afficher (paramètre `title` utilisé dans `tabPanel_dsfr()`)
+#' @param session session shiny
+#'
+#' @importFrom shiny updateNumericInput
+#' @return html
+#'
+#' @export
+#' @examples
+updateTabsetPanel_dsfr <- function(
+    inputId,
+    selected = NULL,
+    session = shiny::getDefaultReactiveDomain()
+    ) {
+  ns <- session$ns
+  if(is.null(selected)) {
+    stop("Vous devez sp\u00e9cifier au moins 1 onglet dans `selected`, voir les `title` utilis\u00e9s pour d\u00e9finir les onglets.")
+  }
+  session$sendCustomMessage("updateTabsetPanelDsfr", message= list(tabsetPanelId = inputId, titleToDisplay = selected))
+}
+```
+
+```{r examples-updateTabsetPanel_dsfr}
+if (interactive()){
+  library(shiny)
+  library(shinygouv)
+  shinyApp(
+    ui = fluidPage_dsfr(
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        h3("Demo tabsetPanel_dsfr() et tabPanel_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
+      ),
+      column_dsfr(
+        12,
+        tabsetPanel_dsfr(
+          "testtabpanel",
+          tabPanel_dsfr(
+            id = "tab1",
+            title = "Une prems tab",
+            content = tagList(
+              h3("Coucou le tab 1")
+            )
+          ),
+          tabPanel_dsfr(
+            id = "tab2",
+            title = "Une deuxieme tab",
+            content = tagList(
+              h3("Salut le tab 2")
+            )
+          )
+        )
+      )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        actionButton_dsfr(inputId = "showfirsttab",
+                     "Afficher le premier onglet"
+        ),
+        actionButton_dsfr(inputId = "showsecondtab",
+                     "Afficher le deuxi\u00e8me onglet"
+        )
+      )
+    )
+    ),
+    server = function(input, output, session) {
+          observeEvent(input$showfirsttab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une prems tab",
+        session = session
+      )
+    })
+
+    observeEvent(input$showsecondtab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une deuxieme tab",
+        session = session
+      )
+    })
+    }
+  )
+}
+```
+
+
+```{r tests-updateTabsetPanel_dsfr}
+test_that("updateTabsetPanel_dsfr works", {
+  expect_true(inherits(updateTabsetPanel_dsfr, "function"))
+
+  sessA <- createModuleSession("modA")
+
+  expect_error(
+  updateTabsetPanel_dsfr(
+    session = sessA,
+    inputId = "myid",
+    selected = NULL
+  ),
+  regexp = "Vous devez sp\u00e9cifier"
+  )
+})
+```
+
+
+
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_panels.Rmd",
   vignette_name = NA,
