@@ -56,6 +56,7 @@ tabsetPanel_dsfr <- function(
     }
     contenu <- list(...)
     tabsetPanel_dsfr_template(
+      tabsetPanelId = id,
       li = purrr::map(contenu, ~ {
       panel_one_li(
         .x$id,

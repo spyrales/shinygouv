@@ -127,9 +127,11 @@ flat_panels.Rmd:
   R:
   - R/tabpanel.R
   - R/tabsetpanel_dsfr_template.R
+  - R/updatetabsetpanel_dsfr.R
   tests:
   - tests/testthat/test-tabsetpanel_dsfr_template.R
   - tests/testthat/test-tabpanel.R
+  - tests/testthat/test-updatetabsetpanel_dsfr.R
   vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_panels.Rmd

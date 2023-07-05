@@ -5,28 +5,12 @@ test_that("updateTabsetPanel_dsfr works", {
 
   sessA <- createModuleSession("modA")
 
+  expect_error(
   updateTabsetPanel_dsfr(
     session = sessA,
     inputId = "myid",
-    label = "Numeric input",
-    value = 12,
-    min = 0,
-    max = NA,
-    step = 2
+    selected = NULL
+  ),
+  regexp = "Vous devez sp\u00e9cifier"
   )
-
-
-  resultA <- sessA$lastInputMessage
-  # inputId
-  expect_equal("myid", resultA$id)
-  # label
-  expect_equal("Numeric input", resultA$message$label)
-  # value
-  expect_equal("12", resultA$message$value)
-  # min
-  expect_equal("0", resultA$message$min)
-  # max
-  expect_equal("NA", resultA$message$max)
-  # step
-  expect_equal("2", resultA$message$step)
 })

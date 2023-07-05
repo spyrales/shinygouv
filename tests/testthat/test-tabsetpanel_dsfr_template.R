@@ -25,13 +25,14 @@ test_that("tabsetPanel_dsfr_template works", {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
       expect_true(
         any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
+        label = paste0("sans moustache \'", param, "\'")
       )
     }
   )
 
 
     test_html <- tabsetPanel_dsfr_template(
+      tabsetPanelId = "toto",
       li = panel_one_li(
         "tab-1",
         "Tab 1"

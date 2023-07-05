@@ -64,6 +64,16 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       package = "shinygouv",
       all_files = TRUE
+    ),
+    tabsetpanel_deps = htmlDependency(
+      name = "tabsetpanel",
+      version = version,
+      src = c(file = "external_deps"),
+      script = list(
+        list(type = "text/javascript", src = "updateTabsetPanel.js")
+      ),
+      package = "shinygouv",
+      all_files = TRUE
     )
   )
 

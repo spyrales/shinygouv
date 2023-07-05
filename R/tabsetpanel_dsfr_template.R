@@ -6,6 +6,7 @@
 #' @return html
 #' @noRd
 tabsetPanel_dsfr_template <- function(
+  tabsetPanelId = NULL,
   li = NULL,
   divs = NULL
     ) {
@@ -17,6 +18,7 @@ tabsetPanel_dsfr_template <- function(
       "tabsetPanel.html",
       package = "shinygouv"
     ),
+    tabsetPanelId = tabsetPanelId,
     li = li,
     divs = divs
   )

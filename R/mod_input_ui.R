@@ -21,7 +21,7 @@ mod_input_ui_ui <- function(id){
       column_dsfr(
         12,
         tabsetPanel_dsfr(
-          "coucou",
+          "testtabpanel",
           tabPanel_dsfr(
             id = ns("tab1"),
             title = "Une prems tab",
@@ -50,6 +50,17 @@ mod_input_ui_ui <- function(id){
           )
         )
       )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        actionButton_dsfr(inputId = ns("showfirsttab"),
+                     "Afficher le premier onglet"
+        ),
+        actionButton_dsfr(inputId = ns("showsecondtab"),
+                     "Afficher le deuxi\u00e8me onglet"
+        )
+      )
     )
   )
 }
@@ -67,6 +78,22 @@ mod_input_ui_server <- function(id){
 
     output$plot2 <- renderPlot({
       plot(utils::head(datasets::cars, input$tabpaneln2))
+    })
+
+    observeEvent(input$showfirsttab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une prems tab",
+        session = session
+      )
+    })
+
+    observeEvent(input$showsecondtab, {
+      updateTabsetPanel_dsfr(
+        inputId = "testtabpanel",
+        selected = "Une deuxieme tab",
+        session = session
+      )
     })
 
   })
