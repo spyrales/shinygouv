@@ -257,10 +257,6 @@ test_that("tabsetPanel_dsfr works", {
 })
 ```
 
-
-
-
-
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
