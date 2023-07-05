@@ -31,27 +31,22 @@ checkboxGroupInput_dsfr
 }
 \examples{
 if (interactive()) {
+  
   library(shiny)
-
+  
   ui <- fluidPage_dsfr(
-    checkboxGroupInput_dsfr(
-      "checkboxes",
-      "Variables to show:",
-      c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      ),
-      inline = TRUE
-    )
+    checkboxGroupInput_dsfr("checkboxes", "Variables to show:",
+                            c("Cylinders" = "cyl",
+                              "Transmission" = "am",
+                              "Gears" = "gear"), inline = TRUE)
   )
-
+  
   server <- function(input, output, session) {
     observeEvent(input$checkboxes, {
       print(input$checkboxes)
     })
   }
-
+  
   shinyApp(ui, server)
 }
 }

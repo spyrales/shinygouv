@@ -13,7 +13,7 @@ test_that("updateRadioButtons_dsfr works", {
 
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("modA-inRadioButtons", resultA$id)
+  expect_equal("inRadioButtons", resultA$id)
   # label
   expect_equal("Un nouveau label", resultA$message$label)
   # # HTML content

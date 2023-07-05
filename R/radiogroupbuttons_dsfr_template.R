@@ -13,11 +13,11 @@
 #' @return html
 #' @noRd
 radioGroupButtons_dsfr_template <- function(
-  inputId,
-  label,
-  choix,
-  selected = NULL,
-  inline = FALSE
+    inputId,
+    label,
+    choix,
+    selected = NULL,
+    inline = FALSE
     ) {
   if (isTRUE(inline)) {
     inline_value <- "fr-fieldset__element--inline"

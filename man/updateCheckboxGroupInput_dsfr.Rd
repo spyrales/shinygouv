@@ -35,29 +35,26 @@ updateCheckboxGroupInput_dsfr
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {
+  
   library(shiny)
-
+  
   ui <- fluidPage_dsfr(
     checkboxGroupInput_dsfr(
-      "variable",
-      "Variables to show:",
-      c(
-        "Cylinders" = "cyl",
+      "variable", "Variables to show:",
+      c("Cylinders" = "cyl",
         "Transmission" = "am",
-        "Gears" = "gear"
-      ),
-      inline = FALSE
-    ),
-    checkboxGroupInput("ok", "ok", c("test")),
-    actionButton_dsfr("go", "Change")
+        "Gears" = "gear"),
+      inline = FALSE),
+    actionButton_dsfr("go", "Change for inline and choices"),
+    actionButton_dsfr("go2", "Change without inline and choices")
   )
-
+  
   server <- function(input, output, session) {
     observeEvent(input$variable, {
       print(input$variable)
     })
-
-
+    
+    
     observeEvent(input$go, {
       updateCheckboxGroupInput_dsfr(
         session = session,
@@ -67,13 +64,22 @@ if (interactive()) {
         selected = "a",
         inline = TRUE
       )
-
-      updateCheckboxGroupInput(
-        session = session,
-        inputId = "ok",
-        label = paste0("test", rnorm(1))
-      )
+      
     })
+    
+    
+    observeEvent(input$go2, {
+      updateCheckboxGroupInput_dsfr(
+        session = session,
+        inputId = "variable",
+        label = paste0("test", rnorm(1)),
+        choices = c("A" = "a", "B" = "b"),
+        selected = "a",
+        inline = FALSE
+      )
+      
+    })
+    
   }
   shinyApp(ui, server)
 }

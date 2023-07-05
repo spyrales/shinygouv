@@ -2,19 +2,19 @@
 
 test_that("updateCheckboxGroupInput_dsfr works", {
   expect_true(inherits(updateCheckboxGroupInput_dsfr, "function"))
-
+  
   sessA <- createModuleSession("modA")
-
+  
   updateCheckboxGroupInput_dsfr(
     session = sessA,
     inputId = "variable",
     label = "Un nouveau label"
   )
-
-
+  
+  
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("modA-variable", resultA$id)
+  expect_equal("variable", resultA$id)
   # label
   expect_equal("Un nouveau label", resultA$message$label)
   # HTML content

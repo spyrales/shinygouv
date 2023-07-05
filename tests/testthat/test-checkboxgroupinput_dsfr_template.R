@@ -2,7 +2,7 @@
 
 test_that("checkboxGroupInput_dsfr_template works", {
   expect_true(inherits(checkboxGroupInput_dsfr_template, "function"))
-
+  
   htmlfile <- readLines(
     system.file(
       get_dsfr_version(with_v = TRUE),
@@ -11,9 +11,9 @@ test_that("checkboxGroupInput_dsfr_template works", {
       package = "shinygouv"
     )
   )
-
+  
   #' @description Comparer les parametres par rapport a ceux de la version precedente
-
+  
   purrr::walk(
     c(
       "inputId",
@@ -23,60 +23,46 @@ test_that("checkboxGroupInput_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(
-        any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
-      )
-    }
-  )
-
-
-  test_html <- checkboxGroupInput_dsfr_template(
-    inputId = "variable",
-    label = "Variables to show:",
-    choix = c(
-      "Cylinders" = "cyl",
-      "Transmission" = "am",
-      "Gears" = "gear"
-    ),
-    checked = "gear",
-    inline = TRUE
-  )
-
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
+  test_html <- checkboxGroupInput_dsfr_template(inputId = "variable",
+                                                label = "Variables to show:",
+                                                choix = c("Cylinders" = "cyl",
+                                                          "Transmission" = "am",
+                                                          "Gears" = "gear"),
+                                                checked = "gear", inline = TRUE)
+  
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-
-
+  
+  
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
   purrr::walk(
     c(
       inputId = "variable",
       label = "Variables to show:",
-      choix = c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      ),
+      choix = c("Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"),
       checked = "gear",
       container_inline = "shiny-input-container-inline"
     ),
     function(param) {
-      expect_true(
-        any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'")
-      )
-    }
-  )
-
+      expect_true(any(grepl(pattern = param, test_html)),
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "checkboxGroupInput_dsfr_template.Rda"
-    )
+      "checkboxGroupInput_dsfr_template.Rda")
   )
-
+  
   #' @description Verifie le HTML créé
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
@@ -84,8 +70,8 @@ test_that("checkboxGroupInput_dsfr_template works", {
     gsub("\\s|\\n", "", test_html),
     gsub("\\s|\\n", "", snapshot_html)
   )
-
-
+  
+  
   # Si erreur au précedent test deux cas possibles :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -98,4 +84,5 @@ test_that("checkboxGroupInput_dsfr_template works", {
   #                          "checkboxGroupInput_dsfr_template.Rda"
   #                          )
   #         )
+  
 })

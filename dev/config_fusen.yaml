@@ -102,6 +102,25 @@ flat_modal.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_numericInput.Rmd:
+  path: dev/flat_composants/flat_numericInput.Rmd
+  state: active
+  R:
+  - R/numericinput_dsfr.R
+  - R/numericinput_dsfr_template.R
+  - R/updatenumericinput_dsfr.R
+  tests:
+  - tests/testthat/test-numericinput_dsfr_template.R
+  - tests/testthat/test-numericinput_dsfr.R
+  - tests/testthat/test-updatenumericinput_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_numericInput.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
 flat_panels.Rmd:
   path: dev/flat_composants/flat_panels.Rmd
   state: active
@@ -113,11 +132,10 @@ flat_panels.Rmd:
   - tests/testthat/test-tabpanel.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_panels.Rmd
     vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
     document: true
     overwrite: ask
 flat_radioButtons.Rmd:
@@ -133,10 +151,10 @@ flat_radioButtons.Rmd:
   - tests/testthat/test-radiobuttons_dsfr_template.R
   - tests/testthat/test-radiobuttons_dsfr.R
   - tests/testthat/test-updateradiobuttons_dsfr.R
-  vignettes: vignettes/radiobuttons_dsfr.Rmd
+  vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_radioButtons.Rmd
-    vignette_name: radioButtons_dsfr
+    vignette_name: .na
     open_vignette: false
     check: false
     document: true
@@ -175,10 +193,10 @@ flat_selectInput.Rmd:
   - tests/testthat/test-selectinput_dsfr_template.R
   - tests/testthat/test-selectinput_dsfr.R
   - tests/testthat/test-updateselectinput_dsfr.R
-  vignettes: vignettes/selectinput_dsfr.Rmd
+  vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_selectInput.Rmd
-    vignette_name: selectInput_dsfr
+    vignette_name: .na
     open_vignette: true
     check: false
     document: true

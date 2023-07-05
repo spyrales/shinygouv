@@ -587,7 +587,7 @@ updateRadioGroupButtons_dsfr <- function(
       list(inputId = button_to_color)
     )
   }
-  session$sendInputMessage(ns(inputId), message)
+  session$sendInputMessage(inputId, message)
 
   # Choices have to changes to set up inline
   if (!is.null(choices)) {
@@ -696,7 +696,7 @@ test_that("updateRadioGroupButtons_dsfr works", {
 
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("modA-inradioGroupButtons", resultA$id)
+  expect_equal("inradioGroupButtons", resultA$id)
   # # label
   expect_equal("Un nouveau label", resultA$message$label)
   # # # HTML content

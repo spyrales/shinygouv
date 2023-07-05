@@ -279,7 +279,7 @@ updateToggleSwitch_dsfr <- function(
     )
 
     session$sendInputMessage(
-        ns(inputId),
+        inputId,
         message
     )
 

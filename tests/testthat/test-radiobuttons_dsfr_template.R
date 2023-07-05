@@ -27,12 +27,10 @@ test_that("radioButtons_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(
-        any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'"))
+
+    })
 
 
   test_html <- radioButtons_dsfr_template(
@@ -61,20 +59,16 @@ test_that("radioButtons_dsfr_template works", {
       choix = c("A", "B")
     ),
     function(param) {
-      expect_true(
-        any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'")
-      )
-    }
-  )
+      expect_true(any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'"))
+    })
 
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "radioButtons_dsfr_template.Rda"
-    )
+      "radioButtons_dsfr_template.Rda")
   )
 
   #' @description Verifie le HTML créé
@@ -96,8 +90,7 @@ test_that("radioButtons_dsfr_template works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "radioButtons_dsfr_template_selected.Rda"
-    )
+      "radioButtons_dsfr_template_selected.Rda")
   )
   #' @description Verifie le parametre selected dans le HTML
   expect_equal(
@@ -125,4 +118,7 @@ test_that("radioButtons_dsfr_template works", {
   #                          "radioButtons_dsfr_template_selected.Rda"
   #                          )
   #         )
+
+
+
 })
