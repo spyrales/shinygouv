@@ -15,7 +15,7 @@
 * Ajout de `toggleSwitch_dsfr()`
 * Ajout de `checkBoxInput_dsfr()`
 * Ajout de `checkBoxGroupInput_dsfr()`
-* Ajout de `tabPanel()` et `tabSetPanel_dsfr()`
+* Ajout de `tabPanel()` et `tabsetPanel_dsfr()`
 
 * Suivi de l'implémentation d'un nouveau composant (ici `toggleSwitch_dsfr()`) à partir d'un [commit](https://github.com/spyrales/shinygouv/pull/82/commits/ed19c583c45aa04d9ebd51b1984851891e360b98)
 

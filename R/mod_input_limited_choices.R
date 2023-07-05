@@ -27,7 +27,7 @@ mod_input_limited_choices_ui <- function(id){
     fluidRow_dsfr(
       column_dsfr(
         12,
-        tabSetPanel_dsfr(
+        tabsetPanel_dsfr(
           "tabsetpanel",
           tabPanel_dsfr(
             id = ns("tab1"),
@@ -128,7 +128,7 @@ mod_input_limited_choices_ui <- function(id){
     fluidRow_dsfr(
       column_dsfr(
         12,
-        tabSetPanel_dsfr(
+        tabsetPanel_dsfr(
           "tabsetpanel2",
           tabPanel_dsfr(
             id = ns("tab3"),
@@ -264,7 +264,7 @@ mod_input_limited_choices_ui <- function(id){
     fluidRow_dsfr(
       column_dsfr(
         12,
-        tabSetPanel_dsfr(
+        tabsetPanel_dsfr(
           "tabsetpanel3",
 
           tabPanel_dsfr(

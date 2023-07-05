@@ -132,11 +132,10 @@ flat_panels.Rmd:
   - tests/testthat/test-tabpanel.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_panels.Rmd
     vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
     document: true
     overwrite: ask
 flat_radioButtons.Rmd:

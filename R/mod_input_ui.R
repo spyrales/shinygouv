@@ -13,14 +13,14 @@ mod_input_ui_ui <- function(id){
     fluidRow_dsfr(
       column_dsfr(
         12,
-        h3("Demo tabSetPanel_dsfr() et tabPanel_dsfr()"),
+        h3("Demo tabsetPanel_dsfr() et tabPanel_dsfr()"),
         # Adding space to the column
         # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
         extra_class = "fr-my-6w"
       ),
       column_dsfr(
         12,
-        tabSetPanel_dsfr(
+        tabsetPanel_dsfr(
           "coucou",
           tabPanel_dsfr(
             id = ns("tab1"),
