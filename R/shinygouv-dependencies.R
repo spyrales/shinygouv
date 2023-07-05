@@ -59,6 +59,9 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
         list(type = "text/javascript", src = "radiogroupbuttons.js"),
         list(type = "text/javascript", src = "radiogroupbuttonsShinyCustomMessage.js")
       ),
+      stylesheet = c(
+        "radiogroupbuttons.css"
+      ),
       package = "shinygouv",
       all_files = TRUE
     )

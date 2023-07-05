@@ -1,10 +1,6 @@
 <div class="fr-fieldset__element {{inline}}">
-<button class="fr-btn {{selected}}" id="button-{{inputId}}">
-  <input style="display:none;" type="radio" data-id="{{inputId}}" onclick = "colorButton(buttonId = '{{inputId}}')" autocomplete="off" id="{{inputId}}" name="{{name}}" value = "{{value_choix}}" {{checked}}>
-  <label for="{{inputId}}">{{nom_choix}}</label>
-</button>
-</div>
-
-
-
-
+  <button class="fr-btn {{selected}}" id="button-{{inputId}}" style="padding:0px;">
+    <input style="display:none;" type="radio" data-id="{{inputId}}" onclick = "colorButton(buttonId = '{{inputId}}')" autocomplete="off" id="{{inputId}}" name="{{name}}" value = "{{value_choix}}" {{checked}}>
+      <label class="labelRadioGroupButtons" for="{{inputId}}">{{nom_choix}}</label>
+        </button>
+        </div>
