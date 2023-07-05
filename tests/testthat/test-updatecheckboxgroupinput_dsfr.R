@@ -14,7 +14,7 @@ test_that("updateCheckboxGroupInput_dsfr works", {
   
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("modA-variable", resultA$id)
+  expect_equal("variable", resultA$id)
   # label
   expect_equal("Un nouveau label", resultA$message$label)
   # HTML content

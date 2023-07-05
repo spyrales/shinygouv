@@ -42,19 +42,19 @@ mod_input_numeric_ui <- function(id){
         ),
         actionButton_dsfr(
           inputId = ns("updateValue"),
-          label = "Mettre \u00e0 jour le paramètre value"
+          label = "Mettre \u00e0 jour le param\u00e8tre value"
         ),
         actionButton_dsfr(
           inputId = ns("updateMin"),
-          label = "Mettre \u00e0 jour le paramètre min à la valeur en cours -10"
+          label = "Mettre \u00e0 jour le param\u00e8tre min \u00e0 la valeur en cours -10"
         ),
         actionButton_dsfr(
           inputId = ns("updateMax"),
-          label = "Mettre \u00e0 jour le paramètre max à la valeur en cours +10"
+          label = "Mettre \u00e0 jour le param\u00e8tre max \u00e0 la valeur en cours +10"
         ),
         actionButton_dsfr(
           inputId = ns("updateStep"),
-          label = "Mettre \u00e0 jour le paramètre step"
+          label = "Mettre \u00e0 jour le param\u00e8tre step"
         )
       )
     ),
@@ -105,7 +105,7 @@ mod_input_numeric_server <- function(id){
 
     ## numeric input
     output$numericinputvalue <- renderText({
-      paste("La valeur de l'input est", input$mynumericinput)
+      paste("La valeur de l\'input est", input$mynumericinput)
     })
 
 

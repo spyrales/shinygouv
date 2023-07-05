@@ -500,7 +500,7 @@ test_that("updateNumericInput_dsfr works", {
 
   resultA <- sessA$lastInputMessage
   # inputId
-  expect_equal("modA-myid", resultA$id)
+  expect_equal("myid", resultA$id)
   # label
   expect_equal("Numeric input", resultA$message$label)
   # value

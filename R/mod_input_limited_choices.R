@@ -19,6 +19,11 @@ mod_input_limited_choices_ui <- function(id){
         extra_class = "fr-my-6w"
       )
     ),
+
+    tags$br(),
+    h3("checkbox"),
+    tags$br(),
+
     fluidRow_dsfr(
       column_dsfr(
         12,
@@ -115,6 +120,10 @@ mod_input_limited_choices_ui <- function(id){
 
     tags$br(),
     tags$hr(),
+
+    tags$br(),
+    h3("radiobuttons"),
+    tags$br(),
 
     fluidRow_dsfr(
       column_dsfr(
@@ -247,6 +256,10 @@ mod_input_limited_choices_ui <- function(id){
 
     tags$br(),
     tags$hr(),
+
+    tags$br(),
+    h3("autres inputs"),
+    tags$br(),
 
     fluidRow_dsfr(
       column_dsfr(
