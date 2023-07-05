@@ -2,7 +2,7 @@
 
 test_that("checkboxGroupInput_unique_dsfr_template works", {
   expect_true(inherits(checkboxGroupInput_unique_dsfr_template, "function"))
-
+  
   htmlfile <- readLines(
     system.file(
       get_dsfr_version(with_v = TRUE),
@@ -11,9 +11,9 @@ test_that("checkboxGroupInput_unique_dsfr_template works", {
       package = "shinygouv"
     )
   )
-
+  
   #' @description Comparer les parametres par rapport a ceux de la version precedente
-
+  
   purrr::walk(
     c(
       "inputId",
@@ -25,14 +25,11 @@ test_that("checkboxGroupInput_unique_dsfr_template works", {
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
-      expect_true(
-        any(grepl(pattern = with_moustache, htmlfile)),
-        label = paste0("sans moustache '", param, "'")
-      )
-    }
-  )
-
-
+      expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                  label = paste0("sans moustache '", param, "'"))
+    })
+  
+  
   test_html <- checkboxGroupInput_unique_dsfr_template(
     inputId = "test",
     name = "test-1",
@@ -41,11 +38,11 @@ test_that("checkboxGroupInput_unique_dsfr_template works", {
     checked = "checked",
     inline = "--inline"
   )
-
+  
   #' @description tester si tous les params sont remplaces
   expect_false(grepl(pattern = "\\{\\{", test_html))
-
-
+  
+  
   #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
   purrr::walk(
     c(
@@ -57,31 +54,25 @@ test_that("checkboxGroupInput_unique_dsfr_template works", {
       inline = "--inline"
     ),
     function(param) {
-      expect_true(
-        any(grepl(pattern = param, test_html)),
-        label = paste0("remplacement de '", param, "'")
-      )
-    }
-  )
-
+      expect_true(any(grepl(pattern = param, test_html)),
+                  label = paste0("remplacement de '", param, "'"))
+    })
+  
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "checkboxGroupInput_unique_dsfr_template.Rda"
-    )
+      "checkboxGroupInput_unique_dsfr_template.Rda")
   )
-
+  
   #' @description Verifie le HTML créé
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(
-    gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html)
-  )
-
-
+  expect_equal(gsub("\\s|\\n", "", test_html),
+               gsub("\\s|\\n", "", snapshot_html))
+  
+  
   # Si erreur au précedent test deux cas possibles :
   #
   # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
@@ -94,4 +85,8 @@ test_that("checkboxGroupInput_unique_dsfr_template works", {
   #                          "checkboxGroupInput_unique_dsfr_template.Rda"
   #                          )
   #         )
+  
+  
+  
+  
 })

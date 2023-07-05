@@ -367,7 +367,7 @@ updateNumericInput_dsfr <- function(
 
   updateNumericInput(
     session = session,
-    inputId = ns(inputId),
+    inputId = inputId,
     label = label,
     value = value,
     min = min,

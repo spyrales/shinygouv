@@ -14,12 +14,12 @@
 #' @noRd
 radioGroupButtons_unique_dsfr_template <-
   function(
-  inputId,
-  choix,
-  nom_choix,
-  name,
-  selected = FALSE,
-  inline = FALSE
+      inputId,
+      choix,
+      nom_choix,
+      name,
+      selected = FALSE,
+      inline = FALSE
       ) {
     htmltools::htmlTemplate(
       filename = system.file(

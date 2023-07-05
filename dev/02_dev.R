@@ -65,8 +65,10 @@ charpente::get_dependency_versions("@gouvfr/dsfr")
 # ==== To do once with {golem} ====
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "name_of_module1", with_test = TRUE) # Name of the module
-golem::add_module(name = "name_of_module2", with_test = TRUE) # Name of the module
+golem::add_module(name = "input_limited_choices", with_test = TRUE) # Name of the module
+golem::add_module(name = "input_actions", with_test = TRUE) # Name of the module
+golem::add_module(name = "input_ui", with_test = TRUE) # Name of the module
+golem::add_module(name = "input_numeric", with_test = TRUE) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*

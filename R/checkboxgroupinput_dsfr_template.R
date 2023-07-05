@@ -12,6 +12,8 @@
 #' @return html
 #' @noRd
 checkboxGroupInput_dsfr_template <- function(inputId, label, choix, checked = NULL, inline = FALSE) {
+  
+  
   if (isTRUE(inline)) {
     inline_value <- "fr-fieldset__element--inline"
     container_inline <- "shiny-input-container-inline"
@@ -19,17 +21,17 @@ checkboxGroupInput_dsfr_template <- function(inputId, label, choix, checked = NU
     inline_value <- ""
     container_inline <- ""
   }
-
+  
   if (is.null(names(choix))) {
     nom_choix <- choix
   } else {
     nom_choix <- names(choix)
   }
-
+  
   checked_logical <- choix %in% checked
   checked_value <- gsub(x = as.character(checked_logical), pattern = "FALSE", replacement = "")
   checked_value <- gsub(x = checked_value, pattern = "TRUE", replacement = "checked")
-
+  
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
@@ -40,25 +42,22 @@ checkboxGroupInput_dsfr_template <- function(inputId, label, choix, checked = NU
     inputId = inputId,
     label = label,
     container_inline = container_inline,
-    choice = pmap(
-      list(
-        .x = choix,
-        .y = nom_choix,
-        .z = checked_value,
-        .nb = seq_along(choix),
-        .inline = rep(inline_value, length(choix))
-      ),
-      function(.x, .y, .z, .nb, .inline) {
-        checkboxGroupInput_unique_dsfr_template(
-          inputId = inputId,
-          name = paste0(inputId, "-", .nb),
-          label = .y,
-          value = .x,
-          checked = .z,
-          inline = .inline
-        )
-      }
-    ) %>%
+    choice = pmap(list(.x = choix,
+                       .y = nom_choix,
+                       .z = checked_value,
+                       .nb = seq_along(choix),
+                       .inline = rep(inline_value, length(choix))
+    ),
+    function(.x, .y, .z, .nb, .inline) {
+      checkboxGroupInput_unique_dsfr_template(
+        inputId = inputId,
+        name = paste0(inputId, "-", .nb),
+        label = .y,
+        value = .x,
+        checked = .z,
+        inline = .inline
+      )
+    }) %>%
       htmltools::tagList()
   )
 }

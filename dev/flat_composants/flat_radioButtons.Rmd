@@ -685,7 +685,7 @@ updateRadioButtons_dsfr <- function(inputId,
     value = selected
   ))
 
-  session$sendInputMessage(ns(inputId), message)
+  session$sendInputMessage(inputId, message)
 
   # Choices have to changes to set up inline
   if (!is.null(choices)) {
@@ -762,23 +762,8 @@ test_that("updateRadioButtons_dsfr works", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-
-
-spec_inflate <- function() {
-  nom <- "radioButtons_dsfr"
   fusen::inflate(
     flat_file = "dev/flat_composants/flat_radioButtons.Rmd",
-    vignette_name = NA, open_vignette = FALSE)
-
-  nom_c <- gsub(x = tolower(nom), "\\s", "-")
-  nom_file <- paste0(nom_c, ".Rmd")
-  file.copy(
-    file.path("vignettes", nom_file),
-    file.path("dev", "documentation", nom_file)
-  )
-
-  unlink(file.path("vignettes", nom_file))
-}
-spec_inflate()
+    vignette_name = NA, open_vignette = FALSE, check = FALSE, overwrite = TRUE)
 ```
 

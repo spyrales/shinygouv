@@ -9,7 +9,7 @@ test_that("updateCheckboxInput_dsfr works", {
     label = "Un nouveau label",
     value = TRUE
   )
-
+  
   resultA <- sessA$lastInputMessage
   # inputId
   expect_equal("modA-inCheckboxInput", resultA$id)

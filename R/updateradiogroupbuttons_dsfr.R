@@ -99,12 +99,12 @@
 #'   shinyApp(ui, server)
 #' }
 updateRadioGroupButtons_dsfr <- function(
-  inputId,
-  label = NULL,
-  choices = NULL,
-  selected = NULL,
-  inline = FALSE,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    label = NULL,
+    choices = NULL,
+    selected = NULL,
+    inline = FALSE,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   ns <- session$ns
 
@@ -142,10 +142,11 @@ updateRadioGroupButtons_dsfr <- function(
       list(inputId = button_to_color)
     )
   }
-  session$sendInputMessage(ns(inputId), message)
+  session$sendInputMessage(inputId, message)
 
   # Choices have to changes to set up inline
   if (!is.null(choices)) {
     update_inline(ns(inputId), inline, session)
   }
+
 }
