@@ -105,27 +105,22 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu">checkboxGroupInput_dsfr</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="st">"checkboxes"</span>,</span></span>
-<span class="r-in"><span>      <span class="st">"Variables to show:"</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>        <span class="st">"Cylinders"</span> <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
-<span class="r-in"><span>        <span class="st">"Transmission"</span> <span class="op">=</span> <span class="st">"am"</span>,</span></span>
-<span class="r-in"><span>        <span class="st">"Gears"</span> <span class="op">=</span> <span class="st">"gear"</span></span></span>
-<span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">checkboxGroupInput_dsfr</span><span class="op">(</span><span class="st">"checkboxes"</span>, <span class="st">"Variables to show:"</span>,</span></span>
+<span class="r-in"><span>                            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cylinders"</span> <span class="op">=</span> <span class="st">"cyl"</span>,</span></span>
+<span class="r-in"><span>                              <span class="st">"Transmission"</span> <span class="op">=</span> <span class="st">"am"</span>,</span></span>
+<span class="r-in"><span>                              <span class="st">"Gears"</span> <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span>, inline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">checkboxes</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">checkboxes</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
