@@ -93,7 +93,7 @@
 
 
 <dt>inline</dt>
-<dd><p>Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).</p></dd>
+<dd><p>Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). Seulement si les choix sont updates</p></dd>
 
 
 <dt>session</dt>
@@ -112,16 +112,17 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Only run examples in interactive R sessions</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="radioButtons_dsfr.html">radioButtons_dsfr</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"inRadioButtons"</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="radioButtons_dsfr.html">radioButtons_dsfr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"inRadioButtons"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Input radio buttons"</span>,</span></span>
 <span class="r-in"><span>      choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Item A"</span>, <span class="st">"Item B"</span>, <span class="st">"Item C"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="co"># ),</span></span></span>
-<span class="r-in"><span>      inline <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      inline <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="actionButton_dsfr.html">actionButton_dsfr</a></span><span class="op">(</span><span class="st">"go"</span>, <span class="st">"Change"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu">updateRadioButtons_dsfr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        session <span class="op">=</span> <span class="va">session</span>,</span></span>
@@ -129,7 +130,7 @@
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Un nouveau label"</span>,</span></span>
 <span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span> <span class="op">=</span> <span class="st">"a"</span>, <span class="st">"B"</span> <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        selected <span class="op">=</span> <span class="st">"a"</span>,</span></span>
-<span class="r-in"><span>        inline <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>        inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

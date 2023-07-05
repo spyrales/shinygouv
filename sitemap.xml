@@ -109,10 +109,10 @@
     <loc>/reference/radioButtons_dsfr.html</loc>
   </url>
   <url>
-    <loc>/reference/removeModal_dsfr.html</loc>
+    <loc>/reference/radioGroupButtons_dsfr.html</loc>
   </url>
   <url>
-    <loc>/reference/render_node.html</loc>
+    <loc>/reference/removeModal_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/run_app.html</loc>
@@ -146,6 +146,9 @@
   </url>
   <url>
     <loc>/reference/updateRadioButtons_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateRadioGroupButtons_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/updateSelectInput_dsfr.html</loc>
