@@ -17,8 +17,7 @@
 #' @examples
 #' my_page <- fluidPage_dsfr(
 #'   header = header_dsfr(
-#'     intitule = "Prefet de",
-#'     officiel = "Bretagne",
+#'     intitule = tags$span("Prefet", br(), "de", br(), "Bretagne")
 #'   ),
 #'   title = "Gouv",
 #'   htmltools::div("test")

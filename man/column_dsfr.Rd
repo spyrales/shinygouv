@@ -20,7 +20,6 @@ shiny.tag.list
 column_dsfr
 }
 \examples{
-
 if (interactive()) {
   shiny::shinyApp(
     ui = fluidPage_dsfr(
@@ -35,5 +34,4 @@ if (interactive()) {
     server = function(input, output) {}
   )
 }
-
 }
