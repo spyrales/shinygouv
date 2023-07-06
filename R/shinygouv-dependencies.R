@@ -13,9 +13,9 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
   dsfr_version <- paste0("dsfr-", version)
   dist_path <- paste0(dsfr_version, "/dist")
   favicon_head_tpl <- glue::glue('
-  <link rel="apple-touch-icon" href="{dist_path}/favicon/apple-touch-icon.png"><!-- 180×180 -->
+  <link rel="apple-touch-icon" href="{dist_path}/favicon/apple-touch-icon.png"><!-- 180x180 -->
   <link rel="icon" href="{dist_path}/favicon/favicon.svg" type="image/svg+xml">
-  <link rel="shortcut icon" href="{dist_path}/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+  <link rel="shortcut icon" href="{dist_path}/favicon/favicon.ico" type="image/x-icon"><!-- 32x32 -->
   <link rel="manifest" href="{dist_path}/favicon/manifest.webmanifest" crossorigin="use-credentials">
   ')
   all_deps <- list(
