@@ -25,11 +25,7 @@ desc::desc_get("VersionDsfr")
 
 ## Ajouter une nouvelle version du dsfr
 
-Si vous souhaitez implémenter une nouvelle version du dsfr, vous devez suivre les instructions dans "dev/flat_montee_version_dsfr.Rmd".  
-
-```{r}
-rstudioapi::navigateToFile("dev/flat_montee_version_dsfr.Rmd")
-```
+Si vous souhaitez implémenter une nouvelle version du dsfr, vous devez suivre les instructions disponible: [Montee en version du dsfr : trouver les fichiers CSS et JS](Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.md).
 
 Lorsque vous aurez implémenté toutes les composantes avec la nouvelle version, vous pourrez mettre à jour le fichier DESCRIPTION avec la commande suivante :
 
@@ -92,7 +88,7 @@ chore : tout ce qui touche au projet en lui même, ne correspond pas à un feat 
 
 ## Comprendre et appliquer le workflow pour développer le package
 
-Pour développer ce package, des choix techniques ont été adoptés. Vous retrouverez les raisons [ici](explo_shiny.dsfr.md).
+Pour développer ce package, des choix techniques ont été adoptés. Vous retrouverez les raisons [ici](Dev-F-documentation-inventaire.md).
 
 Le workflow se découpe en deux possibilités :
 
@@ -106,10 +102,10 @@ Ces deux possibilités se basent sur le même principe : **l'utilisation des tem
 Vous trouverez des exemples pour d'autres composants :
 
 - Avec réactivité:
-  - [radio buttons](reference/radiobuttons-dsfr.html)
+  - [radio buttons](../reference/radioButtons_dsfr.html)
   
 - Sans réactivité:
-  - [Fluid page](reference/fluidpage_dsfr.html)
+  - [Fluid page](../reference/fluidPage_dsfr.html)
  
 N'hésitez pas à amender cette liste au fur et à mesure de vos développements 
 
@@ -124,18 +120,12 @@ N'hésitez pas à amender cette liste au fur et à mesure de vos développements
 - Code of Conduct: template par défaut de {usethis} en anglais déjà présent comme pour {gouvdown} 🇬🇧 
 - Contributing: template par défaut de {usethis} en anglais peut être ajouté comme pour {gouvdown} 🇬🇧 
 
-## Les packages nécéssaires au developpement
-
-En plus des dépendances du package, un ensemble de packages sera nécessaire pour le bon developpement du package.
-
-Vous retrouverez cette liste dans le fichier `dev/pkgs_deps.csv`.
-
 ## Workflow avant de commit
 
-Pensez à executer les lignes "Each time needed" du fichier `dev/dev_history_package.R` avant chaque commit.
+Pensez à executer les lignes "Each time needed" du fichier [dev/02_dev.R](https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R) avant chaque commit.
 
 ```{r, eval=FALSE}
-rstudioapi::navigateToFile("dev/dev_history_package.R")
+rstudioapi::navigateToFile("dev/02_dev.R")
 ```
 
 
