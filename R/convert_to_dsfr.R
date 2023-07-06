@@ -2,10 +2,10 @@
 
 #' convert_to_dsfr
 #'
-#' @description
+#' @description 
 #' `r lifecycle::badge("experimental")`
-#'
-#' Il s'agissait d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel
+#' 
+#' Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel 
 #'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
@@ -31,6 +31,7 @@
 #'   convert_to_dsfr(path = file.path(mydir, "R"))
 #' }
 convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
+
   chem <- glue::glue("v{version}/table_correspondance_shiny_dsfr.csv")
 
   if (is.null(version)) {
@@ -38,8 +39,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   }
 
   if (!file.exists(
-    system.file(chem, package = "shinygouv")
-  )) {
+    system.file(chem, package = "shinygouv"))) {
     stop(glue::glue("Le dossier 'v{version}' n existe pas"))
   }
 
@@ -55,12 +55,9 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   # recuperation de la table de correspondance
   fic <- list.files(path = path, full.names = TRUE)
 
-  res <- purrr::map(
-    .x = fic,
-    ~ convert_file_to_dsfr(
-      .x,
-      tab_corresp
-    )
+  res <- purrr::map(.x = fic,
+    ~ convert_file_to_dsfr(.x,
+      tab_corresp)
   )
 
   # ajout de la dependance a app_ui.R si il existe
@@ -75,4 +72,5 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   }
 
   return("Conversion terminee")
+
 }

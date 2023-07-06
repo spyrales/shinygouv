@@ -144,7 +144,7 @@ convert_to_dsfr(path = "le_chemin_de_mon_application")
 #' @description 
 #' `r lifecycle::badge("experimental")`
 #' 
-#' Il s'agissait d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel 
+#' Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel 
 #'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
