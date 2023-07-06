@@ -33,7 +33,10 @@ html
 header_dsfr
 }
 \examples{
-header_dsfr(
-  intitule = span("Prefet", br(), "de", br(), "Bretagne")
-)
+if(interactive()) {
+  library(shiny)
+  header_dsfr(
+    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+  )
+}
 }

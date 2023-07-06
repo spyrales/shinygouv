@@ -2,7 +2,7 @@
 
 test_that("header_dsfr works", {
   test_html <- header_dsfr(
-    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+    intitule = shiny::tags$span("Prefet", br(), "de", br(), "Bretagne")
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")

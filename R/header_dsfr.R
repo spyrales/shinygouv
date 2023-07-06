@@ -12,9 +12,12 @@
 #' @export
 #'
 #' @examples
-#' header_dsfr(
-#'   intitule = span("Prefet", br(), "de", br(), "Bretagne")
-#' )
+#' if(interactive()) {
+#'   library(shiny)
+#'   header_dsfr(
+#'     intitule = span("Prefet", br(), "de", br(), "Bretagne")
+#'   )
+#' }
 header_dsfr <- function(
     intitule,
     url = "/",
