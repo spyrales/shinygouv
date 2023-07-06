@@ -66,7 +66,6 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">header_dsfr</span><span class="op">(</span></span>
 <span>  <span class="va">intitule</span>,</span>
-<span>  <span class="va">officiel</span>,</span>
 <span>  url <span class="op">=</span> <span class="st">"/"</span>,</span>
 <span>  titre <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nom_site_service <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -79,10 +78,6 @@
     <h2>Arguments</h2>
     <dl><dt>intitule</dt>
 <dd><p>la partie "intitule" du bloc marque</p></dd>
-
-
-<dt>officiel</dt>
-<dd><p>la partie "officiel" du bloc marque</p></dd>
 
 
 <dt>url</dt>
@@ -114,40 +109,12 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">header_dsfr</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  intitule <span class="op">=</span> <span class="st">"Prefet de"</span>,</span></span>
-<span class="r-in"><span>  officiel <span class="op">=</span> <span class="st">"Bretagne"</span>,</span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;header role="banner" class="fr-header"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;div class="fr-header__body"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;div class="fr-container"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;div class="fr-header__body-row"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;div class="fr-header__brand fr-enlarge-link"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div class="fr-header__brand-top"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;div class="fr-header__logo"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;a href="/" title="Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;p class="fr-logo"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   Prefet de</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;br/&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   Bretagne</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;/a&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;div class="fr-header__navbar"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-7145" aria-haspopup="menu" id="button-7146" title="Menu"&gt;Menu&lt;/button&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;div class="fr-header__service"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;a href="/" title&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               &lt;p class="fr-header__service-title"&gt;&lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;/a&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;p class="fr-header__service-tagline"&gt;&lt;/p&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/div&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/header&gt;</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">header_dsfr</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    intitule <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">span</a></span><span class="op">(</span><span class="st">"Prefet"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"de"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"Bretagne"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
