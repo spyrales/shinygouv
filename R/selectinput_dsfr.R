@@ -68,7 +68,8 @@ selectInput_dsfr <- function(
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
-  assertthat::assert_that(is.character(choices))
+  # assertthat::assert_that(is.character(choices))
+  purrr::map(choices, ~ assertthat::assert_that(is.character(.x)))
   assertthat::assert_that(length(selected) <= 1)
 
 

@@ -15,7 +15,7 @@ withSpinner_dsfr(expr, session = shiny::getDefaultReactiveDomain())
 html
 }
 \description{
-Permet d'afficher un spinner lors d'un calcul prenant du temps, s'inspire du fonctionnement de [shiny::withProgress()]
+Permet d'afficher un spinner lors d'un calcul prenant du temps, s'inspire du fonctionnement de \code{\link[shiny:withProgress]{shiny::withProgress()}}
 }
 \examples{
 if (interactive()) {

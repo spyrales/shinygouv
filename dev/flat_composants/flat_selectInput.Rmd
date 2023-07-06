@@ -320,6 +320,7 @@ test_that("selectInput_dsfr_template works", {
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @importFrom assertthat assert_that
+#' @importFrom purrr map
 #' @return html
 #'
 #' @export
@@ -334,7 +335,8 @@ selectInput_dsfr <- function(
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
-  assertthat::assert_that(is.character(choices))
+  # assertthat::assert_that(is.character(choices))
+  purrr::map(choices, ~ assertthat::assert_that(is.character(.x)))
   assertthat::assert_that(length(selected) <= 1)
 
 
@@ -462,6 +464,18 @@ test_that("selectInput_dsfr works", {
     )
   )
 
+  expect_error(
+    selectInput_dsfr(
+      inputId = "variable",
+      label = "Variable:",
+      choices = list(
+        "Cylinders" = "cyl",
+        "Transmission" = "am",
+        "Gears" = "gear"
+      )
+    ),
+    regexp = NA
+  )
 
   snapshot_html <- readRDS(
     file = file.path(

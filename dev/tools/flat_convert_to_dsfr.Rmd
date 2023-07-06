@@ -35,6 +35,15 @@ convert_file_to_dsfr <- function(file, tab_corresp) {
 
     message(glue::glue("scan {file}"))
     file_read <- readLines(file)
+    
+    if (isTRUE(grep("tabPanel", file_read) > 0)) {
+        message(glue::glue("Attention le {file} contient un 'tabPanel': \n - Si celui ci \u00e9tait dans un navbarPage alors le remplacer par un navbarPanel_dsfr. \n - Si celui ci \u00e9tait dans un 'tabsetPanel', alors le remplacer par un 'tabPanel_dsfr'"))
+    }
+
+    if (isTRUE(grep("navbarPage", file_read) > 0)) {
+        message(glue::glue("Attention le {file} contient un 'navbarPage()', la version dsfr n\u00e9cessite un header, voir \\?navbarPage_dsfr"))
+    }
+    
     file_convert <- purrr::reduce2(
       paste0(tab_corresp$composant_shiny, "\\("),
       paste0(tab_corresp$composant_dsfr, "\\("),
@@ -132,7 +141,10 @@ convert_to_dsfr(path = "le_chemin_de_mon_application")
 ```{r function-convert_to_dsfr}
 #' convert_to_dsfr
 #'
-#' permet de convertir une application shiny en une application shiny suivant le DSFR
+#' @description 
+#' `r lifecycle::badge("experimental")`
+#' 
+#' Il s'agissait d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel 
 #'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
@@ -279,6 +291,6 @@ test_that("get_dsfr_version works", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-fusen::inflate(flat_file = "dev/tools/flat_convert_to_dsfr.Rmd", vignette_name = "Convertir une app shiny en app shiny dsfr")
+fusen::inflate(flat_file = "dev/tools/flat_convert_to_dsfr.Rmd", vignette_name = NA, check = FALSE)
 ```
 
