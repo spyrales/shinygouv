@@ -1,4 +1,26 @@
-# shinygouv 0.0.2 to 1.0.0
+# shinygouv 1.0.0
+
+## chore
+
+* refactorisation de l'application de démonstration
+  + passage en modules shiny
+  + tri des composants par type
+  
+## feat
+
+* Ajout de `numericInput_dsfr()` et `updateNumericInput_dsfr()`
+* Ajout de `navbarPage_dsfr()` et `navbarPanel_dsfr()`
+* Ajout de `radioButtons_dsfr()` et `updateRadioButtons_dsfr()`
+* Ajout de `radioGroupButtons_dsfr()` et `updateRadioGroupButtons_dsfr()`
+* Ajout de `sliderInput_dsfr()` et `updateSliderInput_dsfr()`
+
+## doc
+
+* Nettoyage du répertoire `dev/`
+* Séparation de la documentation développeur et de la documentation utilisateur dans le répertoire `vignettes/`
+
+
+# shinygouv 0.0.2 to 0.0.5
 
 ## chore
 
@@ -8,13 +30,12 @@
 
 ## feat
 
-
 * Ajout de `modalDialog_dsfr()`
 * Ajout de `withSpinner_dsfr()`
-* Ajout de `selectInput_dsfr()`
+* Ajout de `selectInput_dsfr()` et `updateSelectInput_dsfr()`
 * Ajout de `toggleSwitch_dsfr()`
-* Ajout de `checkBoxInput_dsfr()`
-* Ajout de `checkBoxGroupInput_dsfr()`
+* Ajout de `checkBoxInput_dsfr()` et `updateCheckboxInput_dsfr()`
+* Ajout de `checkBoxGroupInput_dsfr()` et `updateCheckboxGroupInput_dsfr()`
 * Ajout de `tabPanel()` et `tabsetPanel_dsfr()`
 
 * Suivi de l'implémentation d'un nouveau composant (ici `toggleSwitch_dsfr()`) à partir d'un [commit](https://github.com/spyrales/shinygouv/pull/82/commits/ed19c583c45aa04d9ebd51b1984851891e360b98)

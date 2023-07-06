@@ -1,6 +1,6 @@
 Package: shinygouv
 Title: Implement the DSFR for your shiny applications
-Version: 0.0.5
+Version: 1.0.0
 Authors@R: c(
     person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
@@ -9,6 +9,8 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-1339-2424")),
     person("Cervan", "Girard", , "cervan@thinkr.fr", role = "aut",
            comment = c(ORCID = "0000-0002-4816-4624")),
+    person("Yohann", "Mansiaux", , "yohann@thinkr.fr", role = "aut",
+           comment = c(ORCID = "0000-0002-8905-6603")),
     person("David", "Granjon", role = "ctb"),
     person("Alan", "Dipert", role = "ctb")
   )
