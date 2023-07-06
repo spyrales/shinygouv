@@ -23,10 +23,9 @@ pkgload::load_all(export_all = TRUE)
 #' dateRangeInput_dsfr_template
 #'
 #' @param inputId inputId
+#' @param start character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
+#' @param end character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param label label
-#' @param options options pour les futurs choices
-#' @param selected selected
-#' @param multiple FALSE par defaut
 #'
 #' @importFrom htmltools htmlTemplate
 #' @importFrom purrr pmap
@@ -76,7 +75,9 @@ test_that("dateRangeInput_dsfr_template works", {
   purrr::walk(
     c(
       "inputId",
-      "label"
+      "label",
+      "start",
+      "end"
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
@@ -90,7 +91,9 @@ test_that("dateRangeInput_dsfr_template works", {
 
   test_html <- dateRangeInput_dsfr_template(
     inputId = "toto",
-    label = "titi"
+    label = "titi",
+    start  = "2001-01-01",
+    end    = "2010-12-31"
   )
 
 
@@ -102,8 +105,10 @@ test_that("dateRangeInput_dsfr_template works", {
 
   purrr::walk(
     c(
-      inputId = "toto",
-      label = "titi"
+    inputId = "toto",
+    label = "titi",
+    start  = "2001-01-01",
+    end    = "2010-12-31"
     ),
     function(param) {
       expect_true(
@@ -154,10 +159,11 @@ test_that("dateRangeInput_dsfr_template works", {
 ```{r function-dateRangeInput_dsfr}
 #' dateRangeInput_dsfr
 #'
-#' @param inputId id de l'input
-#' @param label label du bouton
-#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param selected Element selectionné
+#' @param inputId inputId
+#' @param start character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
+#' @param end character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
+#' @param label label
+#' 
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
@@ -175,6 +181,19 @@ dateRangeInput_dsfr <- function(
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
 
+  
+  if (isTRUE(is.null(start))) {
+    start <- Sys.Date()
+  } else {
+    assertthat::assert_that(is.character(start))
+  }
+  
+  if (isTRUE(is.null(end))) {
+    end <- Sys.Date()
+  } else {
+    assertthat::assert_that(is.character(end))
+  }
+  
   dateRangeInput_dsfr_template(
     inputId = inputId,
     label = label,
@@ -182,13 +201,13 @@ dateRangeInput_dsfr <- function(
     end = end
   ) %>%
     parse_html()
-  
-  
+
+
+  # session$sendCustomMessage("dateRangeInput_dsfr_js",
+  #                           message = list(id = inputId))
+
 }
 ```
-
-
-
 
 
 ```{r examples-dateRangeInput_dsfr}
@@ -209,12 +228,12 @@ if (interactive()) {
     fluidRow_dsfr(
       # sans vecteur nommé
       dateRangeInput_dsfr(inputId = "daterange1",
-                          label = "Date range:", start = "2001-01-01", end = "2002-01-01")
+                          label = "Date range:", start = "2001-01-01")
     )
   )
   server <- function(input, output, session) {
 
-  observeEvent(input$daterange1, {
+  observeEvent(input$daterange1, ignoreNULL = FALSE , {
     print(input$daterange1)
   })  
 
@@ -229,15 +248,9 @@ if (interactive()) {
 test_that("dateRangeInput_dsfr works", {
   expect_true(inherits(dateRangeInput_dsfr, "function"))
 
-  test_html <- dateRangeInput_dsfr(
-    inputId = "variable",
-    label = "Variable:",
-    choices = c(
-      "Cylinders" = "cyl",
-      "Transmission" = "am",
-      "Gears" = "gear"
-    )
-  )
+  test_html <- dateRangeInput_dsfr(inputId = "daterange1",
+                          label = "Date range:", start = "2001-01-01",
+                          end = "2003-01-01")
 
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
@@ -245,58 +258,44 @@ test_that("dateRangeInput_dsfr works", {
 
   expect_error(
     dateRangeInput_dsfr(
-      inputId = 1234,
-      label = "Variable:",
-      choices = c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      )
+      inputId = 123,
+      label = "Date range:",
+      start = "2001-01-01",
+      end = "2003-01-01"
     )
   )
 
   expect_error(
     dateRangeInput_dsfr(
-      inputId = "variable",
-      label = 1234,
-      choices = c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      )
+      inputId = "daterange1",
+      label = 123,
+      start = "2001-01-01",
+      end = "2003-01-01"
+    )
+  )
+  
+  expect_error(
+    dateRangeInput_dsfr(
+      inputId = "daterange1",
+      label = "Date range:",
+      start = 123,
+      end = "2003-01-01"
     )
   )
 
   expect_error(
     dateRangeInput_dsfr(
-      inputId = "variable",
-      label = "Variable:",
-      choices = c(1234, 5678)
+      inputId = "daterange1",
+      label = "Date range:",
+      end = 123,
+      start = "2003-01-01"
     )
   )
 
   expect_error(
-    dateRangeInput_dsfr(
-      inputId = "variable",
-      label = "Variable:",
-      choices = c(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      ),
-      selected = c("gear", "am")
-    )
-  )
-
-  expect_error(
-    dateRangeInput_dsfr(
-      inputId = "variable",
-      label = "Variable:",
-      choices = list(
-        "Cylinders" = "cyl",
-        "Transmission" = "am",
-        "Gears" = "gear"
-      )
+        dateRangeInput_dsfr(
+      inputId = "daterange1",
+      label = "Date range:"
     ),
     regexp = NA
   )
@@ -323,136 +322,15 @@ test_that("dateRangeInput_dsfr works", {
   #                              assurez vous d'avoir bien pris en compte la nouvelle personnalisation
   #                              dans la fonction radioButtons_dsfr_template puis lancer le saveRDS, relancer le test et recommenter le saveRDS
 
-  #  saveRDS(test_html,
-  #          file = file.path("tests/testthat/snapshot",
-  #                           "dateRangeInput_dsfr.Rda"
-  #                           )
-  #          )
-  #
+   # saveRDS(test_html,
+   #         file = file.path("tests/testthat/snapshot",
+   #                          "dateRangeInput_dsfr.Rda"
+   #                          )
+   #         )
+
 })
 ```
 
-# updatedateRangeInput_dsfr
-
-```{r function-updatedateRangeInput_dsfr}
-#' updatedateRangeInput_dsfr
-#'
-#' @param inputId id de l'input
-#' @param label label du bouton
-#' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
-#' @param selected Element selectionné
-#' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
-#'
-#' @importFrom shiny updatedateRangeInput
-#' @return html
-#'
-#' @export
-updatedateRangeInput_dsfr <- function(
-  inputId,
-  label = NULL,
-  choices = NULL,
-  selected = NULL,
-  session = shiny::getDefaultReactiveDomain()
-    ) {
-  ns <- session$ns
-
-  updatedateRangeInput(
-    session = session,
-    inputId = inputId,
-    label = label,
-    choices = choices,
-    selected = selected
-  )
-}
-```
-  
-```{r example-updatedateRangeInput_dsfr}
-## Only run examples in interactive R sessions
-if (interactive()) {
-  library(shiny)
-  library(shinygouv)
-
-  ui <- fluidPage_dsfr(
-    header = header_dsfr(
-      intitule = "Intitule",
-      officiel = "Officiel",
-      nom_site_service = "Nom du site / service",
-      baseline = "baseline - precisions sur l organisation",
-      class = "fr-m-1w"
-    ),
-    title = "Exemple",
-    fluidRow_dsfr(
-      dateRangeInput_dsfr(
-        inputId = "variable",
-        label = "Variable:",
-        choices = c(
-          "Cylinders" = "cyl",
-          "Transmission" = "am",
-          "Gears" = "gear"
-        )
-      )
-    ),
-    fluidRow_dsfr(
-      actionButton_dsfr(inputId = "update", label = "update label")
-    ),
-    fluidRow_dsfr(
-      actionButton_dsfr(inputId = "update2", label = "update choices")
-    ),
-    fluidRow_dsfr(
-      actionButton_dsfr(inputId = "update3", label = "update selected")
-    )
-  )
-  server <- function(input, output, session) {
-    observeEvent(input$update, {
-      updatedateRangeInput_dsfr(inputId = "variable", label = "Nouveau label")
-    })
-
-    observeEvent(input$update2, {
-      updatedateRangeInput_dsfr(inputId = "variable", choices = LETTERS)
-    })
-
-    observeEvent(input$update3, {
-      updatedateRangeInput_dsfr(inputId = "variable", selected = LETTERS[12])
-    })
-  }
-
-  shinyApp(ui, server)
-}
-```
-  
-```{r tests-updatedateRangeInput_dsfr}
-test_that("updatedateRangeInput_dsfr works", {
-  expect_true(inherits(updatedateRangeInput_dsfr, "function"))
-
-  sessA <- createModuleSession("modA")
-
-  updatedateRangeInput_dsfr(
-    session = sessA,
-    inputId = "variable",
-    label = "Nouveau label",
-    choices = LETTERS[1:5],
-    selected = LETTERS[4]
-  )
-
-  resultA <- sessA$lastInputMessage
-  # inputId
-  expect_equal("variable", resultA$id)
-  # label
-  expect_equal("Nouveau label", resultA$message$label)
-  # HTML content
-  expect_equal(
-    resultA$message$options,
-    structure(
-      "<option value=\"A\">A</option>\n<option value=\"B\">B</option>\n<option value=\"C\">C</option>\n<option value=\"D\" selected>D</option>\n<option value=\"E\">E</option>",
-      html = TRUE,
-      class = c(
-        "html",
-        "character"
-      )
-    )
-  )
-})
-```
   
 
 ```{r development-inflate, eval=FALSE}
