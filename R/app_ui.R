@@ -14,7 +14,7 @@ app_ui <- function(request) {
       id = "nav",
       header = header_dsfr(
         intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
-        nom_site_service = "Bienvenue sur l'application de démonstration de {shinygouv}",
+        nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
         baseline = "https://github.com/spyrales/shinygouv"
       ),
       navbarPanel_dsfr(

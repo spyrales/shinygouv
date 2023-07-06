@@ -25,8 +25,6 @@ header_dsfr(
 \item{baseline}{le texte sous le nom de site/service - optionnel}
 
 \item{class}{un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")}
-
-\item{officiel}{la partie "officiel" du bloc marque}
 }
 \value{
 html

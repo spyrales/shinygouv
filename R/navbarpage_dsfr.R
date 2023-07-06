@@ -12,7 +12,6 @@
 #'
 #' @examples
 #' library(shiny)
-#' options(shiny.port = httpuv::randomPort())
 #' # Define UI
 #' ui <- navbarPage_dsfr(
 #'   title = "Welcome to the Jungle",

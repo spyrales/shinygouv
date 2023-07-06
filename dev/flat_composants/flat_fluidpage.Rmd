@@ -229,6 +229,7 @@ fluidPage_dsfr <- function(
 
 
 ```{r examples-fluidPage_dsfr, eval=FALSE}
+library(shiny)
 my_page <- fluidPage_dsfr(
   header = header_dsfr(
     intitule = tags$span("Prefet", br(), "de", br(), "Bretagne")

@@ -3,7 +3,6 @@
 #' header_dsfr
 #'
 #' @param intitule la partie "intitule" du bloc marque
-#' @param officiel la partie "officiel" du bloc marque
 #' @param url l url de redirection - optionnel
 #' @param titre le texte de description de l url - optionnel
 #' @param nom_site_service le nom du site ou du service - optionnel
