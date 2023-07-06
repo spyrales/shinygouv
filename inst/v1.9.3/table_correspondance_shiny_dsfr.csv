@@ -22,7 +22,7 @@
 21;updateCheckboxInput;updateCheckboxInput_dsfr;;oui
 22;numericInput;numericInput_dsfr;numericinput.html;oui
 23;updateNumericInput;updateNumericInput_dsfr;;oui
-24;tabsetPanel;tabSetPanel_dsfr;tabSetPanel.html;oui
+24;tabsetPanel;tabsetPanel_dsfr;tabsetPanel.html;oui
 25;;tabPanel_dsfr;tabBody.html;oui
 26;sliderInput;sliderInput_dsfr;;oui
 27;updateSliderInput;updateSliderInput_dsfr;;oui

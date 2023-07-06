@@ -17,7 +17,7 @@
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinygouv)
-#' 
+#'
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
@@ -52,16 +52,16 @@
 #'     observeEvent(input$update, {
 #'       updateSelectInput_dsfr(inputId = "variable", label = "Nouveau label")
 #'     })
-#' 
+#'
 #'     observeEvent(input$update2, {
 #'       updateSelectInput_dsfr(inputId = "variable", choices = LETTERS)
 #'     })
-#' 
+#'
 #'     observeEvent(input$update3, {
 #'       updateSelectInput_dsfr(inputId = "variable", selected = LETTERS[12])
 #'     })
 #'   }
-#' 
+#'
 #'   shinyApp(ui, server)
 #' }
 updateSelectInput_dsfr <- function(

@@ -15,7 +15,9 @@ convert_to_dsfr(path = "R/", version = get_dsfr_version())
 des fichiers modifies
 }
 \description{
-permet de convertir une application shiny en une application shiny suivant le DSFR
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
+Il s'agissait d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel
 }
 \examples{
 if (FALSE) {
