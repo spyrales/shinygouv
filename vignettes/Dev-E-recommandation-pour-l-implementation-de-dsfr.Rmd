@@ -102,9 +102,7 @@ server <- function(input, output, session) {
 shinyApp(remplace_bttn(ui), server)
 ```
 
-```{r echo = FALSE}
-knitr::include_graphics(system.file("comparaison", "option_b_btn.png", package = "shinygouv"))
-```
+![](../reference/figures/option_b_btn.png)
 
 Avantages:
 
