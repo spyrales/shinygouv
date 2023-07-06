@@ -13,7 +13,7 @@ updateTabsetPanel_dsfr(
 \arguments{
 \item{inputId}{inputId du tabsetPanel_dsfr}
 
-\item{selected}{titre du tab à afficher (paramètre `title` utilisé dans `tabPanel_dsfr()`)}
+\item{selected}{titre du tab à afficher (paramètre \code{title} utilisé dans \code{tabPanel_dsfr()})}
 
 \item{session}{session shiny}
 }

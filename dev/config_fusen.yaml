@@ -78,11 +78,27 @@ flat_fluidpage.Rmd:
   - tests/testthat/test-column_dsfr.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
-    vignette_name: fluidPage_dsfr
+    vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
+    document: true
+    overwrite: ask
+flat_header.Rmd:
+  path: dev/flat_composants/flat_header.Rmd
+  state: active
+  R:
+  - R/header_dsfr.R
+  - R/header_dsfr_template.R
+  tests:
+  - tests/testthat/test-header_dsfr_template.R
+  - tests/testthat/test-header_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_header.Rmd
+    vignette_name: .na
+    open_vignette: false
+    check: false
     document: true
     overwrite: ask
 flat_modal.Rmd:
@@ -97,6 +113,19 @@ flat_modal.Rmd:
   vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_modal.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
+flat_navbarPage.Rmd:
+  path: dev/flat_composants/flat_navbarPage.Rmd
+  state: active
+  R: R/navbarpage_dsfr.R
+  tests: tests/testthat/test-navbarpage_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_navbarPage.Rmd
     vignette_name: .na
     open_vignette: true
     check: false

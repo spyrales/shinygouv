@@ -23,13 +23,13 @@ Page avec navbar
 }
 \examples{
 library(shiny)
+options(shiny.port = httpuv::randomPort())
 # Define UI
 ui <- navbarPage_dsfr(
   title = "Welcome to the Jungle",
   id = "nav",
   header = header_dsfr(
-    intitule = "République",
-    officiel = "Française",
+    intitule = span("République", br(), "Française"),
     nom_site_service = "Nom du site / service",
     baseline = "Baseline - pr\u00E9cisions sur l organisation"
   ),
@@ -39,7 +39,7 @@ ui <- navbarPage_dsfr(
     fluidRow_dsfr(
       column_dsfr(
         12,
-        h3("Demo actionButton_dsfr()"),
+        h3('Demo actionButton_dsfr()'),
         # Adding space to the column
         # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
         extra_class = "fr-my-6w"
@@ -59,7 +59,9 @@ ui <- navbarPage_dsfr(
         )
       )
     )
-  ),
+  )
+  ,
+
   # Second tab
   navbarPanel_dsfr(
     title = "radioButtons_dsfr()",
@@ -99,11 +101,11 @@ server <- function(input, output) {
   output$output2 <- renderText({
     paste("You've selected", input$espece)
   })
+
 }
 
 if (interactive()) {
   # Run the application
   shinyApp(ui = ui, server = server)
 }
-
 }

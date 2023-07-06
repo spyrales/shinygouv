@@ -14,27 +14,23 @@
 #'
 #' @examples
 #' header_dsfr(
-#'   intitule = "Prefet de",
-#'   officiel = "Bretagne",
+#'   intitule = span("Prefet", br(), "de", br(), "Bretagne")
 #' )
 header_dsfr <- function(
-  intitule,
-  officiel,
-  url = "/",
-  titre = NULL,
-  nom_site_service = NULL,
-  baseline = NULL,
-  class = "fr-container"
+    intitule,
+    url = "/",
+    titre = NULL,
+    nom_site_service = NULL,
+    baseline = NULL,
+    class = "fr-container"
     ) {
   # check les params
-  assertthat::assert_that(is.character(intitule))
-  assertthat::assert_that(is.character(officiel))
+  # assertthat::assert_that(is.character(intitule))
   # TODO verifier que l url est valide
 
   res <- header_dsfr_template(
     class = class,
     intitule = intitule,
-    officiel = officiel,
     url = url,
     titre = titre,
     nom_site_service = nom_site_service,

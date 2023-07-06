@@ -13,9 +13,8 @@ app_ui <- function(request) {
       title = "shinygouv",
       id = "nav",
       header = header_dsfr(
-        intitule = "D\u00e9mo",
-        officiel = "shinygouv",
-        nom_site_service = "D\u00e9mo de {shinygouv}",
+        intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+        nom_site_service = "Bienvenue sur l'application de démonstration de {shinygouv}",
         baseline = "https://github.com/spyrales/shinygouv"
       ),
       navbarPanel_dsfr(
@@ -30,7 +29,6 @@ app_ui <- function(request) {
         title = "inputs num\u00e9riques",
         mod_input_numeric_ui("input_numeric_1")
       ),
-
       navbarPanel_dsfr(
         title = "inputs \u00e0 choix limit\u00e9s",
         mod_input_limited_choices_ui("input_limited_choices_1")

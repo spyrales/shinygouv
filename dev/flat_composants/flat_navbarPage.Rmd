@@ -36,10 +36,10 @@ La `navbarPage_dsfr()` se compose de :
 #'
 #' @examples
 navbarPage_dsfr <- function(
-    title,
-    ...,
-    header = NULL,
-    id = NULL
+  title,
+  ...,
+  header = NULL,
+  id = NULL
     ) {
   all_navs <- list(...)
   # Making the first tab the current one
@@ -84,34 +84,31 @@ navbarPage_dsfr <- function(
       id = id
     )
   )
-  tagList(
-    navbarPage_deps(),
-    add_dsfr_deps(
-      htmltools::htmlTemplate(
-        filename = system.file(
-          get_dsfr_version(with_v = TRUE),
-          "composant",
-          "fluidpage.html",
-          package = "shinygouv"
-        ),
-        header = header,
-        title = title,
-        body = tagList(
-          lapply(
-            all_navs,
-            function(x) {
-              tags$span(
-                class = "navbarPanel_dsfr",
-                id = x$id,
-                x$ui
-              )
-            }
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "fluidpage.html",
+      package = "shinygouv"
+    ),
+    header = header,
+    title = title,
+    body = tagList(
+      lapply(
+        all_navs,
+        function(x) {
+          tags$span(
+            class = "navbarPanel_dsfr",
+            id = x$id,
+            x$ui
           )
-        )
+        }
       )
     )
-  )
+  ) %>%
+    add_dsfr_deps()
 }
+
 
 #' Panel pour la navbar
 #'
@@ -142,8 +139,7 @@ ui <- navbarPage_dsfr(
   title = "Welcome to the Jungle",
   id = "nav",
   header = header_dsfr(
-    intitule = "République",
-    officiel = "Française",
+    intitule = span("République", br(), "Française"),
     nom_site_service = "Nom du site / service",
     baseline = "Baseline - pr\u00E9cisions sur l organisation"
   ),
@@ -230,8 +226,7 @@ test_that("navbarPage_dsfr works", {
     title = "Welcome to the Jungle",
     id = "nav",
     header = header_dsfr(
-      intitule = "République",
-      officiel = "Française",
+      intitule = "République Française",
       nom_site_service = "Nom du site / service",
       baseline = "Baseline - pr\u00E9cisions sur l organisation"
     ),

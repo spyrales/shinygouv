@@ -6,7 +6,6 @@
 \usage{
 header_dsfr(
   intitule,
-  officiel,
   url = "/",
   titre = NULL,
   nom_site_service = NULL,
@@ -17,8 +16,6 @@ header_dsfr(
 \arguments{
 \item{intitule}{la partie "intitule" du bloc marque}
 
-\item{officiel}{la partie "officiel" du bloc marque}
-
 \item{url}{l url de redirection - optionnel}
 
 \item{titre}{le texte de description de l url - optionnel}
@@ -28,6 +25,8 @@ header_dsfr(
 \item{baseline}{le texte sous le nom de site/service - optionnel}
 
 \item{class}{un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")}
+
+\item{officiel}{la partie "officiel" du bloc marque}
 }
 \value{
 html
@@ -37,7 +36,6 @@ header_dsfr
 }
 \examples{
 header_dsfr(
-  intitule = "Prefet de",
-  officiel = "Bretagne",
+  intitule = span("Prefet", br(), "de", br(), "Bretagne")
 )
 }
