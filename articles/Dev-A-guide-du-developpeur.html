@@ -107,14 +107,12 @@ utilisateurs.</p>
 <h2 id="ajouter-une-nouvelle-version-du-dsfr">Ajouter une nouvelle version du dsfr<a class="anchor" aria-label="anchor" href="#ajouter-une-nouvelle-version-du-dsfr"></a>
 </h2>
 <p>Si vous souhaitez implémenter une nouvelle version du dsfr, vous
-devez suivre les instructions dans
-“dev/flat_montee_version_dsfr.Rmd”.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/rstudioapi/reference/navigateToFile.html" class="external-link">navigateToFile</a></span><span class="op">(</span><span class="st">"dev/flat_montee_version_dsfr.Rmd"</span><span class="op">)</span></span></code></pre></div>
+devez suivre les instructions disponible: <a href="Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee
+en version du dsfr : trouver les fichiers CSS et JS</a>.</p>
 <p>Lorsque vous aurez implémenté toutes les composantes avec la nouvelle
 version, vous pourrez mettre à jour le fichier DESCRIPTION avec la
 commande suivante :</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">desc</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/desc/reference/desc_set.html" class="external-link">desc_set</a></span><span class="op">(</span><span class="st">"VersionDsfr"</span> <span class="op">=</span> <span class="st">"1.7.2"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -187,7 +185,7 @@ demande de PR de votre branche vers la branche principale</li>
 <h2 id="comprendre-et-appliquer-le-workflow-pour-développer-le-package">Comprendre et appliquer le workflow pour développer le package<a class="anchor" aria-label="anchor" href="#comprendre-et-appliquer-le-workflow-pour-d%C3%A9velopper-le-package"></a>
 </h2>
 <p>Pour développer ce package, des choix techniques ont été adoptés.
-Vous retrouverez les raisons <a href="explo_shiny.dsfr.html">ici</a>.</p>
+Vous retrouverez les raisons <a href="Dev-F-documentation-inventaire.html">ici</a>.</p>
 <p>Le workflow se découpe en deux possibilités :</p>
 <ul>
 <li>Les composants nécéssitant de la réactivité</li>
@@ -204,12 +202,12 @@ composant shiny</a></li>
 <ul>
 <li>Avec réactivité:
 <ul>
-<li><a href="reference/radiobuttons-dsfr.html">radio buttons</a></li>
+<li><a href="../reference/radioButtons_dsfr.html">radio buttons</a></li>
 </ul>
 </li>
 <li>Sans réactivité:
 <ul>
-<li><a href="reference/fluidpage_dsfr.html">Fluid page</a></li>
+<li><a href="../reference/fluidPage_dsfr.html">Fluid page</a></li>
 </ul>
 </li>
 </ul>
@@ -235,20 +233,12 @@ ajouté comme pour {gouvdown} 🇬🇧</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="les-packages-nécéssaires-au-developpement">Les packages nécéssaires au developpement<a class="anchor" aria-label="anchor" href="#les-packages-n%C3%A9c%C3%A9ssaires-au-developpement"></a>
-</h2>
-<p>En plus des dépendances du package, un ensemble de packages sera
-nécessaire pour le bon developpement du package.</p>
-<p>Vous retrouverez cette liste dans le fichier
-<code>dev/pkgs_deps.csv</code>.</p>
-</div>
-<div class="section level2">
 <h2 id="workflow-avant-de-commit">Workflow avant de commit<a class="anchor" aria-label="anchor" href="#workflow-avant-de-commit"></a>
 </h2>
-<p>Pensez à executer les lignes “Each time needed” du fichier
-<code>dev/dev_history_package.R</code> avant chaque commit.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/rstudioapi/reference/navigateToFile.html" class="external-link">navigateToFile</a></span><span class="op">(</span><span class="st">"dev/dev_history_package.R"</span><span class="op">)</span></span></code></pre></div>
+<p>Pensez à executer les lignes “Each time needed” du fichier <a href="https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R" class="external-link">dev/02_dev.R</a>
+avant chaque commit.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/rstudioapi/reference/navigateToFile.html" class="external-link">navigateToFile</a></span><span class="op">(</span><span class="st">"dev/02_dev.R"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </div>
 

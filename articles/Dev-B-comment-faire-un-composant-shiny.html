@@ -101,8 +101,8 @@ s’assurer de la version du dsfr utilisé actuellement :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">desc</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/desc/reference/desc_get.html" class="external-link">desc_get</a></span><span class="op">(</span><span class="st">"VersionDsfr"</span><span class="op">)</span></span></code></pre></div>
 <p>Vous devriez trouver un dossier dans “inst/” avec le bon numéro de
-version. Si ce n’est pas le cas, suivre la vignette
-<code>montee-en-version-du-dsfr-trouver-fichiers-css-et-js</code>.</p>
+version. Si ce n’est pas le cas, suivre la vignette <a href="Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee
+en version du dsfr : trouver les fichiers CSS et JS</a>.</p>
 <p>Si vous êtes sur une montée de version, les dossiers devraient déjà
 être prêts.</p>
 <div class="section level2">
@@ -177,9 +177,8 @@ endroit ou on recherche la classe qui active l’input :</p>
 <ul>
 <li>Créer la fonction qui permettra d’utiliser ce nouveau bouton.
 <ul>
-<li>Copier coller le flat se trouvant dans
-<code>dev/flat_composants/flat_new_one.Rmd</code> dans
-<code>dev/flat_composants/</code> et le renommer
+<li>Copier coller le flat se trouvant dans <a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_new_one.Rmd" class="external-link">dev/flat_composants/flat_new_one.Rmd</a>
+dans <code>dev/flat_composants/</code> et le renommer
 “flat_nom_du_composant_shiny.Rmd”. Dans cet exemple,
 <code>flat_actionButton.Rmd</code>
 </li>
@@ -199,8 +198,7 @@ compris la date du snapshot).</li>
 </ul>
 </li>
 </ul>
-<p>Voir exemple
-<code>dev/flat_composants/flat_actionButton.Rmd</code></p>
+<p>Voir exemple <a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_actionButton.Rmd" class="external-link">dev/flat_composants/flat_actionButton.Rmd</a></p>
 <p><strong>/!\ Attention: </strong> Ayez une attention particulière pour
 les tests unitaires qui sont la garantie du bon fonctionnement du
 package.</p>
@@ -235,9 +233,8 @@ Le plus simple reste d’observer la fonction
 <h4 id="cinquième-étape">Cinquième étape<a class="anchor" aria-label="anchor" href="#cinqui%C3%A8me-%C3%A9tape"></a>
 </h4>
 <p>Lorsque l’implementation de votre nouveau composant dsfr est
-terminée: - remplir la table de correspondance disponible dans
-<code>inst/v1.7.2/table_correspondance_shiny_dsfr.csv</code> (en
-adaptant sur la version en cours d’implementation)</p>
+terminée: - remplir la table de correspondance disponible dans <a href="https://github.com/spyrales/shinygouv/blob/main/inst/v1.9.3/table_correspondance_shiny_dsfr.csv" class="external-link">inst/v1.9.3/table_correspondance_shiny_dsfr.csv</a>
+(en adaptant sur la version en cours d’implementation)</p>
 <p>La colonne <code>composant_shiny</code> restera vide si le composant
 dsfr n’a pas d’équivalent dans {shiny}. Cette table de correspondance
 permettra le bon déroulement de la conversion d’une app shiny en une app
