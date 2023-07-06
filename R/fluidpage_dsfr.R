@@ -15,14 +15,17 @@
 #' @export
 #'
 #' @examples
-#' my_page <- fluidPage_dsfr(
-#'   header = header_dsfr(
-#'     intitule = tags$span("Prefet", br(), "de", br(), "Bretagne")
-#'   ),
-#'   title = "Gouv",
-#'   htmltools::div("test")
-#' )
 #' if (interactive()) {
+#'
+#'   library(shiny)
+#'   my_page <- fluidPage_dsfr(
+#'     header = header_dsfr(
+#'       intitule = tags$span("Prefet", br(), "de", br(), "Bretagne")
+#'     ),
+#'     title = "Gouv",
+#'     htmltools::div("test")
+#'   )
+#'
 #'   shiny::shinyApp(
 #'     my_page,
 #'     server = function(input, output) {}
