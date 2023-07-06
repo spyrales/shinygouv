@@ -1,15 +1,15 @@
-<div id = "{{inputId}}" class="fr-input-group shiny-date-range-input form-group shiny-input-container">
+<div id = "{{inputId}}" class="fr-input-group form-group shiny-input-container">
   <label class="fr-label " id="{{inputId}}-label" for="{{inputId}}">
     {{label}}
   </label>
     <div class="input-daterange fr-input-group input-group-sm">
-      <input id="{{inputId}}-start" class="fr-input form-control" aria-describedby="{{inputId}}-start-label" type="date" onchange='updatedate(\"{{inputId}}\")'
+      <input id="{{inputId}}-start" class="fr-input form-control" aria-describedby="{{inputId}}-start-label" type="date" onchange="updatedate('{{inputId}}')"
       value={{start}} >
         <span class="input-group-addon input-group-prepend input-group-append">
         <span class="input-group-text"> to </span>
         </span>
-      <input class="{{inputId}}-end" "fr-input form-control" aria-describedby="{{inputId}}-end-label" type="date"
-      onchange='updatedate(\"{{inputId}}\")'
+      <input id="{{inputId}}-end" class="fr-input form-control" aria-describedby="{{inputId}}-end-label" type="date"
+      onchange="updatedate('{{inputId}}')"
       value={{end}}>
         <div class="fr-messages-group" id="{{inputId}}-messages" aria-live="assertive">
       </div>

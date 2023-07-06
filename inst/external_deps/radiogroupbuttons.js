@@ -10,10 +10,3 @@ $(current_name).parent().removeClass('fr-btn--secondary');
 $(current_name).parent().parent().parent().find("button").not(current_button).addClass("fr-btn--secondary");
 
 };
-
-const updatedate = function(inputId){
-  var start = $("#"+inputId+"-start").val();
-  var end = $("#"+inputId+"-end").val();
-
-  Shiny.setInputValue(inputId, {start: start, end: end})
-}

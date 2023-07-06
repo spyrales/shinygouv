@@ -38,7 +38,8 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       script = list(
         list(type = "text/javascript", src = "shiny-compat.js"),
-        list(type = "text/javascript", src = "navbarPage.js")
+        list(type = "text/javascript", src = "navbarPage.js"),
+        list(type = "text/javascript", src = "daterange.js")
       ),
       all_files = TRUE
     ),
