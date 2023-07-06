@@ -2,8 +2,7 @@
 
 test_that("header_dsfr works", {
   test_html <- header_dsfr(
-    intitule = "Prefet de",
-    officiel = "Bretagne",
+    intitule = shiny::tags$span("Prefet", br(), "de", br(), "Bretagne")
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
@@ -13,17 +12,14 @@ test_that("header_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "header_dsfr.Rda"
-    )
+      "header_dsfr.Rda")
   )
 
   #' @description Verifer que le HTML est correct en sortie
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
-  expect_equal(
-    gsub("\\s|\\n", "", test_html),
-    gsub("\\s|\\n", "", snapshot_html)
-  )
+  expect_equal(gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html))
 
   # Si erreur au précedent test deux cas possible :
   #
@@ -38,4 +34,5 @@ test_that("header_dsfr works", {
   #                          "header_dsfr.Rda"
   #                          )
   #         )
+
 })

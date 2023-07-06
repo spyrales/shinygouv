@@ -5,8 +5,7 @@ test_that("navbarPage_dsfr works", {
     title = "Welcome to the Jungle",
     id = "nav",
     header = header_dsfr(
-      intitule = "République",
-      officiel = "Française",
+      intitule = "République Française",
       nom_site_service = "Nom du site / service",
       baseline = "Baseline - pr\u00E9cisions sur l organisation"
     ),

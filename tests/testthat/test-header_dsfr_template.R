@@ -18,7 +18,6 @@ test_that("header_dsfr_template works", {
     c(
       "class",
       "intitule",
-      "officiel",
       "url",
       "titre",
       "nom_site_service",
@@ -36,8 +35,7 @@ test_that("header_dsfr_template works", {
 
   test_html <- header_dsfr_template(
     class = "class",
-    intitule = "Prefet de",
-    officiel = "Bretagne",
+    intitule = "Prefet de Bretagne",
     url = "https://www.prefectures-regions.gouv.fr/bretagne",
     titre = "Accueil - Préfecture de Bretagne",
     nom_site_service = "DREAL Bretagne",
@@ -53,8 +51,7 @@ test_that("header_dsfr_template works", {
   purrr::walk(
     c(
       class = "class",
-      intitule = "Prefet de",
-      officiel = "Bretagne",
+      intitule = "Prefet de Bretagne",
       url = "https://www.prefectures-regions.gouv.fr/bretagne",
       titre = "Accueil - Préfecture de Bretagne",
       nom_site_service = "DREAL Bretagne",

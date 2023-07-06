@@ -20,8 +20,7 @@ Vous pouvez ajouter le header officiel dans votre application avec `header_dsfr(
 ```{r, eval=FALSE}
 fluidPage_dsfr(
   header = header_dsfr(
-    intitule = "Intitule",
-    officiel = "Officiel",
+    intitule = span("Intitulé", br(), "sur 3", br(), "lignes"),
     nom_site_service = "Nom du site / service",
     baseline = "baseline - precisions sur l organisation",
     class = "fr-m-1w"
@@ -36,8 +35,7 @@ fluidPage_dsfr(
 
 ```{r function-header_dsfr_template}
 #' header_dsfr_template
-#' @param intitule la partie "intitule" du bloc marque
-#' @param officiel la partie "officiel" du bloc marque
+#' @param intitule la partie "intitule" du bloc marque. Utiliser un `shiny::tags$span()`pour mettre l'intitulé sur plusieurs lignes
 #' @param url l url de redirection
 #' @param titre le texte de description de l url
 #' @param nom_site_service le nom du site ou du service - optionnel
@@ -46,7 +44,7 @@ fluidPage_dsfr(
 #' @importFrom htmltools htmlTemplate
 #' @return html
 header_dsfr_template <- function(
-    intitule, officiel, url, titre, nom_site_service, baseline, class
+    intitule, url, titre, nom_site_service, baseline, class
     ) {
 
   htmltools::htmlTemplate(
@@ -58,7 +56,6 @@ header_dsfr_template <- function(
     ),
     class = class,
     intitule = intitule,
-    officiel = officiel,
     url = url,
     titre = titre,
     nom_site_service = nom_site_service,
@@ -87,7 +84,6 @@ test_that("header_dsfr_template works", {
     c(
       "class",
       "intitule",
-      "officiel",
       "url",
       "titre",
       "nom_site_service",
@@ -105,8 +101,7 @@ test_that("header_dsfr_template works", {
 
   test_html <- header_dsfr_template(
     class = "class",
-    intitule = "Prefet de",
-    officiel = "Bretagne",
+    intitule = "Prefet de Bretagne",
     url = "https://www.prefectures-regions.gouv.fr/bretagne",
     titre = "Accueil - Préfecture de Bretagne",
     nom_site_service = "DREAL Bretagne",
@@ -122,8 +117,7 @@ test_that("header_dsfr_template works", {
   purrr::walk(
     c(
       class = "class",
-      intitule = "Prefet de",
-      officiel = "Bretagne",
+      intitule = "Prefet de Bretagne",
       url = "https://www.prefectures-regions.gouv.fr/bretagne",
       titre = "Accueil - Préfecture de Bretagne",
       nom_site_service = "DREAL Bretagne",
@@ -146,7 +140,6 @@ test_that("header_dsfr_template works", {
 #' header_dsfr
 #'
 #' @param intitule la partie "intitule" du bloc marque
-#' @param officiel la partie "officiel" du bloc marque
 #' @param url l url de redirection - optionnel
 #' @param titre le texte de description de l url - optionnel
 #' @param nom_site_service le nom du site ou du service - optionnel
@@ -158,7 +151,6 @@ test_that("header_dsfr_template works", {
 #' @examples
 header_dsfr <- function(
     intitule,
-    officiel,
     url = "/",
     titre = NULL,
     nom_site_service = NULL,
@@ -166,14 +158,12 @@ header_dsfr <- function(
     class = "fr-container"
     ) {
   # check les params
-  assertthat::assert_that(is.character(intitule))
-  assertthat::assert_that(is.character(officiel))
+  # assertthat::assert_that(is.character(intitule))
   # TODO verifier que l url est valide
 
   res <- header_dsfr_template(
     class = class,
     intitule = intitule,
-    officiel = officiel,
     url = url,
     titre = titre,
     nom_site_service = nom_site_service,
@@ -186,17 +176,18 @@ header_dsfr <- function(
 ```
 
 ```{r examples-header_dsfr}
-header_dsfr(
-  intitule = "Prefet de",
-  officiel = "Bretagne",
-)
+if(interactive()) {
+  library(shiny)
+  header_dsfr(
+    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+  )
+}
 ```
 
 ```{r tests-header_dsfr}
 test_that("header_dsfr works", {
   test_html <- header_dsfr(
-    intitule = "Prefet de",
-    officiel = "Bretagne",
+    intitule = shiny::tags$span("Prefet", br(), "de", br(), "Bretagne")
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
@@ -236,7 +227,6 @@ test_that("header_dsfr works", {
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop
 # Execute in the console directly
-
 fusen::inflate(
   flat_file = "dev/flat_composants/flat_header.Rmd",
   vignette_name = NA,

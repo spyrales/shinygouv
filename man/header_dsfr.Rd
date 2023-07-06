@@ -6,7 +6,6 @@
 \usage{
 header_dsfr(
   intitule,
-  officiel,
   url = "/",
   titre = NULL,
   nom_site_service = NULL,
@@ -16,8 +15,6 @@ header_dsfr(
 }
 \arguments{
 \item{intitule}{la partie "intitule" du bloc marque}
-
-\item{officiel}{la partie "officiel" du bloc marque}
 
 \item{url}{l url de redirection - optionnel}
 
@@ -36,8 +33,10 @@ html
 header_dsfr
 }
 \examples{
-header_dsfr(
-  intitule = "Prefet de",
-  officiel = "Bretagne",
-)
+if(interactive()) {
+  library(shiny)
+  header_dsfr(
+    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+  )
+}
 }

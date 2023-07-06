@@ -3,7 +3,6 @@
 #' header_dsfr
 #'
 #' @param intitule la partie "intitule" du bloc marque
-#' @param officiel la partie "officiel" du bloc marque
 #' @param url l url de redirection - optionnel
 #' @param titre le texte de description de l url - optionnel
 #' @param nom_site_service le nom du site ou du service - optionnel
@@ -13,28 +12,27 @@
 #' @export
 #'
 #' @examples
-#' header_dsfr(
-#'   intitule = "Prefet de",
-#'   officiel = "Bretagne",
-#' )
+#' if(interactive()) {
+#'   library(shiny)
+#'   header_dsfr(
+#'     intitule = span("Prefet", br(), "de", br(), "Bretagne")
+#'   )
+#' }
 header_dsfr <- function(
-  intitule,
-  officiel,
-  url = "/",
-  titre = NULL,
-  nom_site_service = NULL,
-  baseline = NULL,
-  class = "fr-container"
+    intitule,
+    url = "/",
+    titre = NULL,
+    nom_site_service = NULL,
+    baseline = NULL,
+    class = "fr-container"
     ) {
   # check les params
-  assertthat::assert_that(is.character(intitule))
-  assertthat::assert_that(is.character(officiel))
+  # assertthat::assert_that(is.character(intitule))
   # TODO verifier que l url est valide
 
   res <- header_dsfr_template(
     class = class,
     intitule = intitule,
-    officiel = officiel,
     url = url,
     titre = titre,
     nom_site_service = nom_site_service,

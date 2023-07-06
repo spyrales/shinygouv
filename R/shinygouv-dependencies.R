@@ -80,20 +80,5 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
   tagList(tag, all_deps, addWithSpinner())
 }
 
-# navbarPage_deps <- function(
-#   version = get_dsfr_version()
-# ){
-#   htmlDependency(
-#     name = "navbarPage",
-#     version = version,
-#     package = "shinygouv",
-#     src = c(file = "external_deps"),
-#     script = list(
-#       list(type = "text/javascript", src = "navbarPage.js")
-#     ),
-#     all_files = TRUE
-#   )
-# }
-
 #' @import htmltools
 tags <- htmltools::tags

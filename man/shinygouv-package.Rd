@@ -16,6 +16,7 @@ Authors:
   \item Sébastien Rochette \email{sebastien@thinkr.fr} (\href{https://orcid.org/0000-0002-1565-9313}{ORCID})
   \item Murielle Delmotte \email{murielle@thinkr.fr} (\href{https://orcid.org/0000-0002-1339-2424}{ORCID})
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})
+  \item Yohann Mansiaux \email{yohann@thinkr.fr} (\href{https://orcid.org/0000-0002-8905-6603}{ORCID})
 }
 
 Other contributors:
