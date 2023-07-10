@@ -4,12 +4,12 @@
 \alias{navbarPanel_dsfr}
 \title{Panel pour la navbar}
 \usage{
-navbarPanel_dsfr(title, ...)
+navbarPanel_dsfr(title, ..., class = "fr-container")
 }
 \arguments{
 \item{title}{Titre du panel}
 
-\item{...}{UI du panel}
+\item{class}{Classe CSS du panel}
 }
 \description{
 Panel pour la navbar

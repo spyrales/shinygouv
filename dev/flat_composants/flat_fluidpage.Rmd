@@ -29,13 +29,15 @@ Ensuite, vient la traduction avec `htmlTemplate` :
 #' @param header entete de la page
 #' @param title titre de la page
 #' @param body body
+#' @param class class du container principal
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
 fluidPage_dsfr_template <- function(
   header,
   title,
-  body
+  body,
+  class = "fr-container"
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -46,7 +48,10 @@ fluidPage_dsfr_template <- function(
     ),
     header = header,
     title = title,
-    body = body
+    body = tags$div(
+      class = class,
+      body
+    )
   )
 }
 ```
@@ -487,7 +492,7 @@ fluidRow_dsfr <- function(..., class = NULL) {
   )
 }
 ```
-  
+
 ```{r example-fluidRow_dsfr}
 if (interactive()) {
   shiny::shinyApp(
@@ -610,8 +615,8 @@ column_dsfr <- function(width = NULL, ...) {
     other_class = NULL
   )
 }
-```  
-  
+```
+
 ```{r example-column_dsfr}
 if (interactive()) {
   shiny::shinyApp(
