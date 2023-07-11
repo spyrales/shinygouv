@@ -24,30 +24,33 @@ Le package s'utilise comme {shiny}. Voici un exemple minimaliste pour la partie 
 ```{r, eval=FALSE}
 library(shiny)
 library(shinygouv)
-
 app_ui <- fluidPage_dsfr(
   header = header_dsfr(
-    intitule = "Intitule",
-    officiel = "Officiel",
-    nom_site_service = "Nom du site / service",
-    baseline = "baseline - precisions sur l organisation",
-    class = "fr-m-1w"
-  ),
+        intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+        nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
+        baseline = "https://github.com/spyrales/shinygouv"
+      ),
   title = "Exemple",
   fluidRow_dsfr(
     column_dsfr(
       0,
-      shiny::p("Exemple colonne")
+      fileInput("file1", "Ajouter des fichiers", accept = ".csv")
     )
   )
 )
+shinyApp(
+  ui = app_ui,
+  server = function(input, output) {
+  }
+)
 ```
+
 
 # Visualiser un application de démonstration comprenant les composants déjà implémentés:
 
 [shinygouv-demo](https://ssm-ecologie.shinyapps.io/shinygouv-demo/)
 
-# Contribuer au développement du package 
+# Contribuer au développement du package
 
 Voir le README du dossier [documentation](dev/documentation)
 

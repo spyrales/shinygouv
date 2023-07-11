@@ -4,6 +4,7 @@
 #' @param header entete de la page
 #' @param title titre de la page
 #' @param body body
+#' @param class class du container principal
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
@@ -11,7 +12,8 @@
 fluidPage_dsfr_template <- function(
   header,
   title,
-  body
+  body,
+  class = "fr-container"
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -22,6 +24,9 @@ fluidPage_dsfr_template <- function(
     ),
     header = header,
     title = title,
-    body = body
+    body = tags$div(
+      class = class,
+      body
+    )
   )
 }

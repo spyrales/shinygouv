@@ -49,7 +49,7 @@
 #'     )
 #'   )
 #'   ,
-#'
+#' 
 #'   # Second tab
 #'   navbarPanel_dsfr(
 #'     title = "radioButtons_dsfr()",
@@ -85,13 +85,13 @@
 #'   output$output1 <- renderText({
 #'     paste("You clicked", input$go, "times")
 #'   })
-#'
+#' 
 #'   output$output2 <- renderText({
 #'     paste("You've selected", input$espece)
 #'   })
-#'
+#' 
 #' }
-#'
+#' 
 #' if (interactive()) {
 #'   # Run the application
 #'   shinyApp(ui = ui, server = server)
@@ -174,19 +174,22 @@ navbarPage_dsfr <- function(
 #' Panel pour la navbar
 #'
 #' @param title Titre du panel
-#' @param ... UI du panel
+#' @param class Classe CSS du panel
+#' @param ... Contenu du panel
 #'
 #' @export
 navbarPanel_dsfr <- function(
-    title,
-    ...
-    ) {
-
+  title,
+  ...,
+  class = "fr-container"
+) {
   list(
     title = title,
     id = janitor::make_clean_names(title),
-    ui = tagList(
+    ui = tags$div(
+      class = class,
       ...
     )
   )
 }
+

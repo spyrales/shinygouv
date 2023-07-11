@@ -113,22 +113,25 @@ navbarPage_dsfr <- function(
 #' Panel pour la navbar
 #'
 #' @param title Titre du panel
-#' @param ... UI du panel
+#' @param class Classe CSS du panel
+#' @param ... Contenu du panel
 #'
 #' @export
 navbarPanel_dsfr <- function(
-    title,
-    ...
-    ) {
-
+  title,
+  ...,
+  class = "fr-container"
+) {
   list(
     title = title,
     id = janitor::make_clean_names(title),
-    ui = tagList(
+    ui = tags$div(
+      class = class,
       ...
     )
   )
 }
+
 ```
 
 ```{r examples-navbarPage_dsfr}
