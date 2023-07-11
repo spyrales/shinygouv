@@ -9,6 +9,8 @@ navbarPanel_dsfr(title, ..., class = "fr-container")
 \arguments{
 \item{title}{Titre du panel}
 
+\item{...}{Contenu du panel}
+
 \item{class}{Classe CSS du panel}
 }
 \description{

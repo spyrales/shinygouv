@@ -15,7 +15,7 @@ test_that("fluidPage_dsfr works", {
   snapshot_html <- readRDS(
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
-      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
       "fluidPage_dsfr.Rda")
   )
 

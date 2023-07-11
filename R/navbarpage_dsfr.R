@@ -175,6 +175,7 @@ navbarPage_dsfr <- function(
 #'
 #' @param title Titre du panel
 #' @param class Classe CSS du panel
+#' @param ... Contenu du panel
 #'
 #' @export
 navbarPanel_dsfr <- function(
