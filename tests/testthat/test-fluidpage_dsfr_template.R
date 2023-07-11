@@ -18,7 +18,8 @@ test_that("fluidPage_dsfr_template works", {
     c(
       "header",
       "title",
-      "body"
+      "body",
+      "footer"
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
@@ -30,7 +31,8 @@ test_that("fluidPage_dsfr_template works", {
   test_html <- fluidPage_dsfr_template(
     header = "header",
     title = "titre",
-    body = "body"
+    body = "body",
+    footer = "footer"
   )
 
   #' @description tester si tous les params sont remplaces
@@ -42,7 +44,8 @@ test_that("fluidPage_dsfr_template works", {
     c(
       header = "header",
       title = "titre",
-      body = "body"
+      body = "body",
+      footer = "footer"
     ),
     function(param) {
       expect_true(any(grepl(pattern = param, test_html)),

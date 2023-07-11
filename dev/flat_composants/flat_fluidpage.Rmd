@@ -29,6 +29,7 @@ Ensuite, vient la traduction avec `htmlTemplate` :
 #' @param header entete de la page
 #' @param title titre de la page
 #' @param body body
+#' @param footer footer de la page
 #' @param class class du container principal
 #'
 #' @importFrom htmltools htmlTemplate
@@ -37,6 +38,7 @@ fluidPage_dsfr_template <- function(
   header,
   title,
   body,
+  footer = NULL,
   class = "fr-container"
     ) {
   htmltools::htmlTemplate(
@@ -51,7 +53,8 @@ fluidPage_dsfr_template <- function(
     body = tags$div(
       class = class,
       body
-    )
+    ),
+    footer = footer
   )
 }
 ```
@@ -98,7 +101,8 @@ test_that("fluidPage_dsfr_template works", {
     c(
       "header",
       "title",
-      "body"
+      "body",
+      "footer"
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
@@ -110,7 +114,8 @@ test_that("fluidPage_dsfr_template works", {
   test_html <- fluidPage_dsfr_template(
     header = "header",
     title = "titre",
-    body = "body"
+    body = "body",
+    footer = "footer"
   )
 
   #' @description tester si tous les params sont remplaces
@@ -122,7 +127,8 @@ test_that("fluidPage_dsfr_template works", {
     c(
       header = "header",
       title = "titre",
-      body = "body"
+      body = "body",
+      footer = "footer"
     ),
     function(param) {
       expect_true(any(grepl(pattern = param, test_html)),
@@ -173,6 +179,7 @@ Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur
 #'
 #' @param ... element a inclure dans la page
 #' @param header l entete de la page (voir `header_dsfr()`)
+#' @param footer contenu du pied de page
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
@@ -188,6 +195,7 @@ fluidPage_dsfr <- function(
   ...,
   header = NULL,
   title = NULL,
+  footer = NULL,
   theme = NULL,
   lang = NULL
     ) {
@@ -198,7 +206,8 @@ fluidPage_dsfr <- function(
     title = tagList(title),
     body = tagList(
       ...
-    )
+    ),
+    footer = footer
   ) %>%
     # parse_html(zone = "/html") %>%
     add_dsfr_deps()
@@ -208,28 +217,28 @@ fluidPage_dsfr <- function(
 ```
 
 ```{r, eval=FALSE, echo=TRUE}
-fluidPage_dsfr <- function(
-    ...,
-    header = NULL,
-    title = NULL,
-    theme = NULL,
-    lang = NULL
-    ) {
+# fluidPage_dsfr <- function(
+#     ...,
+#     header = NULL,
+#     title = NULL,
+#     theme = NULL,
+#     lang = NULL
+#     ) {
 
-  # TODO theme et lang
-  # check les params
-  ui <- fluidPage_dsfr_template(
-    header = tagList(header),
-    title = tagList(title),
-    body = tagList(
-      ...
-    )
-  ) %>%
-    parse_html(zone = "/html") %>%
-    add_dsfr_deps()
-  ui
+#   # TODO theme et lang
+#   # check les params
+#   ui <- fluidPage_dsfr_template(
+#     header = tagList(header),
+#     title = tagList(title),
+#     body = tagList(
+#       ...
+#     )
+#   ) %>%
+#     parse_html(zone = "/html") %>%
+#     add_dsfr_deps()
+#   ui
 
-}
+# }
 ```
 
 

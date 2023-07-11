@@ -4,7 +4,7 @@
 \alias{navbarPage_dsfr}
 \title{Page avec navbar}
 \usage{
-navbarPage_dsfr(title, ..., header = NULL, id = NULL)
+navbarPage_dsfr(title, ..., header = NULL, id = NULL, footer = NULL)
 }
 \arguments{
 \item{title}{Titre de l'application (Attention, différent de shiny::navbarPage)}
@@ -14,6 +14,8 @@ navbarPage_dsfr(title, ..., header = NULL, id = NULL)
 \item{header}{header_dsfr()}
 
 \item{id}{Id de la navbar}
+
+\item{footer}{pied de page}
 }
 \value{
 html
