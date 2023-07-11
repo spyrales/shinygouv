@@ -9,6 +9,7 @@
 #' @param title Titre de l'application (Attention, différent de shiny::navbarPage)
 #' @param id Id de la navbar
 #' @param header header_dsfr()
+#' @param footer pied de page
 #'
 #' @examples
 #' library(shiny)
@@ -100,7 +101,8 @@ navbarPage_dsfr <- function(
   title,
   ...,
   header = NULL,
-  id = NULL
+  id = NULL,
+  footer = NULL
     ) {
   all_navs <- list(...)
   # Making the first tab the current one
@@ -165,7 +167,8 @@ navbarPage_dsfr <- function(
           )
         }
       )
-    )
+    ),
+    footer = footer
   ) %>%
     add_dsfr_deps()
 }
