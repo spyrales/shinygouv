@@ -8,6 +8,7 @@
   
 ## feat
 
+* Ajout de `dateRangeInput_dsfr()` et `updateDateRangeInput_dsfr()`
 * Ajout de `numericInput_dsfr()` et `updateNumericInput_dsfr()`
 * Ajout de `navbarPage_dsfr()` et `navbarPanel_dsfr()`
 * Ajout de `radioButtons_dsfr()` et `updateRadioButtons_dsfr()`
