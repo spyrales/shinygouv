@@ -29,3 +29,5 @@
 28;modalDialog;modalDialog_dsfr;modalDialog.html;oui
 29;showModal;showModal_dsfr;;oui
 30;removeModal;removeModal_dsfr;;oui
+31;dateRangeInput;dateRangeInput_dsfr;dateRangeInput.html;oui
+32;updateDateRangeInput;updateDateRangeInput_dsfr;;oui

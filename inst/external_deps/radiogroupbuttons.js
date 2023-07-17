@@ -10,4 +10,3 @@ $(current_name).parent().removeClass('fr-btn--secondary');
 $(current_name).parent().parent().parent().find("button").not(current_button).addClass("fr-btn--secondary");
 
 };
-

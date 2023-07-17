@@ -51,6 +51,17 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       package = "shinygouv",
       all_files = TRUE
     ),
+    daterangeinput_deps = htmlDependency(
+      name = "daterangeinput",
+      version = version,
+      src = c(file = "external_deps"),
+      script = list(
+        list(type = "text/javascript", src = "daterange.js"),
+        list(type = "text/javascript", src = "daterangeinputShinyCustomMessage.js")
+      ),
+      package = "shinygouv",
+      all_files = TRUE
+    ),
     radiogroupbutton_deps = htmlDependency(
       name = "radiogroupbuttons",
       version = version,
