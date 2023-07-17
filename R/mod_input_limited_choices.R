@@ -351,6 +351,59 @@ mod_input_limited_choices_ui <- function(id){
               )
 
             )
+          ),
+          tabPanel_dsfr(
+            id = ns("tab7"),
+            title = "dateRangeInput_dsfr()",
+            content = tagList(
+              fluidRow_dsfr(
+                column_dsfr(
+                  12,
+                  h3("Demo dateRangeInput_dsfr()"),
+                  # Adding space to the column
+                  # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+                  extra_class = "fr-my-6w"
+                ),
+                column_dsfr(
+                  3,
+                  dateRangeInput_dsfr(inputId = ns("dateRangeInput"),
+                                      label = "Date range:",
+                                      start = "2001-01-01",
+                                      end = "2023-07-07",
+                                      separator = "\u00e0"),
+                  verbatimTextOutput(
+                    outputId = ns("dateRangeInputvalue")
+                  )
+                )
+              ),
+              fluidRow_dsfr(
+                column_dsfr(
+                  4,
+                  extra_class = "fr-my-6w",
+                  actionButton_dsfr(
+                    inputId = ns("updatedateRangeInput"),
+                    label = "Mettre \u00e0 jour le label"
+                  )
+                ),
+                column_dsfr(
+                  4,
+                  extra_class = "fr-my-6w",
+                  actionButton_dsfr(
+                    inputId = ns("updatedateRangeInput2"),
+                    label = "Mettre \u00e0 jour le start"
+                  )
+                ),
+                column_dsfr(
+                  4,
+                  extra_class = "fr-my-6w",
+                  actionButton_dsfr(
+                    inputId = ns("updatedateRangeInput3"),
+                    label = "Mettre \u00e0 jour le end"
+                  )
+                )
+              )
+
+            )
           )
         )
       )
@@ -370,7 +423,7 @@ mod_input_limited_choices_server <- function(id){
       choices = LETTERS[1:10]
     )
 
-    ## checkboxinput
+    ## checkboxinput ----
     output$outputcheckbox <- renderText({
       paste("Valeur du checkbox :", input$mycheckboxInput)
     })
@@ -391,7 +444,7 @@ mod_input_limited_choices_server <- function(id){
       )
     })
 
-    ## checkboxgroupinput
+    ## checkboxgroupinput ----
     output$outputcheckboxgroup <- renderText({
       paste("Valeur du checkboxgroup :", paste0(input$mycheckboxgroupInput, collapse = " "))
     })
@@ -414,7 +467,7 @@ mod_input_limited_choices_server <- function(id){
       )
     })
 
-    ## radioButtons
+    ## radioButtons ----
     output$outputespece <- renderText({
       paste("Esp\u00e8ce :", input$espece)
     })
@@ -437,7 +490,7 @@ mod_input_limited_choices_server <- function(id){
       )
     })
 
-    ## radioGroupButtons
+    ## radioGroupButtons ----
     output$outputespece_radiogroupbutton <- renderText({
       paste("Esp\u00e8ce radiogroupbutton :", input$espece_radiogroupbutton)
     })
@@ -475,7 +528,7 @@ mod_input_limited_choices_server <- function(id){
     })
 
 
-    ## toggle switch
+    ## toggle switch ----
     output$toggleswitchvalue <- renderText({
       paste0("La valeur du toggleSwitch est ", input$toggleswitch)
     })
@@ -495,7 +548,7 @@ mod_input_limited_choices_server <- function(id){
       )
     })
 
-    ## selectinput
+    ## selectinput ----
     observeEvent(input$updateselectinput, {
       updateSelectInput_dsfr(
         inputId = "selectinput",
@@ -518,6 +571,38 @@ mod_input_limited_choices_server <- function(id){
       )
     })
 
+    ## dateRangeInput ----
+
+    output$dateRangeInputvalue <- renderText({
+      paste0("La valeur du dateRangeInput est ", paste0(input$dateRangeInput, collapse = "/"))
+      })
+
+    observeEvent(input$updatedateRangeInput, {
+      updateDateRangeInput_dsfr(
+        session = session,
+        inputId = "dateRangeInput",
+        label = paste(sample(letters, 10), collapse = "")
+      )
+
+    })
+
+    observeEvent(input$updatedateRangeInput2, {
+      new_start = sample(seq(as.Date('2000/01/01'), Sys.Date(), by="day"), 1)
+      updateDateRangeInput_dsfr(
+        session = session,
+        inputId = "dateRangeInput",
+        start = new_start
+      )
+    })
+
+    observeEvent(input$updatedateRangeInput3, {
+      new_end = sample(seq(as.Date('2000/01/01'), Sys.Date(), by="day"), 1)
+      updateDateRangeInput_dsfr(
+        session = session,
+        inputId = "dateRangeInput",
+        end = new_end
+      )
+    })
 
   })
 }

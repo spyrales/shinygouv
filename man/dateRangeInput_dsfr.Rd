@@ -4,7 +4,7 @@
 \alias{dateRangeInput_dsfr}
 \title{dateRangeInput_dsfr}
 \usage{
-dateRangeInput_dsfr(inputId, label, start = NULL, end = NULL)
+dateRangeInput_dsfr(inputId, label, start = NULL, end = NULL, separator = "to")
 }
 \arguments{
 \item{inputId}{inputId}
@@ -14,6 +14,8 @@ dateRangeInput_dsfr(inputId, label, start = NULL, end = NULL)
 \item{start}{character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.}
 
 \item{end}{character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.}
+
+\item{separator}{character Chaîne à afficher entre les zones de saisie de début et de fin de dates.}
 }
 \value{
 html
@@ -39,12 +41,12 @@ if (interactive()) {
     fluidRow_dsfr(
       # sans vecteur nommé
       dateRangeInput_dsfr(inputId = "daterange1",
-                          label = "Date range:", start = "2001-01-01")
+                          label = "Date range:", start = "2001-01-01",separator = "à")
     )
   )
   server <- function(input, output, session) {
 
-  observeEvent(input$daterange1, ignoreNULL = FALSE , {
+  observeEvent(input$daterange1, {
     print(input$daterange1)
   })  
 

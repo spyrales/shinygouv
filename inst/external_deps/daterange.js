@@ -1,11 +1,12 @@
-$(document).ready(function() {
+const inputdate = function (inputId) {
 
- Shiny.addCustomMessageHandler('dateRangeInput_dsfr_js', function(message) {
-console.log("coucou")
 
-    var start = $("#"+message.id+"-start").val();
-    var end = $("#"+message.id+"-end").val();
+    var start = $("#"+inputId+"-start").val();
+    var end = $("#"+inputId+"-end").val();
 
-    Shiny.setInputValue(message.id, {start: start, end: end})
-});
 
+console.log(start)
+console.log(end)
+
+    Shiny.setInputValue(inputId, {start: start, end: end})
+  }

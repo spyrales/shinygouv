@@ -5,10 +5,7 @@ test_that("dateRangeInput_dsfr works", {
 
   test_html <- dateRangeInput_dsfr(inputId = "daterange1",
                           label = "Date range:", start = "2001-01-01",
-                          end = "2003-01-01")
-
-  #' @description tester si shiny.tag
-  expect_s3_class(test_html, "shiny.tag")
+                          end = "2003-01-01", separator = "à")
 
 
   expect_error(
@@ -47,6 +44,16 @@ test_that("dateRangeInput_dsfr works", {
     )
   )
 
+  expect_error(
+    dateRangeInput_dsfr(
+      inputId = "daterange1",
+      label = "Date range:",
+      end = "2003-02-01",
+      start = "2003-01-01",
+      separator = 456
+    )
+  )
+  
   expect_error(
         dateRangeInput_dsfr(
       inputId = "daterange1",

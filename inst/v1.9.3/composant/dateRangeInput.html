@@ -1,3 +1,10 @@
+<head>
+  <script> $(document).ready(function() {
+    setTimeout(function() {
+      Shiny.setInputValue("{{inputId}}", {start: $("#{{inputId}}-start").val(), end: $("#{{inputId}}-end").val()});}, 1); });
+  </script>
+</head>
+
 <div id = "{{inputId}}" class="fr-input-group form-group shiny-input-container">
   <label class="fr-label" id="{{inputId}}-label" for="{{inputId}}">
     {{label}}
@@ -6,7 +13,7 @@
       <input id="{{inputId}}-start" class="fr-input form-control" aria-describedby="{{inputId}}-start-label" type="date" onchange="inputdate('{{inputId}}')"
       value={{start}} >
         <span class="input-group-addon input-group-prepend input-group-append">
-        <span class="input-group-text"> to </span>
+        <span class="input-group-text"> {{separator}} </span>
         </span>
       <input id="{{inputId}}-end" class="fr-input form-control" aria-describedby="{{inputId}}-end-label" type="date"
       onchange="inputdate('{{inputId}}')"
@@ -14,5 +21,4 @@
         <div class="fr-messages-group" id="{{inputId}}-messages" aria-live="assertive">
       </div>
     </div>
-
 </div>

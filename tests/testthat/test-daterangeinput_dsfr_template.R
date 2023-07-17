@@ -20,7 +20,8 @@ test_that("dateRangeInput_dsfr_template works", {
       "inputId",
       "label",
       "start",
-      "end"
+      "end",
+      "separator"
     ),
     function(param) {
       with_moustache <- paste0("\\{\\{", param, "\\}\\}")
@@ -36,7 +37,8 @@ test_that("dateRangeInput_dsfr_template works", {
     inputId = "toto",
     label = "titi",
     start  = "2001-01-01",
-    end    = "2010-12-31"
+    end    = "2010-12-31",
+    separator = "to"
   )
 
 
@@ -51,7 +53,8 @@ test_that("dateRangeInput_dsfr_template works", {
     inputId = "toto",
     label = "titi",
     start  = "2001-01-01",
-    end    = "2010-12-31"
+    end    = "2010-12-31",
+    separator = "to"
     ),
     function(param) {
       expect_true(

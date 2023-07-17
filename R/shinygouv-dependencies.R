@@ -38,9 +38,7 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       script = list(
         list(type = "text/javascript", src = "shiny-compat.js"),
-        list(type = "text/javascript", src = "navbarPage.js"),
-        list(type = "text/javascript", src = "daterange.js"),
-        list(type = "text/javascript", src = "daterange2.js")
+        list(type = "text/javascript", src = "navbarPage.js")
       ),
       all_files = TRUE
     ),
@@ -50,6 +48,17 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       src = c(file = "external_deps"),
       stylesheet = "spinner.css",
       script = "spinner.js",
+      package = "shinygouv",
+      all_files = TRUE
+    ),
+    daterangeinput_deps = htmlDependency(
+      name = "daterangeinput",
+      version = version,
+      src = c(file = "external_deps"),
+      script = list(
+        list(type = "text/javascript", src = "daterange.js"),
+        list(type = "text/javascript", src = "daterangeinputShinyCustomMessage.js")
+      ),
       package = "shinygouv",
       all_files = TRUE
     ),

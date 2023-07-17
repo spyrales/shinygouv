@@ -6,6 +6,7 @@
 #' @param start character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param end character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param label label
+#' @param separator character Chaîne à afficher entre les zones de saisie de début et de fin de dates.
 #'
 #' @importFrom htmltools htmlTemplate
 #' @importFrom purrr pmap
@@ -15,7 +16,8 @@ dateRangeInput_dsfr_template <- function(
   inputId,
   label,
   start,
-  end
+  end,
+  separator
     ) {
   
   
@@ -29,7 +31,8 @@ dateRangeInput_dsfr_template <- function(
     inputId = inputId,
     label = label,
     start = start,
-    end = end
+    end = end,
+    separator = separator
   )
   
   }

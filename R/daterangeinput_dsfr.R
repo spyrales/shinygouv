@@ -3,9 +3,10 @@
 #' dateRangeInput_dsfr
 #'
 #' @param inputId inputId
+#' @param label label
 #' @param start character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param end character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
-#' @param label label
+#' @param separator character Chaîne à afficher entre les zones de saisie de début et de fin de dates.
 #' 
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
@@ -31,12 +32,12 @@
 #'     fluidRow_dsfr(
 #'       # sans vecteur nommé
 #'       dateRangeInput_dsfr(inputId = "daterange1",
-#'                           label = "Date range:", start = "2001-01-01")
+#'                           label = "Date range:", start = "2001-01-01",separator = "à")
 #'     )
 #'   )
 #'   server <- function(input, output, session) {
 #' 
-#'   observeEvent(input$daterange1, ignoreNULL = FALSE , {
+#'   observeEvent(input$daterange1, {
 #'     print(input$daterange1)
 #'   })  
 #' 
@@ -49,10 +50,12 @@ dateRangeInput_dsfr <- function(
   inputId,
   label,
   start = NULL,
-  end = NULL
+  end = NULL,
+  separator = "to"
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
+  assertthat::assert_that(is.character(separator))
   assertthat::assert_that(is.character(label))
 
   
@@ -72,12 +75,10 @@ dateRangeInput_dsfr <- function(
     inputId = inputId,
     label = label,
     start = start,
-    end = end
-  ) %>%
-    parse_html()
+    end = end,
+    separator = separator
+  ) #%>%
+     #parse_html()
 
-
-  # session$sendCustomMessage("dateRangeInput_dsfr_js",
-  #                           message = list(id = inputId))
 
 }
