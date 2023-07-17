@@ -1,3 +1,9 @@
+# shinygouv 1.0.2
+
+## fix
+
+* Correction de la classe du `fluidPage_dsfr()`
+
 # shinygouv 1.0.0
 
 ## chore
