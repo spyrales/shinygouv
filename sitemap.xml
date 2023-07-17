@@ -73,6 +73,9 @@
     <loc>/reference/convert_to_dsfr.html</loc>
   </url>
   <url>
+    <loc>/reference/dateRangeInput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/fluidPage_dsfr.html</loc>
   </url>
   <url>
@@ -140,6 +143,9 @@
   </url>
   <url>
     <loc>/reference/updateCheckboxInput_dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateDateRangeInput_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/updateNumericInput_dsfr.html</loc>
