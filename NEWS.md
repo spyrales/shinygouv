@@ -1,5 +1,9 @@
 # shinygouv 1.0.2
 
+## chore
+
+* suppression de la dépendance à `stringr`
+
 ## fix
 
 * Correction de la classe du `fluidPage_dsfr()`
