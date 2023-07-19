@@ -28,7 +28,7 @@ jobs:
       ## doesn't work on the CI for unidentified reasons)
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: rsconnect,remotes,pak,cpp11,hms,progress
+          extra-packages: url::https://cran.r-project.org/src/contrib/Archive/rsconnect/rsconnect_0.8.29.tar.gz,remotes,pak,cpp11,hms,progress
 
       - name: Deploy package
         run: |
