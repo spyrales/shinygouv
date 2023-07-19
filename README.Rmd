@@ -15,7 +15,15 @@ knitr::opts_chunk$set(
 
 # {shinygouv}
 
-Le package {shinygouv} permet d'utiliser le template existant pour le `Système de Design de l'Etat` (DSFR) dans vos applications Shiny.
+Le package {shinygouv} permet d'utiliser le template existant pour le `Système de Design de l'Etat` (DSFR) dans vos applications Shiny.  
+
+Il s'installe depuis github :
+
+```{r}
+# install.packages("remotes")
+remotes::install_github("spyrales/shinygouv")
+```
+
 
 # Comment utiliser le package
 
@@ -52,7 +60,7 @@ shinyApp(
 
 # Contribuer au développement du package
 
-Voir le README du dossier [documentation](dev/documentation)
+Voir les vignettes à l'intention des développeurs du  [site de présentation du packages et de ses fonctions](https://spyrales.github.io/shinygouv/articles/index.html)
 
 # Code of Conduct
 

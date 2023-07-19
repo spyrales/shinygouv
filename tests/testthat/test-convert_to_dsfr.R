@@ -13,16 +13,14 @@ test_that("convert_to_dsfr works", {
     open = FALSE
   )
 
-  file.copy(
-    from = file.path(mydir, "R", "app_ui.R"),
-    to = file.path(mydir, "R", "module_ui.R")
-  )
+  file.copy(from = file.path(mydir, "R", "app_ui.R"),
+    to = file.path(mydir, "R", "module_ui.R"))
 
   #' @description Retourne une erreur si le numero de version est NULL
   expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = NULL))
 
   #' @description Retourne une erreur si le tableau de correspondance n'existe pas pour la version specifiee
-  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), msg = "Le dossier 'vA.A.A.A' n'existe pas")
+  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), "Le dossier 'vA.A.A.A' n existe pas")
 
   expect_error(convert_to_dsfr(path = file.path(mydir, "R")), regexp = NA)
   app_ui <- readLines(file.path(mydir, "R", "app_ui.R"))
@@ -34,4 +32,5 @@ test_that("convert_to_dsfr works", {
   #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces, par exemple header_dsfr
 
   expect_false(any(stringr::str_detect(app_ui, pattern = "header_dsfr\\(")))
+
 })

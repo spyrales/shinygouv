@@ -15,7 +15,7 @@ Ceci est un dossier de documentation dédié aux développeurs et développeuses
 
 ## Version du framework dsfr en cours de développement
 
-Pour s'assurer du bon developpement du package `shinygouv`, il a été ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
+Pour s'assurer du bon développement du package `shinygouv`, il a été ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
 
 Pour connaître la version utilisée, vous pouvez lancer :
 
@@ -92,7 +92,7 @@ Pour développer ce package, des choix techniques ont été adoptés. Vous retro
 
 Le workflow se découpe en deux possibilités :
 
-- Les composants nécéssitant de la réactivité
+- Les composants nécessitant de la réactivité
 - Les composants sans réactivité
 
 Ces deux possibilités se basent sur le même principe : **l'utilisation des templates html**. La trame générale de ce workflow est définie dans la documentation : 
@@ -122,7 +122,7 @@ N'hésitez pas à amender cette liste au fur et à mesure de vos développements
 
 ## Workflow avant de commit
 
-Pensez à executer les lignes "Each time needed" du fichier [dev/02_dev.R](https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R) avant chaque commit.
+Pensez à exécuter les lignes "Each time needed" du fichier [dev/02_dev.R](https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R) avant chaque commit.
 
 ```{r, eval=FALSE}
 rstudioapi::navigateToFile("dev/02_dev.R")
