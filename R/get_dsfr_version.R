@@ -10,7 +10,7 @@
 #' get_dsfr_version()
 #' get_dsfr_version(with_v = TRUE)
 get_dsfr_version <- function(with_v = FALSE) {
-  res <- utils::packageDescription(pkg = "shinygouv")[["VersionDsfr"]]
+  res <- utils::packageDescription(pkg = 'shinygouv')[["VersionDsfr"]]
   if (isTRUE(with_v)) {
     res <- paste0("v", res)
   }

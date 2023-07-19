@@ -14,26 +14,28 @@
 #' @return un fichier
 #' @noRd
 convert_file_to_dsfr <- function(file, tab_corresp) {
+
   # verifie que c'est bien un fichier et non un dossier
   if (isTRUE(file_test("-f", file))) {
+
     message(glue::glue("scan {file}"))
     file_read <- readLines(file)
-
+    
     if (isTRUE(grep("tabPanel", file_read) > 0)) {
-      message(glue::glue("Attention le {file} contient un 'tabPanel': \n - Si celui ci \u00e9tait dans un navbarPage alors le remplacer par un navbarPanel_dsfr. \n - Si celui ci \u00e9tait dans un 'tabsetPanel', alors le remplacer par un 'tabPanel_dsfr'"))
+        message(glue::glue("Attention le {file} contient un 'tabPanel': \n - Si celui ci \u00e9tait dans un navbarPage alors le remplacer par un navbarPanel_dsfr. \n - Si celui ci \u00e9tait dans un 'tabsetPanel', alors le remplacer par un 'tabPanel_dsfr'"))
     }
 
     if (isTRUE(grep("navbarPage", file_read) > 0)) {
-      message(glue::glue("Attention le {file} contient un 'navbarPage()', la version dsfr n\u00e9cessite un header, voir \\?navbarPage_dsfr"))
+        message(glue::glue("Attention le {file} contient un 'navbarPage()', la version dsfr n\u00e9cessite un header, voir \\?navbarPage_dsfr"))
     }
-
+    
     file_convert <- purrr::reduce2(
       paste0(tab_corresp$composant_shiny, "\\("),
       paste0(tab_corresp$composant_dsfr, "\\("),
       .init = file_read,
-      stringr::str_replace_all
-    )
+      stringr::str_replace_all)
     writeLines(file_convert, con = file)
+
   }
   return(NULL)
 }
