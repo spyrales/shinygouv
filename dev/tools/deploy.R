@@ -22,6 +22,12 @@ appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|dev|data-raw|docker|testtha
 
 options(rsconnect.packrat = TRUE)
 
+# Il faut supprimer l'ancienne
+rsconnect::terminateApp(
+  appName = Sys.getenv("NAME_OF_APP"),
+  account = Sys.getenv("SHINYAPPS_NAME"),
+  quiet = TRUE)
+
 rsconnect::deployApp(
   appDir = ".",
   account = Sys.getenv("SHINYAPPS_NAME"),
