@@ -20,7 +20,7 @@ fluidPage_dsfr(
 
 \item{title}{titre de la page}
 
-\item{footer}{contenu du pied de page}
+\item{footer}{contenu du pied de page (voir \code{footer_dsfr()})}
 
 \item{theme}{pas implemente}
 

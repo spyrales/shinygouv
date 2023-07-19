@@ -14,20 +14,24 @@ partie UI:
 ``` r
 library(shiny)
 library(shinygouv)
-
 app_ui <- fluidPage_dsfr(
   header = header_dsfr(
-    intitule = "Intitule",
-    officiel = "Officiel",
-    nom_site_service = "Nom du site / service",
-    baseline = "baseline - precisions sur l organisation",
-    class = "fr-m-1w"
+    intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+    nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
+    baseline = "https://github.com/spyrales/shinygouv"
   ),
   title = "Exemple",
   fluidRow_dsfr(
-    column_dsfr(0,
-                shiny::p("Exemple colonne"))
+    column_dsfr(
+      0,
+      fileInput("file1", "Ajouter des fichiers", accept = ".csv")
+    )
   )
+)
+shinyApp(
+  ui = app_ui,
+  server = function(input, output) {
+  }
 )
 ```
 
