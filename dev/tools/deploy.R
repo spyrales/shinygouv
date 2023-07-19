@@ -20,6 +20,11 @@ rsconnect::setAccountInfo(
 message("--- Deploying app ---\n")
 appFiles <- list.files(".", recursive = TRUE)
 appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|dev|data-raw|docker|testthat|test.convert.dsfr", appFiles)]
+<<<<<<< HEAD
+=======
+
+options(rsconnect.packrat = TRUE)
+>>>>>>> a1f0ed2 (- Test restauration deploiement CI : ajout option rsconnect options(rsconnect.packrat = TRUE) pour restaurer son comportement précédent depuis le passage à la v1.0.0)
 
 rsconnect::deployApp(
   appDir = ".",
