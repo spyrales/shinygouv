@@ -19,7 +19,7 @@ rsconnect::setAccountInfo(
 
 message("--- Deploying app ---\n")
 appFiles <- list.files(".", recursive = TRUE)
-appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|deliverables|dev|data-raw|docker", appFiles)]
+appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|dev|data-raw|docker|testthat|test.convert.dsfr", appFiles)]
 
 rsconnect::deployApp(
   appDir = ".",
