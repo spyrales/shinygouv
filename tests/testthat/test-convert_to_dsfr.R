@@ -20,7 +20,7 @@ test_that("convert_to_dsfr works", {
   expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = NULL))
 
   #' @description Retourne une erreur si le tableau de correspondance n'existe pas pour la version specifiee
-  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), msg = "Le dossier 'vA.A.A.A' n'existe pas")
+  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), "Le dossier 'vA.A.A.A' n existe pas")
 
   expect_error(convert_to_dsfr(path = file.path(mydir, "R")), regexp = NA)
   app_ui <- readLines(file.path(mydir, "R", "app_ui.R"))
