@@ -2,7 +2,7 @@
 title: "Documentation-Inventaire"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Dev-F-documentation-inventaire}
+  %\VignetteIndexEntry{Hist-B-documentation-inventaire}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

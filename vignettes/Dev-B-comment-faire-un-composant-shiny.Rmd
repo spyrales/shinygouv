@@ -46,9 +46,12 @@ _Ici nous prenons l'exemple d'un composant développé pour la version 1.7.2 du 
 
 #### Première étape
 
-- Copier dans le dossier `inst/v1.7.2/composant` le template html du bouton pour dsfr
-  - Se rendre sur <https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/>
-  - Enregistrer le code html par défaut du bouton dans un fichier `inst/v1.7.2/composant/bouton.html`
+- Copier dans le dossier `inst/v1.7.2/composant` le template html du bouton pour dsfr  
+
+  - Se rendre sur <https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/>  
+  
+  - Enregistrer le code html par défaut du bouton dans un fichier `inst/v1.7.2/composant/bouton.html`  
+  
   
 ```
 <button class="fr-btn">Label bouton</button>
@@ -57,10 +60,11 @@ _Ici nous prenons l'exemple d'un composant développé pour la version 1.7.2 du 
 
 #### Deuxième étape
 
-- Modifier le code html pour mettre les paramètres nécessaires à son bon fonctionnement dans {shiny}
-  - Ajouter un `id` pour le futur `inputId`
-  - Ajouter la classe permettant de déclencher l’évènement côté {shiny}
-  - Ajouter/Remplacer aussi les autres paramètres nécessaires à la personnalisation du composant
+- Modifier le code html pour mettre les paramètres nécessaires à son bon fonctionnement dans {shiny}  
+
+  - Ajouter un `id` pour le futur `inputId`  
+  - Ajouter la classe permettant de déclencher l'évènement côté {shiny}  
+  - Ajouter/Remplacer aussi les autres paramètres nécessaires à la personnalisation du composant  
   
 Après retravail sur le composant `actionButton()`, voici son template html:
 
@@ -74,7 +78,7 @@ Après retravail sur le composant `actionButton()`, voici son template html:
 Dans notre cas, nous traitons le `actionButton()` et la classe a ajouter est `action-button`.  
 Comment savoir ?  
 
-Le plus simple est d'exécuter la fonction de l'input dans shiny dans la console:
+Le plus simple est d'exécuter la fonction de l'input dans shiny dans la console :
 
 ```{r eval = FALSE}
 shiny::actionButton("test", "test")
@@ -84,7 +88,11 @@ shiny::actionButton("test", "test")
 `<button id="test" type="button" class="btn btn-default action-button">test</button>`
 ```
 
-> On observe alors que dans "class" nous avons des classes liées à bootstrap `btn-*` et une classe à part `action-button`. C'est souvent cette classe qui permet de déclencher l’évènement coté server. Si cela n'est pas suffisant, il faudra chercher dans le code du package {shiny}. Le code se trouve [ici](https://github.com/rstudio/shiny/tree/main/srcts/src/bindings/input) et en ouvrant le fichier `.ts` vous trouverez alors un endroit ou on recherche la classe qui active l'input :
+> On observe alors que dans "class" nous avons des classes liées à bootstrap `btn-*` et une classe à part `action-button`. 
+> C'est souvent cette classe qui permet de déclencher l’évènement coté server. 
+> Si cela n'est pas suffisant, il faudra chercher dans le code du package {shiny}. 
+Le code se trouve [ici](https://github.com/rstudio/shiny/tree/main/srcts/src/bindings/input) et en ouvrant le fichier `.ts` vous trouverez alors un endroit ou on recherche la classe qui active l'input :  
+
 ```
   find(scope: HTMLElement): JQuery<HTMLElement> {
     return $(scope).find(".action-button");
@@ -94,14 +102,15 @@ shiny::actionButton("test", "test")
 
 #### Troisième étape
 
-- Créer la fonction qui permettra d'utiliser ce nouveau bouton.
-  - Copier coller le flat se trouvant dans [dev/flat_composants/flat_new_one.Rmd](https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_new_one.Rmd) dans
-  `dev/flat_composants/` et le renommer "flat_nom_du_composant_shiny.Rmd". Dans cet exemple, `flat_actionButton.Rmd`
-  - Dans votre nouveau flat, il faut remplacer "nom_composant_shiny" par le nom du composant shiny (dans cet exemple, `actionButton`)
-  - Changer le chemin du fichier de votre `.html` dans la fonction `*_template`
-  - Compléter les paramètres et leur documentation dans vos fonctions selon la personnalisation de votre `.html`
-  - Adapter les tests unitaires en fonction des paramètres choisis (y compris la date du snapshot).
-  - Puis lancer le dernier chunck `fusen::inflate()`
+- Créer la fonction qui permettra d'utiliser ce nouveau bouton :  
+
+  - Copier/coller le flat se trouvant dans [dev/flat_composants/flat_new_one.Rmd](https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_new_one.Rmd) dans
+  `dev/flat_composants/` et le renommer "flat_nom_du_composant_shiny.Rmd". Dans cet exemple, `flat_actionButton.Rmd`.   
+  - Dans votre nouveau flat, il faut remplacer "nom_composant_shiny" par le nom du composant shiny (dans cet exemple, `actionButton`).   
+  - Changer le chemin du fichier de votre `.html` dans la fonction `*_template`.  
+  - Compléter les paramètres et leur documentation dans vos fonctions selon la personnalisation de votre `.html`.  
+  - Adapter les tests unitaires en fonction des paramètres choisis (y compris la date du snapshot).  
+  - Puis lancer le dernier chunk `fusen::inflate()`.  
 
 
 Voir exemple [dev/flat_composants/flat_actionButton.Rmd](https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_actionButton.Rmd)
@@ -112,12 +121,12 @@ Ayez une attention particulière pour les tests unitaires qui sont la garantie d
 
 #### Quatrième étape
 
-- Créer la fonction qui permettra de mettre à jour votre input (si nécessaire). 
-- Certains composants comme l'actionButton() n'ont pas besoin de mise à jour, c'est le cas pour beaucoup d'autres composants.
-- Certains fonctions de mise à jour de composants correspondent en fait à l'appel de la fonction native `{shiny}` correspondante (voir par ex `updateNumericInput_dsfr()`).
-- Pour certains composants non présents nativement dans `{shiny}`, des implémentations adhoc ont dû être réalisées (voir par ex `updateRadioGroupButtons_dsfr()`).
-  + Dans ce cas précis il faut être vigilant sur l'utilisation de la fonction `ns()` dans le nom des inputId. Il est indispensable de prendre en compte la fonction `ns()` partout, sauf dans le cas d'un appel à la fonction shiny `session$sendInputMessage()` car le ns() est géré en interne. Le plus simple reste d'observer la fonction `updateRadioGroupButtons_dsfr()`.
-
+- Créer la fonction qui permettra de mettre à jour votre input (si nécessaire).  
+- Certains composants comme l' `actionButton()` n'ont pas besoin de mise à jour, c'est le cas pour beaucoup d'autres composants.  
+- Certains fonctions de mise à jour de composants correspondent en fait à l'appel de la fonction native `{shiny}` correspondante (voir par ex `updateNumericInput_dsfr()`).  
+- Pour certains composants non présents nativement dans `{shiny}`, des implémentations adhoc ont dû être réalisées (voir par ex `updateRadioGroupButtons_dsfr()`).  
+  + Dans ce cas précis il faut être vigilant sur l'utilisation de la fonction `ns()` dans le nom des inputId. Il est indispensable de prendre en compte la fonction `ns()` partout, sauf dans le cas d'un appel à la fonction shiny `session$sendInputMessage()` car le ns() est géré en interne. Le plus simple reste d'observer la fonction `updateRadioGroupButtons_dsfr()`.   
+ 
 
 #### Cinquième étape
 
@@ -129,4 +138,4 @@ La colonne `composant_shiny` restera vide si le composant dsfr n'a pas d'équiva
 
 Cette table de correspondance permettra le bon déroulement de la conversion d'une app shiny en une app shiny dsfr (en utilisant `convert_to_dsfr()`)
 
-
+Vous pouvez également ajouter votre composant dans l'[application de démonstration]("https://github.com/spyrales/shinygouv/tree/main/dev/R).

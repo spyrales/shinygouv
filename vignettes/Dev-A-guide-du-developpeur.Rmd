@@ -13,6 +13,10 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 Ceci est un dossier de documentation dédié aux développeurs et développeuses. 
 
+
+## Contribuer à {shinygouv} - Introduction
+Pour des contributions au code de ce projet, svp regardez le guide général de contribution à https://spyrales.github.io/shinygouv/CONTRIBUTING.html
+
 ## Structuration du repo (a compléter)
 
 Le développement de ce package a été réalisé [avec {fusen}](https://thinkr-open.github.io/fusen/) : les fonctions, vignettes et test sont générées par des fichiers Rmd dans le dossier /dev.  

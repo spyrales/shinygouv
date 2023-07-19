@@ -1,9 +1,9 @@
 Package: test.convert.dsfr
-Title: PKG_TITLE
+Title: App Shiny Test Convert DSFR
 Version: 0.0.0.9000
 Authors@R: 
     person("AUTHOR_FIRST", "AUTHOR_LAST", , "AUTHOR@MAIL.COM", role = c("cre", "aut"))
-Description: PKG_DESC.
+Description: App shiny test.convert.dsfr pour tester convert_to_dsfr().
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),

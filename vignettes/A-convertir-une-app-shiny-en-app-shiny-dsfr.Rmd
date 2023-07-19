@@ -18,12 +18,47 @@ knitr::opts_chunk$set(
 library(shinygouv)
 ```
 
-# convert_to_dsfr
+# Fonction `convert_to_dsfr()`  
 
-La fonction expérimentale `convert_to_dsfr()` convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémentés dans la {version} définie en paramètre.  
+La fonction `convert_to_dsfr()` a été pensée pour faciliter la conversion d'applications Shiny existantes au Design system de l'Etat.
 
-Cette fonction va modifier les fichiers de votre application, présents dans le répertoire `path`.  
+
+## Principe : Réécriture d'une application existante
+
+La fonction `convert_to_dsfr()` convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant shinygouv dsfr, dès lors qu'ils existent et qu'ils ont été implémentés dans le package, pour la {version} définie en paramètre.  
+
+
+Attention, cette fonction modifie les fonctions des composants UI de votre application existante. 
+Pour un simple test, appliquez là sur une copie. 
+
 Il reste des points de vigilances sur la conversion des tabPanel dans les navbarPage et les tabsetPanel.  
+Cette fonction est encore expérimentale. 
+
+
+## Dépendances
+
+Le fonction `convert_to_dsfr()` ajoute automatiquement la dépendance au package {shinygouv} dans le fichier `app_ui.R` de votre application shiny Golem.
+
+Dans le cadre d'une application non packagée avec {golem}, vous devrez ajouter à la main la dépendance à {shinygouv}, souvent avec un `library(shinygouv)` dans votre fichier global.R.  
+
+
+## Conversion
+
+La conversion est réalisée en lançant dans la console, depuis votre projet contenant l'application shiny : 
+
+```{r eval = FALSE}
+convert_to_dsfr()
+```
+
+Si l'ensemble des scripts `.R` de votre application ne se trouvent pas dans un dossier "R/" à la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers. 
+
+Comme par exemple: 
+
+```{r eval = FALSE}
+convert_to_dsfr(path = "le_chemin_de_mon_application")
+```
+
+*Attention*, dans le cadre d'une application simple (hors {golem}), vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr (avec `library(shingouv)`).
 
 
 ## Table de correspondance
@@ -40,46 +75,21 @@ read.csv2(
   DT::datatable()
 ```
 
-## Dépendances
+# Quels sont les composants implémentés dans {shinygouv} ?
 
-De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_ui.R`
-
-
-## Conversion
-
-Pour cela, il suffit de lancer dans la console depuis votre projet contenant l'application shiny :
+Les composants d'interface utilisateur implémentés dans `{shinygouv}` et leur correspondance avec les fonctions habituelles de `{Shiny}` sont listées ici :  
 
 
-```{r eval = FALSE}
-convert_to_dsfr()
+```{r echo = FALSE, message = FALSE}
+read.csv2(
+  system.file(get_dsfr_version(with_v = TRUE), "/table_correspondance_shiny_dsfr.csv", package = "shinygouv")
+) %>% 
+  dplyr::select(composant_shiny, composant_dsfr) %>% 
+  DT::datatable()
 ```
 
-Si l'ensemble des scripts `.R` de votre application ne se trouve pas dans un dossier "R/" à la racine de votre projet, vous pouvez passer en argument le `path` du dossier contenant l'ensemble de ces fichiers.
-Comme par exemple:
+Ils ne sont pas encore très nombreux et peuvent être améliorés, n'hésitez pas à contribuer, un guide est là pour vous aider à rejoindre les auteurs de {shinygouv} !
 
-
-```{r eval = FALSE}
-convert_to_dsfr(path = "le_chemin_de_mon_application")
-```
-
-*Attention*, dans le cadre d'une application hors {golem}, vous devrez ajouter la dépendance à {shinygouv} pour que votre application puisse utiliser les composants dsfr
-
-
-```{r examples-convert_to_dsfr}
-if (FALSE) {
-  mydir <- tempfile(pattern = "app")
-  dir.create(mydir)
-  golem::install_dev_deps(
-    force_install = TRUE
-  )
-  golem::create_golem(
-    mydir,
-    overwrite = TRUE,
-    open = FALSE
-  )
-  convert_to_dsfr(path = file.path(mydir, "R"))
-}
-```
 
 # Connaître la version du dsfr actuelle
 
