@@ -24,6 +24,11 @@ library(shinygouv)
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
+## Comment savoir ce qui a été mis à jour ? 
+Le principe de ce package est de proposer une transposition des fonctions de {shiny} à la charte graphique Marque Etat grâce au [design system de l'Etat](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/. Pour savoir si une montée de version est nécessaire, consultez les notes de versions du dsfr sur https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante.
+
+Egalement, les fonctions shiny transposées peuvent évoluer : consultez ici les notes de versions de shiny : https://github.com/rstudio/shiny/blob/main/NEWS.md.
+
 Dans le dossier "inst/" du package, nous allons créer deux dossiers:
 
 - un pour récolter les css et js du dsfr, 

@@ -20,7 +20,7 @@ library(shinygouv)
 
 # convert_to_dsfr
 
-La fonction expérimentale convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémentés dans la {version} définie en paramètre.  
+La fonction expérimentale `convert_to_dsfr()` convertit tous les composants shiny présents dans les fichiers du dossier "R/" d'une application shiny, en composant dsfr, si et seulement si ceux ci ont été implémentés dans la {version} définie en paramètre.  
 
 Cette fonction va modifier les fichiers de votre application, présents dans le répertoire `path`.  
 Il reste des points de vigilances sur la conversion des tabPanel dans les navbarPage et les tabsetPanel.  
@@ -47,7 +47,7 @@ De plus, elle ajoute la dépendance au package {shinygouv} dans le fichier `app_
 
 ## Conversion
 
-Pour cela, il suffit de lancer dans votre projet contenant l'application shiny:
+Pour cela, il suffit de lancer dans la console depuis votre projet contenant l'application shiny :
 
 
 ```{r eval = FALSE}
