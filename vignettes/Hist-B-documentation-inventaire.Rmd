@@ -20,6 +20,8 @@ library(shinygouv)
 ```
 
 
+# Note sur les orientations initiales de développement : études des usages au ministère de l'Ecologie
+
 Vous trouverez ci dessous les observations suite à un inventaire (non exhaustif) des outils de mises en pages ainsi que les différentes composantes, utilisées dans les applications shiny déployées sous https://ssm-ecologie.shinyapps.io
 
 

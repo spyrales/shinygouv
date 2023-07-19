@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 library(shinygouv)
 ```
 
+# Note sur les orientations initiales de développement : présentation des options
+
 ### Comparaison entre les différentes possibilités pour répondre au besoin d'utilisation du framework [DSFR](https://gouvfr.atlassian.net/wiki/spaces/DB/overview?homepageId=145359476)
 
 Pour ce faire, nous avons rédigé un tableau comparatif entre les éléments trouvés dans le framework DSFR et {shiny}.
@@ -302,6 +304,6 @@ Les éléments tels que navbarpage, tabpanel etc sont possible dans la limite de
 
 Nous préconisons l'**option D**. Pourquoi ?
 
-Cette aprroche permet de mettre en avant le travail réalisé sur le framework DSFR avec une implementation possible de l'intégralité des fonctionnalités sans la contrainte et la lourdeur de connaitre le JS. Elle permet aussi de faciliter la maintenance du package par les futures mainteneurs. Bien que cette option ne réponde pas directement à l'objectif : `éviter d'avoir des fonctions spécifiques pour ne pas géner le passage d'un template à un autre`, on peut tout à fait imaginer une fonction qui parserait le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
+Cette approche permet de mettre en avant le travail réalisé sur le framework DSFR avec une implementation possible de l'intégralité des fonctionnalités sans la contrainte et la lourdeur de connaitre le JS. Elle permet aussi de faciliter la maintenance du package par les futures mainteneurs. Bien que cette option ne réponde pas directement à l'objectif : `éviter d'avoir des fonctions spécifiques pour ne pas géner le passage d'un template à un autre`, on peut tout à fait imaginer une fonction qui parserait le code pour remplacer les appels à {shiny} avec les fonctions {DSFR}.
 
 

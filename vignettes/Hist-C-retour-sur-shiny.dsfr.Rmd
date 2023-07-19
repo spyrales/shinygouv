@@ -11,6 +11,8 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+# Note sur les orientations initiales de développement : comparaison avec {shiny.dsfr}
+
 Le package {shiny.dsfr} disponible [ici](https://gitlab-forge.din.developpement-durable.gouv.fr/dreal-pdl/csd/shiny.dsfr/-/tree/main/) utilise {charpente} et reprend la structure "classique" d'un package qui implémente une nouvelle interface utilisateur.
 
 Cependant, cette méthode oblige le développeur à convertir le code HTML fourni par le framework dsfr en R, pour ensuite devoir le retraduire en html pour shiny. 
