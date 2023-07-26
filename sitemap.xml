@@ -76,6 +76,9 @@
     <loc>/reference/dateRangeInput_dsfr.html</loc>
   </url>
   <url>
+    <loc>/reference/fileInput_dsfr.html</loc>
+  </url>
+  <url>
     <loc>/reference/fluidPage_dsfr.html</loc>
   </url>
   <url>
@@ -134,6 +137,9 @@
   </url>
   <url>
     <loc>/reference/tabPanel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/tableOutput_dsfr.html</loc>
   </url>
   <url>
     <loc>/reference/toggleSwitch_dsfr.html</loc>
