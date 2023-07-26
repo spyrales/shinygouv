@@ -1,0 +1,74 @@
+---
+title: "tableOutput_dsfr"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+
+# tableOutput_dsfr
+
+```{r function-tableOutput_dsfr}
+#' tableOutput_dsfr
+#'
+#' @param outputId 	nom d'output a partir duquel lire la table
+#' @return html
+#'
+#' @export
+#'
+#' @examples
+tableOutput_dsfr <- function (outputId) {
+  assertthat::assert_that(is.character(outputId))
+  shiny::div(id = outputId, class = "fr-table shiny-html-output")
+  }
+```
+
+```{r examples-tableOutput_dsfr}
+
+if (interactive()) {
+  # table example
+  shinyApp(
+    ui = fluidPage_dsfr(
+      fluidRow_dsfr(
+        column_dsfr(12,
+          tableOutput_dsfr('table')
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$table <- renderTable(iris)
+    }
+  )
+}
+```
+
+```{r tests-tableOutput_dsfr}
+test_that("tableOutput_dsfr works", {
+  test_html <- tableOutput_dsfr("1")
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag")
+}
+)
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(
+    flat_file = "dev/flat_composants/flat_tableOutput.Rmd",
+    vignette_name = NA,
+    check = FALSE
+)
+```
+

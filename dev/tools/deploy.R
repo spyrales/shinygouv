@@ -8,7 +8,6 @@ remotes::install_deps()
 remotes::install_local(force = TRUE)
 
 
-
 message("--- Add server ---\n")
 
 rsconnect::setAccountInfo(
@@ -29,5 +28,6 @@ rsconnect::deployApp(
   account = Sys.getenv("SHINYAPPS_NAME"),
   appFiles = appFiles,
   appName = Sys.getenv("NAME_OF_APP"),
-  lint = FALSE
+  lint = FALSE,
+  forceUpdate = TRUE
 )
