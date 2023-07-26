@@ -146,7 +146,7 @@ test_that("actionButton_dsfr_template works", {
 actionButton_dsfr <- function(
     inputId,
     label,
-    class = NULL
+    class = "fr-p-1w"
     ) {
   actionButton_dsfr_template(
     inputId,

@@ -1,4 +1,3 @@
-
 !.github/*/*
 docs
 .Rproj.user
@@ -9,3 +8,4 @@ docs
 inst/doc
 rsconnect
 deliverables
+zz_rsconnect*

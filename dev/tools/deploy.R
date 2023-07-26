@@ -8,7 +8,6 @@ remotes::install_deps()
 remotes::install_local()
 
 
-
 message("--- Add server ---\n")
 
 rsconnect::setAccountInfo(
@@ -19,12 +18,15 @@ rsconnect::setAccountInfo(
 
 message("--- Deploying app ---\n")
 appFiles <- list.files(".", recursive = TRUE)
-appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|deliverables|dev|data-raw|docker", appFiles)]
+appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|dev|data-raw|docker|testthat|test.convert.dsfr", appFiles)]
+
+options(rsconnect.packrat = TRUE)
 
 rsconnect::deployApp(
   appDir = ".",
   account = Sys.getenv("SHINYAPPS_NAME"),
   appFiles = appFiles,
   appName = Sys.getenv("NAME_OF_APP"),
-  lint = FALSE
+  lint = FALSE,
+  forceUpdate = TRUE
 )
