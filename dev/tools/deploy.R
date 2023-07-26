@@ -21,6 +21,8 @@ message("--- Deploying app ---\n")
 appFiles <- list.files(".", recursive = TRUE)
 appFiles <- appFiles[!grepl(".Rprofile|renv|rstudio_|dev|data-raw|docker|testthat|test.convert.dsfr", appFiles)]
 options(rsconnect.packrat = TRUE)
+options(rsconnect.check.certificate = FALSE)
+options(rsconnect.http.verbose = TRUE)
 
 rsconnect::deployApp(
   appDir = ".",
