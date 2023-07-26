@@ -177,7 +177,7 @@ if (interactive()) {
         checkboxInput_dsfr(inputId = "header", label = "Utiliser les en-tetes du fichier")
       ),
       column_dsfr(width = 8,
-        tableOutput_dsfr("contenu")("contenu")
+        tableOutput_dsfr("contenu")
       )
     )
   )
