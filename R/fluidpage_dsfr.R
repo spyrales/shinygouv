@@ -4,6 +4,7 @@
 #'
 #' @param ... element a inclure dans la page
 #' @param header l entete de la page (voir `header_dsfr()`)
+#' @param footer contenu du pied de page
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
@@ -16,7 +17,7 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'
+#' 
 #'   library(shiny)
 #'   my_page <- fluidPage_dsfr(
 #'     header = header_dsfr(
@@ -25,7 +26,7 @@
 #'     title = "Gouv",
 #'     htmltools::div("test")
 #'   )
-#'
+#' 
 #'   shiny::shinyApp(
 #'     my_page,
 #'     server = function(input, output) {}
@@ -35,6 +36,7 @@ fluidPage_dsfr <- function(
   ...,
   header = NULL,
   title = NULL,
+  footer = NULL,
   theme = NULL,
   lang = NULL
     ) {
@@ -45,7 +47,8 @@ fluidPage_dsfr <- function(
     title = tagList(title),
     body = tagList(
       ...
-    )
+    ),
+    footer = footer
   ) %>%
     # parse_html(zone = "/html") %>%
     add_dsfr_deps()
