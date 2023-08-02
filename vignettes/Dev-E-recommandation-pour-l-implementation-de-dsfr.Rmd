@@ -270,6 +270,7 @@ Inconvénients :
 - Liée au package {shiny} et aux inputs implémentés 
 - Si l'input n'existe pas dans {shiny}, alors il faudra recoder la partie JS (c'est vrai pour les options A et B)
 - Maintenance : suivre {shiny} et DSFR. Autrement dit, si la classe de l'input {shiny} devient autre chose que `action-button` notre code ne marchera plus (peu probable...).
+- Les librairies bootstrap qui gravitent autour de {shiny} ne sont pas compatibles DSFR. Il faudra donc les remplacer par les librairies maison ou des implémentation de lib JS. Un exemple : shinyWidget
 
 Les changements sont énumérés:
 
