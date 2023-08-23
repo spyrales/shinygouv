@@ -2,7 +2,7 @@
 title: "Documentation-Inventaire"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Dev-F-documentation-inventaire}
+  %\VignetteIndexEntry{Hist-B-documentation-inventaire}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 library(shinygouv)
 ```
 
+
+# Note sur les orientations initiales de développement : études des usages au ministère de l'Ecologie
 
 Vous trouverez ci dessous les observations suite à un inventaire (non exhaustif) des outils de mises en pages ainsi que les différentes composantes, utilisées dans les applications shiny déployées sous https://ssm-ecologie.shinyapps.io
 

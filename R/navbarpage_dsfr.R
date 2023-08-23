@@ -50,7 +50,7 @@
 #'     )
 #'   )
 #'   ,
-#' 
+#'
 #'   # Second tab
 #'   navbarPanel_dsfr(
 #'     title = "radioButtons_dsfr()",
@@ -86,13 +86,13 @@
 #'   output$output1 <- renderText({
 #'     paste("You clicked", input$go, "times")
 #'   })
-#' 
+#'
 #'   output$output2 <- renderText({
 #'     paste("You've selected", input$espece)
 #'   })
-#' 
+#'
 #' }
-#' 
+#'
 #' if (interactive()) {
 #'   # Run the application
 #'   shinyApp(ui = ui, server = server)
@@ -100,7 +100,7 @@
 navbarPage_dsfr <- function(
   title,
   ...,
-  header = NULL,
+  header = header_dsfr(intitule = "intitule a remplacer"),
   id = NULL,
   footer = NULL
     ) {

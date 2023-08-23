@@ -13,10 +13,8 @@ test_that("convert_to_dsfr works", {
     open = FALSE
   )
 
-  file.copy(
-    from = file.path(mydir, "R", "app_ui.R"),
-    to = file.path(mydir, "R", "module_ui.R")
-  )
+  file.copy(from = file.path(mydir, "R", "app_ui.R"),
+    to = file.path(mydir, "R", "module_ui.R"))
 
   #' @description Retourne une erreur si le numero de version est NULL
   expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = NULL))
@@ -34,4 +32,5 @@ test_that("convert_to_dsfr works", {
   #' @description les composants dsfr n ayant pas d equivalent en shiny ne sont pas remplaces, par exemple header_dsfr
 
   expect_false(any(stringr::str_detect(app_ui, pattern = "header_dsfr\\(")))
+
 })

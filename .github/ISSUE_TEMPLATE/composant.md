@@ -9,7 +9,7 @@ ETQ utilisateur/utilisatrice, je souhaite pouvoir ajouter un composant de type `
 
 ## Critères d'acceptation des développements effectués
 
-- [ ] Une fonction implementée, documentée, testée : `[COMPOSANT]_dsfr()'
+- [ ] Une fonction implémentée, documentée, testée : `[COMPOSANT]_dsfr()'
    - [ ] Avec la documentation dans le corps de la fonction
    - [ ] La présentation dans une vignette
    - [ ] Des tests unitaires

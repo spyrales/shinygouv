@@ -9,7 +9,7 @@
 Components and tools to build or transform shiny applications with the Design System of France.
 }
 \author{
-\strong{Maintainer}: Juliette ENGELARE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
+\strong{Maintainer}: Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
 
 Authors:
 \itemize{
@@ -17,7 +17,7 @@ Authors:
   \item Murielle Delmotte \email{murielle@thinkr.fr} (\href{https://orcid.org/0000-0002-1339-2424}{ORCID})
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})
   \item Yohann Mansiaux \email{yohann@thinkr.fr} (\href{https://orcid.org/0000-0002-8905-6603}{ORCID})
-  \item Jean-Daniel LOMENEDE
+  \item Jean-Daniel LOMENEDE \email{jean-daniel.lomenede@seine-maritime.gouv.fr}
 }
 
 Other contributors:
