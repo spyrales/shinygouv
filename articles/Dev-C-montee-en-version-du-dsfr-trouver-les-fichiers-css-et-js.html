@@ -94,6 +94,20 @@ CSS et JS</h1>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>eval <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="comment-savoir-ce-qui-a-été-mis-à-jour">Comment savoir ce qui a été mis à jour ?<a class="anchor" aria-label="anchor" href="#comment-savoir-ce-qui-a-%C3%A9t%C3%A9-mis-%C3%A0-jour"></a>
+</h2>
+<p>Le principe de ce package est de proposer une transposition des
+fonctions de {shiny} à la charte graphique Marque Etat grâce au [design
+system de l’Etat](<a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/" class="external-link uri">https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/</a>.
+Pour savoir si une montée de version est nécessaire, consultez les notes
+de versions du dsfr sur <a href="https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante" class="external-link uri">https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante</a>.</p>
+<p>Egalement, les fonctions shiny transposées peuvent évoluer :
+consultez ici les notes de versions de shiny : <a href="https://github.com/rstudio/shiny/blob/main/NEWS.md" class="external-link uri">https://github.com/rstudio/shiny/blob/main/NEWS.md</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="procéder-à-une-montée-de-version-du-dsfr">Procéder à une montée de version du dsfr<a class="anchor" aria-label="anchor" href="#proc%C3%A9der-%C3%A0-une-mont%C3%A9e-de-version-du-dsfr"></a>
+</h2>
 <p>Dans le dossier “inst/” du package, nous allons créer deux
 dossiers:</p>
 <ul>
@@ -107,9 +121,9 @@ pourrez trouver sur <a href="https://gouvfr.atlassian.net/wiki/spaces/DB/pages/2
 page du dsfr</a></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nouvelle_version</span> <span class="op">&lt;-</span> <span class="st">"1.9.3"</span></span></code></pre></div>
-<div class="section level2">
-<h2 id="récolter-les-fichiers-css-et-js-du-dsfr">Récolter les fichiers CSS et JS du DSFR<a class="anchor" aria-label="anchor" href="#r%C3%A9colter-les-fichiers-css-et-js-du-dsfr"></a>
-</h2>
+<div class="section level3">
+<h3 id="récolter-les-fichiers-css-et-js-du-dsfr">Récolter les fichiers CSS et JS du DSFR<a class="anchor" aria-label="anchor" href="#r%C3%A9colter-les-fichiers-css-et-js-du-dsfr"></a>
+</h3>
 <ul>
 <li>Télécharger le zip de la dernière version <code>1.7.2</code> qui se
 trouve <a href="https://gouvfr.atlassian.net/wiki/spaces/DB/pages/223019574/D+veloppeurs" class="external-link">ici</a>
@@ -146,9 +160,9 @@ package ‘shinygouv’.</li>
 pour votre version pour réaliser ce nettoyage</p>
 <p>On pourra ensuite créer une fonction qui permettera d’ajouter les
 dépendances dans les applications {shiny}.</p>
-<div class="section level3">
-<h3 id="mettre-à-jour-les-composants-avec-le-nouveau-dsfr">Mettre à jour les composants avec le nouveau dsfr<a class="anchor" aria-label="anchor" href="#mettre-%C3%A0-jour-les-composants-avec-le-nouveau-dsfr"></a>
-</h3>
+<div class="section level4">
+<h4 id="mettre-à-jour-les-composants-avec-le-nouveau-dsfr">Mettre à jour les composants avec le nouveau dsfr<a class="anchor" aria-label="anchor" href="#mettre-%C3%A0-jour-les-composants-avec-le-nouveau-dsfr"></a>
+</h4>
 <p>Dans le fichier “table_correspondance_shiny_dsfr.csv”, mettez
 <code>non</code> dans la colonne <code>mis_a_jour</code> car pour le
 moment, vous ne vous êtes pas assurer du bon foncionnement des
@@ -170,18 +184,18 @@ composants à vérifier avant de mettre <code>oui</code> dans la colonne
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="monter-le-numéro-de-version-dans-description">Monter le numéro de version dans DESCRIPTION<a class="anchor" aria-label="anchor" href="#monter-le-num%C3%A9ro-de-version-dans-description"></a>
-</h2>
+<div class="section level3">
+<h3 id="monter-le-numéro-de-version-dans-description">Monter le numéro de version dans DESCRIPTION<a class="anchor" aria-label="anchor" href="#monter-le-num%C3%A9ro-de-version-dans-description"></a>
+</h3>
 <p>Quand tous les dossiers sont prêt, pour garder trace de la version du
 dsfr utilisée dans {shinygouv}, nous stockons celle en cours dans le
 fichier DESCRIPTION</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">desc</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/desc/reference/desc_set.html" class="external-link">desc_set</a></span><span class="op">(</span><span class="st">"VersionDsfr"</span> <span class="op">=</span> <span class="va">nouvelle_version</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="nettoyer-la-version-davant">Nettoyer la version d’avant<a class="anchor" aria-label="anchor" href="#nettoyer-la-version-davant"></a>
-</h2>
+<div class="section level3">
+<h3 id="nettoyer-la-version-davant">Nettoyer la version d’avant<a class="anchor" aria-label="anchor" href="#nettoyer-la-version-davant"></a>
+</h3>
 <p>Nous n’avons pas besoin de stocker toutes les versions du dsfr dans
 le package.<br>
 Maintenant que vous avez récupéré les fichiers pour une nouvelle
@@ -202,11 +216,12 @@ version, vous pouvez supprimer la plus ancienne.</p>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="récupérer-les-codes-html-un-par-un">Récupérer les codes HTML un par un<a class="anchor" aria-label="anchor" href="#r%C3%A9cup%C3%A9rer-les-codes-html-un-par-un"></a>
-</h2>
+<div class="section level3">
+<h3 id="récupérer-les-codes-html-un-par-un">Récupérer les codes HTML un par un<a class="anchor" aria-label="anchor" href="#r%C3%A9cup%C3%A9rer-les-codes-html-un-par-un"></a>
+</h3>
 <p>Suivre la procédure de création de composant dans la vignette
 <code>Comment faire un composant shiny</code></p>
+</div>
 </div>
   </div>
 
@@ -222,7 +237,7 @@ version, vous pouvez supprimer la plus ancienne.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Développé par Juliette ENGELARE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
+<p>Développé par Juliette ENGELAERE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
 </div>
 
 <div class="pkgdown">

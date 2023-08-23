@@ -81,7 +81,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tests and Coverage</h1>
             
-            <h4 data-toc-skip class="date">26 July, 2023 10:25:12</h4>
+            <h4 data-toc-skip class="date">23 August, 2023 10:47:40</h4>
       
       
       <div class="hidden name"><code>Dev-G-test-and-coverage.Rmd</code></div>
@@ -708,6 +708,44 @@ Session Info
 </tbody>
 </table></details><!--- Final Status : skipped/warning --->
 </div>
+<div class="section level2">
+<h2 id="description-of-coverage-report">Description of coverage report<a class="anchor" aria-label="anchor" href="#description-of-coverage-report"></a>
+</h2>
+<ul>
+<li>Total coverage percentage, this is the total number of lines covered
+by a test divided by the total number of lines requiring testing.</li>
+<li>File = Name of the file, the code coverage is calculated per
+file.</li>
+<li>Lines = Number of lines in the file, corresponds to the number of
+lines inside the file.</li>
+<li>Relevant = Corresponds to the lines of code to be tested (i.e. the
+lines inside the function brackets with the brackets and comments
+removed).</li>
+<li>Covered = Number of lines covered by a test</li>
+<li>Missed = Number of lines not covered by a test</li>
+<li>Hits/Line = Corresponds to the average number of times specific
+lines are tested in the file.
+<ul>
+<li>In other words, if I have an 11-lines file where (1) the first 6
+lines are tested 4 times, (2) the seventh is tested 1 time, (3) the last
+4 are tested 10 times. The calculation is then: ((6 * 4) + 1 + (10 *
+4))/11 = 6. This gives the average number of times a line is tested,
+here 6.</li>
+</ul>
+</li>
+<li>Coverage = corresponds to the percentage of lines covered by a test.
+Calculation: Covered / Relevant * 100, number of lines covered by a test
+divided by the number of lines requiring testing.</li>
+<li>If we go into detail by file, the color code is as follows:
+<ul>
+<li>green line = line tested by at least one test (the x? corresponds to
+the number of times the line is tested)</li>
+<li>red line = line not covered by a test</li>
+<li>white line = lines not to be tested (comments, …)</li>
+</ul>
+</li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -722,7 +760,7 @@ Session Info
 
       <footer><div class="copyright">
   <p></p>
-<p>Développé par Juliette ENGELARE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
+<p>Développé par Juliette ENGELAERE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
 </div>
 
 <div class="pkgdown">

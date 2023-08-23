@@ -90,13 +90,28 @@
     
     
 <p>Ceci est un dossier de documentation dédié aux développeurs et
-développeuses. Il contient les choix de mode de développement et tout
-autre document qui ne s’adresserait pas directement aux
-utilisateurs.</p>
+développeuses.</p>
+<div class="section level2">
+<h2 id="contribuer-à-shinygouv---introduction">Contribuer à {shinygouv} - Introduction<a class="anchor" aria-label="anchor" href="#contribuer-%C3%A0-shinygouv---introduction"></a>
+</h2>
+<p>Pour des contributions au code de ce projet, svp regardez le guide
+général de contribution à <a href="https://spyrales.github.io/shinygouv/CONTRIBUTING.html" class="external-link uri">https://spyrales.github.io/shinygouv/CONTRIBUTING.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="structuration-du-repo-a-compléter">Structuration du repo (a compléter)<a class="anchor" aria-label="anchor" href="#structuration-du-repo-a-compl%C3%A9ter"></a>
+</h2>
+<p>Le développement de ce package a été réalisé <a href="https://thinkr-open.github.io/fusen/" class="external-link">avec {fusen}</a> : les
+fonctions, vignettes et test sont générées par des fichiers Rmd dans le
+dossier /dev.</p>
+<p>Le repo contient deux app : - une app de demo des composant de
+shinygouv : que l’on peut visualiser avec shinygouv::run_app(), - une
+app de test pour la fonction de conversion convert_to_dsfr(), présente
+dans “inst/test.convert.dsfr/”.</p>
+</div>
 <div class="section level2">
 <h2 id="version-du-framework-dsfr-en-cours-de-développement">Version du framework dsfr en cours de développement<a class="anchor" aria-label="anchor" href="#version-du-framework-dsfr-en-cours-de-d%C3%A9veloppement"></a>
 </h2>
-<p>Pour s’assurer du bon developpement du package
+<p>Pour s’assurer du bon développement du package
 <code>shinygouv</code>, il a été ajouté au fichier
 <code>DESCRIPTION</code> la version du dsfr utilisé.</p>
 <p>Pour connaître la version utilisée, vous pouvez lancer :</p>
@@ -106,14 +121,24 @@ utilisateurs.</p>
 <div class="section level2">
 <h2 id="ajouter-une-nouvelle-version-du-dsfr">Ajouter une nouvelle version du dsfr<a class="anchor" aria-label="anchor" href="#ajouter-une-nouvelle-version-du-dsfr"></a>
 </h2>
-<p>Si vous souhaitez implémenter une nouvelle version du dsfr, vous
-devez suivre les instructions disponible: <a href="Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee
+<p>Si vous devez implémenter une nouvelle version du dsfr, vous devez
+suivre les instructions disponible: <a href="Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html">Montee
 en version du dsfr : trouver les fichiers CSS et JS</a>.</p>
 <p>Lorsque vous aurez implémenté toutes les composantes avec la nouvelle
 version, vous pourrez mettre à jour le fichier DESCRIPTION avec la
 commande suivante :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">desc</span><span class="fu">::</span><span class="fu"><a href="http://r-lib.github.io/desc/reference/desc_set.html" class="external-link">desc_set</a></span><span class="op">(</span><span class="st">"VersionDsfr"</span> <span class="op">=</span> <span class="st">"1.7.2"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="ressources-utiles">Ressources utiles :<a class="anchor" aria-label="anchor" href="#ressources-utiles"></a>
+</h4>
+<ul>
+<li>Notes de versions du dsfr <a href="https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante" class="external-link uri">https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante</a>
+</li>
+<li>Notes de versions shiny : <a href="https://github.com/rstudio/shiny/blob/main/NEWS.md" class="external-link uri">https://github.com/rstudio/shiny/blob/main/NEWS.md</a>
+</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="workflow-à-suivre-avant-de-dev-sur-le-projet">Workflow à suivre avant de dev sur le projet :<a class="anchor" aria-label="anchor" href="#workflow-%C3%A0-suivre-avant-de-dev-sur-le-projet"></a>
@@ -185,10 +210,10 @@ demande de PR de votre branche vers la branche principale</li>
 <h2 id="comprendre-et-appliquer-le-workflow-pour-développer-le-package">Comprendre et appliquer le workflow pour développer le package<a class="anchor" aria-label="anchor" href="#comprendre-et-appliquer-le-workflow-pour-d%C3%A9velopper-le-package"></a>
 </h2>
 <p>Pour développer ce package, des choix techniques ont été adoptés.
-Vous retrouverez les raisons <a href="Dev-F-documentation-inventaire.html">ici</a>.</p>
+Vous retrouverez les raisons <a href="Hist-B-documentation-inventaire.html">ici</a>.</p>
 <p>Le workflow se découpe en deux possibilités :</p>
 <ul>
-<li>Les composants nécéssitant de la réactivité</li>
+<li>Les composants nécessitant de la réactivité</li>
 <li>Les composants sans réactivité</li>
 </ul>
 <p>Ces deux possibilités se basent sur le même principe :
@@ -202,17 +227,29 @@ composant shiny</a></li>
 <ul>
 <li>Avec réactivité:
 <ul>
-<li><a href="../reference/radioButtons_dsfr.html">radio buttons</a></li>
+<li><a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_radioButtons.Rmd" class="external-link">radio
+buttons</a></li>
 </ul>
 </li>
 <li>Sans réactivité:
 <ul>
-<li><a href="../reference/fluidPage_dsfr.html">Fluid page</a></li>
+<li><a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_fluidpage.Rmd" class="external-link">Fluid
+page</a></li>
 </ul>
 </li>
 </ul>
 <p>N’hésitez pas à amender cette liste au fur et à mesure de vos
 développements</p>
+</div>
+<div class="section level2">
+<h2 id="workflow-avant-de-commit">Workflow avant de commit<a class="anchor" aria-label="anchor" href="#workflow-avant-de-commit"></a>
+</h2>
+<p>Pensez à exécuter les lignes “Each time needed” du fichier <a href="https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R" class="external-link">dev/02_dev.R</a>
+avant chaque commit.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu">navigateToFile</span><span class="op">(</span><span class="st">"dev/02_dev.R"</span><span class="op">)</span></span></code></pre></div>
+<!-- ## Ressource JS, HTML et CSS : a compléter et lier au reste -->
+<!-- https://connect.thinkr.fr/js4shinyfieldnotes/# -->
 </div>
 <div class="section level2">
 <h2 id="les-langues-utilisées-dans-le-projet">Les langues utilisées dans le projet<a class="anchor" aria-label="anchor" href="#les-langues-utilis%C3%A9es-dans-le-projet"></a>
@@ -232,14 +269,6 @@ présent comme pour {gouvdown} 🇬🇧</li>
 ajouté comme pour {gouvdown} 🇬🇧</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="workflow-avant-de-commit">Workflow avant de commit<a class="anchor" aria-label="anchor" href="#workflow-avant-de-commit"></a>
-</h2>
-<p>Pensez à executer les lignes “Each time needed” du fichier <a href="https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R" class="external-link">dev/02_dev.R</a>
-avant chaque commit.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/rstudioapi/reference/navigateToFile.html" class="external-link">navigateToFile</a></span><span class="op">(</span><span class="st">"dev/02_dev.R"</span><span class="op">)</span></span></code></pre></div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -254,7 +283,7 @@ avant chaque commit.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Développé par Juliette ENGELARE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
+<p>Développé par Juliette ENGELAERE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
 </div>
 
 <div class="pkgdown">

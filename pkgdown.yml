@@ -7,9 +7,10 @@ articles:
   Dev-A-guide-du-developpeur: Dev-A-guide-du-developpeur.html
   Dev-B-comment-faire-un-composant-shiny: Dev-B-comment-faire-un-composant-shiny.html
   Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js: Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html
-  Dev-D-retour-sur-shiny.dsfr: Dev-D-retour-sur-shiny.dsfr.html
-  Dev-E-recommandation-pour-l-implementation-de-dsfr: Dev-E-recommandation-pour-l-implementation-de-dsfr.html
-  Dev-F-documentation-inventaire: Dev-F-documentation-inventaire.html
+  Dev-D-Faire-tourner-les-applications-shiny-du-package-shinygouv: Dev-D-Faire-tourner-les-applications-shiny-du-package-shinygouv.html
   Dev-G-test-and-coverage: Dev-G-test-and-coverage.html
-last_built: 2023-07-26T10:24Z
+  Hist-A-recommandation-pour-l-implementation-de-dsfr: Hist-A-recommandation-pour-l-implementation-de-dsfr.html
+  Hist-B-documentation-inventaire: Hist-B-documentation-inventaire.html
+  Hist-C-retour-sur-shiny.dsfr: Hist-C-retour-sur-shiny.dsfr.html
+last_built: 2023-08-23T10:47Z
 

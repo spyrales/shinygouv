@@ -28,16 +28,19 @@
     <loc>/articles/Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.html</loc>
   </url>
   <url>
-    <loc>/articles/Dev-D-retour-sur-shiny.dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Dev-E-recommandation-pour-l-implementation-de-dsfr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Dev-F-documentation-inventaire.html</loc>
+    <loc>/articles/Dev-D-Faire-tourner-les-applications-shiny-du-package-shinygouv.html</loc>
   </url>
   <url>
     <loc>/articles/Dev-G-test-and-coverage.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Hist-A-recommandation-pour-l-implementation-de-dsfr.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Hist-B-documentation-inventaire.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Hist-C-retour-sur-shiny.dsfr.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>

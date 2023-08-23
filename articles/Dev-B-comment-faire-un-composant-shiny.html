@@ -116,14 +116,13 @@ version 1.7.2 du dsfr.</em></p>
 <h4 id="première-étape">Première étape<a class="anchor" aria-label="anchor" href="#premi%C3%A8re-%C3%A9tape"></a>
 </h4>
 <ul>
-<li>Copier dans le dossier <code>inst/v1.7.2/composant</code> le
-template html du bouton pour dsfr
+<li>
+<p>Copier dans le dossier <code>inst/v1.7.2/composant</code> le
+template html du bouton pour dsfr</p>
 <ul>
-<li>Se rendre sur <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/" class="external-link uri">https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/</a>
-</li>
-<li>Enregistrer le code html par défaut du bouton dans un fichier
-<code>inst/v1.7.2/composant/bouton.html</code>
-</li>
+<li><p>Se rendre sur <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/" class="external-link uri">https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton/</a></p></li>
+<li><p>Enregistrer le code html par défaut du bouton dans un fichier
+<code>inst/v1.7.2/composant/bouton.html</code></p></li>
 </ul>
 </li>
 </ul>
@@ -133,14 +132,16 @@ template html du bouton pour dsfr
 <h4 id="deuxième-étape">Deuxième étape<a class="anchor" aria-label="anchor" href="#deuxi%C3%A8me-%C3%A9tape"></a>
 </h4>
 <ul>
-<li>Modifier le code html pour mettre les paramètres nécéssaires à son
-bon fonctionnement dans {shiny}
+<li>
+<p>Modifier le code html pour mettre les paramètres nécessaires à
+son bon fonctionnement dans {shiny}</p>
 <ul>
-<li>Ajouter un <code>id</code> pour le futur <code>inputId</code>
+<li>Ajouter un <code>id</code> pour le futur <code>inputId</code><br>
 </li>
-<li>Ajouter la classe permettant de déclencher l’événement côté
-{shiny}</li>
-<li>Ajouter/Remplacer aussi les autres paramètres nécéssaires à la
+<li>Ajouter la classe permettant de déclencher l’évènement côté
+{shiny}<br>
+</li>
+<li>Ajouter/Remplacer aussi les autres paramètres nécessaires à la
 personnalisation du composant</li>
 </ul>
 </li>
@@ -155,17 +156,19 @@ son template html:</p>
 classe a ajouter est <code>action-button</code>.<br>
 Comment savoir ?</p>
 <p>Le plus simple est d’exécuter la fonction de l’input dans shiny dans
-la console:</p>
+la console :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"test"</span>, <span class="st">"test"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="va">`&lt;button id="test" type="button" class="btn btn-default action-button"&gt;test&lt;/button&gt;`</span></span></code></pre>
+<blockquote>
 <p>On observe alors que dans “class” nous avons des classes liées à
 bootstrap <code>btn-*</code> et une classe à part
 <code>action-button</code>. C’est souvent cette classe qui permet de
-déclencher l’évenement coté server. Si cela n’est pas suffisant, il
+déclencher l’évènement coté server. Si cela n’est pas suffisant, il
 faudra chercher dans le code du package {shiny}. Le code se trouve <a href="https://github.com/rstudio/shiny/tree/main/srcts/src/bindings/input" class="external-link">ici</a>
 et en ouvrant le fichier <code>.ts</code> vous trouverez alors un
 endroit ou on recherche la classe qui active l’input :</p>
+</blockquote>
 <pre><code>  find(scope: HTMLElement): JQuery&lt;HTMLElement&gt; {
     return $(scope).find(".action-button");
   }</code></pre>
@@ -175,26 +178,29 @@ endroit ou on recherche la classe qui active l’input :</p>
 <h4 id="troisième-étape">Troisième étape<a class="anchor" aria-label="anchor" href="#troisi%C3%A8me-%C3%A9tape"></a>
 </h4>
 <ul>
-<li>Créer la fonction qui permettra d’utiliser ce nouveau bouton.
+<li>
+<p>Créer la fonction qui permettra d’utiliser ce nouveau bouton
+:</p>
 <ul>
-<li>Copier coller le flat se trouvant dans <a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_new_one.Rmd" class="external-link">dev/flat_composants/flat_new_one.Rmd</a>
+<li>Copier/coller le flat se trouvant dans <a href="https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_new_one.Rmd" class="external-link">dev/flat_composants/flat_new_one.Rmd</a>
 dans <code>dev/flat_composants/</code> et le renommer
 “flat_nom_du_composant_shiny.Rmd”. Dans cet exemple,
-<code>flat_actionButton.Rmd</code>
+<code>flat_actionButton.Rmd</code>.<br>
 </li>
 <li>Dans votre nouveau flat, il faut remplacer “nom_composant_shiny” par
 le nom du composant shiny (dans cet exemple,
-<code>actionButton</code>)</li>
+<code>actionButton</code>).<br>
+</li>
 <li>Changer le chemin du fichier de votre <code>.html</code> dans la
-fonction <code>*_template</code>
+fonction <code>*_template</code>.<br>
 </li>
 <li>Compléter les paramètres et leur documentation dans vos fonctions
-selon la personnalisation de votre <code>.html</code>
+selon la personnalisation de votre <code>.html</code>.<br>
 </li>
 <li>Adapter les tests unitaires en fonction des paramètres choisis (y
-compris la date du snapshot).</li>
-<li>Puis lancer le dernier chunck <code>fusen::inflate()</code>
+compris la date du snapshot).<br>
 </li>
+<li>Puis lancer le dernier chunk <code>fusen::inflate()</code>.</li>
 </ul>
 </li>
 </ul>
@@ -208,12 +214,16 @@ package.</p>
 </h4>
 <ul>
 <li>Créer la fonction qui permettra de mettre à jour votre input (si
-nécessaire).</li>
-<li>Certains composants comme l’actionButton() n’ont pas besoin de mise
-à jour, c’est le cas pour beaucoup d’autres composants.</li>
+nécessaire).<br>
+</li>
+<li>Certains composants comme l’ <code><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton()</a></code> n’ont pas
+besoin de mise à jour, c’est le cas pour beaucoup d’autres
+composants.<br>
+</li>
 <li>Certains fonctions de mise à jour de composants correspondent en
 fait à l’appel de la fonction native <a href="https://shiny.posit.co/" class="external-link">shiny</a> correspondante
-(voir par ex <code><a href="../reference/updateNumericInput_dsfr.html">updateNumericInput_dsfr()</a></code>).</li>
+(voir par ex <code><a href="../reference/updateNumericInput_dsfr.html">updateNumericInput_dsfr()</a></code>).<br>
+</li>
 <li>Pour certains composants non présents nativement dans
 <a href="https://shiny.posit.co/" class="external-link">shiny</a>, des implémentations adhoc ont dû être réalisées
 (voir par ex <code><a href="../reference/updateRadioGroupButtons_dsfr.html">updateRadioGroupButtons_dsfr()</a></code>).
@@ -232,13 +242,19 @@ Le plus simple reste d’observer la fonction
 <div class="section level4">
 <h4 id="cinquième-étape">Cinquième étape<a class="anchor" aria-label="anchor" href="#cinqui%C3%A8me-%C3%A9tape"></a>
 </h4>
-<p>Lorsque l’implementation de votre nouveau composant dsfr est
-terminée: - remplir la table de correspondance disponible dans <a href="https://github.com/spyrales/shinygouv/blob/main/inst/v1.9.3/table_correspondance_shiny_dsfr.csv" class="external-link">inst/v1.9.3/table_correspondance_shiny_dsfr.csv</a>
-(en adaptant sur la version en cours d’implementation)</p>
+<p>Lorsque l’implémentation de votre nouveau composant dsfr est terminée
+:</p>
+<ul>
+<li>remplir la table de correspondance disponible dans <a href="https://github.com/spyrales/shinygouv/blob/main/inst/v1.9.3/table_correspondance_shiny_dsfr.csv" class="external-link">inst/v1.9.3/table_correspondance_shiny_dsfr.csv</a>
+(en adaptant sur la version en cours d’implémentation)</li>
+</ul>
 <p>La colonne <code>composant_shiny</code> restera vide si le composant
-dsfr n’a pas d’équivalent dans {shiny}. Cette table de correspondance
-permettra le bon déroulement de la conversion d’une app shiny en une app
-shiny dsfr (en utilisant <code><a href="../reference/convert_to_dsfr.html">convert_to_dsfr()</a></code>)</p>
+dsfr n’a pas d’équivalent dans {shiny}.</p>
+<p>Cette table de correspondance permettra le bon déroulement de la
+conversion d’une app shiny en une app shiny dsfr (en utilisant
+<code><a href="../reference/convert_to_dsfr.html">convert_to_dsfr()</a></code>)</p>
+<p>Vous pouvez également ajouter votre composant dans l’<a href="%22https://github.com/spyrales/shinygouv/tree/main/dev/R" class="external-link">application
+de démonstration</a>.</p>
 </div>
 </div>
   </div>
@@ -255,7 +271,7 @@ shiny dsfr (en utilisant <code><a href="../reference/convert_to_dsfr.html">conve
 
       <footer><div class="copyright">
   <p></p>
-<p>Développé par Juliette ENGELARE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
+<p>Développé par Juliette ENGELAERE-LEFEBVRE, Sébastien Rochette, Murielle Delmotte, Cervan Girard, Yohann Mansiaux, Jean-Daniel LOMENEDE.</p>
 </div>
 
 <div class="pkgdown">
