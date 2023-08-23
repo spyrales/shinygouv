@@ -21,7 +21,7 @@ pkgload::load_all(export_all = TRUE)
 La `navbarPage_dsfr()` se compose de :
 
 - Un header, défini par la fonction `header_dsfr()`
-- Une navbar, définie par une série d'élement `navbarPanel_dsfr()`
+- Une navbar, définie par une série d'éléments `navbarPanel_dsfr()`
 
 ```{r function-navbarPage_dsfr}
 #' Page avec navbar
@@ -144,7 +144,7 @@ ui <- navbarPage_dsfr(
   title = "Welcome to the Jungle",
   id = "nav",
   header = header_dsfr(
-    intitule = span("République", br(), "Française"),
+    intitule = c("République", br(), "Française"),
     nom_site_service = "Nom du site / service",
     baseline = "Baseline - pr\u00E9cisions sur l organisation"
   ),

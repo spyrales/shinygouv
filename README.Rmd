@@ -37,7 +37,7 @@ library(shiny)
 library(shinygouv)
 app_ui <- fluidPage_dsfr(
   header = header_dsfr(
-    intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+    intitule = c("D\u00e9mo", "de", "{shinygouv}"),
     nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
     baseline = "https://github.com/spyrales/shinygouv"
   ),
@@ -45,7 +45,7 @@ app_ui <- fluidPage_dsfr(
   fluidRow_dsfr(
     column_dsfr(
       0,
-      fileInput("file1", "Ajouter des fichiers", accept = ".csv")
+      fileInput_dsfr(inputId = "file1", label = "Ajouter des fichiers", message = "")
     )
   )
 )
@@ -60,7 +60,7 @@ shinyApp(
 
 [shinygouv-demo](https://ssm-ecologie.shinyapps.io/shinygouv-demo/)
 
-[shinygouv-demo, version en cours de developpement](https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/)
+[shinygouv-demo dev](https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/), version en cours de developpement
 
 # Contribuer au développement du package
 

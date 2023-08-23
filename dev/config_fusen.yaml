@@ -61,6 +61,19 @@ flat_convert_to_dsfr.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_favicon.Rmd:
+  path: dev/tools/flat_favicon.Rmd
+  state: active
+  R: R/use_favicon_dsfr.R
+  tests: tests/testthat/test-use_favicon_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/tools/flat_favicon.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
 flat_fluidpage.Rmd:
   path: dev/flat_composants/flat_fluidpage.Rmd
   state: active

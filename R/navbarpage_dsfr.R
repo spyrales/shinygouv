@@ -18,7 +18,7 @@
 #'   title = "Welcome to the Jungle",
 #'   id = "nav",
 #'   header = header_dsfr(
-#'     intitule = span("République", br(), "Française"),
+#'     intitule = c("République", br(), "Française"),
 #'     nom_site_service = "Nom du site / service",
 #'     baseline = "Baseline - pr\u00E9cisions sur l organisation"
 #'   ),

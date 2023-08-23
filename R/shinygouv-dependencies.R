@@ -6,13 +6,23 @@
 #' @param version ajout de la version pour les deps
 #'
 #' @importFrom htmltools tagList htmlDependency
+#' @importFrom glue glue
 #' @export
 add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
+  dsfr_v_version <- paste0("dsfr-v",  version)
+  dsfr_version <- paste0("dsfr-", version)
+  dist_path <- paste0(dsfr_version, "/dist")
+  favicon_head_tpl <- glue::glue('
+  <link rel="apple-touch-icon" href="{dist_path}/favicon/apple-touch-icon.png"><!-- 180x180 -->
+  <link rel="icon" href="{dist_path}/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="{dist_path}/favicon/favicon.ico" type="image/x-icon"><!-- 32x32 -->
+  <link rel="manifest" href="{dist_path}/favicon/manifest.webmanifest" crossorigin="use-credentials">
+  ')
   all_deps <- list(
     dsfr = htmlDependency(
       name = "dsfr",
       version = version,
-      src = c(file = paste0("dsfr-v", version)),
+      src = c(file = dsfr_v_version),
       stylesheet = c(
         "dist/dsfr.min.css",
         "dist/utility/utility.min.css"
@@ -23,10 +33,12 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       package = "shinygouv",
       all_files = TRUE,
-      head = '<meta charset="UTF-8">
+      head = paste0('
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000091">'
+    <meta name="theme-color" content="#000091">
+      ', favicon_head_tpl)
     ),
     external = htmlDependency(
       name = "modal",
