@@ -11,6 +11,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-4816-4624")),
     person("Yohann", "Mansiaux", , "yohann@thinkr.fr", role = "aut",
            comment = c(ORCID = "0000-0002-8905-6603")),
+    person("Jean-Daniel", "LOMENEDE", role = "aut"),
     person("David", "Granjon", role = "ctb"),
     person("Alan", "Dipert", role = "ctb")
   )
@@ -30,6 +31,7 @@ Imports:
     magrittr (>= 2.0.3),
     purrr (>= 0.3.4),
     shiny (>= 1.7.1),
+    tools,
     utils,
     XML (>= 3.99.0.10)
 Suggests:
