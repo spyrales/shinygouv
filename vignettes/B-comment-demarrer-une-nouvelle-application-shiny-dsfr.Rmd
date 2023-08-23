@@ -65,6 +65,15 @@ La dépendance au package {shinygouv} ne sera quant à elle pas prise en compte 
 - `library(shinygouv)`
 - `@import shinygouv`
 
+#### Ajouter la favicon Marianne
+
+Faute de mieux pour l'instant, vous pouvez ajouter la Marianne en favicon de votre app grâce à la fonction `use_favicon_dsfr()` 
+Cette fonction est à lancer dans la console, une fois votre projet d'app shiny ouvert.  
+Le paramètre `golem_app` vous permet de préciser quelle est la forme de votre application shiny (Golem / basique).  
+
+```{r eval = FALSE}
+use_favicon_dsfr(path_app = "lechemindemonapplication", golem_app = TRUE)
+```
 
 #### Utiliser d'autres composants dsfr
 

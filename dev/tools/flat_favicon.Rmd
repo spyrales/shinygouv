@@ -54,7 +54,8 @@ use_favicon_dsfr <- function(path_app = '', golem_app = TRUE) {
 
 ```{r tests-flat_favicon_rmd}
 test_that("use_favicon_dsfr works", {
-  
+  app <- file.path(tempdir(), "app")
+  dir.create(app)
   # version shiny basique
   path_shiny_base <- paste0(app, "/www/favicon.ico")
   use_favicon_dsfr(path_app = app, golem_app = FALSE)
