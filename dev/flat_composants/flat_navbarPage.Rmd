@@ -39,7 +39,7 @@ La `navbarPage_dsfr()` se compose de :
 navbarPage_dsfr <- function(
   title,
   ...,
-  header = NULL,
+  header = header_dsfr(intitule = "intitule a remplacer"),
   id = NULL,
   footer = NULL
     ) {

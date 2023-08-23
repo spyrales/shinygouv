@@ -11,3 +11,8 @@ articles:
   desc: Vignettes à l'intention des mainteneurs de `{shingouv}`
   contents:
   - starts_with("Dev")
+
+- title: Orientations initiales de développement
+  desc: Notes à l'intention des mainteneurs de `{shingouv}` curieux de comprendre son histoire
+  contents:
+  - starts_with("Hist")
