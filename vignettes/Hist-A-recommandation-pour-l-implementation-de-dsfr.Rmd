@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 library(shinygouv)
 ```
 
+
 # Note sur les orientations initiales de développement : présentation des options
 
 ### Comparaison entre les différentes possibilités pour répondre au besoin d'utilisation du framework [DSFR](https://gouvfr.atlassian.net/wiki/spaces/DB/overview?homepageId=145359476)
@@ -45,6 +46,7 @@ DT::datatable(
 ### Option A {shiny} + {bslib} :
 
 Utiliser les fonctionnalités de {bslib} pour utiliser le framework DSFR.
+
 
 
 Avantages :
@@ -264,6 +266,7 @@ Avantages :
 
 > Néanmoins, le temps gagné sur les inputs basiques pourrait permettre d'implementer de nouveaux inputs si nécéssaire
 
+
 - Implémentation plus simple pour les composants compatibles.
 - Pas besoin de connaissances avancées en JS pour les composants compatibles.
 
@@ -272,6 +275,8 @@ Inconvénients :
 - Lié au package {shiny} et aux inputs implémentés 
 - Si l'input n'existe pas dans {shiny}, alors il faudra recoder la partie JS (c'est vrai pour les options A et B)
 - Maintenance : suivre {shiny} et DSFR. Autrement dit, si la classe de l'input {shiny} devient autre chose que `action-button` notre code ne marchera plus (peu probable...).
+- Les librairies bootstrap qui gravitent autour de {shiny} ne sont pas compatibles DSFR. Il faudra donc les remplacer par les librairies maison ou des implémentation de lib JS. Un exemple : shinyWidget
+
 
 Les changements sont énumérés:
 
@@ -296,14 +301,15 @@ DT::datatable(
 )
 ```
 
+
 Les éléments tels que `navbarPage()`, `tabPanel()` etc sont possibles dans la limite de ce que propose le DSFR. 
 Ils nécessitent plus ou moins une demi-journée par composant (codé avec des htmlTemplates). 
-
 
 
 ## Notre recommandation
 
 Nous préconisons l'**option D**. Pourquoi ?
+
 
 Cette approche permet de mettre en avant le travail réalisé sur le framework DSFR avec une implémentation possible de l'intégralité des fonctionnalités sans la contrainte et la lourdeur de connaitre le JS. 
 Elle permet aussi de faciliter la maintenance du package par les futures mainteneurs. 
