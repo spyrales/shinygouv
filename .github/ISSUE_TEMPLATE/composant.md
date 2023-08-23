@@ -9,7 +9,7 @@ ETQ utilisateur/utilisatrice, je souhaite pouvoir ajouter un composant de type `
 
 ## Critères d'acceptation des développements effectués
 
-- [ ] Une fonction implementée, documentée, testée : `[COMPOSANT]_dsfr()'
+- [ ] Une fonction implémentée, documentée, testée : `[COMPOSANT]_dsfr()'
    - [ ] Avec la documentation dans le corps de la fonction
    - [ ] La présentation dans une vignette
    - [ ] Des tests unitaires
@@ -17,7 +17,7 @@ ETQ utilisateur/utilisatrice, je souhaite pouvoir ajouter un composant de type `
 
 ## Comment technique
 
-- Je crée une branche pour développer la fonctionnalité
-- Utilisation du workflow décrit dans  'dev/documentation/comment-faire-un-composant-shiny.Rmd'
-- Utiliser le flat file fourni pour développer avec {fusen}
-- J'ouvre une PR assignée aux responsables de projet lorsque c'est traité
+- Je crée une branche pour développer la fonctionnalité 
+- Utilisation du workflow décrit dans la vignette dédiée aux développeurs  [comment-faire-un-composant-shiny](https://spyrales.github.io/shinygouv/articles/Dev-B-comment-faire-un-composant-shiny.html]  
+- Utiliser le flat file fourni pour développer avec {fusen} (dev/flat_composants/flat_new_one.Rmd)  
+- J'ouvre une PR assignée aux responsables de projet lorsque c'est traité 

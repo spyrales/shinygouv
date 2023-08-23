@@ -9,6 +9,7 @@
 #' @param title Titre de l'application (Attention, différent de shiny::navbarPage)
 #' @param id Id de la navbar
 #' @param header header_dsfr()
+#' @param footer pied de page
 #'
 #' @examples
 #' library(shiny)
@@ -99,8 +100,9 @@
 navbarPage_dsfr <- function(
   title,
   ...,
-  header = NULL,
-  id = NULL
+  header = header_dsfr(intitule = "intitule a remplacer"),
+  id = NULL,
+  footer = NULL
     ) {
   all_navs <- list(...)
   # Making the first tab the current one
@@ -165,7 +167,8 @@ navbarPage_dsfr <- function(
           )
         }
       )
-    )
+    ),
+    footer = footer
   ) %>%
     add_dsfr_deps()
 }
@@ -174,19 +177,22 @@ navbarPage_dsfr <- function(
 #' Panel pour la navbar
 #'
 #' @param title Titre du panel
-#' @param ... UI du panel
+#' @param class Classe CSS du panel
+#' @param ... Contenu du panel
 #'
 #' @export
 navbarPanel_dsfr <- function(
-    title,
-    ...
-    ) {
-
+  title,
+  ...,
+  class = "fr-container"
+) {
   list(
     title = title,
     id = janitor::make_clean_names(title),
-    ui = tagList(
+    ui = tags$div(
+      class = class,
       ...
     )
   )
 }
+

@@ -4,7 +4,14 @@
 \alias{fluidPage_dsfr}
 \title{fluidPage_dsfr}
 \usage{
-fluidPage_dsfr(..., header = NULL, title = NULL, theme = NULL, lang = NULL)
+fluidPage_dsfr(
+  ...,
+  header = NULL,
+  title = NULL,
+  footer = NULL,
+  theme = NULL,
+  lang = NULL
+)
 }
 \arguments{
 \item{...}{element a inclure dans la page}
@@ -12,6 +19,8 @@ fluidPage_dsfr(..., header = NULL, title = NULL, theme = NULL, lang = NULL)
 \item{header}{l entete de la page (voir \code{header_dsfr()})}
 
 \item{title}{titre de la page}
+
+\item{footer}{contenu du pied de page (voir \code{footer_dsfr()})}
 
 \item{theme}{pas implemente}
 

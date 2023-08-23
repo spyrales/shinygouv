@@ -27,7 +27,7 @@ mod_input_ui_ui <- function(id){
             title = "Une prems tab",
             content = tagList(
               h3("Coucou"),
-              numericInput(
+              numericInput_dsfr(
                 inputId = ns("tabpaneln"),
                 label = "Nombre de points sur le graph",
                 value = 100
@@ -40,7 +40,7 @@ mod_input_ui_ui <- function(id){
             title = "Une deuxieme tab",
             content = tagList(
               h3("Salut"),
-              numericInput(
+              numericInput_dsfr(
                 inputId = ns("tabpaneln2"),
                 label = "Nombre de points sur le plot",
                 value = 10

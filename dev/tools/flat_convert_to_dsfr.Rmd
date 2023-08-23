@@ -24,7 +24,6 @@ pkgload::load_all(export_all = FALSE)
 #' @param tab_corresp la table de correspondance comportant 2 colonnes (composant_shiny, composant_dsfr)
 #' @importFrom glue glue
 #' @importFrom purrr reduce2
-#' @importFrom stringr str_replace_all
 #' @importFrom utils file_test
 #'
 #' @return un fichier
@@ -43,12 +42,13 @@ convert_file_to_dsfr <- function(file, tab_corresp) {
     if (isTRUE(grep("navbarPage", file_read) > 0)) {
         message(glue::glue("Attention le {file} contient un 'navbarPage()', la version dsfr n\u00e9cessite un header, voir \\?navbarPage_dsfr"))
     }
-    
-    file_convert <- purrr::reduce2(
-      paste0(tab_corresp$composant_shiny, "\\("),
-      paste0(tab_corresp$composant_dsfr, "\\("),
-      .init = file_read,
-      stringr::str_replace_all)
+
+    file_convert <- purrr::reduce2(paste0(tab_corresp$composant_shiny, "\\("),
+                                   paste0(tab_corresp$composant_dsfr, "\\("),
+                                   .init = file_read,
+                                   function(string, pattern, replacement) {
+                                     gsub(pattern, replacement, string)
+                                   })
     writeLines(file_convert, con = file)
 
   }
@@ -144,14 +144,16 @@ convert_to_dsfr(path = "le_chemin_de_mon_application")
 #' @description 
 #' `r lifecycle::badge("experimental")`
 #' 
-#' Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel 
+#' Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. 
+#' Cette fonction va modifier les fichiers de votre application, presents dans le repertoire `path`.
+#' Cf. \href{https://spyrales.github.io/shinygouv/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html}{vignette dediee}.  
+#' Il reste des points de vigilances sur la conversion des tabPanel dans les navbarPage et les tabsetPanel.  
 #'
 #' @param path le chemin du dossier sur lequel faire la conversion, par defaut "R/"
 #' @param version le numero de version du dsfr a utiliser, par exemple "1.7.2". Par défaut, la derniere disponible. Utilisé plutot lors du developpement pour tester les retrocompatibilites.
 #' @importFrom purrr map
 #' @importFrom glue glue
 #' @importFrom utils read.csv2
-#' @importFrom stringr str_which
 #' @return des fichiers modifies
 #'
 #' @export
@@ -163,8 +165,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
     stop("Merci de preciser le numero de version a utiliser")
   }
 
-  if (!file.exists(
-    system.file(chem, package = "shinygouv"))) {
+  if (!file.exists(system.file(chem, package = "shinygouv"))) {
     stop(glue::glue("Le dossier 'v{version}' n existe pas"))
   }
 
@@ -188,7 +189,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   # ajout de la dependance a app_ui.R si il existe
   if (file.exists(file.path(path, "app_ui.R"))) {
     file_read <- readLines(file.path(path, "app_ui.R"))
-    local <- stringr::str_which(string = file_read, pattern = "@import shiny")
+    local <- grep(pattern = "@import shiny", x = file_read)
     for (i in local) {
       file_read <- append(file_read, "#' @import shinygouv", after = i)
     }
@@ -238,7 +239,7 @@ test_that("convert_to_dsfr works", {
   expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = NULL))
 
   #' @description Retourne une erreur si le tableau de correspondance n'existe pas pour la version specifiee
-  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), msg = "Le dossier 'vA.A.A.A' n'existe pas")
+  expect_error(convert_to_dsfr(path = file.path(mydir, "R"), version = "A.A.A.A"), "Le dossier 'vA.A.A.A' n existe pas")
 
   expect_error(convert_to_dsfr(path = file.path(mydir, "R")), regexp = NA)
   app_ui <- readLines(file.path(mydir, "R", "app_ui.R"))

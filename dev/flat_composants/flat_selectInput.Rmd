@@ -21,8 +21,6 @@ pkgload::load_all(export_all = TRUE)
 ```{r function-selectInput_options_dsfr_template}
 #' Template pour la liste des options du selectInput
 #'
-#' Template pour la liste des options du selectInput
-#'
 #' @param option_value value des options (futurs `choices` du selectInput)
 #' @param option_label labels des options (en cas d'utilisation d'un vecteur nommé pour les futurs `choices` du selectInput)
 #' @param selected la valeur est-elle sélectionnée par défaut ou non
@@ -360,7 +358,6 @@ if (interactive()) {
   ui <- fluidPage_dsfr(
     header = header_dsfr(
       intitule = "Intitule",
-      officiel = "Officiel",
       nom_site_service = "Nom du site / service",
       baseline = "baseline - precisions sur l organisation",
       class = "fr-m-1w"
@@ -551,7 +548,6 @@ if (interactive()) {
   ui <- fluidPage_dsfr(
     header = header_dsfr(
       intitule = "Intitule",
-      officiel = "Officiel",
       nom_site_service = "Nom du site / service",
       baseline = "baseline - precisions sur l organisation",
       class = "fr-m-1w"

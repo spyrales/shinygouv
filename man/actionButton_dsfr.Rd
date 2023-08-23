@@ -4,7 +4,7 @@
 \alias{actionButton_dsfr}
 \title{actionButton_dsfr}
 \usage{
-actionButton_dsfr(inputId, label, class = NULL)
+actionButton_dsfr(inputId, label, class = "fr-p-1w")
 }
 \arguments{
 \item{inputId}{id de l'input}

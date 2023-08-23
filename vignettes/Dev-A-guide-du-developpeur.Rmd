@@ -11,11 +11,26 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-Ceci est un dossier de documentation dédié aux développeurs et développeuses. Il contient les choix de mode de développement et tout autre document qui ne s'adresserait pas directement aux utilisateurs.
+Ceci est un dossier de documentation dédié aux développeurs et développeuses. 
+
+
+## Contribuer à {shinygouv} - Introduction
+Pour des contributions au code de ce projet, svp regardez le guide général de contribution à https://spyrales.github.io/shinygouv/CONTRIBUTING.html
+
+## Structuration du repo
+
+Le développement de ce package a été réalisé [avec {fusen}](https://thinkr-open.github.io/fusen/) : les fonctions, vignettes et test sont générées par des fichiers Rmd dans le dossier /dev/flat_composants.  
+
+Le repo contient deux app :  
+
+- une app de demo des composant de shinygouv : que l'on peut visualiser avec shinygouv::run_app(),  
+- une app de test pour la fonction de conversion convert_to_dsfr(), présente dans "inst/test.convert.dsfr/".  
+
+Les modules de l'app de démo son rangées dans le répertoire `R` et se mélangent aux fonctions de composants implémentées.
 
 ## Version du framework dsfr en cours de développement
 
-Pour s'assurer du bon developpement du package `shinygouv`, il a été ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
+Pour s'assurer du bon développement du package `shinygouv`, il a été ajouté au fichier `DESCRIPTION` la version du dsfr utilisé.
 
 Pour connaître la version utilisée, vous pouvez lancer :
 
@@ -25,13 +40,18 @@ desc::desc_get("VersionDsfr")
 
 ## Ajouter une nouvelle version du dsfr
 
-Si vous souhaitez implémenter une nouvelle version du dsfr, vous devez suivre les instructions disponible: [Montee en version du dsfr : trouver les fichiers CSS et JS](Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.md).
+Si vous devez implémenter une nouvelle version du dsfr, vous devez suivre les instructions disponible: [Montee en version du dsfr : trouver les fichiers CSS et JS](Dev-C-montee-en-version-du-dsfr-trouver-les-fichiers-css-et-js.md).
 
 Lorsque vous aurez implémenté toutes les composantes avec la nouvelle version, vous pourrez mettre à jour le fichier DESCRIPTION avec la commande suivante :
 
 ```{r, eval=FALSE}
 desc::desc_set("VersionDsfr" = "1.7.2")
 ```
+
+#### Ressources utiles :   
+
+- Notes de versions du dsfr https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante 
+- Notes de versions shiny : https://github.com/rstudio/shiny/blob/main/NEWS.md
 
 
 ## Workflow à suivre avant de dev sur le projet :
@@ -88,11 +108,11 @@ chore : tout ce qui touche au projet en lui même, ne correspond pas à un feat 
 
 ## Comprendre et appliquer le workflow pour développer le package
 
-Pour développer ce package, des choix techniques ont été adoptés. Vous retrouverez les raisons [ici](Dev-F-documentation-inventaire.md).
+Pour développer ce package, des choix techniques ont été adoptés. Vous retrouverez les raisons [ici](Hist-B-documentation-inventaire.md).
 
 Le workflow se découpe en deux possibilités :
 
-- Les composants nécéssitant de la réactivité
+- Les composants nécessitant de la réactivité
 - Les composants sans réactivité
 
 Ces deux possibilités se basent sur le même principe : **l'utilisation des templates html**. La trame générale de ce workflow est définie dans la documentation : 
@@ -102,12 +122,23 @@ Ces deux possibilités se basent sur le même principe : **l'utilisation des tem
 Vous trouverez des exemples pour d'autres composants :
 
 - Avec réactivité:
-  - [radio buttons](../reference/radioButtons_dsfr.html)
+  - [radio buttons](https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_radioButtons.Rmd)
   
 - Sans réactivité:
-  - [Fluid page](../reference/fluidPage_dsfr.html)
+  - [Fluid page](https://github.com/spyrales/shinygouv/blob/main/dev/flat_composants/flat_fluidpage.Rmd)
  
 N'hésitez pas à amender cette liste au fur et à mesure de vos développements 
+
+## Workflow avant de commit
+
+Pensez à exécuter les lignes "Each time needed" du fichier [dev/02_dev.R](https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R) avant chaque commit.
+
+```{r, eval=FALSE}
+rstudioapi::navigateToFile("dev/02_dev.R")
+```
+
+<!-- ## Ressource JS, HTML et CSS : a compléter et lier au reste -->
+<!-- https://connect.thinkr.fr/js4shinyfieldnotes/# -->
 
 ## Les langues utilisées dans le projet
 
@@ -119,13 +150,3 @@ N'hésitez pas à amender cette liste au fur et à mesure de vos développements
 - Description des tests unitaires (de préférence en anglais) 🇫🇷 
 - Code of Conduct: template par défaut de {usethis} en anglais déjà présent comme pour {gouvdown} 🇬🇧 
 - Contributing: template par défaut de {usethis} en anglais peut être ajouté comme pour {gouvdown} 🇬🇧 
-
-## Workflow avant de commit
-
-Pensez à executer les lignes "Each time needed" du fichier [dev/02_dev.R](https://github.com/spyrales/shinygouv/blob/main/dev/02_dev.R) avant chaque commit.
-
-```{r, eval=FALSE}
-rstudioapi::navigateToFile("dev/02_dev.R")
-```
-
-

@@ -1,3 +1,13 @@
+# shinygouv 1.0.2
+
+## chore
+
+* suppression de la dépendance à `stringr`
+
+## fix
+
+* Correction de la classe du `fluidPage_dsfr()`
+
 # shinygouv 1.0.0
 
 ## chore
@@ -8,6 +18,7 @@
   
 ## feat
 
+* Ajout de `dateRangeInput_dsfr()` et `updateDateRangeInput_dsfr()`
 * Ajout de `numericInput_dsfr()` et `updateNumericInput_dsfr()`
 * Ajout de `navbarPage_dsfr()` et `navbarPanel_dsfr()`
 * Ajout de `radioButtons_dsfr()` et `updateRadioButtons_dsfr()`
