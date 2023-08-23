@@ -1,0 +1,500 @@
+---
+title: "flat_new_one.Rmd empty"
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+Vous pouvez ajouter le footer officiel dans votre application avec `footer_dsfr()`. Par exemple avec un `fluidPage_dsfr()` :
+
+```{r, eval=FALSE}
+fluidPage_dsfr(
+  header = header_dsfr(
+    intitule = span("Intitulé", br(), "sur 3", br(), "lignes"),
+    nom_site_service = "Nom du site / service",
+    baseline = "baseline - precisions sur l organisation",
+    class = "fr-m-1w"
+  ),
+  footer = footer_dsfr(
+  ),
+  title = "Exemple shiny dsfr",
+  h1("Exemple d'utilisation de {shinygouv}"),
+)
+```
+
+
+# footer_extra_url_body_dsfr
+    
+```{r function-footer_extra_url_body_dsfr}
+#' footer_extra_url_body_dsfr
+#' 
+#' Permet d'ajouter des liends/url dans le corps du pied de page
+#' 
+#' @param ... d'autres liens de références (voir `footer_li_dsfr()`)
+#'
+#' @return html
+#' @rdname footer_dsfr
+#' @export
+footer_extra_url_body_dsfr <- function(...) {
+    tagList(...) 
+
+}
+
+
+```
+  
+```{r example-footer_extra_url_body_dsfr}
+footer_extra_url_body_dsfr(
+                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
+                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"))
+```
+  
+```{r tests-footer_extra_url_body_dsfr}
+test_that("footer_extra_url_body_dsfr works", {
+  expect_true(inherits(footer_extra_url_body_dsfr, "function")) 
+  
+    test_html <- footer_extra_url_body_dsfr()
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag.list")
+ 
+  
+  test_html <- footer_extra_url_body_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag.list") 
+})
+```
+
+
+# footer_extra_url_bottom_dsfr
+    
+```{r function-footer_extra_url_bottom_dsfr}
+#' footer_extra_url_bottom_dsfr
+#' 
+#' Permet d'ajouter des liends/url dans le bas du pied de page
+#' 
+#' @param ... d'autre liens de références (voir `footer_li_dsfr()`)
+#'
+#' @return html
+#' @rdname footer_dsfr
+#' @export
+footer_extra_url_bottom_dsfr <-
+  function(...) {
+      tagList(...)
+
+  }
+
+```
+  
+```{r example-footer_extra_url_bottom_dsfr}
+footer_extra_url_bottom_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
+```
+  
+```{r tests-footer_extra_url_bottom_dsfr}
+test_that("footer_extra_url_bottom_dsfr works", {
+  expect_true(inherits(footer_extra_url_bottom_dsfr, "function")) 
+  
+    test_html <-footer_extra_url_bottom_dsfr(accessibilite = "non", lien_accessibilite = "url_accessibilite", footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
+
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag.list")
+  
+})
+```
+
+# footer_li_dsfr
+    
+```{r function-footer_li_dsfr}
+#' footer_li_dsfr
+#' 
+#' Permet de créer la balise html pour ajouter un lien en fonction de sa destination (body/bottom)
+#' 
+#' @param href une url
+#' @param texte le texte
+#' @param id un identifiant (optionnel)
+#' @param titre le titre de l infobulle  (optionnel)
+#' @param type le type de rendu de l url (body/bottom, par defaut body)
+#' 
+#' @rdname footer_dsfr
+#' 
+#' @return html
+#' 
+#' @export
+footer_li_dsfr <- function(id = NULL,
+                    href,
+                    titre = NULL,
+                    texte,
+                    type = "body") {
+
+  if (type == "body"){
+    target = "target='_blank'"
+    ttype = "content"
+  } else if (type == "bottom"){
+    target = NULL
+    ttype = "bottom"
+  } else {
+    stop("Dans footer_li_dsfr, type doit etre 'body' ou 'bottom'")
+  }
+  
+    htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "piedpage_content.html",
+      package = "shinygouv"
+    ),
+    id = id,
+    href = href,
+    titre = titre,
+    texte = texte,
+    type = ttype,
+    target = target
+  ) |> parse_html()
+}
+
+```
+  
+```{r example-footer_li_dsfr}
+footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body")
+footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "bottom")
+```
+  
+```{r tests-footer_li_dsfr}
+test_that("footer_li_dsfr works", {
+  expect_true(inherits(footer_li_dsfr, "function")) 
+  
+  test_html <- footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr")
+  #' @description tester si tagList
+    expect_s3_class(test_html, "shiny.tag")
+  
+  
+})
+```
+  
+
+# footer_dsfr_template
+
+```{r function-footer_dsfr_template}
+#' footer_dsfr_template
+#' 
+#' @param intitule la partie "intitule" du bloc marque
+#' @param description un texte de présentation - optionnel
+#' @param footer_body le corps du footer
+#' @param footer_bottom le bas du footer
+#' @param accessibilite le type d'accessibilité (non/partiellement/totalement conforme)
+#' @param lien_accessibilite lien url vers l'accessibilite
+#' @param lien_mentions_legales lien url vers les mentions légales
+#' @param lien_donnees_personnelles lien url vers les données personnelles
+#' @param lien_gestion_cookies lien url vers la gestion des cookies
+#' 
+#' @importFrom htmltools htmlTemplate
+#' @return html
+footer_dsfr_template <- function(
+    intitule , 
+    description , 
+    footer_body, footer_bottom,
+           accessibilite = "non",
+           lien_accessibilite = "#",
+           lien_mentions_legales = "#",
+           lien_donnees_personnelles = "#",
+           lien_gestion_cookies = "#"
+    ) {
+
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "piedpage.html",
+      package = "shinygouv"
+    ),
+    intitule = intitule , 
+    description = description, 
+    footer_body = footer_body,
+    footer_bottom = footer_bottom,
+      accessibilite = accessibilite,
+      lien_accessibilite = lien_accessibilite,
+      lien_mentions_legales = lien_mentions_legales,
+      lien_donnees_personnelles = lien_donnees_personnelles,
+      lien_gestion_cookies = lien_gestion_cookies
+  ) |>  parse_html()
+}
+
+
+
+
+
+```
+
+
+
+```{r tests-footer_dsfr_template}
+test_that("footer_dsfr_template works", {
+  expect_true(inherits(footer_dsfr_template, "function"))
+  
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "piedpage.html",
+      package = "shinygouv"
+    )
+  )
+  
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+  
+  purrr::walk(c(
+    "intitule" ,
+    "description" ,
+    "footer_body",
+    "footer_bottom",
+    "accessibilite" ,
+    "lien_accessibilite",
+    "lien_mentions_legales" ,
+    "lien_donnees_personnelles",
+    "lien_gestion_cookies"
+  ),
+  function(param) {
+    with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+    expect_true(any(grepl(pattern = with_moustache, htmlfile)),
+                label = paste0("sans moustache '", param, "'"))
+  })
+  
+  
+  test_html <- footer_dsfr_template(
+    intitule = "intitule" ,
+    description = "description" ,
+    footer_body = "footer_body",
+    footer_bottom = "footer_bottom",
+    accessibilite = "non",
+    lien_accessibilite = "#",
+    lien_mentions_legales = "#",
+    lien_donnees_personnelles = "#",
+    lien_gestion_cookies = "#"
+  )
+  
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+  
+  
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+  
+  purrr::walk(c(
+    intitule = "intitule" ,
+    description = "description" ,
+    footer_body = "footer_body",
+    footer_bottom = "footer_bottom",
+    accessibilite = "non",
+    lien_accessibilite = "#",
+    lien_mentions_legales = "#",
+    lien_donnees_personnelles = "#",
+    lien_gestion_cookies = "#"
+  ),
+  function(param) {
+    expect_true(any(grepl(pattern = param, test_html)),
+                label = paste0("remplacement de '", param, "'"))
+  })
+})
+```
+
+
+# footer_dsfr
+
+```{r function-footer_dsfr}
+#' footer_dsfr
+
+#' Il se compose des éléments suivants:
+#' - un bloc marque, voir la charte de marque
+#' - un texte de présentation - optionnel.
+#' - 4 liens de références de l'écosystème institutionnel - obligatoires.
+#'- la liste de liens liés aux obligations légales. Cette liste doit être définie en fonction du site, toutefois les liens & contenus suivants sont obligatoires : “accessibilité : non/partiellement/totalement conforme”, mentions légales, données personnelles et gestion des cookies. - obligatoire.
+#' - une mention de la licence - obligatoire “Sauf mention contraire, tous les contenus de ce site sont sous licence etalab-2.0”
+#'
+#' Il est possible d'ajouter des url supplémentaires dans le corps et le bas du pied de page.
+#'
+#' @param intitule la partie "intitule" du bloc marque
+#' @param description un texte de présentation - optionnel
+#' @param accessibilite le type d'accessibilité (non/partiellement/totalement conforme)
+#' @param lien_accessibilite lien url vers l'accessibilite
+#' @param lien_mentions_legales lien url vers les mentions légales
+#' @param lien_donnees_personnelles lien url vers les données personnelles
+#' @param lien_gestion_cookies lien url vers la gestion des cookies
+#' @param add_extra_url_body url supplementaire a ajouter au corps du pied de page (voir `footer_extra_url_body_dsfr()`)
+#' @param add_extra_url_bottom url supplementaire a ajouter au bas du pied de page (voir `footer_extra_url_bottom_dsfr()`)
+#' 
+#' @return html
+#' @export
+#' @rdname footer_dsfr
+#' @examples
+footer_dsfr <- function(    
+    intitule = NULL ,
+    description = NULL ,
+    accessibilite = "non",
+    lien_accessibilite = "#",
+    lien_mentions_legales = "#",
+    lien_donnees_personnelles = "#",
+    lien_gestion_cookies = "#",
+    add_extra_url_body = NULL, 
+    add_extra_url_bottom = NULL) {
+  
+  
+      if ( isFALSE(accessibilite %in% c("non", "partiellement", "totalement conforme"))){
+      stop("l accessibilite doit etre 'non', 'partiellement' ou 'totalement conforme'")
+    }
+
+      assertthat::assert_that(is.character(lien_accessibilite))
+      assertthat::assert_that(is.character(lien_mentions_legales))
+      assertthat::assert_that(is.character(lien_donnees_personnelles))
+      assertthat::assert_that(is.character(lien_gestion_cookies))
+    
+
+  
+  footer_dsfr_template(
+    intitule = intitule,
+    description = description,
+    footer_body = add_extra_url_body,
+    footer_bottom = add_extra_url_bottom,
+          accessibilite = accessibilite,
+      lien_accessibilite = lien_accessibilite,
+      lien_mentions_legales = lien_mentions_legales,
+      lien_donnees_personnelles = lien_donnees_personnelles,
+      lien_gestion_cookies = lien_gestion_cookies
+  )
+}
+
+```
+
+
+```{r examples-footer_dsfr}
+if (interactive()) {
+  library(shiny)
+  shinyApp(
+    ui = fluidPage_dsfr(
+      footer = footer_dsfr(
+        intitule = "Territoire",
+        description = "une description",
+        accessibilite = "non",
+        add_extra_url_body = footer_extra_url_body_dsfr(
+          footer_li_dsfr(
+            href = "https://siteinternet.fr",
+            titre = "siteinternet.fr.fr - nouvelle fenêtre",
+            texte = "siteinternet.fr.fr", type = "body"
+          ),
+          footer_li_dsfr(
+            href = "https://siteinternet.fr",
+            titre = "siteinternet.fr.fr - nouvelle fenêtre",
+            texte = "siteinternet.fr.fr", type = "body"
+          )
+        ),
+        add_extra_url_bottom = footer_extra_url_bottom_dsfr(
+
+          footer_li_dsfr(
+            href = "https://siteinternet.fr",
+            titre = "siteinternet.fr.fr - nouvelle fenêtre",
+            texte = "siteinternet.fr.fr", type = "bottom"
+          )
+        )
+      ),
+      tabsetPanel_dsfr(
+        "coucou",
+        tabPanel_dsfr(
+          id = "tab1",
+          title = "Une prems tab",
+          content = tagList(h3("Coucou"),
+                            plotOutput("plot"))
+        ),
+        tabPanel_dsfr(
+          id = "tab2",
+          title = "Une deuxieme tab",
+          content = tagList(h3("Salut"),
+                            plotOutput("plot2"))
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$plot <- renderPlot({
+        plot(cars)
+      })
+      output$plot2 <- renderPlot({
+        plot(iris)
+      })
+    }
+  )
+}
+```
+
+
+
+
+```{r tests-footer_dsfr}
+test_that("footer_dsfr works", {
+  test_html <-
+    footer_dsfr(
+      intitule = "Territoire",
+      description = "une description",
+      accessibilite = "partiellement",
+      add_extra_url_body =
+        footer_extra_url_body_dsfr(
+          footer_li_dsfr(
+            href = "https://siteinternet.fr",
+            titre = "siteinternet.fr.fr - nouvelle fenêtre",
+            texte = "siteinternet.fr.fr"
+          )
+        ),
+      add_extra_url_bottom =  footer_extra_url_bottom_dsfr(accessibilite = "non")
+    )
+  
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag")
+
+  ## lecture snapshot
+  snapshot_html <- readRDS(
+    file = file.path(
+      "snapshot", # pour passer les tests en production (apres le inflate),
+      # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
+      "footer_dsfr.Rda")
+  )
+
+  #' @description Verifer que le HTML est correct en sortie
+  # Retire tous les espaces et saut de ligne pour la comparaison
+  # Pour eviter les problèmes inter-OS
+  expect_equal(gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html))
+
+  # Si erreur au précedent test deux cas possible :
+  #
+  # - nouveau composant: Lancer le saveRDS, relancer le test et recommenter le saveRDS
+  #
+  # - composant a mettre a jour: si le test ne passe plus avant de changer le snapshot,
+  #  assurez vous d'avoir bien pris en compte la nouvelle personnalisation
+  #  dans la fonction footer_dsfr puis lancer le saveRDS, relancer le test et recommenter le saveRDS
+  # 
+  # saveRDS(test_html,
+  #         file = file.path("tests/testthat/snapshot",
+  #                          "footer_dsfr.Rda"
+  #                          )
+  #         )
+
+})
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(
+  flat_file = "dev/flat_composants/flat_footer.Rmd",
+  vignette_name = NA,
+  open_vignette = FALSE,
+  check = FALSE
+)
+```
+

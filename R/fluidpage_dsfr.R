@@ -4,7 +4,7 @@
 #'
 #' @param ... element a inclure dans la page
 #' @param header l entete de la page (voir `header_dsfr()`)
-#' @param footer contenu du pied de page
+#' @param footer contenu du pied de page (voir `footer_dsfr()`)
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page

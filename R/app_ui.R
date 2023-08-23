@@ -17,6 +17,11 @@ app_ui <- function(request) {
         nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
         baseline = "https://github.com/spyrales/shinygouv"
       ),
+      footer = footer_dsfr(
+        intitule = span("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+        description = "Une application de d\u00e9monstration de {shinygouv}",
+        accessibilite = "non"
+      ),
       navbarPanel_dsfr(
         title = "inputs d\'ui",
         mod_input_ui_ui("input_ui_1")
