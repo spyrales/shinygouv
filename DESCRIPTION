@@ -2,7 +2,7 @@ Package: shinygouv
 Title: Implement the DSFR for your shiny applications
 Version: 1.0.2
 Authors@R: c(
-    person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
+    person("Juliette", "ENGELAERE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
            comment = c(ORCID = "0000-0002-1565-9313")),
     person("Murielle", "Delmotte", , "murielle@thinkr.fr", role = "aut",
@@ -11,6 +11,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-4816-4624")),
     person("Yohann", "Mansiaux", , "yohann@thinkr.fr", role = "aut",
            comment = c(ORCID = "0000-0002-8905-6603")),
+    person("Jean-Daniel", "LOMENEDE", , "jean-daniel.lomenede@seine-maritime.gouv.fr", role = "aut"),
     person("David", "Granjon", role = "ctb"),
     person("Alan", "Dipert", role = "ctb")
   )
@@ -30,7 +31,7 @@ Imports:
     magrittr (>= 2.0.3),
     purrr (>= 0.3.4),
     shiny (>= 1.7.1),
-    stringr (>= 1.4.0),
+    tools,
     utils,
     XML (>= 3.99.0.10)
 Suggests:
@@ -39,6 +40,7 @@ Suggests:
     knitr (>= 1.39),
     readxl (>= 1.4.0),
     rmarkdown (>= 2.14),
+    stringr (>= 1.4.0),
     testthat (>= 3.0.0),
     tibble (>= 3.1.7),
     withr (>= 2.5.0)

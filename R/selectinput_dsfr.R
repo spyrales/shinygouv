@@ -7,6 +7,7 @@
 #' @param choices Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element selectionné
 #' @importFrom assertthat assert_that
+#' @importFrom purrr map
 #' @return html
 #'
 #' @export

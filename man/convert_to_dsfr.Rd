@@ -17,7 +17,10 @@ des fichiers modifies
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR. Il reste des pionts de vigilances sur la convertion des tabPanel dans les navbarPage et les tabsetPanel
+Il s'agit d'une fonction expérimentale qui vous permet de convertir une application shiny en une application shiny suivant le DSFR.
+Cette fonction va modifier les fichiers de votre application, presents dans le repertoire \code{path}.
+Cf. \href{https://spyrales.github.io/shinygouv/articles/convertir-une-app-shiny-en-app-shiny-dsfr.html}{vignette dediee}.
+Il reste des points de vigilances sur la conversion des tabPanel dans les navbarPage et les tabsetPanel.
 }
 \examples{
 if (FALSE) {
