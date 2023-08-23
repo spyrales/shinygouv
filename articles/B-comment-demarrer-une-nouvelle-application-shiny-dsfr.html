@@ -137,6 +137,18 @@ possibilités suivantes (en fonction du mode développement utilisé): -
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(shinygouv)</a></code> - <code>@import shinygouv</code></p>
 </div>
 <div class="section level4">
+<h4 id="ajouter-la-favicon-marianne">Ajouter la favicon Marianne<a class="anchor" aria-label="anchor" href="#ajouter-la-favicon-marianne"></a>
+</h4>
+<p>Faute de mieux pour l’instant, vous pouvez ajouter la Marianne en
+favicon de votre app grâce à la fonction <code><a href="../reference/use_favicon_dsfr.html">use_favicon_dsfr()</a></code>
+Cette fonction est à lancer dans la console, une fois votre projet d’app
+shiny ouvert.<br>
+Le paramètre <code>golem_app</code> vous permet de préciser quelle est
+la forme de votre application shiny (Golem / basique).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/use_favicon_dsfr.html">use_favicon_dsfr</a></span><span class="op">(</span>path_app <span class="op">=</span> <span class="st">"lechemindemonapplication"</span>, golem_app <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
 <h4 id="utiliser-dautres-composants-dsfr">Utiliser d’autres composants dsfr<a class="anchor" aria-label="anchor" href="#utiliser-dautres-composants-dsfr"></a>
 </h4>
 <p>Pour toute utilisation de composants dsfr, il est nécessaire de se

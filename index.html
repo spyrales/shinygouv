@@ -100,15 +100,15 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
 <span><span class="va">app_ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span>
 <span>  header <span class="op">=</span> <span class="fu"><a href="reference/header_dsfr.html">header_dsfr</a></span><span class="op">(</span></span>
-<span>        intitule <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">span</a></span><span class="op">(</span><span class="st">"D\u00e9mo"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"de"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"{shinygouv}"</span><span class="op">)</span>,</span>
-<span>        nom_site_service <span class="op">=</span> <span class="st">"Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}"</span>,</span>
-<span>        baseline <span class="op">=</span> <span class="st">"https://github.com/spyrales/shinygouv"</span></span>
-<span>      <span class="op">)</span>,</span>
+<span>    intitule <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D\u00e9mo"</span>, <span class="st">"de"</span>, <span class="st">"{shinygouv}"</span><span class="op">)</span>,</span>
+<span>    nom_site_service <span class="op">=</span> <span class="st">"Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}"</span>,</span>
+<span>    baseline <span class="op">=</span> <span class="st">"https://github.com/spyrales/shinygouv"</span></span>
+<span>  <span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Exemple"</span>,</span>
 <span>  <span class="fu"><a href="reference/fluidRow_dsfr.html">fluidRow_dsfr</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="reference/column_dsfr.html">column_dsfr</a></span><span class="op">(</span></span>
 <span>      <span class="fl">0</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fileInput.html" class="external-link">fileInput</a></span><span class="op">(</span><span class="st">"file1"</span>, <span class="st">"Ajouter des fichiers"</span>, accept <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="reference/fileInput_dsfr.html">fileInput_dsfr</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"file1"</span>, label <span class="op">=</span> <span class="st">"Ajouter des fichiers"</span>, message <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -122,7 +122,7 @@
 <h1 id="visualiser-une-application-de-démonstration-comprenant-les-composants-déjà-implémentés">Visualiser une application de démonstration comprenant les composants déjà implémentés:<a class="anchor" aria-label="anchor" href="#visualiser-une-application-de-d%C3%A9monstration-comprenant-les-composants-d%C3%A9j%C3%A0-impl%C3%A9ment%C3%A9s"></a>
 </h1>
 <p><a href="https://ssm-ecologie.shinyapps.io/shinygouv-demo/" class="external-link">shinygouv-demo</a></p>
-<p><a href="https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/" class="external-link">shinygouv-demo, version en cours de developpement</a></p>
+<p><a href="https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/" class="external-link">shinygouv-demo dev</a>, version en cours de developpement</p>
 </div>
 <div class="section level1">
 <h1 id="contribuer-au-développement-du-package">Contribuer au développement du package<a class="anchor" aria-label="anchor" href="#contribuer-au-d%C3%A9veloppement-du-package"></a>
