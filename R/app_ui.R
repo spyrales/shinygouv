@@ -18,7 +18,7 @@ app_ui <- function(request) {
         baseline = "https://github.com/spyrales/shinygouv"
       ),
       footer = footer_dsfr(
-        intitule = c("D\u00e9mo", br(), "de", br(), "{shinygouv}"),
+        intitule = c("D\u00e9mo", "de", "{shinygouv}"),
         description = "Une application de d\u00e9monstration de {shinygouv}",
         accessibilite = "non"
       ),

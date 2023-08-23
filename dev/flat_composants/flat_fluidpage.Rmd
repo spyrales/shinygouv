@@ -169,7 +169,7 @@ test_that("fluidPage_dsfr_template works", {
 
 Le template étant défini, nous allons pourvoir apporter notre logique métier dans la fonction `fluidPage_dsfr`. Pour ça, la fonction reprend le template précédent. Ensuite, cette fonction permet d'ajouter une logique sur les paramètres, comme checker avec des assertthat ou autre.
 
-Aussi, c'est ici que nous ajoutons les dépendences à notre application avec `add_dsfr_deps`. Autrement dit, nous chargons à cet endroit le css, js et autres.
+Aussi, c'est ici que nous ajoutons les dépendances à notre application avec `add_dsfr_deps`. Autrement dit, nous chargeons à cet endroit le css, js et autres.
 
 Petit détail technique, le `parse_html` n'est pas appliqué exceptionnellement dans le `fluidPage_dsfr`afin de conserver les dépendances des `htmlwidgets`.
 Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur l'objet `ui`.

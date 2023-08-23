@@ -21,7 +21,7 @@ pkgload::load_all(export_all = TRUE)
 La `navbarPage_dsfr()` se compose de :
 
 - Un header, défini par la fonction `header_dsfr()`
-- Une navbar, définie par une série d'élement `navbarPanel_dsfr()`
+- Une navbar, définie par une série d'éléments `navbarPanel_dsfr()`
 
 ```{r function-navbarPage_dsfr}
 #' Page avec navbar
