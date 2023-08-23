@@ -15,7 +15,6 @@
 #' @importFrom purrr map
 #' @importFrom glue glue
 #' @importFrom utils read.csv2
-#' @importFrom stringr str_which
 #' @return des fichiers modifies
 #'
 #' @export
@@ -65,7 +64,7 @@ convert_to_dsfr <- function(path = "R/", version = get_dsfr_version()) {
   # ajout de la dependance a app_ui.R si il existe
   if (file.exists(file.path(path, "app_ui.R"))) {
     file_read <- readLines(file.path(path, "app_ui.R"))
-    local <- stringr::str_which(string = file_read, pattern = "@import shiny")
+    local <- grep(pattern = "@import shiny", x = file_read)
     for (i in local) {
       file_read <- append(file_read, "#' @import shinygouv", after = i)
     }

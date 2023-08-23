@@ -8,7 +8,6 @@
 #' @param tab_corresp la table de correspondance comportant 2 colonnes (composant_shiny, composant_dsfr)
 #' @importFrom glue glue
 #' @importFrom purrr reduce2
-#' @importFrom stringr str_replace_all
 #' @importFrom utils file_test
 #'
 #' @return un fichier
@@ -28,12 +27,14 @@ convert_file_to_dsfr <- function(file, tab_corresp) {
     if (isTRUE(grep("navbarPage", file_read) > 0)) {
         message(glue::glue("Attention le {file} contient un 'navbarPage()', la version dsfr n\u00e9cessite un header, voir \\?navbarPage_dsfr"))
     }
-    
-    file_convert <- purrr::reduce2(
-      paste0(tab_corresp$composant_shiny, "\\("),
-      paste0(tab_corresp$composant_dsfr, "\\("),
-      .init = file_read,
-      stringr::str_replace_all)
+
+    file_convert <- purrr::reduce2(paste0(tab_corresp$composant_shiny, "\\("),
+                                   paste0(tab_corresp$composant_dsfr, "\\("),
+                                   .init = file_read,
+                                   function(string, pattern, replacement) {
+                                     gsub(pattern, replacement, string)
+                                   })
+
     writeLines(file_convert, con = file)
 
   }

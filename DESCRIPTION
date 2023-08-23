@@ -31,7 +31,6 @@ Imports:
     magrittr (>= 2.0.3),
     purrr (>= 0.3.4),
     shiny (>= 1.7.1),
-    stringr (>= 1.4.0),
     tools,
     utils,
     XML (>= 3.99.0.10)
@@ -41,6 +40,7 @@ Suggests:
     knitr (>= 1.39),
     readxl (>= 1.4.0),
     rmarkdown (>= 2.14),
+    stringr (>= 1.4.0),
     testthat (>= 3.0.0),
     tibble (>= 3.1.7),
     withr (>= 2.5.0)
