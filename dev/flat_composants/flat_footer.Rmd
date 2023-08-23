@@ -1,5 +1,5 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "flat_footer.Rmd"
 output: html_document
 editor_options:
   chunk_output_type: console
@@ -20,13 +20,14 @@ Vous pouvez ajouter le footer officiel dans votre application avec `footer_dsfr(
 ```{r, eval=FALSE}
 fluidPage_dsfr(
   header = header_dsfr(
-    intitule = span("Intitulé", br(), "sur 3", br(), "lignes"),
+    intitule = c("Intitulé", "sur 3", "lignes"),
     nom_site_service = "Nom du site / service",
     baseline = "baseline - precisions sur l organisation",
     class = "fr-m-1w"
   ),
   footer = footer_dsfr(
-  ),
+    intitule = "intitule court"
+    ),
   title = "Exemple shiny dsfr",
   h1("Exemple d'utilisation de {shinygouv}"),
 )
@@ -320,7 +321,7 @@ test_that("footer_dsfr_template works", {
 #'
 #' Il est possible d'ajouter des url supplémentaires dans le corps et le bas du pied de page.
 #'
-#' @param intitule la partie "intitule" du bloc marque
+#' @param intitule la partie "intitule" du bloc marque. Utiliser un `shiny::tags$span()`pour mettre l'intitulé sur plusieurs lignes ou un vecteur. 
 #' @param description un texte de présentation - optionnel
 #' @param accessibilite le type d'accessibilité (non/partiellement/totalement conforme)
 #' @param lien_accessibilite lien url vers l'accessibilite
@@ -335,8 +336,8 @@ test_that("footer_dsfr_template works", {
 #' @rdname footer_dsfr
 #' @examples
 footer_dsfr <- function(    
-    intitule = NULL ,
-    description = NULL ,
+    intitule = NULL,
+    description = NULL,
     accessibilite = "non",
     lien_accessibilite = "#",
     lien_mentions_legales = "#",
@@ -346,27 +347,30 @@ footer_dsfr <- function(
     add_extra_url_bottom = NULL) {
   
   
-      if ( isFALSE(accessibilite %in% c("non", "partiellement", "totalement conforme"))){
-      stop("l accessibilite doit etre 'non', 'partiellement' ou 'totalement conforme'")
-    }
-
-      assertthat::assert_that(is.character(lien_accessibilite))
-      assertthat::assert_that(is.character(lien_mentions_legales))
-      assertthat::assert_that(is.character(lien_donnees_personnelles))
-      assertthat::assert_that(is.character(lien_gestion_cookies))
-    
-
+  if ( isFALSE(accessibilite %in% c("non", "partiellement", "totalement conforme"))){
+    stop("l accessibilite doit etre 'non', 'partiellement' ou 'totalement conforme'")
+  }
+  
+  assertthat::assert_that(is.character(lien_accessibilite))
+  assertthat::assert_that(is.character(lien_mentions_legales))
+  assertthat::assert_that(is.character(lien_donnees_personnelles))
+  assertthat::assert_that(is.character(lien_gestion_cookies))
+  
+  if(is.vector(intitule) & length(intitule) > 1){
+    intitule <- span(HTML(paste0(intitule, collapse = "<br/>")))
+  }
+  
   
   footer_dsfr_template(
     intitule = intitule,
     description = description,
     footer_body = add_extra_url_body,
     footer_bottom = add_extra_url_bottom,
-          accessibilite = accessibilite,
-      lien_accessibilite = lien_accessibilite,
-      lien_mentions_legales = lien_mentions_legales,
-      lien_donnees_personnelles = lien_donnees_personnelles,
-      lien_gestion_cookies = lien_gestion_cookies
+    accessibilite = accessibilite,
+    lien_accessibilite = lien_accessibilite,
+    lien_mentions_legales = lien_mentions_legales,
+    lien_donnees_personnelles = lien_donnees_personnelles,
+    lien_gestion_cookies = lien_gestion_cookies
   )
 }
 
@@ -379,7 +383,7 @@ if (interactive()) {
   shinyApp(
     ui = fluidPage_dsfr(
       footer = footer_dsfr(
-        intitule = "Territoire",
+        intitule = c("Territoire", "Service"),
         description = "une description",
         accessibilite = "non",
         add_extra_url_body = footer_extra_url_body_dsfr(

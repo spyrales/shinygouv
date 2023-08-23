@@ -248,7 +248,7 @@ if (interactive()) {
   library(shiny)
   my_page <- fluidPage_dsfr(
     header = header_dsfr(
-      intitule = tags$span("Prefet", br(), "de", br(), "Bretagne")
+      intitule = c("Prefet", "de", "Bretagne")
     ),
     title = "Gouv",
     htmltools::div("test")

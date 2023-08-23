@@ -19,7 +19,7 @@ convert_file_to_dsfr <- function(file, tab_corresp) {
 
     message(glue::glue("scan {file}"))
     file_read <- readLines(file)
-    
+
     if (isTRUE(grep("tabPanel", file_read) > 0)) {
         message(glue::glue("Attention le {file} contient un 'tabPanel': \n - Si celui ci \u00e9tait dans un navbarPage alors le remplacer par un navbarPanel_dsfr. \n - Si celui ci \u00e9tait dans un 'tabsetPanel', alors le remplacer par un 'tabPanel_dsfr'"))
     }
