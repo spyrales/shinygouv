@@ -24,6 +24,15 @@ library(shinygouv)
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
+# Comment savoir ce qui a été mis à jour ? 
+
+Le principe de ce package est de proposer une transposition des fonctions de {shiny} à la charte graphique Marque Etat grâce au [design system de l'Etat](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/. Pour savoir si une montée de version est nécessaire, consultez les notes de versions du dsfr sur https://www.systeme-de-design.gouv.fr/a-propos/versions/version-courante.
+
+Egalement, les fonctions shiny transposées peuvent évoluer : consultez ici les notes de versions de shiny : https://github.com/rstudio/shiny/blob/main/NEWS.md.
+
+
+# Procéder à une montée de version du dsfr
+
 Dans le dossier "inst/" du package, nous allons créer deux dossiers:
 
 - un pour récolter les css et js du dsfr, 
@@ -38,7 +47,7 @@ Indiquez ici le numéro de la nouvelle version à implémenter que vous pourrez 
 nouvelle_version <- "1.9.3"
 ```
 
-# Récolter les fichiers CSS et JS du DSFR
+## Récolter les fichiers CSS et JS du DSFR
 
 - Télécharger le zip de la dernière version `1.7.2` qui se trouve [ici](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/223019574/D+veloppeurs)
 - Décompresser le fichier
@@ -79,7 +88,7 @@ Vous pouvez lancer le contenu du script [dev/tools/maj_version_dsfr.R](https://g
 On pourra ensuite créer une fonction qui permettera d'ajouter les dépendances dans les applications {shiny}.
 
 
-## Mettre à jour les composants avec le nouveau dsfr
+### Mettre à jour les composants avec le nouveau dsfr
 
 Dans le fichier "table_correspondance_shiny_dsfr.csv", mettez `non` dans la colonne `mis_a_jour` car pour le moment, vous ne vous êtes pas assurer du bon foncionnement des composants dans la nouvelle version.
 
@@ -101,7 +110,7 @@ cat(
 )
 ```
 
-# Monter le numéro de version dans DESCRIPTION
+## Monter le numéro de version dans DESCRIPTION
 
 Quand tous les dossiers sont prêt, pour garder trace de la version du dsfr utilisée dans {shinygouv}, nous stockons celle en cours dans le fichier DESCRIPTION
 
@@ -110,7 +119,7 @@ Quand tous les dossiers sont prêt, pour garder trace de la version du dsfr util
 desc::desc_set("VersionDsfr" = nouvelle_version)
 ```
 
-# Nettoyer la version d'avant
+## Nettoyer la version d'avant
 
 Nous n'avons pas besoin de stocker toutes les versions du dsfr dans le package.  
 Maintenant que vous avez récupéré les fichiers pour une nouvelle version, vous pouvez supprimer la plus ancienne.  
@@ -133,7 +142,7 @@ if (length(all_versions > 2)) {
 }
 ```
 
-# Récupérer les codes HTML un par un
+## Récupérer les codes HTML un par un
 
 Suivre la procédure de création de composant dans la vignette `Comment faire un composant shiny`
 

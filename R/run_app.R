@@ -1,4 +1,4 @@
-#' Run the Shiny Application
+#' Run the shinygouv-demo Application
 #'
 #' @param ... arguments to pass to golem_opts.
 #' See `?golem::get_golem_options` for more details.
