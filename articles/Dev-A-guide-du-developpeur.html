@@ -98,15 +98,22 @@ développeuses.</p>
 général de contribution à <a href="https://spyrales.github.io/shinygouv/CONTRIBUTING.html" class="external-link uri">https://spyrales.github.io/shinygouv/CONTRIBUTING.html</a></p>
 </div>
 <div class="section level2">
-<h2 id="structuration-du-repo-a-compléter">Structuration du repo (a compléter)<a class="anchor" aria-label="anchor" href="#structuration-du-repo-a-compl%C3%A9ter"></a>
+<h2 id="structuration-du-repo">Structuration du repo<a class="anchor" aria-label="anchor" href="#structuration-du-repo"></a>
 </h2>
 <p>Le développement de ce package a été réalisé <a href="https://thinkr-open.github.io/fusen/" class="external-link">avec {fusen}</a> : les
 fonctions, vignettes et test sont générées par des fichiers Rmd dans le
-dossier /dev.</p>
-<p>Le repo contient deux app : - une app de demo des composant de
-shinygouv : que l’on peut visualiser avec shinygouv::run_app(), - une
-app de test pour la fonction de conversion convert_to_dsfr(), présente
-dans “inst/test.convert.dsfr/”.</p>
+dossier /dev/flat_composants.</p>
+<p>Le repo contient deux app :</p>
+<ul>
+<li>une app de demo des composant de shinygouv : que l’on peut
+visualiser avec shinygouv::run_app(),<br>
+</li>
+<li>une app de test pour la fonction de conversion convert_to_dsfr(),
+présente dans “inst/test.convert.dsfr/”.</li>
+</ul>
+<p>Les modules de l’app de démo son rangées dans le répertoire
+<code>R</code> et se mélangent aux fonctions de composants
+implémentées.</p>
 </div>
 <div class="section level2">
 <h2 id="version-du-framework-dsfr-en-cours-de-développement">Version du framework dsfr en cours de développement<a class="anchor" aria-label="anchor" href="#version-du-framework-dsfr-en-cours-de-d%C3%A9veloppement"></a>
