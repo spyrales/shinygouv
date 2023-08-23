@@ -12,6 +12,7 @@
 ########################################
 
 ## Fill the DESCRIPTION ----
+usethis::use_description()
 ## Add meta data about your application
 ##
 ## /!\ Note: if you want to change the name of your app during development,
@@ -49,6 +50,7 @@ usethis::use_git()
 golem::use_recommended_tests()
 
 ## Favicon ----
+shingouv::use_favicon_dsfr()
 # If you want to change the favicon (default is golem's one)
 golem::use_favicon() # path = "path/to/ico". Can be an online file.
 # golem::remove_favicon() # Uncomment to remove the default favicon

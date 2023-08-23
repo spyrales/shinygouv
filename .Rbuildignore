@@ -17,3 +17,4 @@ $run_dev.*
 docs
 ^inst/test.convert.dsfr/\.Rbuildignore$
 ^deliverables$
+^dev/tools/$
