@@ -83,45 +83,57 @@
 <div class="section level1">
 <div class="page-header"><h1 id="shinygouv">{shinygouv}<a class="anchor" aria-label="anchor" href="#shinygouv"></a>
 </h1></div>
-<p>Le package {shinygouv} permet d’utiliser le template existant pour le <code>Système de Design de l'Etat</code> (DSFR) dans vos applications Shiny.</p>
+<p>Le package <code>{shinygouv}</code> permet d’utiliser le <a href="https://www.systeme-de-design.gouv.fr/" class="external-link"><code>Système de Design de l'Etat</code> (DSFR)</a> dans vos applications Shiny.</p>
+<p>Cela leur donnera ce genre de look :</p>
+<p><img src="reference/figures/look_dsfr.png"></p>
+<p>Il s’installe depuis github :</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"spyrales/shinygouv"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="comment-utiliser-le-package">Comment utiliser le package<a class="anchor" aria-label="anchor" href="#comment-utiliser-le-package"></a>
 </h1>
 <p>Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la partie UI:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">app_ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span>
 <span>  header <span class="op">=</span> <span class="fu"><a href="reference/header_dsfr.html">header_dsfr</a></span><span class="op">(</span></span>
-<span>    intitule <span class="op">=</span> <span class="st">"Intitule"</span>,</span>
-<span>    officiel <span class="op">=</span> <span class="st">"Officiel"</span>,</span>
-<span>    nom_site_service <span class="op">=</span> <span class="st">"Nom du site / service"</span>,</span>
-<span>    baseline <span class="op">=</span> <span class="st">"baseline - precisions sur l organisation"</span>,</span>
-<span>    class <span class="op">=</span> <span class="st">"fr-m-1w"</span></span>
-<span>  <span class="op">)</span>,</span>
+<span>        intitule <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">span</a></span><span class="op">(</span><span class="st">"D\u00e9mo"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"de"</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"{shinygouv}"</span><span class="op">)</span>,</span>
+<span>        nom_site_service <span class="op">=</span> <span class="st">"Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}"</span>,</span>
+<span>        baseline <span class="op">=</span> <span class="st">"https://github.com/spyrales/shinygouv"</span></span>
+<span>      <span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Exemple"</span>,</span>
 <span>  <span class="fu"><a href="reference/fluidRow_dsfr.html">fluidRow_dsfr</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="reference/column_dsfr.html">column_dsfr</a></span><span class="op">(</span><span class="fl">0</span>,</span>
-<span>                <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Exemple colonne"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="reference/column_dsfr.html">column_dsfr</a></span><span class="op">(</span></span>
+<span>      <span class="fl">0</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fileInput.html" class="external-link">fileInput</a></span><span class="op">(</span><span class="st">"file1"</span>, <span class="st">"Ajouter des fichiers"</span>, accept <span class="op">=</span> <span class="st">".csv"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
+<span>  ui <span class="op">=</span> <span class="va">app_ui</span>,</span>
+<span>  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
-<h1 id="visualiser-un-application-de-démonstration-comprenant-les-composants-déjà-implémentés">Visualiser un application de démonstration comprenant les composants déjà implémentés:<a class="anchor" aria-label="anchor" href="#visualiser-un-application-de-d%C3%A9monstration-comprenant-les-composants-d%C3%A9j%C3%A0-impl%C3%A9ment%C3%A9s"></a>
+<h1 id="visualiser-une-application-de-démonstration-comprenant-les-composants-déjà-implémentés">Visualiser une application de démonstration comprenant les composants déjà implémentés:<a class="anchor" aria-label="anchor" href="#visualiser-une-application-de-d%C3%A9monstration-comprenant-les-composants-d%C3%A9j%C3%A0-impl%C3%A9ment%C3%A9s"></a>
 </h1>
 <p><a href="https://ssm-ecologie.shinyapps.io/shinygouv-demo/" class="external-link">shinygouv-demo</a></p>
+<p><a href="https://ssm-ecologie.shinyapps.io/shinygouv-demo-dev/" class="external-link">shinygouv-demo, version en cours de developpement</a></p>
 </div>
 <div class="section level1">
 <h1 id="contribuer-au-développement-du-package">Contribuer au développement du package<a class="anchor" aria-label="anchor" href="#contribuer-au-d%C3%A9veloppement-du-package"></a>
 </h1>
-<p>Voir le README du dossier <a href="dev/documentation">documentation</a></p>
+<p>Voir les vignettes à l’intention des développeurs du <a href="https://spyrales.github.io/shinygouv/articles/index.html" class="external-link">site de présentation du packages et de ses fonctions</a></p>
 </div>
 <div class="section level1">
 <h1 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h1>
-<p>Please note that the {shinygouv} project is released with a Contributor Code of Conduct. By contributing to this project, you agree to abide by its terms.</p>
+<p>Notez svp qu’un Code de conduite (<a href="https://spyrales.github.io/shinygouv/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>) encadre la participation au projet {shinygouv}.</p>
+<p>En contribuant à ce projet, vous acceptez de le respecter.</p>
 </div>
 
   </div>
