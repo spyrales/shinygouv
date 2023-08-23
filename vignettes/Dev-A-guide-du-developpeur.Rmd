@@ -17,14 +17,16 @@ Ceci est un dossier de documentation dédié aux développeurs et développeuses
 ## Contribuer à {shinygouv} - Introduction
 Pour des contributions au code de ce projet, svp regardez le guide général de contribution à https://spyrales.github.io/shinygouv/CONTRIBUTING.html
 
-## Structuration du repo (a compléter)
+## Structuration du repo
 
-Le développement de ce package a été réalisé [avec {fusen}](https://thinkr-open.github.io/fusen/) : les fonctions, vignettes et test sont générées par des fichiers Rmd dans le dossier /dev.  
+Le développement de ce package a été réalisé [avec {fusen}](https://thinkr-open.github.io/fusen/) : les fonctions, vignettes et test sont générées par des fichiers Rmd dans le dossier /dev/flat_composants.  
 
-Le repo contient deux app : 
-- une app de demo des composant de shinygouv : que l'on peut visualiser avec shinygouv::run_app(), 
-- une app de test pour la fonction de conversion convert_to_dsfr(), présente dans "inst/test.convert.dsfr/".
+Le repo contient deux app :  
 
+- une app de demo des composant de shinygouv : que l'on peut visualiser avec shinygouv::run_app(),  
+- une app de test pour la fonction de conversion convert_to_dsfr(), présente dans "inst/test.convert.dsfr/".  
+
+Les modules de l'app de démo son rangées dans le répertoire `R` et se mélangent aux fonctions de composants implémentées.
 
 ## Version du framework dsfr en cours de développement
 
