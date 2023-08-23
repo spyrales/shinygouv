@@ -4,7 +4,13 @@
 \alias{navbarPage_dsfr}
 \title{Page avec navbar}
 \usage{
-navbarPage_dsfr(title, ..., header = NULL, id = NULL, footer = NULL)
+navbarPage_dsfr(
+  title,
+  ...,
+  header = header_dsfr(intitule = "intitule a remplacer"),
+  id = NULL,
+  footer = NULL
+)
 }
 \arguments{
 \item{title}{Titre de l'application (Attention, différent de shiny::navbarPage)}

@@ -686,7 +686,7 @@ test_that("column_dsfr works", {
 
 ## Conclusion
 
-Voila plusieurs exemples d'implémentation de composants/layouts qui ne demandent pas d'intéraction avec {shiny}. Vous pouvez reproduire ce processus avec les [cartes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/222331445/Carte+-+Card) ou les [alertes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/736362500/Alertes+-+Alerts).
+Voila plusieurs exemples d'implémentation de composants/layouts qui ne demandent pas d'interaction avec {shiny}. Vous pouvez reproduire ce processus avec les [cartes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/222331445/Carte+-+Card) ou les [alertes](https://gouvfr.atlassian.net/wiki/spaces/DB/pages/736362500/Alertes+-+Alerts).
 
 ```{r development-inflate, eval=FALSE}
 # Run but keep eval=FALSE to avoid infinite loop

@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' if (interactive()) {
-#' 
+#'
 #'   library(shiny)
 #'   my_page <- fluidPage_dsfr(
 #'     header = header_dsfr(
@@ -26,7 +26,7 @@
 #'     title = "Gouv",
 #'     htmltools::div("test")
 #'   )
-#' 
+#'
 #'   shiny::shinyApp(
 #'     my_page,
 #'     server = function(input, output) {}
