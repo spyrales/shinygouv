@@ -20,7 +20,7 @@ Vous pouvez ajouter le header officiel dans votre application avec `header_dsfr(
 ```{r, eval=FALSE}
 fluidPage_dsfr(
   header = header_dsfr(
-    intitule = span("Intitulé", br(), "sur 3", br(), "lignes"),
+    intitule = c("Intitul\u00e9", "sur 3", "lignes"),
     nom_site_service = "Nom du site / service",
     baseline = "baseline - precisions sur l organisation",
     class = "fr-m-1w"
@@ -103,7 +103,7 @@ test_that("header_dsfr_template works", {
     class = "class",
     intitule = "Prefet de Bretagne",
     url = "https://www.prefectures-regions.gouv.fr/bretagne",
-    titre = "Accueil - Préfecture de Bretagne",
+    titre = "Accueil - Pr\u00e9fecture de Bretagne",
     nom_site_service = "DREAL Bretagne",
     baseline = "description"
   )
@@ -119,7 +119,7 @@ test_that("header_dsfr_template works", {
       class = "class",
       intitule = "Prefet de Bretagne",
       url = "https://www.prefectures-regions.gouv.fr/bretagne",
-      titre = "Accueil - Préfecture de Bretagne",
+      titre = "Accueil - Pr\u00e9fecture de Bretagne",
       nom_site_service = "DREAL Bretagne",
       baseline = "description"
     ),
@@ -138,8 +138,8 @@ test_that("header_dsfr_template works", {
 
 ```{r function-header_dsfr}
 #' header_dsfr
-#'
-#' @param intitule la partie "intitule" du bloc marque
+#' Vous pouvez ajouter le header officiel dans votre application avec `header_dsfr()`. 
+#' @param intitule la partie "intitule" du bloc marque. Utiliser un `shiny::tags$span()`pour mettre l'intitulé sur plusieurs lignes ou un vecteur. 
 #' @param url l url de redirection - optionnel
 #' @param titre le texte de description de l url - optionnel
 #' @param nom_site_service le nom du site ou du service - optionnel
@@ -150,7 +150,7 @@ test_that("header_dsfr_template works", {
 #'
 #' @examples
 header_dsfr <- function(
-    intitule,
+    intitule = c("intitul\u00e9", "du", 'bloc-marque'),
     url = "/",
     titre = NULL,
     nom_site_service = NULL,
@@ -160,6 +160,10 @@ header_dsfr <- function(
   # check les params
   # assertthat::assert_that(is.character(intitule))
   # TODO verifier que l url est valide
+  
+  if(is.vector(intitule) & length(intitule) > 1){
+    intitule <- span(HTML(paste0(intitule, collapse = "<br/>")))
+  }
 
   res <- header_dsfr_template(
     class = class,
@@ -179,7 +183,7 @@ header_dsfr <- function(
 if(interactive()) {
   library(shiny)
   header_dsfr(
-    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+    intitule = c("Pr\u00e9fet", "de", "Bretagne")
   )
 }
 ```
@@ -187,11 +191,14 @@ if(interactive()) {
 ```{r tests-header_dsfr}
 test_that("header_dsfr works", {
   test_html <- header_dsfr(
+    intitule = c("Prefet", "de", "Bretagne")
+  )
+  test_html2 <- header_dsfr(
     intitule = shiny::tags$span("Prefet", br(), "de", br(), "Bretagne")
   )
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag")
-
+  expect_s3_class(test_html2, "shiny.tag")
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
@@ -204,6 +211,8 @@ test_that("header_dsfr works", {
   # Retire tous les espaces et saut de ligne pour la comparaison
   # Pour eviter les problèmes inter-OS
   expect_equal(gsub("\\s|\\n", "", test_html),
+    gsub("\\s|\\n", "", snapshot_html))
+  expect_equal(gsub("\\s|\\n", "", test_html2),
     gsub("\\s|\\n", "", snapshot_html))
 
   # Si erreur au précedent test deux cas possible :

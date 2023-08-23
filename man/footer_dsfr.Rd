@@ -5,8 +5,8 @@
 \alias{footer_bottom_dsfr}
 \alias{footer_dsfr}
 \alias{footer_extra_url_body_dsfr}
-\alias{footer_li_dsfr}
 \alias{footer_extra_url_bottom_dsfr}
+\alias{footer_li_dsfr}
 \title{footer_bottom_dsfr}
 \usage{
 footer_bottom_dsfr(
@@ -32,6 +32,8 @@ footer_dsfr(
 
 footer_extra_url_body_dsfr(...)
 
+footer_extra_url_bottom_dsfr(...)
+
 footer_li_dsfr(id = NULL, href, titre = NULL, texte, type = "body")
 
 footer_extra_url_bottom_dsfr(...)
@@ -49,7 +51,7 @@ footer_extra_url_bottom_dsfr(...)
 
 \item{lien_gestion_cookies}{lien url vers la gestion des cookies}
 
-\item{intitule}{la partie "intitule" du bloc marque}
+\item{intitule}{la partie "intitule" du bloc marque. Utiliser un \code{shiny::tags$span()}pour mettre l'intitulé sur plusieurs lignes ou un vecteur.}
 
 \item{description}{un texte de présentation - optionnel}
 
@@ -77,6 +79,8 @@ html
 html
 
 html
+
+html
 }
 \description{
 Il se compose des éléments suivants:
@@ -89,6 +93,8 @@ Il est possible d'ajouter des url supplémentaires dans le corps et le bas du pi
 
 Permet d'ajouter des liends/url dans le corps du pied de page
 
+Permet d'ajouter des liends/url dans le bas du pied de page
+
 Permet de créer la balise html pour ajouter un lien en fonction de sa destination (body/bottom)
 
 Permet d'ajouter des liends/url dans le bas du pied de page
@@ -99,7 +105,7 @@ if (interactive()) {
   shinyApp(
     ui = fluidPage_dsfr(
       footer = footer_dsfr(
-        intitule = "Territoire",
+        intitule = c("Territoire", "Service"),
         description = "une description",
         accessibilite = "non",
         add_extra_url_body = footer_extra_url_body_dsfr(
@@ -152,6 +158,7 @@ if (interactive()) {
 footer_extra_url_body_dsfr(
                 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
                 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"))
+footer_extra_url_bottom_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body")
 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "bottom")
 }

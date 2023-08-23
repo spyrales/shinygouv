@@ -2,10 +2,11 @@
 % Please edit documentation in R/header_dsfr.R
 \name{header_dsfr}
 \alias{header_dsfr}
-\title{header_dsfr}
+\title{header_dsfr
+Vous pouvez ajouter le header officiel dans votre application avec \code{header_dsfr()}.}
 \usage{
 header_dsfr(
-  intitule,
+  intitule = c("intitulé", "du", "bloc-marque"),
   url = "/",
   titre = NULL,
   nom_site_service = NULL,
@@ -14,7 +15,7 @@ header_dsfr(
 )
 }
 \arguments{
-\item{intitule}{la partie "intitule" du bloc marque}
+\item{intitule}{la partie "intitule" du bloc marque. Utiliser un \code{shiny::tags$span()}pour mettre l'intitulé sur plusieurs lignes ou un vecteur.}
 
 \item{url}{l url de redirection - optionnel}
 
@@ -31,12 +32,13 @@ html
 }
 \description{
 header_dsfr
+Vous pouvez ajouter le header officiel dans votre application avec \code{header_dsfr()}.
 }
 \examples{
 if(interactive()) {
   library(shiny)
   header_dsfr(
-    intitule = span("Prefet", br(), "de", br(), "Bretagne")
+    intitule = c("Pr\u00e9fet", "de", "Bretagne")
   )
 }
 }
