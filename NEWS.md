@@ -1,22 +1,40 @@
+# shinygouv 1.0.3
+
+## Fix 
+
+* modalDialog : correction du template pour permettre la fermeture des fenêtres si plusieurs modales ouvertes
+
+
 # shinygouv 1.0.2
 
-## chore
+## Composants
 
-* suppression de la dépendance à `stringr`
+* Ajout du `footer_dsfr()`
+* Ajout de `fileInput_dsfr()`
+* Ajout de la Marianne en favicon
 
-## fix
+## Chore
 
-* Correction de la classe du `fluidPage_dsfr()`
+* Suppression de la dépendance à `stringr`
+
+## Fix
+
+* Correction de la classe du `fluidPage_dsfr()`  
+* Les intitulé du bloc marque Marianne peuvent se mettre sur plusieurs lignes
+
+## Doc
+
+* Enrichissement de la doc utilisateur et développeur
 
 # shinygouv 1.0.0
 
-## chore
+## Chore
 
 * refactorisation de l'application de démonstration
   + passage en modules shiny
   + tri des composants par type
   
-## feat
+## Composants
 
 * Ajout de `dateRangeInput_dsfr()` et `updateDateRangeInput_dsfr()`
 * Ajout de `numericInput_dsfr()` et `updateNumericInput_dsfr()`
@@ -25,7 +43,7 @@
 * Ajout de `radioGroupButtons_dsfr()` et `updateRadioGroupButtons_dsfr()`
 * Ajout de `sliderInput_dsfr()` et `updateSliderInput_dsfr()`
 
-## doc
+## Doc
 
 * Nettoyage du répertoire `dev/`
 * Séparation de la documentation développeur et de la documentation utilisateur dans le répertoire `vignettes/`
@@ -33,13 +51,13 @@
 
 # shinygouv 0.0.2 to 0.0.5
 
-## chore
+## Chore 
 
 * ajout de la version 1.9.3 du dsfr
 * suppression de la version 1.6.0 du dsfr
 * correction problème encodage
 
-## feat
+## Composants
 
 * Ajout de `modalDialog_dsfr()`
 * Ajout de `withSpinner_dsfr()`
@@ -48,6 +66,8 @@
 * Ajout de `checkBoxInput_dsfr()` et `updateCheckboxInput_dsfr()`
 * Ajout de `checkBoxGroupInput_dsfr()` et `updateCheckboxGroupInput_dsfr()`
 * Ajout de `tabPanel()` et `tabsetPanel_dsfr()`
+
+## Doc
 
 * Suivi de l'implémentation d'un nouveau composant (ici `toggleSwitch_dsfr()`) à partir d'un [commit](https://github.com/spyrales/shinygouv/pull/82/commits/ed19c583c45aa04d9ebd51b1984851891e360b98)
 
