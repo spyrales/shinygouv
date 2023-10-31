@@ -8,7 +8,7 @@
 #' @param title titre du modal
 #' @param footer footer du modal
 #' @return html
-#'
+#' @seealso [modaldialog() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/modaldialog)
 #' @export
 #' @importFrom htmltools tagList
 #' @examples

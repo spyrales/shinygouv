@@ -4,6 +4,13 @@
 #'
 #' @inherit shiny::sliderInput
 #' @inherit shiny::updateSliderInput
+#' @seealso [selectInput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/sliderinput)
 #' @export
 sliderInput_dsfr <- shiny::sliderInput
 updateSliderInput_dsfr <- shiny::updateSliderInput
+
+
+usethis::create_package( path = "/monprmierpackage",
+                         open = FALSE,
+                         rstudio = FALSE,
+                         roxygen = FALSE)

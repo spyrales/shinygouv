@@ -8,7 +8,7 @@
 #'
 #' @importFrom shiny updateNumericInput
 #' @return html
-#'
+#' @seealso [updatetabsetpanel() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatetabsetpanel)
 #' @export
 #' @examples
 #' if (interactive()){

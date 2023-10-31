@@ -9,7 +9,7 @@
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
-#'
+#' @seealso [selectInput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/selectinput)
 #' @export
 #'
 #' @examples
@@ -50,7 +50,7 @@
 #'   ),
 #'   selected = "gear"
 #' )
-#'   
+#'
 #' )
 #'
 #'     )

@@ -8,7 +8,7 @@
 #' @param content contenu du tabset
 #'
 #' @return html
-#'
+#' @seealso [tabpanel() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/tabpanel)
 #' @export
 #' @rdname tabPanel
 #'

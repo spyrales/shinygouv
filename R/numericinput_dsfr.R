@@ -11,7 +11,7 @@
 #' @param step pas utilisé entre 2 valeurs
 #'
 #' @return html
-#'
+#' @seealso [numericInput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/numericinput)
 #' @export
 #'
 #' @examples
