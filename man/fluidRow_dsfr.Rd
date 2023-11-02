@@ -30,3 +30,6 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/fluidpage}{fluidPage}
+}
