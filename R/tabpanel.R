@@ -6,12 +6,10 @@
 #' @param ... liste de tabPanel_dsfr
 #' @param title titre du tabset
 #' @param content contenu du tabset
-#'
+#' @seealso [tabsetpanel() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/tabsetpanel)
 #' @return html
-#' @seealso [tabpanel() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/tabpanel)
 #' @export
 #' @rdname tabPanel
-#'
 #' @examples
 #' if (interactive()){
 #'   library(shiny)
