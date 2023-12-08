@@ -35,3 +35,7 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link[=column]{column()}} Pour en savoir plus sur la fonction originelle de Shiny.
+\href{https://shiny.posit.co/r/reference/shiny/latest/column.html}{Documentation externe}
+}

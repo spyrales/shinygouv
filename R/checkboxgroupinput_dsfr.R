@@ -8,37 +8,39 @@
 #' @param selected Valeurs préselectionnées
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @return html
+#' @seealso [checkboxGroupInput()] Pour en savoir plus sur la fonction originelle de Shiny.
+#' [Documentation externe](https://shiny.posit.co/r/reference/shiny/latest/checkboxgroupinput)
 #'
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#'   
+#'
 #'   library(shiny)
-#'   
+#'
 #'   ui <- fluidPage_dsfr(
 #'     checkboxGroupInput_dsfr("checkboxes", "Variables to show:",
 #'                             c("Cylinders" = "cyl",
 #'                               "Transmission" = "am",
 #'                               "Gears" = "gear"), inline = TRUE)
 #'   )
-#'   
+#'
 #'   server <- function(input, output, session) {
 #'     observeEvent(input$checkboxes, {
 #'       print(input$checkboxes)
 #'     })
 #'   }
-#'   
+#'
 #'   shinyApp(ui, server)
 #' }
 checkboxGroupInput_dsfr <- function(inputId,
                                     label, choices = NULL, selected = NULL, inline = FALSE) {
-  
+
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.logical(inline))
-  
+
   # if choices is null then choices_value and choice_names must be not empty with the same length
   # assertthat::assert_that(!is.null(choices) | (length(choice_values) > 0 & length(choice_values) == length(choice_names)))
   #

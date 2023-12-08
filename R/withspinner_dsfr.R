@@ -4,7 +4,6 @@
 #' @importFrom htmltools HTML
 #' @return an html code
 #' @examples addWithSpinner()
-#'
 #' @noRd
 addWithSpinner <- function() {
   HTML('<div class="lds-ring" id = "lds-ring" style="display:none"><div></div><div></div><div></div><div></div></div>')
@@ -16,7 +15,6 @@ addWithSpinner <- function() {
 #' @param inputId id du spinner
 #' @param session session
 #' @return side effect. Masque le spinner
-#'
 #' @noRd
 hideSpinner_dsfr <- function(
   inputId,
@@ -31,7 +29,6 @@ hideSpinner_dsfr <- function(
 #' @param inputId id du spinner
 #' @param session session
 #' @return side effect. Affiche le spinner
-#'
 #' @noRd
 showSpinner_dsfr <- function(
   inputId,
@@ -48,6 +45,7 @@ showSpinner_dsfr <- function(
 #' @param session session shiny
 #'
 #' @return html
+#' @seealso [withSpinner() in Shinycssloaders](https://www.rdocumentation.org/packages/shinycssloaders/versions/1.0.0/topics/withSpinner)
 #' @export
 #' @examples
 #' if (interactive()) {

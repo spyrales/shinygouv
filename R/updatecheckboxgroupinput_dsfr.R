@@ -10,14 +10,14 @@
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @importFrom shiny updateCheckboxInput
 #' @return html
-#'
+#' @seealso [updatecheckboxgroupinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatecheckboxgroupinput)
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'   
+#'
 #'   library(shiny)
-#'   
+#'
 #'   ui <- fluidPage_dsfr(
 #'     checkboxGroupInput_dsfr(
 #'       "variable", "Variables to show:",
@@ -28,13 +28,13 @@
 #'     actionButton_dsfr("go", "Change for inline and choices"),
 #'     actionButton_dsfr("go2", "Change without inline and choices")
 #'   )
-#'   
+#'
 #'   server <- function(input, output, session) {
 #'     observeEvent(input$variable, {
 #'       print(input$variable)
 #'     })
-#'     
-#'     
+#'
+#'
 #'     observeEvent(input$go, {
 #'       updateCheckboxGroupInput_dsfr(
 #'         session = session,
@@ -44,10 +44,10 @@
 #'         selected = "a",
 #'         inline = TRUE
 #'       )
-#'       
+#'
 #'     })
-#'     
-#'     
+#'
+#'
 #'     observeEvent(input$go2, {
 #'       updateCheckboxGroupInput_dsfr(
 #'         session = session,
@@ -57,9 +57,9 @@
 #'         selected = "a",
 #'         inline = FALSE
 #'       )
-#'       
+#'
 #'     })
-#'     
+#'
 #'   }
 #'   shinyApp(ui, server)
 #' }
@@ -69,19 +69,19 @@ updateCheckboxGroupInput_dsfr <- function(inputId,
                                           selected = NULL,
                                           inline = FALSE,
                                           session = shiny::getDefaultReactiveDomain()) {
-  
+
   ns <- session$ns
-  
+
   if (!is.null(selected)) {
     selected <- as.character(selected)
   }
-  
+
   if (is.null(names(choices))) {
     nom_choix <- choices
   } else {
     nom_choix <- names(choices)
   }
-  
+
   if (!is.null(choices)) {
     tag <- checkboxGroupInput_dsfr(
       inputId = ns(inputId),
@@ -91,18 +91,18 @@ updateCheckboxGroupInput_dsfr <- function(inputId,
       selected = selected
     ) %>%
       htmltools::tagQuery()
-    
+
     choices <- tag$find(".shiny-options-group")$selectedTags()
     choices <- as.character(choices)
   }
-  
+
   message <- utils::getFromNamespace("dropNulls", "shiny")(list(
     label = label,
     options = choices,
     value = selected
   ))
   session$sendInputMessage(inputId, message)
-  
+
   # Choices have to changes to set up inline
   if (!is.null(choices)) {
     update_inline(ns(inputId), inline, session)

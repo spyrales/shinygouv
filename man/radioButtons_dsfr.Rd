@@ -46,3 +46,6 @@ radioButtons_dsfr(
   inline = TRUE
 )
 }
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/radiobuttons}{radioButtons}
+}

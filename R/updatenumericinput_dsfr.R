@@ -12,7 +12,7 @@
 #'
 #' @importFrom shiny updateNumericInput
 #' @return html
-#'
+#' @seealso [updatenumericinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatenumericinput)
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions

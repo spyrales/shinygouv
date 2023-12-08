@@ -59,7 +59,7 @@ selectInput_dsfr(
   ),
   selected = "gear"
 )
-  
+
 )
 
     )
@@ -69,4 +69,7 @@ selectInput_dsfr(
 
   shinyApp(ui, server)
 }
+}
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/selectinput}{selectInput() in Shiny}
 }

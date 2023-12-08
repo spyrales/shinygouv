@@ -116,3 +116,6 @@ if (interactive()) {
   shinyApp(ui = ui, server = server)
 }
 }
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/navbarpage}{navbarPage() in Shiny}.
+}

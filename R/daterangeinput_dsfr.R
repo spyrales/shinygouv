@@ -7,11 +7,11 @@
 #' @param start character La date de début au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param end character La date de fin au format aaaa-mm-jj. Si NULL (valeur par défaut), la date utilisée est la date du jour.
 #' @param separator character Chaîne à afficher entre les zones de saisie de début et de fin de dates.
-#' 
+#'
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
-#'
+#' @seealso [daterangeinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/daterangeinput)
 #' @export
 #'
 #' @examples
@@ -19,7 +19,7 @@
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinygouv)
-#'   
+#'
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
@@ -36,14 +36,14 @@
 #'     )
 #'   )
 #'   server <- function(input, output, session) {
-#' 
+#'
 #'   observeEvent(input$daterange1, {
 #'     print(input$daterange1)
-#'   })  
-#' 
+#'   })
+#'
 #'   }
-#'   
-#' 
+#'
+#'
 #'   shinyApp(ui, server)
 #' }
 dateRangeInput_dsfr <- function(
@@ -58,19 +58,19 @@ dateRangeInput_dsfr <- function(
   assertthat::assert_that(is.character(separator))
   assertthat::assert_that(is.character(label))
 
-  
+
   if (isTRUE(is.null(start))) {
     start <- Sys.Date()
   } else {
     assertthat::assert_that(is.character(start))
   }
-  
+
   if (isTRUE(is.null(end))) {
     end <- Sys.Date()
   } else {
     assertthat::assert_that(is.character(end))
   }
-  
+
   dateRangeInput_dsfr_template(
     inputId = inputId,
     label = label,

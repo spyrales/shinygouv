@@ -28,7 +28,7 @@ dateRangeInput_dsfr
 if (interactive()) {
   library(shiny)
   library(shinygouv)
-  
+
   ui <- fluidPage_dsfr(
     header = header_dsfr(
       intitule = "Intitule",
@@ -48,11 +48,14 @@ if (interactive()) {
 
   observeEvent(input$daterange1, {
     print(input$daterange1)
-  })  
+  })
 
   }
-  
+
 
   shinyApp(ui, server)
 }
+}
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/daterangeinput}{daterangeinput() in Shiny}
 }

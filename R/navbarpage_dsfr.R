@@ -3,14 +3,13 @@
 #' Page avec navbar
 #'
 #' @return html
-#'
+#' @seealso  [navbarPage() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/navbarpage).
 #' @export
 #' @param ... Une list de navbarPanel_dsfr
 #' @param title Titre de l'application (Attention, différent de shiny::navbarPage)
 #' @param id Id de la navbar
 #' @param header header_dsfr()
 #' @param footer pied de page
-#'
 #' @examples
 #' library(shiny)
 #' # Define UI

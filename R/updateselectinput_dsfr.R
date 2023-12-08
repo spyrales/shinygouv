@@ -10,7 +10,7 @@
 #'
 #' @importFrom shiny updateSelectInput
 #' @return html
-#'
+#' @seealso [updateselectinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updateselectinput)
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions

@@ -7,14 +7,14 @@
 #' @param class des classes a ajouter si necessaire
 #'
 #' @return html
-#'
+#' @seealso [actionButton()] Pour en savoir plus sur la création de boutons d'action avec Shiny. [Documentation externe](https://shiny.posit.co/r/reference/shiny/latest/actionbutton)
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinygouv)
-#' 
+#'
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
@@ -38,7 +38,7 @@
 #'       paste("Vous avez cliqu\u00e9", input$test, "fois sur le bouton")
 #'     })
 #'   }
-#' 
+#'
 #'   shinyApp(ui, server)
 #' }
 actionButton_dsfr <- function(

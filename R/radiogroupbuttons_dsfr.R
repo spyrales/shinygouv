@@ -8,7 +8,7 @@
 #' @param selected Element sélectionné (NULL par défaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @return html
-#'
+#' @seealso [radioGroupButtons() in Shiny](https://rdrr.io/cran/shinyWidgets/man/radioGroupButtons.html)
 #' @export
 #'
 #' @examples
