@@ -9,8 +9,3 @@
 sliderInput_dsfr <- shiny::sliderInput
 updateSliderInput_dsfr <- shiny::updateSliderInput
 
-
-usethis::create_package( path = "/monprmierpackage",
-                         open = FALSE,
-                         rstudio = FALSE,
-                         roxygen = FALSE)
