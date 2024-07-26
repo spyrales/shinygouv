@@ -43,8 +43,7 @@ if (interactive()) {
 
   ui <- fluidPage_dsfr(
     header = header_dsfr(
-      intitule = "Intitule",
-      officiel = "Officiel",
+      intitule = c("Intitule", "Officiel"),
       nom_site_service = "Nom du site / service",
       baseline = "baseline - precisions sur l organisation",
       class = "fr-m-1w"
