@@ -1,3 +1,3 @@
 <li class="fr-nav__item">
-  <a class="fr-nav__link" data-id="{{id}}" href = "#{{id}}" target="_self" {{ariacurrent}} onclick = "showTab(that = this)">{{title}}</a>
+  <a class="fr-nav__link" data-id="{{id}}" href = "#{{id}}" target="_self" {{ariacurrent}} onclick = "showTab(that = this);history.pushState({},'','#{{id}}');event.preventDefault();">{{title}}</a>
 </li>
