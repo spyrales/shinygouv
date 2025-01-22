@@ -1,5 +1,9 @@
+# shinygouv 1.0.5  
 
-## Fix 
+## Composants  
+* amélioration du style de sliderInput_dsfr  
+
+## Fix  
 * Fix déplacement indésirable des NavbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l'onglet et masquait l'entête
 
 # shinygouv 1.0.4
