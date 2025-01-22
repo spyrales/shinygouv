@@ -1,7 +1,10 @@
+
+## Fix 
+* Fix déplacement indésirable des NavbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l'onglet et masquait l'entête
+
 # shinygouv 1.0.4
 
 ## Fix 
-
 * numericInput_dsfr : correction du template qui ne fonctionnait plus avec shiny v1.8.1
 
 # shinygouv 1.0.3
