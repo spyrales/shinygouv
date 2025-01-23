@@ -9,6 +9,8 @@
 #' @param label id de l'input sans indexation
 #'
 #' @return html
+#' @seealso [checkboxInput()] Pour en savoir plus sur la fonction Shiny originelle,
+#'  consultez [checkboxInput()](https://shiny.posit.co/r/reference/shiny/latest/checkboxinput).
 #'
 #' @export
 #'
@@ -21,12 +23,12 @@
 checkboxInput_dsfr <- function(inputId,
                                label,
                                value = FALSE) {
-  
+
   # check les params
   assertthat::assert_that(is.character(inputId))
   assertthat::assert_that(is.character(label))
   assertthat::assert_that(is.logical(value))
-  
+
   checkboxInput_dsfr_template(
     inputId,
     label = label,

@@ -67,3 +67,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\href{https://shiny.posit.co/r/reference/shiny/latest/numericinput}{numericInput() in Shiny}
+}

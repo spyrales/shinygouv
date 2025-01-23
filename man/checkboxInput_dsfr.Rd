@@ -26,3 +26,7 @@ checkboxInput_dsfr(
   inputId = 'test', label = 'test', value = TRUE
 )
 }
+\seealso{
+\code{\link[=checkboxInput]{checkboxInput()}} Pour en savoir plus sur la fonction Shiny originelle,
+consultez \href{https://shiny.posit.co/r/reference/shiny/latest/checkboxinput}{checkboxInput()}.
+}

@@ -8,7 +8,7 @@
 #' @param title titre du modal
 #' @param footer footer du modal
 #' @return html
-#'
+#' @seealso [modaldialog() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/modaldialog)
 #' @export
 #' @importFrom htmltools tagList
 #' @examples
@@ -63,7 +63,7 @@ modalDialog_dsfr <- function(
 #' @param ui TODO
 #' @param inputId TODO
 #' @param session TODO
-#'
+#' @seealso [showmodal() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/showmodal)
 #' @export
 showModal_dsfr <- function(
   ui,
@@ -84,7 +84,7 @@ showModal_dsfr <- function(
 #'
 #' @param inputId TODO
 #' @param session TODO
-#'
+#' @seealso [removemodal() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/showmodal)
 #' @export
 removeModal_dsfr <- function(
   inputId = "fr-modal-1",

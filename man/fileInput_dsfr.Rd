@@ -24,7 +24,7 @@ fileInput_dsfr
 if (interactive()) {
   ui <- fluidPage_dsfr(
     fluidRow_dsfr(
-      column_dsfr(width = 4, 
+      column_dsfr(width = 4,
         fileInput_dsfr(inputId = "file1", label = "Importez vos données", message = "seul le format csv est pris en charge"),
         br(),
         checkboxInput_dsfr(inputId = "header", label = "Utiliser les en-tetes du fichier")
@@ -34,21 +34,25 @@ if (interactive()) {
       )
     )
   )
-  
+
   server <- function(input, output) {
     output$contenu <- renderTable({
       file <- input$file1
       ext <- tools::file_ext(file$datapath)
-      
+
       req(file)
       validate(need(ext == "csv", "Veuillez choisir un fichier csv svp"))
-      
+
       read.csv2(file$datapath, header = input$header, nrows = 12)
     })
   }
-  
+
   shinyApp(ui, server)
 }
 
 
+}
+\seealso{
+\code{\link[=fileInput]{fileInput()}} Pour en savoir plus sur la fonction originelle de Shiny.
+\href{https://shiny.posit.co/r/reference/shiny/latest/fileinput}{Documentation externe}
 }

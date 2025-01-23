@@ -8,7 +8,7 @@
 #'
 #' @return shiny.tag.list
 #' @importFrom htmltools tagList
-#'
+#' @seealso [fluidPage](https://shiny.posit.co/r/reference/shiny/latest/fluidpage)
 #' @export
 #' @examples
 #' if (interactive()) {

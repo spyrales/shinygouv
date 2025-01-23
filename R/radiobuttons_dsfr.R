@@ -9,9 +9,8 @@
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @param class des classes a ajouter si necessaire
 #' @return html
-#'
+#' @seealso [radioButtons](https://shiny.posit.co/r/reference/shiny/latest/radiobuttons)
 #' @export
-#'
 #' @examples
 #' radioButtons_dsfr(
 #'   inputId = "test", label = "Test", choices = c("A", "B"), class = NULL
