@@ -1,0 +1,11 @@
+/* rattrapage sur 1.13 pour accordeon */
+.fr-accordion__btn[aria-expanded="true"] {
+	--idle: transparent;
+	--hover: var(--background-open-blue-france-hover);
+	--active: var(--background-open-blue-france-active);
+	background-color: var(--background-open-blue-france);
+}
+.fr-accordion__btn {
+	color: var(--text-action-high-blue-france) !important;
+	font-weight: 500 !important;
+}

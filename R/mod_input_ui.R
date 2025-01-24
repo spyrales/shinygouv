@@ -61,6 +61,50 @@ mod_input_ui_ui <- function(id){
                      "Afficher le deuxi\u00e8me onglet"
         )
       )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        h3("Demo accordion_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
+      ),
+      column_dsfr(
+        12,
+        accordion_dsfr(
+          accordion_panel_dsfr(
+            title = "Un premier accordeon",
+            content = tagList(
+              p(strong("Coucou"))
+            )
+          ),
+          accordion_panel_dsfr(
+            title = "Un deuxieme accordeon",
+            content = tagList(
+              p(strong("Salut"))
+            )
+          ),
+          accordion_panel_dsfr(
+            title = "Un troisieme accordeon",
+            content = tagList(
+              p(strong("Hello"))
+            )
+          ),
+          id = "testaccordion"
+        )
+      )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        actionButton_dsfr(inputId = ns("showsecondaccord"),
+                          "Ouvrir le deuxi\u00e8me onglet"
+        ),
+        actionButton_dsfr(inputId = ns("hidefirstaccord"),
+                          "Fermer les onglets"
+        )
+      )
     )
   )
 }
@@ -92,6 +136,22 @@ mod_input_ui_server <- function(id){
       updateTabsetPanel_dsfr(
         inputId = "testtabpanel",
         selected = "Une deuxieme tab",
+        session = session
+      )
+    })
+
+    #accordion
+    observeEvent(input$showsecondaccord, {
+      accordion_panel_open_dsfr(
+        inputId = "testaccordion",
+        selected = "Un deuxieme accordeon",
+        session = session
+      )
+    })
+
+    observeEvent(input$hidefirstaccord, {
+      accordion_panel_close_dsfr(
+        inputId = "testaccordion",
         session = session
       )
     })

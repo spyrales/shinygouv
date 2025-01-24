@@ -2,6 +2,7 @@
 
 ## Composants  
 * amélioration du style de sliderInput_dsfr  
+* ajout de `accordion_dsfr()`
 
 ## Fix  
 * Fix déplacement indésirable des NavbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l'onglet et masquait l'entête
