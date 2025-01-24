@@ -48,7 +48,7 @@ test_that("accordion_dsfr works", {
   ## lecture snapshot
   snapshot_html <- readRDS(
     file = file.path(
-      "tests/testthat/snapshot", # pour passer les tests en production (apres le inflate),
+      "snapshot", # pour passer les tests en production (apres le inflate),
       # "tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
       "accordion_dsfr.Rda")
   )
