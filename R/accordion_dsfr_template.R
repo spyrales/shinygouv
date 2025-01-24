@@ -14,7 +14,7 @@ accordion_dsfr_template <- function(
 ) {
   class <- ifelse ( is.null(extraclass), "", extraclass)
   # Le tabset complet
-  htmltools::htmlTemplate(
+  htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
       "composant",
@@ -48,7 +48,7 @@ accordion_panel_one <- function(
 ) {
   expand <- ifelse ( as.integer(num) == as.integer(open), "true", "false" )
   icondom <- ifelse ( is.null(icon), "", icon )
-  htmltools::htmlTemplate(
+  htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
       "composant",
