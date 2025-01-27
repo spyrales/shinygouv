@@ -97,6 +97,17 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       package = "shinygouv",
       all_files = TRUE
+    ),
+    accordion_deps = htmlDependency(
+      name = "accordion",
+      version = version,
+      src = c(file = "external_deps"),
+      stylesheet = "accordion.css",
+      script = list(
+        list(type = "text/javascript", src = "updateAccordion.js")
+      ),
+      package = "shinygouv",
+      all_files = TRUE
     )
   )
 
