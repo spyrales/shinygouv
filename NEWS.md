@@ -1,6 +1,7 @@
 # shinygouv 1.0.5  
 
 ## Composants  
+* mise en place d'un test sur sliderInput_dsfr
 * amélioration du style de sliderInput_dsfr  
 
 ## Fix  
