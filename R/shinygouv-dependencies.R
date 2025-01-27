@@ -97,6 +97,18 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       ),
       package = "shinygouv",
       all_files = TRUE
+    ),
+    navlist_deps = htmlDependency(
+      name = "navlistpanel",
+      version = version,
+      src = c(file = "external_deps"),
+      stylesheet = "navlist.css",
+      script = list(
+        list(type = "text/javascript", src = "navlist.js"),
+        list(type = "text/javascript", src = "updateNavlistPanel.js")
+      ),
+      package = "shinygouv",
+      all_files = TRUE
     )
   )
 

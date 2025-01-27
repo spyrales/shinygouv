@@ -1,0 +1,33 @@
+.nl-plain {
+	box-shadow: inset 0 1px 0 0 var(--border-default-grey),inset 1px 0 0 0 var(--border-default-grey),inset -1px 0 0 0 var(--border-default-grey),inset 0 -1px 0 0 var(--border-default-grey);
+}
+
+.nl-menu > .fr-sidemenu, .nl-menu > .fr-sidemenu .fr-sidemenu__inner {
+  height: 100%;
+}
+.nl-menu > .fr-sidemenu .fr-sidemenu__inner .fr-collapse {
+  margin-left: 0.75rem;
+}
+.nl-menu {
+  padding: 0 1rem;
+}
+.nl-main > .fr-tabs .fr-tabs__panel {
+	padding: 0;
+}
+.nl-main > .fr-tabs::before {
+  box-shadow: inherit;
+}
+.nl-menu > .fr-sidemenu .fr-sidemenu__link:hover {
+	background-color: var(--hover);
+}
+.nl-menu > .fr-sidemenu .fr-sidemenu__btn {
+	color: var(--text-action-high-blue-france);
+	font-weight: 700;
+}
+.nl-menu > .fr-sidemenu .fr-sidemenu__btn[aria-expanded="true"] {
+	--idle: transparent;
+	--hover: var(--background-open-blue-france-hover);
+	--active: var(--background-open-blue-france-active);
+	background-color: var(--background-open-blue-france);
+}
+

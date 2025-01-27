@@ -1,12 +1,12 @@
-#' updateTabsetPanel_dsfr
+#' updateNavlistPanel_dsfr
 #'
-#' @param inputId inputId du tabsetPanel_dsfr
+#' @param inputId inputId du navlistPanel_dsfr
 #' @param selected titre ou id du tab à afficher (paramètre `title` ou `id` utilisé dans `tabPanel_dsfr()`)
 #' @param session session shiny
 #'
-#' @importFrom shiny updateNumericInput
+#' @importFrom shiny getDefaultReactiveDomain
 #' @return html
-#' @references inspiré de la fonction [shiny::updateTabsetPanel()]
+#' @references inspiré de la fonction [shiny::updateNavlistPanel()]
 #'
 #' @export
 #' @examples
@@ -18,15 +18,15 @@
 #'     fluidRow_dsfr(
 #'       column_dsfr(
 #'         12,
-#'         h3("Demo tabsetPanel_dsfr() et tabPanel_dsfr()"),
+#'         h3("Demo navlistPanel_dsfr()"),
 #'         # Adding space to the column
 #'         # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
 #'         extra_class = "fr-my-6w"
 #'       ),
 #'       column_dsfr(
 #'         12,
-#'         tabsetPanel_dsfr(
-#'           "testtabpanel",
+#'         navlistPanel_dsfr(
+#'           "testnavlistpanel",
 #'           tabPanel_dsfr(
 #'             id = "tab1",
 #'             title = "Une prems tab",
@@ -58,16 +58,16 @@
 #'     ),
 #'     server = function(input, output, session) {
 #'           observeEvent(input$showfirsttab, {
-#'       updateTabsetPanel_dsfr(
-#'         inputId = "testtabpanel",
+#'       updateNavlistPanel_dsfr(
+#'         inputId = "testnavlistpanel",
 #'         selected = "Une prems tab",
 #'         session = session
 #'       )
 #'     })
 #'
 #'     observeEvent(input$showsecondtab, {
-#'       updateTabsetPanel_dsfr(
-#'         inputId = "testtabpanel",
+#'       updateNavlistPanel_dsfr(
+#'         inputId = "testnavlistpanel",
 #'         selected = "Une deuxieme tab",
 #'         session = session
 #'       )
@@ -75,14 +75,14 @@
 #'     }
 #'   )
 #' }
-updateTabsetPanel_dsfr <- function(
+updateNavlistPanel_dsfr <- function(
     inputId,
     selected = NULL,
     session = shiny::getDefaultReactiveDomain()
-    ) {
+) {
   ns <- session$ns
   if(is.null(selected)) {
     stop("Vous devez sp\u00e9cifier au moins 1 onglet dans `selected`, soit l'`id` ou le `title` utilis\u00e9s pour d\u00e9finir les onglets.")
   }
-  session$sendCustomMessage("updateTabsetPanelDsfr", message= list(tabsetPanelId = inputId, titleToDisplay = selected))
+  session$sendCustomMessage("updateNavlistPanelDsfr", message= list(navlistPanelId = inputId, titleToDisplay = selected))
 }

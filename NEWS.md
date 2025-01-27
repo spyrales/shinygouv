@@ -1,6 +1,8 @@
 # shinygouv 1.0.5  
 
 ## Composants  
+* Ajout de `navlistPanel_dsfr()` et `updateNavlistPanel_dsfr()`
+* Amélioration des tests unitaires de tabsetPanel_dsfr et de la fonction `updateTabsetPanel_dsfr()`
 * amélioration du style de sliderInput_dsfr  
 
 ## Fix  

@@ -1,0 +1,27 @@
+<div class="fr-grid-row fr-col-12 nl-plain" id="nl-{{navlistPanelId}}">
+  <div class="fr-col-12 fr-col-md-{{widths[1]}} nl-menu">
+    <nav class="fr-sidemenu fr-py-md-4w" aria-labelledby="fr-sidemenu-title" id="{{navlistPanelId}}">
+      <div class="fr-sidemenu__inner">
+        <button
+          class="fr-sidemenu__btn"
+          hidden
+          aria-controls="fr-sidemenu-wrapper-{{navlistPanelId}}"
+          aria-expanded="false"
+        >
+          Dans cette rubrique
+        </button>
+        <div class="fr-collapse" id="fr-sidemenu-wrapper-{{navlistPanelId}}">
+          <div class="fr-sidemenu__title" id="fr-sidemenu-title-{{navlistPanelId}}">{{title}}</div>
+          <ul class="fr-sidemenu__list">
+            {{li}}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="fr-col-12 fr-col-md-{{widths[2]}} fr-p-4w fr-pl-md-1w nl-main">
+    <div class="fr-tabs" id="main-{{navlistPanelId}}">
+      {{divs}}
+    </div>
+  </div>
+</div>

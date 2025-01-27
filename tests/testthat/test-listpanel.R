@@ -1,7 +1,7 @@
-test_that("tabsetPanel_dsfr works", {
+test_that("navlistPanel_dsfr works", {
   expect_true(inherits(navlistPanel_dsfr, "function"))
 
-  test_html <- tabsetPanel_dsfr(
+  test_html <- navlistPanel_dsfr(
     "coucou",
     tabPanel_dsfr(
       id = "tab1",
@@ -28,7 +28,7 @@ test_that("tabsetPanel_dsfr works", {
     file = file.path(
       "snapshot", # pour passer les tests en production (apres le inflate),
       #"tests/testthat/snapshot", # pour passer les tests en developpement (avant le inflate),
-      "tabsetPanel_dsfr.Rda")
+      "navlistPanel_dsfr.Rda")
   )
 
   #' @description Verifer que le HTML est correct en sortie
@@ -47,7 +47,7 @@ test_that("tabsetPanel_dsfr works", {
   #
   # saveRDS(test_html,
   #         file = file.path("tests/testthat/snapshot",
-  #                          "tabsetPanel_dsfr.Rda"
+  #                          "navlistPanel_dsfr.Rda"
   #                          )
   #         )
 })

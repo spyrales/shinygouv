@@ -61,6 +61,61 @@ mod_input_ui_ui <- function(id){
                      "Afficher le deuxi\u00e8me onglet"
         )
       )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        h3("Demo navlistPanel_dsfr()"),
+        # Adding space to the column
+        # https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/espacement
+        extra_class = "fr-my-6w"
+      ),
+      column_dsfr(
+        12,
+        navlistPanel_dsfr(
+          "testlistpanel",
+          tabPanel_dsfr(
+            id = ns("list1"),
+            title = "Un premier item list",
+            content = tagList(
+              p(strong("Coucou")),
+              numericInput_dsfr(
+                inputId = ns("tabpaneln3"),
+                label = "Nombre de points sur le graph",
+                value = 100
+              ),
+              plotOutput(ns("plot3"))
+            )
+          ),
+          tabPanel_dsfr(
+            id = ns("list2"),
+            title = "Un deuxieme item list",
+            content = tagList(
+              p(strong("Salut")),
+              numericInput_dsfr(
+                inputId = ns("tabpaneln4"),
+                label = "Nombre de points sur le plot",
+                value = 10
+              ),
+              plotOutput(ns("plot4"))
+            )
+          ),
+          title = "Mon navlistPanel",
+          widths = c(3, 9)
+        )
+      )
+    ),
+    fluidRow_dsfr(
+      column_dsfr(
+        12,
+        actionButton_dsfr(inputId = ns("showfirstlist"),
+                          "Afficher le premier item list"
+        ),
+        actionButton_dsfr(inputId = ns("showsecondlist"),
+                          "Afficher le deuxi\u00e8me item list"
+        ),
+        extra_class = "fr-mb-4w"
+      )
     )
   )
 }
@@ -92,6 +147,31 @@ mod_input_ui_server <- function(id){
       updateTabsetPanel_dsfr(
         inputId = "testtabpanel",
         selected = "Une deuxieme tab",
+        session = session
+      )
+    })
+
+    #list
+    output$plot3 <- renderPlot({
+      plot(utils::head(datasets::iris, input$tabpaneln3))
+    })
+
+    output$plot4 <- renderPlot({
+      plot(utils::head(datasets::cars, input$tabpaneln4))
+    })
+
+    observeEvent(input$showfirstlist, {
+      updateNavlistPanel_dsfr(
+        inputId = "testlistpanel",
+        selected = "Un premier item list",
+        session = session
+      )
+    })
+
+    observeEvent(input$showsecondlist, {
+      updateNavlistPanel_dsfr(
+        inputId = "testlistpanel",
+        selected = "list2",
         session = session
       )
     })
