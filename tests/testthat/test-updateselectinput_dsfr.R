@@ -17,7 +17,7 @@ test_that("updateSelectInput_dsfr works", {
   # inputId
   expect_equal("variable", resultA$id)
   # label
-  expect_equal("Nouveau label", resultA$message$label)
+  expect_equal("Nouveau label", as.character(resultA$message$label$html))
   # HTML content
   expect_equal(
     resultA$message$options,

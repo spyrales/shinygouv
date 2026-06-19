@@ -13,6 +13,7 @@ Components and tools to build or transform shiny applications with the Design Sy
 
 Authors:
 \itemize{
+  \item Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
   \item Sébastien Rochette \email{sebastien@thinkr.fr} (\href{https://orcid.org/0000-0002-1565-9313}{ORCID})
   \item Murielle Delmotte \email{murielle@thinkr.fr} (\href{https://orcid.org/0000-0002-1339-2424}{ORCID})
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})
