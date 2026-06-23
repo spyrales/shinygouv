@@ -2,14 +2,15 @@
 % Please edit documentation in R/navbarpage_dsfr.R
 \name{navbarPage_dsfr}
 \alias{navbarPage_dsfr}
-\title{Page avec navbar}
+\title{Page avec menu navbar}
 \usage{
 navbarPage_dsfr(
   title,
   ...,
   header = header_dsfr(intitule = "intitule a remplacer"),
   id = NULL,
-  footer = NULL
+  footer = NULL,
+  dependencies = NULL
 )
 }
 \arguments{
@@ -22,12 +23,14 @@ navbarPage_dsfr(
 \item{id}{Id de la navbar}
 
 \item{footer}{pied de page}
+
+\item{dependencies}{dépendences complémentaire à implémenter dans la balise head (exemple golem add_resource_path)}
 }
 \value{
 html
 }
 \description{
-Page avec navbar
+Page avec menu navbar
 }
 \examples{
 library(shiny)
@@ -116,3 +119,11 @@ if (interactive()) {
   shinyApp(ui = ui, server = server)
 }
 }
+\references{
+inspiré de la fonction \code{\link[shiny:navbarPage]{shiny::navbarPage()}}
+}
+\seealso{
+Other structure functions:
+\code{\link[=fluidPage_dsfr]{fluidPage_dsfr()}}
+}
+\concept{structure functions}

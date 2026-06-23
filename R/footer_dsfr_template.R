@@ -11,6 +11,7 @@
 #' @param lien_mentions_legales lien url vers les mentions légales
 #' @param lien_donnees_personnelles lien url vers les données personnelles
 #' @param lien_gestion_cookies lien url vers la gestion des cookies
+#' @param choix_theme html provenant de choix_theme_template ou rien
 #' 
 #' @importFrom htmltools htmlTemplate
 #' @return html
@@ -23,7 +24,8 @@ footer_dsfr_template <- function(
            lien_accessibilite = "#",
            lien_mentions_legales = "#",
            lien_donnees_personnelles = "#",
-           lien_gestion_cookies = "#"
+           lien_gestion_cookies = "#",
+           choix_theme = ""
     ) {
 
   htmltools::htmlTemplate(
@@ -41,7 +43,8 @@ footer_dsfr_template <- function(
       lien_accessibilite = lien_accessibilite,
       lien_mentions_legales = lien_mentions_legales,
       lien_donnees_personnelles = lien_donnees_personnelles,
-      lien_gestion_cookies = lien_gestion_cookies
+      lien_gestion_cookies = lien_gestion_cookies,
+	  choix_theme = choix_theme
   ) |>  parse_html()
 }
 

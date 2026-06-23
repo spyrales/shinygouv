@@ -42,7 +42,7 @@ column_dsfr <- function(
     }
   }
 
-  class <- paste0("fr-col", add_width)
+  class <- paste0("fr-col-12 fr-col-md", add_width)
 
   layout_dsfr_template(
     html = tagList(

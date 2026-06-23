@@ -8,7 +8,7 @@
 #' @importFrom htmltools tagList htmlDependency
 #' @importFrom glue glue
 #' @export
-add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
+add_dsfr_deps <- function(tag = NULL, version = get_dsfr_version()) {
   dsfr_v_version <- paste0("dsfr-v",  version)
   dsfr_version <- paste0("dsfr-", version)
   dist_path <- paste0(dsfr_version, "/dist")
@@ -99,8 +99,8 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       all_files = TRUE
     )
   )
-
-  tagList(tag, all_deps, addWithSpinner())
+  #on accroche les dépendances à une div quelconque
+  tagList(div(),all_deps)
 }
 
 #' @import htmltools

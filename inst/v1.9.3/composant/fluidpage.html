@@ -1,15 +1,22 @@
-<html lang="fr" data-fr-theme>
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme>
 <head>
     <title>{{title}}</title>
+{{ headContent() }}
 </head>
 <body id="top" class="fr-mb-12w">
+  {{skiplinks}}
+  <div id="skipheader"></div>
   {{header}}
   <main role="main" id="content">
     <div class="fr-container--fluid">
       {{body}}
     </div>
-
   </main>
+  <div id="skipfooter"></div>
+  {{dependencies}}
   {{footer}}
+  {{modal}}
+  {{spinner}}
 </body>
 </html>
