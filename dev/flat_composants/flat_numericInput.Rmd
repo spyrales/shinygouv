@@ -502,7 +502,7 @@ test_that("updateNumericInput_dsfr works", {
   # inputId
   expect_equal("myid", resultA$id)
   # label
-  expect_equal("Numeric input", resultA$message$label)
+  expect_equal("Numeric input", as.character(resultA$message$label$html))
   # value
   expect_equal("12", resultA$message$value)
   # min
