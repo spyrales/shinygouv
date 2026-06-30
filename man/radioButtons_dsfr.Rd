@@ -47,5 +47,5 @@ radioButtons_dsfr(
 )
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/radiobuttons}{radioButtons}
+\code{\link[shiny:radioButtons]{shiny::radioButtons()}}
 }

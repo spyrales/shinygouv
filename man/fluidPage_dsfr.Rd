@@ -51,5 +51,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/fluidpage}{fluidPage}
+\code{\link[shiny:fluidPage]{shiny::fluidPage()}} fonction shiny originelle
 }

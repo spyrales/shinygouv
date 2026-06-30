@@ -12,7 +12,7 @@
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
-#'
+#' @seealso [shinyWidgets::updateRadioGroupButtons()]
 #' @export
 #' @examples
 #' if (interactive()) {

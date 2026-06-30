@@ -91,5 +91,5 @@ if (interactive()){
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/updatetabsetpanel}{updatetabsetpanel() in Shiny}
+\code{\link[shiny:updateTabsetPanel]{shiny::updateTabsetPanel()}} in Shiny
 }

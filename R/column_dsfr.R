@@ -8,9 +8,7 @@
 #' @param extra_class ajout de class pour la column_dsfr (voir la page officiel du CSS)
 #'
 #' @return shiny.tag.list
-#' @seealso [column()] Pour en savoir plus sur la fonction originelle de Shiny.
-#' [Documentation externe](https://shiny.posit.co/r/reference/shiny/latest/column.html)
-
+#' @seealso [column()] pour en savoir plus sur la fonction originelle de Shiny.
 #' @importFrom htmltools tagList
 #'
 #' @export

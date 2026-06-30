@@ -12,7 +12,7 @@
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
-#' @seealso [updateradiobuttons() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updateradiobuttons)
+#' @seealso [updateRadioButtons()]
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions

@@ -6,10 +6,13 @@
 #' @param ... liste de tabPanel_dsfr
 #' @param title titre du tabset
 #' @param content contenu du tabset
-#' @seealso [tabsetpanel() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/tabsetpanel)
+#'
 #' @return html
+#' @seealso [tabsetPanel()] in Shiny
+#'
 #' @export
 #' @rdname tabPanel
+#'
 #' @examples
 #' if (interactive()){
 #'   library(shiny)
@@ -72,6 +75,7 @@ tabsetPanel_dsfr <- function(
 }
 
 #' @export
+#' @seealso [tabPanel()] in Shiny
 #' @rdname tabPanel
 tabPanel_dsfr <- function(
   id,

@@ -322,6 +322,7 @@ test_that("selectInput_dsfr_template works", {
 #' @return html
 #'
 #' @export
+#' @seealso [selectInput()] in Shiny
 #'
 #' @examples
 selectInput_dsfr <- function(
@@ -518,6 +519,7 @@ test_that("selectInput_dsfr works", {
 #'
 #' @importFrom shiny updateSelectInput
 #' @return html
+#' @seealso [updateSelectInput()] in Shiny 
 #'
 #' @export
 updateSelectInput_dsfr <- function(

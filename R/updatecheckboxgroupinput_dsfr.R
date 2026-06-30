@@ -9,8 +9,8 @@
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @importFrom shiny updateCheckboxInput
+#' @seealso [updateCheckboxInput()] pour en savoir plus sur la fonction originelle de Shiny.
 #' @return html
-#' @seealso [updatecheckboxgroupinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatecheckboxgroupinput)
 #'
 #' @export
 #' @examples

@@ -11,7 +11,7 @@
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
-#' @seealso [daterangeinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/daterangeinput)
+#' @seealso [dateRangeInput()] in Shiny
 #' @export
 #'
 #' @examples

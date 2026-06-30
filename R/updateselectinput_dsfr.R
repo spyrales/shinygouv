@@ -10,7 +10,8 @@
 #'
 #' @importFrom shiny updateSelectInput
 #' @return html
-#' @seealso [updateselectinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updateselectinput)
+#' @seealso [updateSelectInput()] in Shiny 
+#'
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -21,7 +22,6 @@
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
-#'       officiel = "Officiel",
 #'       nom_site_service = "Nom du site / service",
 #'       baseline = "baseline - precisions sur l organisation",
 #'       class = "fr-m-1w"

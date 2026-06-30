@@ -57,5 +57,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/daterangeinput}{daterangeinput() in Shiny}
+\code{\link[shiny:dateRangeInput]{shiny::dateRangeInput()}} in Shiny
 }

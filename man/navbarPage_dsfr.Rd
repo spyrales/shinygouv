@@ -117,5 +117,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/navbarpage}{navbarPage() in Shiny}.
+\code{\link[shiny:navbarPage]{shiny::navbarPage()}} in Shiny
 }

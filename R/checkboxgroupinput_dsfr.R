@@ -8,8 +8,7 @@
 #' @param selected Valeurs préselectionnées
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @return html
-#' @seealso [checkboxGroupInput()] Pour en savoir plus sur la fonction originelle de Shiny.
-#' [Documentation externe](https://shiny.posit.co/r/reference/shiny/latest/checkboxgroupinput)
+#' @seealso [checkboxGroupInput()] pour en savoir plus sur la fonction originelle de Shiny.
 #' 
 #' @export
 #'

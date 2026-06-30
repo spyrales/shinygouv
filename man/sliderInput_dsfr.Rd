@@ -135,5 +135,21 @@ shinyApp(ui, server)
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/sliderinput}{selectInput() in Shiny}
+\code{\link[shiny:updateSliderInput]{updateSliderInput()}}
+
+Other input elements: 
+\code{\link[shiny]{actionButton}()},
+\code{\link[shiny]{checkboxGroupInput}()},
+\code{\link[shiny]{checkboxInput}()},
+\code{\link[shiny]{dateInput}()},
+\code{\link[shiny]{dateRangeInput}()},
+\code{\link[shiny]{fileInput}()},
+\code{\link[shiny]{numericInput}()},
+\code{\link[shiny]{passwordInput}()},
+\code{\link[shiny]{radioButtons}()},
+\code{\link[shiny]{selectInput}()},
+\code{\link[shiny]{submitButton}()},
+\code{\link[shiny]{textAreaInput}()},
+\code{\link[shiny]{textInput}()},
+\code{\link[shiny]{varSelectInput}()}
 }

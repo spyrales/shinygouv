@@ -138,5 +138,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/updatenumericinput}{updatenumericinput() in Shiny}
+\code{\link[shiny:updateNumericInput]{shiny::updateNumericInput()}} in Shiny
 }

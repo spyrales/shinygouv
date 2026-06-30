@@ -7,7 +7,7 @@
 #' @param class des classes a ajouter si necessaire
 #'
 #' @return html
-#' @seealso [actionButton()] Pour en savoir plus sur la création de boutons d'action avec Shiny. [Documentation externe](https://shiny.posit.co/r/reference/shiny/latest/actionbutton)
+#' @seealso [actionButton()] pour en savoir plus sur la création de boutons d'action avec Shiny.
 #' @export
 #'
 #' @examples

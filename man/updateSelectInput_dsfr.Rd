@@ -38,7 +38,6 @@ if (interactive()) {
   ui <- fluidPage_dsfr(
     header = header_dsfr(
       intitule = "Intitule",
-      officiel = "Officiel",
       nom_site_service = "Nom du site / service",
       baseline = "baseline - precisions sur l organisation",
       class = "fr-m-1w"
@@ -83,5 +82,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/updateselectinput}{updateselectinput() in Shiny}
+\code{\link[shiny:updateSelectInput]{shiny::updateSelectInput()}} in Shiny
 }

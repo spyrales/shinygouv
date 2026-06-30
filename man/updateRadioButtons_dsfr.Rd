@@ -66,5 +66,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/updateradiobuttons}{updateradiobuttons() in Shiny}
+\code{\link[shiny:updateRadioButtons]{shiny::updateRadioButtons()}}
 }

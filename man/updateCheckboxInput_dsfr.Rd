@@ -34,7 +34,7 @@ if (interactive()) {
     actionButton_dsfr("go", "Change")
   )
   server <- function(input, output, session) {
-
+    
     observeEvent(input$go, {
       updateCheckboxInput_dsfr(
         session = session,
@@ -43,7 +43,7 @@ if (interactive()) {
         value = TRUE
       )
     })
-
+    
     observeEvent(input$inCheckboxInput, {
       message(input$inCheckboxInput)
     })
@@ -52,5 +52,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/updatecheckboxinput}{updatecheckboxinput() in Shiny}
+\code{\link[shiny:updateCheckboxInput]{shiny::updateCheckboxInput()}} pour en savoir plus sur la fonction Shiny originelle.
 }

@@ -8,11 +8,11 @@
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
-#'
+#' @seealso [fluidPage()] fonction shiny originelle
 #' @return html
 #'
 #' @importFrom htmltools tagList
-#' @seealso [fluidPage](https://shiny.posit.co/r/reference/shiny/latest/fluidpage)
+#'
 #' @export
 #'
 #' @examples

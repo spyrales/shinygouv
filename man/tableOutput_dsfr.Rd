@@ -34,5 +34,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/rendertable}{tableoutput() in Shiny}
+\code{\link[shiny:renderTable]{shiny::tableOutput()}}
 }

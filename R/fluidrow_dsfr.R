@@ -8,7 +8,7 @@
 #'
 #' @return shiny.tag.list
 #' @importFrom htmltools tagList
-#' @seealso [fluidPage](https://shiny.posit.co/r/reference/shiny/latest/fluidpage)
+#' @seealso [fluidRow()] fonction shiny originelle
 #' @export
 #' @examples
 #' if (interactive()) {

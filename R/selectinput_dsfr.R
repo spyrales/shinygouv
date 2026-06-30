@@ -9,8 +9,9 @@
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
-#' @seealso [selectInput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/selectinput)
+#'
 #' @export
+#' @seealso [selectInput()] in Shiny
 #'
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -21,7 +22,6 @@
 #'   ui <- fluidPage_dsfr(
 #'     header = header_dsfr(
 #'       intitule = "Intitule",
-#'       officiel = "Officiel",
 #'       nom_site_service = "Nom du site / service",
 #'       baseline = "baseline - precisions sur l organisation",
 #'       class = "fr-m-1w"
@@ -50,7 +50,7 @@
 #'   ),
 #'   selected = "gear"
 #' )
-#'
+#'   
 #' )
 #'
 #'     )

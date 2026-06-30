@@ -8,10 +8,11 @@
 #' @param label label du bouton
 #' @param value TRUE (coché) ou FALSE (non coché)
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' @seealso [updateCheckboxInput()] pour en savoir plus sur la fonction Shiny originelle.
 #'
 #' @importFrom shiny updateCheckboxInput
 #' @return html
-#' @seealso [updatecheckboxinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatecheckboxinput)
+#'
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -21,7 +22,7 @@
 #'     actionButton_dsfr("go", "Change")
 #'   )
 #'   server <- function(input, output, session) {
-#'
+#'     
 #'     observeEvent(input$go, {
 #'       updateCheckboxInput_dsfr(
 #'         session = session,
@@ -30,7 +31,7 @@
 #'         value = TRUE
 #'       )
 #'     })
-#'
+#'     
 #'     observeEvent(input$inCheckboxInput, {
 #'       message(input$inCheckboxInput)
 #'     })
@@ -41,12 +42,12 @@ updateCheckboxInput_dsfr <- function(inputId,
                                      label = NULL,
                                      value = NULL,
                                      session = shiny::getDefaultReactiveDomain()) {
-
+  
   ns <- session$ns
-
+  
   updateCheckboxInput(session = session,
                       inputId = inputId,
                       label = label,
                       value = value)
-
+  
 }

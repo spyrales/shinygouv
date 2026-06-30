@@ -4,7 +4,8 @@
 #'
 #' @param outputId 	nom d'output a partir duquel lire la table
 #' @return html
-#' @seealso [tableoutput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/rendertable)
+#' @seealso [tableOutput()]
+#'
 #' @export
 #'
 #' @examples

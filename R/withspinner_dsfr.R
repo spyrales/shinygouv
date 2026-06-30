@@ -4,6 +4,7 @@
 #' @importFrom htmltools HTML
 #' @return an html code
 #' @examples addWithSpinner()
+#'
 #' @noRd
 addWithSpinner <- function() {
   HTML('<div class="lds-ring" id = "lds-ring" style="display:none"><div></div><div></div><div></div><div></div></div>')
@@ -15,10 +16,12 @@ addWithSpinner <- function() {
 #' @param inputId id du spinner
 #' @param session session
 #' @return side effect. Masque le spinner
+#' @seealso [shinycssloaders::hideSpinner()] 
+#'
 #' @noRd
 hideSpinner_dsfr <- function(
-  inputId,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("hide_spinner", inputId)
 }
@@ -29,10 +32,12 @@ hideSpinner_dsfr <- function(
 #' @param inputId id du spinner
 #' @param session session
 #' @return side effect. Affiche le spinner
+#'
+#' @seealso [shinycssloaders::showSpinner()] 
 #' @noRd
 showSpinner_dsfr <- function(
-  inputId,
-  session = shiny::getDefaultReactiveDomain()
+    inputId,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("show_spinner", inputId)
 }
@@ -45,7 +50,7 @@ showSpinner_dsfr <- function(
 #' @param session session shiny
 #'
 #' @return html
-#' @seealso [withSpinner() in Shinycssloaders](https://www.rdocumentation.org/packages/shinycssloaders/versions/1.0.0/topics/withSpinner)
+#' @seealso [shinycssloaders::withSpinner()] 
 #' @export
 #' @examples
 #' if (interactive()) {
@@ -90,8 +95,8 @@ showSpinner_dsfr <- function(
 #'   shinyApp(ui, server)
 #' }
 withSpinner_dsfr <- function(
-  expr,
-  session = shiny::getDefaultReactiveDomain()
+    expr,
+    session = shiny::getDefaultReactiveDomain()
     ) {
   showSpinner_dsfr(inputId = "lds-ring", session = session)
   force(expr)

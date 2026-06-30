@@ -8,7 +8,8 @@
 #' @param title titre du modal
 #' @param footer footer du modal
 #' @return html
-#' @seealso [modaldialog() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/modaldialog)
+#' @seealso [modalDialog()] in Shiny
+#'
 #' @export
 #' @importFrom htmltools tagList
 #' @examples
@@ -41,10 +42,10 @@
 #'   shinyApp(ui, server)
 #' }
 modalDialog_dsfr <- function(
-  ...,
-  inputId = "fr-modal-1",
-  title,
-  footer = NULL
+    ...,
+    inputId = "fr-modal-1",
+    title,
+    footer = NULL
     ) {
   # check les params
   assertthat::assert_that(is.character(inputId))
@@ -63,12 +64,13 @@ modalDialog_dsfr <- function(
 #' @param ui TODO
 #' @param inputId TODO
 #' @param session TODO
-#' @seealso [showmodal() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/showmodal)
+#' @seealso [showModal()] in Shiny
+#'
 #' @export
 showModal_dsfr <- function(
-  ui,
-  inputId = "fr-modal-1",
-  session = shiny::getDefaultReactiveDomain()
+    ui,
+    inputId = "fr-modal-1",
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage(
     "show_dsfr_modal",
@@ -84,11 +86,11 @@ showModal_dsfr <- function(
 #'
 #' @param inputId TODO
 #' @param session TODO
-#' @seealso [removemodal() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/showmodal)
+#' @seealso [removeModal()] in Shiny
 #' @export
 removeModal_dsfr <- function(
-  inputId = "fr-modal-1",
-  session = shiny::getDefaultReactiveDomain()
+    inputId = "fr-modal-1",
+    session = shiny::getDefaultReactiveDomain()
     ) {
   session$sendCustomMessage("hide_dsfr_modal", inputId)
 }

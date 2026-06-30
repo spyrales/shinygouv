@@ -52,5 +52,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/modaldialog}{modaldialog() in Shiny}
+\code{\link[shiny:modalDialog]{shiny::modalDialog()}} in Shiny
 }

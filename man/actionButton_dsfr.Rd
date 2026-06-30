@@ -52,5 +52,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[=actionButton]{actionButton()}} Pour en savoir plus sur la création de boutons d'action avec Shiny. \href{https://shiny.posit.co/r/reference/shiny/latest/actionbutton}{Documentation externe}
+\code{\link[shiny:actionButton]{shiny::actionButton()}} pour en savoir plus sur la création de boutons d'action avec Shiny.
 }

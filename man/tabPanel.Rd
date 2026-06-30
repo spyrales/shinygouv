@@ -61,5 +61,7 @@ if (interactive()){
 }
 }
 \seealso{
-\href{https://shiny.posit.co/r/reference/shiny/latest/tabpanel}{tabpanel() in Shiny}
+\code{\link[shiny:tabsetPanel]{shiny::tabsetPanel()}} in Shiny
+
+\code{\link[=tabPanel]{tabPanel()}} in Shiny
 }
