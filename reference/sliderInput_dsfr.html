@@ -184,12 +184,12 @@ cannot be dragged.</p></dd>
 change the settings of an input object. The messages are collected and sent
 after all the observers (including outputs) have finished running.</p>
 <p>The syntax of these functions is similar to the functions that created the
-inputs in the first place. For example, <code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a>()</code> and
+inputs in the first place. For example, <code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput()</a></code> and
 <code><a href="https://rdrr.io/pkg/shiny/man/updateNumericInput.html" class="external-link">updateNumericInput()</a></code> take a similar set of arguments.</p>
 <p>Any arguments with NULL values will be ignored; they will not result in any
 changes to the input object on the client.</p>
-<p>For <code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons</a>()</code>, <code><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a>()</code> and
-<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a>()</code>, the set of choices can be cleared by using
+<p>For <code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput()</a></code> and
+<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput()</a></code>, the set of choices can be cleared by using
 <code>choices=character(0)</code>. Similarly, for these inputs, the selected item
 can be cleared by using <code>selected=character(0)</code>.</p>
     </div>
@@ -205,20 +205,20 @@ in the case of slider range, a vector of two numbers/dates/date-times.</p>
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/shiny/man/updateSliderInput.html" class="external-link">updateSliderInput()</a></code></p>
 <p>Other input elements:
-<code><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/dateInput.html" class="external-link">dateInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/dateRangeInput.html" class="external-link">dateRangeInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/fileInput.html" class="external-link">fileInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/passwordInput.html" class="external-link">passwordInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/submitButton.html" class="external-link">submitButton</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/textAreaInput.html" class="external-link">textAreaInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/textInput.html" class="external-link">textInput</a>()</code>,
-<code><a href="https://rdrr.io/pkg/shiny/man/varSelectInput.html" class="external-link">varSelectInput</a>()</code></p></div>
+<code><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/dateInput.html" class="external-link">dateInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/dateRangeInput.html" class="external-link">dateRangeInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/fileInput.html" class="external-link">fileInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/passwordInput.html" class="external-link">passwordInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/submitButton.html" class="external-link">submitButton()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/textAreaInput.html" class="external-link">textAreaInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/textInput.html" class="external-link">textInput()</a></code>,
+<code><a href="https://rdrr.io/pkg/shiny/man/varSelectInput.html" class="external-link">varSelectInput()</a></code></p></div>
     </div>
 
     <div id="ref-examples">
@@ -258,7 +258,7 @@ in the case of slider range, a vector of two numbers/dates/date-times.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
