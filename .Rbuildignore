@@ -19,3 +19,12 @@ docs
 ^deliverables$
 ^dev/tools/$
 publiccode.yml
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/i18n
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/dist/fonts
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/dist/core
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/dist/pattern
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/dist/utility
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/dist/favicon
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/*.md$
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/*.json$
+^inst/dsfr-v[0-9]+(\.[0-9]+)*/*.lock$
