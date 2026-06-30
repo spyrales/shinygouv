@@ -51,3 +51,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:modalDialog]{shiny::modalDialog()}} in Shiny
+}

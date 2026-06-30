@@ -322,6 +322,7 @@ test_that("selectInput_dsfr_template works", {
 #' @return html
 #'
 #' @export
+#' @seealso [selectInput()] in Shiny
 #'
 #' @examples
 selectInput_dsfr <- function(
@@ -518,6 +519,7 @@ test_that("selectInput_dsfr works", {
 #'
 #' @importFrom shiny updateSelectInput
 #' @return html
+#' @seealso [updateSelectInput()] in Shiny 
 #'
 #' @export
 updateSelectInput_dsfr <- function(
@@ -610,7 +612,7 @@ test_that("updateSelectInput_dsfr works", {
   # inputId
   expect_equal("variable", resultA$id)
   # label
-  expect_equal("Nouveau label", resultA$message$label)
+  expect_equal("Nouveau label", as.character(resultA$message$label$html))
   # HTML content
   expect_equal(
     resultA$message$options,

@@ -30,7 +30,7 @@ if (interactive()) {
         checkboxInput_dsfr(inputId = "header", label = "Utiliser les en-tetes du fichier")
       ),
       column_dsfr(width = 8,
-        tableOutput_dsfr("contenu")("contenu")
+        tableOutput_dsfr("contenu")
       )
     )
   )
@@ -51,4 +51,7 @@ if (interactive()) {
 }
 
 
+}
+\seealso{
+\code{\link[shiny:fileInput]{shiny::fileInput()}} pour en savoir plus sur la fonction originelle de Shiny.
 }

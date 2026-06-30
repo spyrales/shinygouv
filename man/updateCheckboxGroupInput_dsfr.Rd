@@ -84,3 +84,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:updateCheckboxInput]{shiny::updateCheckboxInput()}} pour en savoir plus sur la fonction originelle de Shiny.
+}

@@ -1,5 +1,5 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "flat_dateRangeInput.Rmd empty"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -174,7 +174,7 @@ test_that("dateRangeInput_dsfr_template works", {
 #' @importFrom assertthat assert_that
 #' @importFrom purrr map
 #' @return html
-#'
+#' @seealso [dateRangeInput()] in Shiny
 #' @export
 #'
 #' @examples
@@ -360,7 +360,7 @@ test_that("dateRangeInput_dsfr works", {
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom shiny updateCheckboxInput
 #' @return html
-#'
+#' @seealso [updateDateRangeInput()] in Shiny
 #' @export
 updateDateRangeInput_dsfr <- function(inputId,
                                       label = NULL,

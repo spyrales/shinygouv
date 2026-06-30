@@ -25,6 +25,7 @@ pkgload::load_all(export_all = TRUE)
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
+#' 
 checkboxInput_dsfr_template <- function(inputId, label, value = FALSE) {
   
   if (isTRUE(value)) {
@@ -146,7 +147,7 @@ La case à cocher permet à l’utilisateur de sélectionner ou désélectionner
 #' @param label id de l'input sans indexation
 #'
 #' @return html
-#'
+#' @seealso [checkboxInput()] pour en savoir plus sur la fonction Shiny originelle.
 #' @export
 #'
 #' @examples
@@ -245,6 +246,7 @@ test_that("checkboxInput_dsfr", {
 #' @param label label du bouton
 #' @param value TRUE (coché) ou FALSE (non coché)
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
+#' @seealso [updateCheckboxInput()] pour en savoir plus sur la fonction Shiny originelle.
 #'
 #' @importFrom shiny updateCheckboxInput
 #' @return html
@@ -307,7 +309,7 @@ test_that("updateCheckboxInput_dsfr works", {
   # inputId
   expect_equal("inCheckboxInput", resultA$id)
   # label
-  expect_equal("Un nouveau label", resultA$message$label)
+  expect_equal("Un nouveau label", as.character(resultA$message$label$html))
   expect_equal(TRUE, resultA$message$value)
 })
 ```
@@ -618,7 +620,8 @@ test_that("checkboxGroupInput_dsfr_template works", {
 #' @param selected Valeurs préselectionnées
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @return html
-#'
+#' @seealso [checkboxGroupInput()] pour en savoir plus sur la fonction originelle de Shiny.
+#' 
 #' @export
 #'
 #' @examples
@@ -742,7 +745,7 @@ test_that("checkboxGroupInput_dsfr works", {
 # updateCheckboxGroupInput_dsfr
 
 
-```{r function-updateCheckboxInput_dsfr}
+```{r function-updateCheckboxGroupInput_dsfr}
 #' updateCheckboxGroupInput_dsfr
 #'
 #' @param inputId id de l'input
@@ -752,6 +755,7 @@ test_that("checkboxGroupInput_dsfr works", {
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @importFrom shiny updateCheckboxInput
+#' @seealso [updateCheckboxInput()] pour en savoir plus sur la fonction originelle de Shiny.
 #' @return html
 #'
 #' @export
@@ -881,6 +885,7 @@ test_that("updateCheckboxGroupInput_dsfr works", {
 })
 ```
 
+# Inflate
 
 ```{r development-inflate, eval=FALSE}
 fusen::inflate(

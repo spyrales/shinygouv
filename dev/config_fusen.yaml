@@ -42,6 +42,8 @@ flat_checkBoxInput.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_convert_to_dsfr.Rmd:
   path: dev/tools/flat_convert_to_dsfr.Rmd
   state: active
@@ -74,6 +76,25 @@ flat_favicon.Rmd:
     check: false
     document: true
     overwrite: ask
+flat_fileInput.Rmd:
+  path: dev/flat_composants/flat_fileInput.Rmd
+  state: active
+  R:
+  - R/fileinput_dsfr.R
+  - R/fileinput_dsfr_template.R
+  tests:
+  - tests/testthat/test-fileinput_dsfr_template.R
+  - tests/testthat/test-fileinput_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_fileInput.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: ask
+    clean: ask
+    codecov: false
 flat_fluidpage.Rmd:
   path: dev/flat_composants/flat_fluidpage.Rmd
   state: active
@@ -91,13 +112,14 @@ flat_fluidpage.Rmd:
   - tests/testthat/test-column_dsfr.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_fluidpage.Rmd
     vignette_name: .na
     open_vignette: true
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_footer.Rmd:
   path: dev/flat_composants/flat_footer.Rmd
   state: active
@@ -149,6 +171,8 @@ flat_modal.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_navbarPage.Rmd:
   path: dev/flat_composants/flat_navbarPage.Rmd
   state: active
@@ -156,13 +180,14 @@ flat_navbarPage.Rmd:
   tests: tests/testthat/test-navbarpage_dsfr.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_navbarPage.Rmd
     vignette_name: .na
     open_vignette: true
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_numericInput.Rmd:
   path: dev/flat_composants/flat_numericInput.Rmd
   state: active
@@ -182,6 +207,8 @@ flat_numericInput.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_panels.Rmd:
   path: dev/flat_composants/flat_panels.Rmd
   state: active
@@ -201,6 +228,8 @@ flat_panels.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_radioButtons.Rmd:
   path: dev/flat_composants/flat_radioButtons.Rmd
   state: active
@@ -222,6 +251,8 @@ flat_radioButtons.Rmd:
     check: false
     document: true
     overwrite: 'yes'
+    clean: ask
+    codecov: false
 flat_radioGroupButtons.Rmd:
   path: dev/flat_composants/flat_radioGroupButtons.Rmd
   state: active
@@ -243,6 +274,8 @@ flat_radioGroupButtons.Rmd:
     check: false
     document: true
     overwrite: 'yes'
+    clean: ask
+    codecov: false
 flat_selectInput.Rmd:
   path: dev/flat_composants/flat_selectInput.Rmd
   state: active
@@ -264,6 +297,8 @@ flat_selectInput.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_slider.Rmd:
   path: dev/flat_composants/flat_slider.Rmd
   state: active
@@ -271,13 +306,29 @@ flat_slider.Rmd:
   tests: []
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_slider.Rmd
     vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
+flat_tableOutput.Rmd:
+  path: dev/flat_composants/flat_tableOutput.Rmd
+  state: active
+  R: R/tableoutput_dsfr.R
+  tests: tests/testthat/test-tableoutput_dsfr.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_tableOutput.Rmd
+    vignette_name: .na
+    open_vignette: true
+    check: false
+    document: true
+    overwrite: ask
+    clean: ask
+    codecov: false
 flat_toggleswitch.Rmd:
   path: dev/flat_composants/flat_toggleswitch.Rmd
   state: active
@@ -329,3 +380,5 @@ flat_withSpinner.Rmd:
     check: false
     document: true
     overwrite: 'yes'
+    clean: ask
+    codecov: false

@@ -191,7 +191,7 @@ test_that("radioGroupButtons_unique_dsfr_template works", {
 #' @param choix choix Liste des valeurs à sélectionner (si les éléments de la liste portent un nom, c'est ce nom qui est affiché à l'utilisateur et non la valeur)
 #' @param selected Element sélectionné (NULL par defaut)
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement). NON IMLPEMENTE
-#'
+#' 
 #' @importFrom htmltools htmlTemplate tagList
 #' @importFrom purrr pmap map_chr
 #' @return html
@@ -388,7 +388,7 @@ L'implementation de la fonction `radioGroupButtons_dsfr()` reste quant à elle s
 #' @return html
 #'
 #' @export
-#'
+#' @seealso [shinyWidgets::radioGroupButtons()]
 #' @examples
 radioGroupButtons_dsfr <- function(
     inputId,
@@ -541,7 +541,7 @@ test_that("radioGroupButtons_dsfr works", {
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
-#'
+#' @seealso [shinyWidgets::updateRadioGroupButtons()]
 #' @export
 updateRadioGroupButtons_dsfr <- function(
     inputId,

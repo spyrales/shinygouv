@@ -532,7 +532,7 @@ L'implementation de la fonction `radioButtons_dsfr()` reste quant à elle simila
 #' @param inline Si TRUE, positionne les choix en ligne (c'est-à-dire horizontalement).
 #' @param class des classes a ajouter si necessaire
 #' @return html
-#'
+#' @seealso [radioButtons()]
 #' @export
 #'
 #' @examples
@@ -643,7 +643,7 @@ test_that("radioButtons_dsfr works", {
 #' @importFrom htmltools tagList
 #' @importFrom purrr pmap
 #' @return html
-#'
+#' @seealso [updateRadioButtons()]
 #' @export
 updateRadioButtons_dsfr <- function(inputId,
                                     label = NULL,
