@@ -7,8 +7,8 @@
 #'
 #' @param sidebarPanel Le `sidebarPanel_dsfr()` contenant les contrôles d'entrée.
 #' @param mainPanel Le `mainPanel_dsfr()` contenant les sorties.
-#' @param position La position de la barre latérale par rapport à la zone principale ("gauche"
-#' ou "droit").
+#' @param position La position de la barre latérale par rapport à la zone principale ("left"
+#' ou "right").
 #' @param width La largeur de la barre latérale et du panneau principal. Par défaut,
 #' La barre latérale occupe 1/3 de la largeur et le panneau principal 2/3. Le total
 #' doit être inférieur ou égale à 12.
