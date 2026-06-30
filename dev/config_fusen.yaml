@@ -207,6 +207,8 @@ flat_numericInput.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_panels.Rmd:
   path: dev/flat_composants/flat_panels.Rmd
   state: active
