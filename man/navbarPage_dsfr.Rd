@@ -116,3 +116,6 @@ if (interactive()) {
   shinyApp(ui = ui, server = server)
 }
 }
+\seealso{
+\code{\link[shiny:navbarPage]{shiny::navbarPage()}} in Shiny
+}

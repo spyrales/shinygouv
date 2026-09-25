@@ -50,3 +50,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()}} pour en savoir plus sur la fonction originelle de Shiny.
+}

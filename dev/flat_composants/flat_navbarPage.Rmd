@@ -34,6 +34,7 @@ La `navbarPage_dsfr()` se compose de :
 #' @param id Id de la navbar
 #' @param header header_dsfr()
 #' @param footer pied de page
+#' @seealso  [navbarPage()] in Shiny 
 #'
 #' @examples
 navbarPage_dsfr <- function(

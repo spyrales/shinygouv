@@ -23,6 +23,7 @@ pkgload::load_all(export_all = TRUE)
 #'
 #' @param outputId 	nom d'output a partir duquel lire la table
 #' @return html
+#' @seealso [tableOutput()]
 #'
 #' @export
 #'

@@ -51,3 +51,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:actionButton]{shiny::actionButton()}} pour en savoir plus sur la création de boutons d'action avec Shiny.
+}

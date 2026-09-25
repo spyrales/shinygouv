@@ -65,3 +65,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:updateRadioButtons]{shiny::updateRadioButtons()}}
+}

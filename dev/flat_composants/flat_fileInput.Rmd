@@ -143,6 +143,7 @@ test_that("fileInput_dsfr_template works", {
 #'
 #' @return html
 #' @importFrom assertthat assert_that
+#' @seealso [fileInput()] pour en savoir plus sur la fonction originelle de Shiny.
 #' @export
 #'
 #' @examples
@@ -246,9 +247,9 @@ test_that("fileInput_dsfr works", {
 })
 ```
 
-# update_fileInput_dsfr
+<!-- # update_fileInput_dsfr -->
 
-Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd"
+<!-- Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd" -->
 
 
 ```{r development-inflate, eval=FALSE}
