@@ -5,8 +5,8 @@ publiccodeYmlVersion: "0"
 name: "{shinygouv}"
 url: https://github.com/spyrales/shinygouv
 landingURL: https://spyrales.github.io/shinygouv/
-releaseDate: "2024-07-26"
-softwareVersion: "1.0.4"
+releaseDate: "2026-09-25"
+softwareVersion: "1.0.5"
 logo: https://github.com/spyrales.png
 platforms:
   - linux
@@ -47,6 +47,8 @@ maintenance:
   contacts:
     - name: "Juliette Engelaere-Lefebvre"
       email: "juliette.engelaere@developpement-durable.gouv.fr"
+    - name: "Edouard Morin"
+      email: "edouard.morin@developpement-durable.gouv.fr"
 localisation:
   localisationReady: false
   availableLanguages:
