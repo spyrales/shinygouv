@@ -35,3 +35,6 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link[shiny:column]{column()}} pour en savoir plus sur la fonction originelle de Shiny.
+}

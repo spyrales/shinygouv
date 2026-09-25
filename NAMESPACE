@@ -50,36 +50,48 @@ export(wellPanel_dsfr)
 export(withSpinner_dsfr)
 import(htmltools)
 import(shiny)
-importFrom(XML,getNodeSet)
-importFrom(XML,htmlParse)
-importFrom(XML,xmlAttrs)
-importFrom(XML,xmlChildren)
-importFrom(XML,xmlName)
-importFrom(XML,xmlValue)
+importFrom(XML,
+  getNodeSet,
+  htmlParse,
+  xmlAttrs,
+  xmlChildren,
+  xmlName,
+  xmlValue
+)
 importFrom(assertthat,assert_that)
 importFrom(glue,glue)
-importFrom(golem,activate_js)
-importFrom(golem,add_resource_path)
-importFrom(golem,bundle_resources)
-importFrom(golem,favicon)
-importFrom(golem,use_favicon)
-importFrom(golem,with_golem_options)
-importFrom(htmltools,HTML)
-importFrom(htmltools,htmlDependency)
-importFrom(htmltools,htmlTemplate)
-importFrom(htmltools,tagList)
+importFrom(golem,
+  activate_js,
+  add_resource_path,
+  bundle_resources,
+  favicon,
+  use_favicon,
+  with_golem_options
+)
+importFrom(htmltools,
+  HTML,
+  htmlDependency,
+  htmlTemplate,
+  tagList
+)
 importFrom(lifecycle,deprecated)
 importFrom(magrittr,"%>%")
-importFrom(purrr,map)
-importFrom(purrr,map_chr)
-importFrom(purrr,partial)
-importFrom(purrr,pmap)
-importFrom(purrr,reduce2)
-importFrom(shiny,NS)
-importFrom(shiny,shinyApp)
-importFrom(shiny,tagList)
-importFrom(shiny,updateCheckboxInput)
-importFrom(shiny,updateNumericInput)
-importFrom(shiny,updateSelectInput)
-importFrom(utils,file_test)
-importFrom(utils,read.csv2)
+importFrom(purrr,
+  map,
+  map_chr,
+  partial,
+  pmap,
+  reduce2
+)
+importFrom(shiny,
+  NS,
+  shinyApp,
+  tagList,
+  updateCheckboxInput,
+  updateNumericInput,
+  updateSelectInput
+)
+importFrom(utils,
+  file_test,
+  read.csv2
+)

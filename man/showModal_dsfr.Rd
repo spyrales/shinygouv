@@ -20,3 +20,6 @@ showModal_dsfr(
 \description{
 Faire apparaitre une modale
 }
+\seealso{
+\code{\link[shiny:showModal]{showModal()}} in Shiny
+}

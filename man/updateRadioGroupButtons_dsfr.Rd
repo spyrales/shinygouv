@@ -117,3 +117,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shinyWidgets:updateRadioGroupButtons]{shinyWidgets::updateRadioGroupButtons()}}
+}

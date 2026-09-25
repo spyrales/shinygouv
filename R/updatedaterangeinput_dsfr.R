@@ -9,14 +9,14 @@
 #' @param session la session, la valeur par défaut est getDefaultReactiveDomain().
 #' @importFrom shiny updateCheckboxInput
 #' @return html
-#'
+#' @seealso [updatedaterangeinput() in Shiny](https://shiny.posit.co/r/reference/shiny/latest/updatedaterangeinput)
 #' @export
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'   
+#'
 #'   library(shiny)
-#'   
+#'
 #'   ui <- fluidPage_dsfr(
 #'       dateRangeInput_dsfr(inputId = "daterange1",
 #'                           label = "Date range:", start = "2001-01-01",separator = "à"),
@@ -24,40 +24,40 @@
 #'     actionButton_dsfr("go2", "Change start"),
 #'     actionButton_dsfr("go3", "Change end")
 #'   )
-#'   
+#'
 #'   server <- function(input, output, session) {
 #'     observeEvent(input$daterange1, {
 #'       print(input$daterange1)
 #'     })
-#'     
-#'     
+#'
+#'
 #'     observeEvent(input$go, {
 #'        updateDateRangeInput_dsfr(
 #'         session = session,
 #'         inputId = "daterange1",
 #'         label = "new label"
 #'       )
-#'       
+#'
 #'     })
-#'     
-#'     
+#'
+#'
 #'     observeEvent(input$go2, {
 #'        updateDateRangeInput_dsfr(
 #'         session = session,
 #'         inputId = "daterange1",
 #'         start = "2000-01-01"
 #'       )
-#'       
+#'
 #'     })
-#'    
+#'
 #'     observeEvent(input$go3, {
 #'        updateDateRangeInput_dsfr(
 #'         session = session,
 #'         inputId = "daterange1",
 #'         end = "2020-01-01"
 #'       )
-#'       
-#'     }) 
+#'
+#'     })
 #'   }
 #'   shinyApp(ui, server)
 #' }
@@ -66,8 +66,8 @@ updateDateRangeInput_dsfr <- function(inputId,
                                       start = NULL,
                                       end = NULL,
                                       session = shiny::getDefaultReactiveDomain()) {
-  
-  
+
+
   ns <- session$ns
 
   if (!is.null(label)) {
@@ -75,13 +75,13 @@ updateDateRangeInput_dsfr <- function(inputId,
                               list(inputId = ns(inputId),
                                    label = label))
   }
-  
+
   if (!is.null(start)) {
     session$sendCustomMessage("updateDateRangeInputStart",
                               list(inputId = ns(inputId),
                                    start = start))
   }
-  
+
   if (!is.null(end)) {
     session$sendCustomMessage("updateDateRangeInputEnd",
                               list(inputId = ns(inputId),

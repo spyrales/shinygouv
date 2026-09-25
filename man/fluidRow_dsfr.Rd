@@ -30,3 +30,6 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link[shiny:fluidRow]{fluidRow()}} fonction shiny originelle
+}

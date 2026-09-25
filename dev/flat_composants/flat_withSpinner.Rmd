@@ -47,6 +47,7 @@ test_that("addWithSpinner works", {
 #' @param session session
 #' @return side effect. Affiche le spinner
 #' @filename withSpinner_dsfr
+#' @seealso [shinycssloaders::showSpinner()] 
 #' @noRd
 showSpinner_dsfr <- function(
     inputId,
@@ -73,6 +74,7 @@ test_that("showSpinner_dsfr works", {
 #' @param inputId id du spinner
 #' @param session session
 #' @return side effect. Masque le spinner
+#' @seealso [shinycssloaders::hideSpinner()] 
 #' @filename withSpinner_dsfr
 #' @noRd
 hideSpinner_dsfr <- function(
@@ -101,6 +103,7 @@ test_that("hideSpinner_dsfr works", {
 #' @param session session shiny
 #' @filename withSpinner_dsfr
 #' @return html
+#' @seealso [shinycssloaders::withSpinner()] 
 #' @export
 withSpinner_dsfr <- function(
     expr,
