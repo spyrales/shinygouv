@@ -68,5 +68,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:numericInput]{shiny::numericInput()}} in Shiny
+\code{\link[shiny:numericInput]{numericInput()}} in Shiny
 }

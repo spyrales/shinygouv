@@ -34,5 +34,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:renderTable]{shiny::tableOutput()}}
+\code{\link[shiny:tableOutput]{tableOutput()}}
 }

@@ -46,7 +46,8 @@ add_dsfr_deps <- function(tag, version = get_dsfr_version()) {
       package = "shinygouv",
       src = c(file = "external_deps"),
       stylesheet = c(
-        "slider.css"
+        "slider.css",
+        "well.css"
       ),
       script = list(
         list(type = "text/javascript", src = "shiny-compat.js"),

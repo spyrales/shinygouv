@@ -1,0 +1,16 @@
+:root {
+  --background-main-grey:var(--grey-main-525);
+  --grey-main-525:#7b7b7b;
+}
+.sg-well {
+  height: inherit !important;
+}
+.sg-well > .fr-card__header {
+  background-color: var(--background-main-grey);
+}
+.sg-well > .fr-card__header > .fr-card__title {
+  color: var(--text-inverted-grey);
+}
+.sg-container {
+  max-width: 78rem;
+}

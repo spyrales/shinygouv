@@ -61,6 +61,35 @@ mod_input_ui_ui <- function(id){
                      "Afficher le deuxi\u00e8me onglet"
         )
       )
+    ),
+    fluidRow_dsfr( class = "fr-my-4w",
+       column_dsfr(
+         12,
+         h3("Demo wellPanel_dsfr() et sidebarLayout_dsfr()"),
+         extra_class = "fr-my-6w"
+       ),
+       column_dsfr(
+         12,
+         wellPanel_dsfr("Ceci est un wellPanel avec titre", title="Mon wellPanel"),
+         wellPanel_dsfr("Ceci est un wellPanel avec option grey et sans titre", grey = TRUE)
+       ),
+       sidebarLayout_dsfr(
+         # Sidebar with a slider input
+         sidebarPanel_dsfr(
+           sliderInput_dsfr(
+             ns("obssb"),
+             "Nombre d'observations:",
+             min = 0,
+             max = 1000,
+             value = 500),
+           width = 4,
+           title = "Mon sidebarPanel"
+         ),
+         # Show a plot of the generated distribution
+         mainPanel_dsfr(
+           plotOutput(ns("distPlot"))
+         )
+       )
     )
   )
 }
@@ -94,6 +123,11 @@ mod_input_ui_server <- function(id){
         selected = "Une deuxieme tab",
         session = session
       )
+    })
+
+    #well
+    output$distPlot <- renderPlot({
+      hist(rnorm(input$obssb))
     })
 
   })

@@ -117,5 +117,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:navbarPage]{shiny::navbarPage()}} in Shiny
+\code{\link[shiny:navbarPage]{navbarPage()}} in Shiny
 }

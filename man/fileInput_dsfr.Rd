@@ -53,5 +53,5 @@ if (interactive()) {
 
 }
 \seealso{
-\code{\link[shiny:fileInput]{shiny::fileInput()}} pour en savoir plus sur la fonction originelle de Shiny.
+\code{\link[shiny:fileInput]{fileInput()}} pour en savoir plus sur la fonction originelle de Shiny.
 }

@@ -52,5 +52,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:updateCheckboxInput]{shiny::updateCheckboxInput()}} pour en savoir plus sur la fonction Shiny originelle.
+\code{\link[shiny:updateCheckboxInput]{updateCheckboxInput()}} pour en savoir plus sur la fonction Shiny originelle.
 }

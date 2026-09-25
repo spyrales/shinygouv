@@ -21,5 +21,5 @@ showModal_dsfr(
 Faire apparaitre une modale
 }
 \seealso{
-\code{\link[shiny:showModal]{shiny::showModal()}} in Shiny
+\code{\link[shiny:showModal]{showModal()}} in Shiny
 }
