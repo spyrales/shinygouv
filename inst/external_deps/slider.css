@@ -1,9 +1,43 @@
 .irs--shiny .irs-bar {
-  border-top: 1px solid #9898f8!important;;
-  border-bottom: 1px solid #9898f8!important;;
-  background: #9898f8!important;;
+  border-top: 1px solid var(--border-action-high-blue-france) !important;
+  border-bottom: 1px solid var(--border-action-high-blue-france) !important;
+  background: var(--background-active-blue-france) !important;
+  height: 12px;
 }
 
-.irs-single{
-  background-color: #9898f8 !important;
+.irs--shiny .irs-single, .irs--shiny .irs-from, .irs--shiny .irs-to{
+  color: var(--text-active-blue-france) !important;
+  background-color: inherit !important;
+  font-size: 0.75rem;
+}
+.irs--shiny .irs-line {
+	top: 25px;
+	height: 12px;
+	border-radius: 12px;
+	overflow: visible;
+	box-shadow: inset 0 0 0 1px var(--border-action-high-blue-france);
+	border: none;
+	background: inherit;
+	background-color: var(--background-raised-grey);
+}
+.irs--shiny .irs-handle.state_hover, .irs--shiny .irs-handle:hover {
+	background: var(--background-contrast-raised-grey-hover);
+}
+.irs--shiny .irs-handle {
+	background-color: var(--background-raised-grey);
+	width: 26px;
+    height: 26px;
+    border-radius: 26px;
+}
+.irs--shiny .irs-min, .irs--shiny .irs-max {
+	font-size: 0.75rem;
+	background-color: inherit !important;
+	color: var(--text-mention-grey);
+}
+.irs--shiny .irs-grid {
+	height: 23px;
+}
+.slider-animate-button {
+	opacity: 1;
+	color: var(--text-active-blue-france);
 }
