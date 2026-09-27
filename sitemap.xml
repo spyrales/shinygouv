@@ -44,6 +44,7 @@
 <url><loc>/reference/selectInput_dsfr.html</loc></url>
 <url><loc>/reference/shinygouv-package.html</loc></url>
 <url><loc>/reference/showModal_dsfr.html</loc></url>
+<url><loc>/reference/sidebarLayout_dsfr.html</loc></url>
 <url><loc>/reference/sliderInput_dsfr.html</loc></url>
 <url><loc>/reference/tabPanel.html</loc></url>
 <url><loc>/reference/tableOutput_dsfr.html</loc></url>
@@ -57,6 +58,7 @@
 <url><loc>/reference/updateSelectInput_dsfr.html</loc></url>
 <url><loc>/reference/updateTabsetPanel_dsfr.html</loc></url>
 <url><loc>/reference/use_favicon_dsfr.html</loc></url>
+<url><loc>/reference/wellPanel_dsfr.html</loc></url>
 <url><loc>/reference/withSpinner_dsfr.html</loc></url>
 </urlset>
 
