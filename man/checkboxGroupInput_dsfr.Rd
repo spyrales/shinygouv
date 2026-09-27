@@ -51,5 +51,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:checkboxGroupInput]{shiny::checkboxGroupInput()}} pour en savoir plus sur la fonction originelle de Shiny.
+\code{\link[shiny:checkboxGroupInput]{checkboxGroupInput()}} pour en savoir plus sur la fonction originelle de Shiny.
 }

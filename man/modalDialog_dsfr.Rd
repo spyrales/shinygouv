@@ -52,5 +52,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:modalDialog]{shiny::modalDialog()}} in Shiny
+\code{\link[shiny:modalDialog]{modalDialog()}} in Shiny
 }

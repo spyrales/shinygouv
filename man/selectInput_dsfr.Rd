@@ -70,5 +70,5 @@ selectInput_dsfr(
 }
 }
 \seealso{
-\code{\link[shiny:selectInput]{shiny::selectInput()}} in Shiny
+\code{\link[shiny:selectInput]{selectInput()}} in Shiny
 }

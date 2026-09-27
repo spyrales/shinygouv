@@ -27,5 +27,5 @@ checkboxInput_dsfr(
 )
 }
 \seealso{
-\code{\link[shiny:checkboxInput]{shiny::checkboxInput()}} pour en savoir plus sur la fonction Shiny originelle.
+\code{\link[shiny:checkboxInput]{checkboxInput()}} pour en savoir plus sur la fonction Shiny originelle.
 }
