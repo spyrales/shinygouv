@@ -57,5 +57,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:dateRangeInput]{shiny::dateRangeInput()}} in Shiny
+\code{\link[shiny:dateRangeInput]{dateRangeInput()}} in Shiny
 }

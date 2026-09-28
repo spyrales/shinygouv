@@ -51,5 +51,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:fluidPage]{shiny::fluidPage()}} fonction shiny originelle
+\code{\link[shiny:fluidPage]{fluidPage()}} fonction shiny originelle
 }

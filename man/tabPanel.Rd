@@ -61,7 +61,7 @@ if (interactive()){
 }
 }
 \seealso{
-\code{\link[shiny:tabsetPanel]{shiny::tabsetPanel()}} in Shiny
+\code{\link[shiny:tabsetPanel]{tabsetPanel()}} in Shiny
 
-\code{\link[=tabPanel]{tabPanel()}} in Shiny
+\code{\link[shiny:tabPanel]{tabPanel()}} in Shiny
 }

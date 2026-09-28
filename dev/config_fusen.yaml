@@ -303,7 +303,7 @@ flat_slider.Rmd:
   path: dev/flat_composants/flat_slider.Rmd
   state: active
   R: R/sliderinput_dsfr.R
-  tests: []
+  tests: tests/testthat/test-sliderInput_dsfr.R
   vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_slider.Rmd
