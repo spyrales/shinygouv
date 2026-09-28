@@ -2,7 +2,10 @@ Package: shinygouv
 Title: Implement the DSFR for your shiny applications
 Version: 1.0.5
 Authors@R: c(
-    person("Juliette", "ENGELAERE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre")),
+    person("Juliette", "ENGELAERE-LEFEBVRE", , "juliette.engelaere-lefebvre@developpement-durable.gouv.fr", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0001-4102-8013")),
+    person("Edouard", "Morin", , "edouard.morin@developpement-durable.gouv.fr", role = "aut",
+           comment = c(ORCID = "0009-0009-3447-8778")),
     person("Sébastien", "Rochette", , "sebastien@thinkr.fr", role = "aut",
            comment = c(ORCID = "0000-0002-1565-9313")),
     person("Murielle", "Delmotte", , "murielle@thinkr.fr", role = "aut",
@@ -47,7 +50,7 @@ Suggests:
     withr (>= 2.5.0)
 VignetteBuilder:
     knitr
-Config/fusen/version: 0.7.1
+Config/fusen/version: 0.7.2
 Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3
 Encoding: UTF-8

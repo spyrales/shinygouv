@@ -3,6 +3,7 @@
 * implémentation de wellpanel et sidebarlayout
 
 ## Composants  
+* mise en place d'un test sur sliderInput_dsfr
 * amélioration du style de sliderInput_dsfr  
 
 ## Fix  

@@ -1,3 +1,6 @@
+.irs {
+  font-family : Marianne,arial,sans-serif;
+}
 .irs--shiny .irs-bar {
   border-top: 1px solid var(--border-action-high-blue-france) !important;
   border-bottom: 1px solid var(--border-action-high-blue-france) !important;
