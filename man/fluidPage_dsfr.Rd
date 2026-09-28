@@ -50,3 +50,6 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link[shiny:fluidPage]{fluidPage()}} fonction shiny originelle
+}

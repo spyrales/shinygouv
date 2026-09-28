@@ -1,4 +1,6 @@
 # shinygouv 1.0.5  
+## Composants  
+* implémentation de wellpanel et sidebarlayout
 
 ## Composants  
 * mise en place d'un test sur sliderInput_dsfr

@@ -90,3 +90,6 @@ if (interactive()){
   )
 }
 }
+\seealso{
+\code{\link[shiny:updateTabsetPanel]{updateTabsetPanel()}} in Shiny
+}

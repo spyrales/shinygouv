@@ -139,7 +139,7 @@ test_that("actionButton_dsfr_template works", {
 #' @param class des classes a ajouter si necessaire
 #'
 #' @return html
-#'
+#' @seealso [actionButton()] pour en savoir plus sur la création de boutons d'action avec Shiny. 
 #' @export
 #'
 #' @examples

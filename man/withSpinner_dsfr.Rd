@@ -60,3 +60,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shinycssloaders:withSpinner]{shinycssloaders::withSpinner()}}
+}

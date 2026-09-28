@@ -79,3 +79,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shinyWidgets:radioGroupButtons]{shinyWidgets::radioGroupButtons()}}
+}
