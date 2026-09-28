@@ -27,6 +27,46 @@ sliderInput_dsfr <- shiny::sliderInput
 updateSliderInput_dsfr <- shiny::updateSliderInput
 ```
 
+```{r tests-sliderInput_dsfr}
+
+test_that("sliderInput_dsfr works", {
+
+library(htmltools)
+library(purrr)
+
+expect_true(inherits(sliderInput_dsfr, "function"))
+slider_dsfr_test <- sliderInput_dsfr( "obs", "Number of observations:",
+                                      min = 0, max = 1000, value = 500 )
+# tester si shiny.tag pour content
+expect_s3_class(slider_dsfr_test, "shiny.tag")
+
+# Pour s'assurer que notre css reste appliqué, il faut vérifier la concordance
+# des classes css définies au niveau de inst/external_deps/slider.css
+# avec le javascript (ion.rangeSlider.js) utilisé par shiny pour créer un slider
+
+# test1 - verif que le sliderInput de shiny contient toujours la classe "js-range-slider"
+html_slider <- renderTags(slider_dsfr_test)$html
+expect_match(html_slider, "js-range-slider", 
+             label = "la classe `js-range-slider` n'est plus appliqu\u00e9 au slider g\u00e9n\u00e9re par shiny")
+# test2 - verif que la lib js associee est toujours presente dans le package shiny
+js_slider_path <- system.file("www/shared/ionrangeslider/js", "ion.rangeSlider.min.js", package = "shiny")
+expect_true(file.exists(js_slider_path), 
+            info = "Le fichier ion.rangeSlider.min.js de Shiny utilis\u00e9 pour le slider DSFR est introuvable." )
+# test3 - verif que les classes CSS principales de inst/external_deps/slider.css sont toujours créées par le js du slider
+css_slider_shinygouv <- c(".irs", ".irs-bar", ".irs-single", ".irs-line", ".irs-min", ".irs-max", ".irs-grid")
+js_slider_shiny <- readLines(js_slider_path, warn = FALSE) |> 
+  paste(collapse = "\n")
+css_slider_shinygouv_present_dans_js_shiny <- map_lgl(.x = css_slider_shinygouv,
+                                                      .f = ~grepl(.x, js_slider_shiny, fixed = TRUE))
+expect_all_true(css_slider_shinygouv_present_dans_js_shiny)
+
+
+})
+
+
+```
+
+
 # update_nom_composant_shiny_dsfr
 
 Pour les fonctions de type `update_*`, voir l'exemple de "flat_radioButtons.Rmd"

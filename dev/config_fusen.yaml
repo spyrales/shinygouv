@@ -268,16 +268,17 @@ flat_slider.Rmd:
   path: dev/flat_composants/flat_slider.Rmd
   state: active
   R: R/sliderinput_dsfr.R
-  tests: []
+  tests: tests/testthat/test-sliderInput_dsfr.R
   vignettes: []
   inflate:
-    pkg: shinygouv
     flat_file: dev/flat_composants/flat_slider.Rmd
     vignette_name: .na
     open_vignette: true
-    check: true
+    check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_toggleswitch.Rmd:
   path: dev/flat_composants/flat_toggleswitch.Rmd
   state: active
