@@ -33,3 +33,6 @@ if (interactive()) {
   )
 }
 }
+\seealso{
+\code{\link[shiny:tableOutput]{tableOutput()}}
+}

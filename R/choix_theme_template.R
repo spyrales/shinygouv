@@ -8,7 +8,7 @@ choix_theme_template <- function(headfoot = 'head') {
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
       "composant",
-      paste0("btn_",headfoot,"_choix_theme.html"),
+      paste0("btn_", headfoot, "_choix_theme.html"),
       package = "shinygouv"
     )
   )

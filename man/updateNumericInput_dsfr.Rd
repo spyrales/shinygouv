@@ -136,3 +136,6 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+\code{\link[shiny:updateNumericInput]{updateNumericInput()}} in Shiny
+}

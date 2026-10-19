@@ -151,6 +151,7 @@ test_that("tabsetPanel_dsfr_template works", {
 #' @param content contenu du tabset
 #'
 #' @return html
+#' @seealso [tabsetPanel()] in Shiny
 #'
 #' @export
 #' @rdname tabPanel
@@ -183,6 +184,7 @@ tabsetPanel_dsfr <- function(
 }
 
 #' @export
+#' @seealso [tabPanel()] in Shiny
 #' @rdname tabPanel
 tabPanel_dsfr <- function(
   id,
@@ -272,6 +274,7 @@ test_that("tabsetPanel_dsfr works", {
 #'
 #' @importFrom shiny updateNumericInput
 #' @return html
+#' @seealso [updateTabsetPanel()] in Shiny
 #'
 #' @export
 #' @examples

@@ -1,5 +1,5 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "flat_modal"
 output: html_document
 editor_options:
   chunk_output_type: console
@@ -153,6 +153,7 @@ Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur
 #' @param title titre du modal
 #' @param footer footer du modal
 #' @return html
+#' @seealso [modalDialog()] in Shiny
 #'
 #' @export
 #' @importFrom htmltools tagList
@@ -180,6 +181,7 @@ modalDialog_dsfr <- function(
 #' @param ui TODO
 #' @param inputId TODO
 #' @param session TODO
+#' @seealso [showModal()] in Shiny
 #'
 #' @export
 showModal_dsfr <- function(
@@ -201,7 +203,7 @@ showModal_dsfr <- function(
 #'
 #' @param inputId TODO
 #' @param session TODO
-#'
+#' @seealso [removeModal()] in Shiny
 #' @export
 removeModal_dsfr <- function(
     inputId = "fr-modal-1",

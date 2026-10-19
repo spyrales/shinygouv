@@ -125,6 +125,8 @@ test_that("nom_composant_shiny_dsfr_template works", {
 #' @return html
 #'
 #' @export
+#' 
+#' @seealso [nom_composant_shiny()]
 #'
 #' @examples
 nom_composant_shiny_dsfr <- function(

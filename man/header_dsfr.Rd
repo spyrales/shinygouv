@@ -30,11 +30,11 @@ header_dsfr(
 
 \item{class}{un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")}
 
-\item{choix_theme}{TRUE/FALSE (default) - affichage lien modal pour choix theme clair ou sombre dans le header}
+\item{choix_theme}{TRUE/FALSE (default) - afficher modale pour proposer choix theme clair ou sombre dans le header}
 
-\item{logo}{list(url,alttext,style) - affichage d'un logo dans le header à droite de la marianne. Les attributs doivent être tous remplis si on souhaite un logo - optionnel}
+\item{logo}{list(url, alttext, style) - optionnel : affichage d'un logo dans le header à droite de la marianne. Tous les attributs doivent être remplis pour ajouter un logo complémentaire. Exemple de style pour le logo : "max-width:10rem;".}
 
-\item{fastlink}{list(list(lib, url, icon, blank)) - affichage de lien rapide dans le header. Les attributs doivent être tous remplis si on souhaite des liens rapide - optionnel (pour les icones voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/)}
+\item{fastlink}{list(list(lib, url, icon, blank)) - optionnel : affichage de liens rapides dans le header. Tous les attributs doivent être remplis pour ajouter un ou des liens rapides (pour les icônes voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/).}
 }
 \value{
 html
@@ -45,14 +45,18 @@ Vous pouvez ajouter le header officiel dans votre application avec \code{header_
 }
 \examples{
 if(interactive()) {
- shiny::shinyApp(
-  ui = fluidPage_dsfr(
-    header = header_dsfr(
-      intitule = c("Pr\u00e9fet", "de", "Bretagne"),
-      fastlink = list(list(lib="spyrales/shinygouv", url="https://github.com/spyrales/shinygouv/", icon="fr-icon-github-fill", blank=FALSE))
-    )
-  ),
-    server = function(input, output) {}
- )
+  shiny::shinyApp(
+    ui = fluidPage_dsfr(
+      header = header_dsfr(
+        intitule = c("Pr\u00e9fet", "de", "Bretagne"), 
+        logo = list(url = "https://hubeau.eaufrance.fr/sites/default/files/inline-images/DREALdatalab.jpg",
+                    alttext = "<DREALdatalab/>", style = "max-width:10rem;"),
+        fastlink = list(gh = list(lib = "spyrales/shinygouv", url = "https://github.com/spyrales/shinygouv/",
+                                  icon = "fr-icon-github-fill", blank = FALSE),
+                        ds = list(lib = "demarches num", url = "https://demarche.numerique.gouv.fr/",
+                                  icon = "fr-icon-edit-box-fill", blank = FALSE)))
+    ),
+    server = function(input, output){} 
+  )
 }
 }

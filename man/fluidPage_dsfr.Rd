@@ -27,9 +27,7 @@ fluidPage_dsfr(
 
 \item{lang}{pas implemente}
 
-\item{dependencies}{dépendences complémentaire à implémenter
-dans la balise head (exemple golem add_resource_path ou htmlDependency).
-NULL par défaut}
+\item{dependencies}{dépendances complémentaires à placer dans la balise head (exemple golem add_resource_path ou htmlDependency). NULL par défaut}
 }
 \value{
 html

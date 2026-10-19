@@ -8,6 +8,7 @@ test_that("convert_file_to_dsfr works", {
 
   mydir <- tempfile(pattern = "app")
   dir.create(mydir)
+  options(repos = c(CRAN = "https://cran.r-project.org"))
   golem::install_dev_deps(
     force_install = TRUE
   )

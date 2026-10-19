@@ -1,0 +1,199 @@
+---
+title: "flat_wellPanel"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = TRUE)
+```
+
+# wellPanel_dsfr_template
+    
+```{r function-wellPanel_dsfr_template}
+#' wellPanel_dsfr_template
+#' @param domtitle titre de la carte
+#' @param greyclass class du container principal
+#' @param content body de la carte
+#'
+#' @importFrom htmltools htmlTemplate
+#' @return html
+#' @noRd
+wellPanel_dsfr_template <- function(
+    title,
+    grey,
+    content
+) {
+  if ( !is.null(title) ) {
+    domtitle <- tags$div(
+      class = "fr-card__header fr-px-4w fr-py-2w",
+      h3(class = "fr-card__title", title)
+    )
+  } else {
+    domtitle <- ""
+  }
+  htmltools::htmlTemplate(
+    filename = system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "wellpanel.html",
+      package = "shinygouv"
+    ),
+    title = domtitle,
+    grey = grey,
+    content = content
+  )
+}
+```
+  
+  
+```{r test-wellPanel_dsfr_template}
+test_that("wellPanel_dsfr_template works", {
+  expect_true(inherits(wellPanel_dsfr_template, "function"))
+
+  htmlfile <- readLines(
+    system.file(
+      get_dsfr_version(with_v = TRUE),
+      "composant",
+      "wellpanel.html",
+      package = "shinygouv"
+    )
+  )
+
+  #' @description Comparer les parametres par rapport a ceux de la version precedente
+
+  purrr::walk(
+    c(
+      "title",
+      "grey",
+      "content"
+    ),
+    function(param) {
+      with_moustache <- paste0("\\{\\{", param, "\\}\\}")
+      expect_true(
+        any(grepl(pattern = with_moustache, htmlfile)),
+        label = paste0("sans moustache '", param, "'")
+      )
+    }
+  )
+
+
+  test_html <- wellPanel_dsfr_template(
+    title = "Informations",
+    grey = " fr-card--grey",
+    content = tags$p("Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                     ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                     in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                     officia deserunt mollit anim id est laborum.")
+  )
+
+  #' @description tester si tous les params sont remplaces
+  expect_false(grepl(pattern = "\\{\\{", test_html))
+
+
+  #' @description Verifie que les parametres ont bien ete remplace par leurs valeurs
+
+  purrr::walk(
+    c(
+      title = "Informations",
+      grey = " fr-card--grey",
+      content = as.character(tags$p("Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                     ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                     in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                     officia deserunt mollit anim id est laborum."))
+    ),
+    function(param) {
+      expect_true(
+        any(grepl(pattern = param, test_html)),
+        label = paste0("remplacement de '", param, "'")
+      )
+    }
+  )
+})
+```
+  
+
+# wellPanel_dsfr
+
+```{r function-wellPanel_dsfr}
+#' wellPanel_dsfr
+#'
+#' Crée un panneau avec une bordure légèrement incrustée et un arrière-plan gris et un titre, si on le souhaite.
+#'
+#' @param ... Éléments d'interface utilisateur à inclure à l'intérieur du panneau.
+#' @param title titre du panneau (optionnel)
+#' @param grey arrière-plan gris du panneau (FALSE par défaut)
+#'
+#' @return html
+#' @references inspiré de la fonction [shiny::wellPanel()]
+#' @family layout functions
+#'
+#' @importFrom htmltools tagList
+#'
+#' @examples
+#' if (interactive()) {
+#'   shiny::shinyApp(
+#'     ui = fluidPage_dsfr(
+#'       title = "exemple",
+#'       fluidRow_dsfr(
+#'       column_dsfr(
+#'         12,
+#'         wellPanel_dsfr("Ceci est un wellPanel avec titre", title="Mon wellPanel"),
+#'         wellPanel_dsfr("Ceci est un wellPanel avec option grey et sans titre", grey = TRUE)
+#'       )
+#'       )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
+#' }
+#' @export
+wellPanel_dsfr <- function(
+    ...,
+    title = NULL,
+    grey = FALSE
+) {
+  ui <- wellPanel_dsfr_template(
+    title,
+    grey = ifelse ( grey, " fr-card--grey", ""),
+    content = tagList(
+      ...
+    )
+  )
+
+  ui
+}
+```
+
+```{r examples-wellPanel_dsfr}
+wellPanel_dsfr("Ceci est un ",strong("wellPanel")," avec option grey et titre", title="Mon wellPanel", grey = TRUE)
+```
+
+```{r tests-wellPanel_dsfr}
+test_that("wellPanel_dsfr works", {
+  expect_true(inherits(wellPanel_dsfr, "function"))
+  test_html <- wellPanel_dsfr("Ceci est un wellPanel avec titre", title="Mon wellPanel")
+  #' @description tester si shiny.tag
+  expect_s3_class(test_html, "shiny.tag.list")
+})
+```
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+
+fusen::inflate(flat_file = "dev/flat_composants/flat_wellPanel.Rmd",
+  vignette_name = NA)
+```

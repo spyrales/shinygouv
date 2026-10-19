@@ -183,7 +183,7 @@ Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
-#'
+#' @seealso [fluidPage()] fonction shiny originelle
 #' @return html
 #'
 #' @importFrom htmltools tagList
@@ -489,7 +489,7 @@ On reprend le template layout et on ajoute notre logique métier sur les paramè
 #'
 #' @return shiny.tag.list
 #' @importFrom htmltools tagList
-#'
+#' @seealso [fluidRow()] fonction shiny originelle
 #' @export
 fluidRow_dsfr <- function(..., class = NULL) {
   layout_dsfr_template(
@@ -570,7 +570,7 @@ Le fonctionnement des colonnes est un peu différent pour le dsfr. Si la largeur
 #' @param extra_class ajout de class pour la column_dsfr (voir la page officiel du CSS)
 #'
 #' @return shiny.tag.list
-#'
+#' @seealso [column()] pour en savoir plus sur la fonction originelle de Shiny.
 #' @importFrom htmltools tagList
 #'
 #' @export
