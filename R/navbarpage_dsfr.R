@@ -120,21 +120,12 @@ navbarPage_dsfr <- function(
     header,
     htmltools::htmlTemplate(
       filename = system.file(
-        get_dsfr_version(with_v = TRUE),
-        "composant",
-        "nav.html",
-        package = "shinygouv"
-      ),
+        get_dsfr_version(with_v = TRUE), "composant", "nav.html", package = "shinygouv" ),
       navs = lapply(
         all_navs,
         function(x) {
           htmltools::htmlTemplate(
-            filename = system.file(
-              get_dsfr_version(with_v = TRUE),
-              "composant",
-              "nav-item.html",
-              package = "shinygouv"
-            ),
+            filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "nav-item.html", package = "shinygouv"),
             title = x$title,
             id = x$id,
             ariacurrent = {

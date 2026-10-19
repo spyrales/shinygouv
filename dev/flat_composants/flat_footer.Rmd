@@ -27,7 +27,7 @@ fluidPage_dsfr(
   ),
   footer = footer_dsfr(
     intitule = "intitule court"
-    ),
+  ),
   title = "Exemple shiny dsfr",
   h1("Exemple d'utilisation de {shinygouv}"),
 )
@@ -56,18 +56,19 @@ footer_extra_url_body_dsfr <- function(...) {
   
 ```{r example-footer_extra_url_body_dsfr}
 footer_extra_url_body_dsfr(
-                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
-                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"))
+  footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
+  footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body")
+)
 ```
   
 ```{r tests-footer_extra_url_body_dsfr}
 test_that("footer_extra_url_body_dsfr works", {
   expect_true(inherits(footer_extra_url_body_dsfr, "function")) 
   
-    test_html <- footer_extra_url_body_dsfr()
+  test_html <- footer_extra_url_body_dsfr()
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag.list")
- 
+  
   
   test_html <- footer_extra_url_body_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
   #' @description tester si shiny.tag
@@ -88,10 +89,8 @@ test_that("footer_extra_url_body_dsfr works", {
 #' @return html
 #' @rdname footer_dsfr
 #' @export
-footer_extra_url_bottom_dsfr <-
-  function(...) {
+footer_extra_url_bottom_dsfr <- function(...) {
       tagList(...)
-
   }
 
 ```
@@ -104,7 +103,8 @@ footer_extra_url_bottom_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", tex
 test_that("footer_extra_url_bottom_dsfr works", {
   expect_true(inherits(footer_extra_url_bottom_dsfr, "function")) 
   
-    test_html <-footer_extra_url_bottom_dsfr(accessibilite = "non", lien_accessibilite = "url_accessibilite", footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
+    test_html <- footer_extra_url_bottom_dsfr(accessibilite = "non", lien_accessibilite = "url_accessibilite", 
+                                              footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
 
   #' @description tester si shiny.tag
   expect_s3_class(test_html, "shiny.tag.list")
@@ -131,10 +131,10 @@ test_that("footer_extra_url_bottom_dsfr works", {
 #' 
 #' @export
 footer_li_dsfr <- function(id = NULL,
-                    href,
-                    titre = NULL,
-                    texte,
-                    type = "body") {
+                           href,
+                           titre = NULL,
+                           texte,
+                           type = "body") {
 
   if (type == "body"){
     target = "target='_blank'"
@@ -146,20 +146,17 @@ footer_li_dsfr <- function(id = NULL,
     stop("Dans footer_li_dsfr, type doit etre 'body' ou 'bottom'")
   }
   
-    htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "piedpage_content.html",
-      package = "shinygouv"
-    ),
-    id = id,
+  htmltools::htmlTemplate(
+    filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "piedpage_content.html", 
+                           package = "shinygouv"),
+    id = id, 
     href = href,
     titre = titre,
     texte = texte,
     type = ttype,
     target = target
-  ) |> parse_html()
+  ) |> 
+    parse_html()
 }
 
 ```
@@ -175,8 +172,7 @@ test_that("footer_li_dsfr works", {
   
   test_html <- footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr")
   #' @description tester si tagList
-    expect_s3_class(test_html, "shiny.tag")
-  
+  expect_s3_class(test_html, "shiny.tag")
   
 })
 ```
@@ -196,6 +192,7 @@ test_that("footer_li_dsfr works", {
 #' @param lien_mentions_legales lien url vers les mentions légales
 #' @param lien_donnees_personnelles lien url vers les données personnelles
 #' @param lien_gestion_cookies lien url vers la gestion des cookies
+#' @param choix_theme html provenant de choix_theme_template ou rien
 #' 
 #' @importFrom htmltools htmlTemplate
 #' @return html
@@ -203,13 +200,14 @@ footer_dsfr_template <- function(
     intitule , 
     description , 
     footer_body, footer_bottom,
-           accessibilite = "non",
-           lien_accessibilite = "#",
-           lien_mentions_legales = "#",
-           lien_donnees_personnelles = "#",
-           lien_gestion_cookies = "#"
-    ) {
-
+    accessibilite = "non",
+    lien_accessibilite = "#",
+    lien_mentions_legales = "#",
+    lien_donnees_personnelles = "#",
+    lien_gestion_cookies = "#",
+    choix_theme = ""
+) {
+  
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
@@ -221,16 +219,15 @@ footer_dsfr_template <- function(
     description = description, 
     footer_body = footer_body,
     footer_bottom = footer_bottom,
-      accessibilite = accessibilite,
-      lien_accessibilite = lien_accessibilite,
-      lien_mentions_legales = lien_mentions_legales,
-      lien_donnees_personnelles = lien_donnees_personnelles,
-      lien_gestion_cookies = lien_gestion_cookies
-  ) |>  parse_html()
+    accessibilite = accessibilite,
+    lien_accessibilite = lien_accessibilite,
+    lien_mentions_legales = lien_mentions_legales,
+    lien_donnees_personnelles = lien_donnees_personnelles,
+    lien_gestion_cookies = lien_gestion_cookies,
+    choix_theme = choix_theme
+  ) |> 
+    parse_html()
 }
-
-
-
 
 
 ```
@@ -316,7 +313,7 @@ test_that("footer_dsfr_template works", {
 #' - un bloc marque, voir la charte de marque
 #' - un texte de présentation - optionnel.
 #' - 4 liens de références de l'écosystème institutionnel - obligatoires.
-#'- la liste de liens liés aux obligations légales. Cette liste doit être définie en fonction du site, toutefois les liens & contenus suivants sont obligatoires : “accessibilité : non/partiellement/totalement conforme”, mentions légales, données personnelles et gestion des cookies. - obligatoire.
+#' - la liste de liens liés aux obligations légales + la modale de sélection du mode sombre/clair. Cette liste doit être définie en fonction du site, toutefois les liens & contenus suivants sont obligatoires : “accessibilité : non/partiellement/totalement conforme”, mentions légales, données personnelles, gestion des cookies. - obligatoire.
 #' - une mention de la licence - obligatoire “Sauf mention contraire, tous les contenus de ce site sont sous licence etalab-2.0”
 #'
 #' Il est possible d'ajouter des url supplémentaires dans le corps et le bas du pied de page.
@@ -330,6 +327,7 @@ test_that("footer_dsfr_template works", {
 #' @param lien_gestion_cookies lien url vers la gestion des cookies
 #' @param add_extra_url_body url supplementaire a ajouter au corps du pied de page (voir `footer_extra_url_body_dsfr()`)
 #' @param add_extra_url_bottom url supplementaire a ajouter au bas du pied de page (voir `footer_extra_url_bottom_dsfr()`)
+#' @param choix_theme TRUE (default) / FALSE - afficher le lien modal pour proposer choix mode clair ou sombre dans le header
 #' 
 #' @return html
 #' @export
@@ -344,11 +342,18 @@ footer_dsfr <- function(
     lien_donnees_personnelles = "#",
     lien_gestion_cookies = "#",
     add_extra_url_body = NULL, 
-    add_extra_url_bottom = NULL) {
+    add_extra_url_bottom = NULL,
+    choix_theme = TRUE) {
   
   
   if ( isFALSE(accessibilite %in% c("non", "partiellement", "totalement conforme"))){
     stop("l accessibilite doit etre 'non', 'partiellement' ou 'totalement conforme'")
+  }
+  
+  if( choix_theme ){
+    choix_theme_dom = choix_theme_template('foot')
+  } else {
+    choix_theme_dom = ""
   }
   
   assertthat::assert_that(is.character(lien_accessibilite))
@@ -370,7 +375,8 @@ footer_dsfr <- function(
     lien_accessibilite = lien_accessibilite,
     lien_mentions_legales = lien_mentions_legales,
     lien_donnees_personnelles = lien_donnees_personnelles,
-    lien_gestion_cookies = lien_gestion_cookies
+    lien_gestion_cookies = lien_gestion_cookies,
+    choix_theme = choix_theme_dom
   )
 }
 

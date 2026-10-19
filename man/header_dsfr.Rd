@@ -32,7 +32,7 @@ header_dsfr(
 
 \item{choix_theme}{TRUE/FALSE (default) - afficher modale pour proposer choix theme clair ou sombre dans le header}
 
-\item{logo}{list(url, alttext, style) - optionnel : affichage d'un logo dans le header à droite de la marianne. Tous les attributs doivent être remplis pour ajouter un logo complémentaire. Exemple de style pour le logo : "max-width:10rem;".}
+\item{logo}{list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne(reservé aux opérateurs). Liste de 3 éléments : \code{url} = chemin vers le logo, \code{alttext} = "nom operateur", \code{style} = css (Exemple de \code{style} : "max-width:10rem;").}
 
 \item{fastlink}{list(list(lib, url, icon, blank)) - optionnel : affichage de liens rapides dans le header. Tous les attributs doivent être remplis pour ajouter un ou des liens rapides (pour les icônes voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/).}
 }

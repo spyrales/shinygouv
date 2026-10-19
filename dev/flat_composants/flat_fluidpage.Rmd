@@ -1,11 +1,11 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "flat fluidPage_dsfr()"
 output: html_document
 editor_options:
   chunk_output_type: console
 ---
 
-Documentation sur l'implementation des composants `fluidPage_dsfr`, `fluidRow_dsfr` et les columns.
+Documentation sur l'implémentation des composants `fluidPage_dsfr`, `fluidRow_dsfr` et les columns.
 
 Nous allons dans un premier temps nous attaquer au fluidPage.
 
@@ -31,6 +31,7 @@ Ensuite, vient la traduction avec `htmlTemplate` :
 #' @param body body
 #' @param footer footer de la page
 #' @param class class du container principal
+#' @param dependencies fixe les dépendances complémentaires (js, css) via une div vide. NULL par défault 
 #'
 #' @importFrom htmltools htmlTemplate
 #' @return html
@@ -39,7 +40,8 @@ fluidPage_dsfr_template <- function(
   title,
   body,
   footer = NULL,
-  class = "fr-container"
+  class = "fr-container",
+  dependencies = NULL
     ) {
   htmltools::htmlTemplate(
     filename = system.file(
@@ -48,37 +50,21 @@ fluidPage_dsfr_template <- function(
       "fluidpage.html",
       package = "shinygouv"
     ),
+    dependencies = dependencies,
+    skiplinks = skiplinks_template(),
     header = header,
     title = title,
     body = tags$div(
       class = class,
       body
     ),
-    footer = footer
+    footer = footer,
+  	spinner = addWithSpinner(),
+  	modal = modaltheme_template()
   )
 }
 ```
 
-```{r, eval=FALSE, echo=TRUE}
-# fluidPage_dsfr_template <- function(
-#     header,
-#     title,
-#     body
-#     ) {
-
-#   htmltools::htmlTemplate(
-#     filename = system.file(
-#       get_dsfr_version(with_v = TRUE),
-#       "composant",
-#       "fluidpage.html",
-#       package = "shinygouv"
-#     ),
-#     header = NULL,
-#     title = title,
-#     body = body
-#   )
-# }
-```
 
 Les paramètres `header`, `title` et `body` sont repris dans le html pour pouvoir le créer.
 
@@ -183,8 +169,10 @@ Il est donc à noter qu'il ne sera pas possible de faire des tags Attributes sur
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
-#' @seealso [fluidPage()] fonction shiny originelle
+#' @param dependencies dépendances complémentaires à placer dans la balise head (exemple golem add_resource_path ou htmlDependency). NULL par défaut
 #' @return html
+#' @references inspiré de la fonction [shiny::fluidPage()]
+#' @family structure functions
 #'
 #' @importFrom htmltools tagList
 #'
@@ -197,48 +185,23 @@ fluidPage_dsfr <- function(
   title = NULL,
   footer = NULL,
   theme = NULL,
-  lang = NULL
+  lang = NULL,
+  dependencies = NULL
     ) {
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    dependencies = tagList(add_dsfr_deps(), dependencies),
     header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...
     ),
     footer = footer
-  ) %>%
-    # parse_html(zone = "/html") %>%
-    add_dsfr_deps()
+  ) 
 
   ui
 }
-```
-
-```{r, eval=FALSE, echo=TRUE}
-# fluidPage_dsfr <- function(
-#     ...,
-#     header = NULL,
-#     title = NULL,
-#     theme = NULL,
-#     lang = NULL
-#     ) {
-
-#   # TODO theme et lang
-#   # check les params
-#   ui <- fluidPage_dsfr_template(
-#     header = tagList(header),
-#     title = tagList(title),
-#     body = tagList(
-#       ...
-#     )
-#   ) %>%
-#     parse_html(zone = "/html") %>%
-#     add_dsfr_deps()
-#   ui
-
-# }
 ```
 
 
@@ -589,7 +552,7 @@ column_dsfr <- function(
     }
   }
 
-  class <- paste0("fr-col", add_width)
+  class <- paste0("fr-col-12 fr-col-md", add_width)
 
   layout_dsfr_template(
     html = tagList(

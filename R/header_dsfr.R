@@ -8,9 +8,10 @@
 #' @param nom_site_service le nom du site ou du service - optionnel
 #' @param baseline le texte sous le nom de site/service - optionnel
 #' @param class un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")
+#' @param logo list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne(reservé aux opérateurs). Liste de 3 éléments : `url` = chemin vers le logo, `alttext` = "nom operateur", `style` = css (Exemple de `style` : "max-width:10rem;").
 #' @param choix_theme TRUE/FALSE (default) - afficher modale pour proposer choix theme clair ou sombre dans le header
-#' @param logo list(url, alttext, style) - optionnel : affichage d'un logo dans le header à droite de la marianne. Tous les attributs doivent être remplis pour ajouter un logo complémentaire. Exemple de style pour le logo : "max-width:10rem;".
 #' @param fastlink list(list(lib, url, icon, blank)) - optionnel : affichage de liens rapides dans le header. Tous les attributs doivent être remplis pour ajouter un ou des liens rapides (pour les icônes voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/).
+
 #' @return html
 #' @export
 #'
@@ -48,45 +49,27 @@ header_dsfr <- function(
   if(is.vector(intitule) & length(intitule) > 1){
     intitule <- span(HTML(paste0(intitule, collapse = "<br/>")))
   }
+  if(choix_theme) choix_theme_dom = choix_theme_template() else choix_theme_dom = ""
+  if(!is.null(logo)) logodom <- logooperator_template(logo) else logodom = ""
   
-  if(choix_theme){
-    choix_theme_dom = choix_theme_template()
-  } else {
-    choix_theme_dom = ""
-  }
-  if(!is.null(logo)){
-    attempt::stop_if_not(
-      (is.list(logo) & "url" %in% names(logo) & "alttext" %in% names(logo) & "style" %in% names(logo)),
-      msg = "logo = list(url, alttext, style) must be correctly define for logo. "
-    )
-    logodom <- logooperator_template(logo)
-  } else {
-    logodom = ""
-  }
   if(!is.null(fastlink)){
     attempt::stop_if_not(
-      (is.list(fastlink) & all(sapply(fastlink, function(x) { (is.list(x) & "url" %in% names(x) & "lib" %in% names(x) & "icon" %in% names(x) & "blank" %in% names(x)) }))),
-      msg = "fastlink = list(list(url,lib,icon,blank)) must be correctly define for fastlink"
-    )
-    links = lapply(
+      (is.list(fastlink) & all(sapply(fastlink, function(x) { all(is.list(x), sort(names(x)) == c("blank", "icon", "lib", "url")) }))),
+      msg = "Invalid `fastlink` parameter : it must be a list of link(s) and each link must be itself a list that contains all four elements : `url`, `lib`, `icon` and `blank`.")
+    links <- lapply(
       fastlink,
       function(x) {
-        htmltools::htmlTemplate(
-          filename = system.file(
-            get_dsfr_version(with_v = TRUE),
-            "composant",
-            "fastlink.html",
-            package = "shinygouv"
-          ),
-          icon = x$icon,
-          lib = x$lib,
-          url = x$url,
-          blank = ifelse(x$blank,"_blank","_self")
+        htmltools::htmlTemplate(filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "fastlink.html",
+                                                       package = "shinygouv"),
+                                icon = x$icon,
+                                lib = x$lib,
+                                url = x$url,
+                                blank = ifelse(x$blank, "_blank", "_self")
         )
       }
     )
   } else {
-    links = ""
+    links <- ""
   }
 
   res <- header_dsfr_template(
