@@ -106,7 +106,7 @@ server <- function(input, output, session) {
 shinyApp(remplace_bttn(ui), server)
 ```
 
-![](../reference/figures/option_b_btn.png)
+![apercu_bouton](../reference/figures/option_b_btn.png)
 
 Avantages:
 
