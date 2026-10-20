@@ -338,8 +338,8 @@ flat_sous_composants.Rmd:
     open_vignette: false
     check: false
     document: true
-    overwrite: ask
-    clean: ask
+    overwrite: 'yes'
+    clean: true
     codecov: false
 flat_tableOutput.Rmd:
   path: dev/flat_composants/flat_tableOutput.Rmd

@@ -8,9 +8,9 @@
 #' @param nom_site_service le nom du site ou du service - optionnel
 #' @param baseline le texte sous le nom de site/service - optionnel
 #' @param class un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")
-#' @param logo list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne(reservé aux opérateurs). Liste de 3 éléments : `url` = chemin vers le logo, `alttext` = "nom operateur", `style` = css (Exemple de `style` : "max-width:10rem;").
 #' @param choix_theme TRUE/FALSE (default) - afficher modale pour proposer choix theme clair ou sombre dans le header
 #' @param fastlink list(list(lib, url, icon, blank)) - optionnel : affichage de liens rapides dans le header. Tous les attributs doivent être remplis pour ajouter un ou des liens rapides (pour les icônes voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/).
+#' @inheritParams logooperator_template logo 
 
 #' @return html
 #' @export

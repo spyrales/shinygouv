@@ -2,11 +2,10 @@
 
 #' logooperator_template 
 #' @description template HTML d'un éventuel logo opérateur complémentaire à droite du bloc marque marianne d'entete
-#' @param logo list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne(reservé aux opérateurs). Liste de 3 éléments : `url` = chemin vers le logo, `alttext` = "nom operateur", `style` = css (Exemple de `style` : "max-width:10rem;").
+#' @param logo list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne (réservé aux opérateurs). Liste de 3 éléments : `url` = chemin vers le logo, `alttext` = "nom operateur", `style` = css (Exemple de `style` : "max-width:10rem;").
 #' @importFrom htmltools htmlTemplate
 #' @return html
-#' 
-#' @noRd
+#' @export
 logooperator_template <- function(logo = list(url = "adresse logo", alttext = "nom operateur", style = "max-width:10rem;")) {
   assertthat::assert_that(
     is.list(logo), identical(sort(names(logo)), c("alttext", "style", "url")), 
