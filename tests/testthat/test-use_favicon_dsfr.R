@@ -3,9 +3,12 @@
 test_that("use_favicon_dsfr works", {
   app <- file.path(tempdir(), "app")
   dir.create(app)
+  message(app)
   # version shiny basique
   path_shiny_base <- paste0(app, "/www/favicon.ico")
+  message(path_shiny_base)
   use_favicon_dsfr(path_app = app, golem_app = FALSE)
+  message(list.files(path = app, all.files = TRUE, full.names = TRUE, recursive = TRUE, include.dirs = TRUE))
   expect_true(file.exists(path_shiny_base))
-  
+
 })
