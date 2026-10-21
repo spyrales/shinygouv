@@ -45,7 +45,13 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/spyrales/shinygouv/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -55,7 +61,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>fluidPage_dsfr</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/spyrales/shinygouv/blob/dev/R/fluidpage_dsfr.R" class="external-link"><code>R/fluidpage_dsfr.R</code></a></small>
     <div class="hidden name"><code>fluidPage_dsfr.Rd</code></div>
     </div>
 
@@ -70,7 +76,8 @@
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  footer <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  lang <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  lang <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dependencies <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -101,14 +108,23 @@
 <dt id="arg-lang">lang<a class="anchor" aria-label="anchor" href="#arg-lang"></a></dt>
 <dd><p>pas implemente</p></dd>
 
+
+<dt id="arg-dependencies">dependencies<a class="anchor" aria-label="anchor" href="#arg-dependencies"></a></dt>
+<dd><p>dépendances complémentaires à placer dans la balise head (exemple golem add_resource_path ou htmlDependency). NULL par défaut</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>html</p>
     </div>
+    <div id="references">
+    <h2>References</h2>
+    <p>inspiré de la fonction <code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">shiny::fluidPage()</a></code></p>
+    </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage()</a></code> fonction shiny originelle</p></div>
+    <div class="dont-index"><p>Other structure functions:
+<code><a href="navbarPage_dsfr.html">navbarPage_dsfr()</a></code></p></div>
     </div>
 
     <div id="ref-examples">

@@ -45,7 +45,13 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/spyrales/shinygouv/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -55,23 +61,25 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-
+      <small>Source: <a href="https://github.com/spyrales/shinygouv/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.0.5" id="shinygouv-105">shinygouv 1.0.5<a class="anchor" aria-label="anchor" href="#shinygouv-105"></a></h2>
 <div class="section level3">
 <h3 id="composants-1-0-5">Composants<a class="anchor" aria-label="anchor" href="#composants-1-0-5"></a></h3>
-<ul><li>implémentation de wellpanel et sidebarlayout</li>
-</ul></div>
-<div class="section level3">
-<h3 id="composants-1-0-5-1">Composants<a class="anchor" aria-label="anchor" href="#composants-1-0-5-1"></a></h3>
-<ul><li>mise en place d’un test sur sliderInput_dsfr</li>
-<li>amélioration du style de sliderInput_dsfr</li>
+<ul><li>amélioration du style de sliderInput_dsfr<br></li>
+<li>implémentation de wellpanel et sidebarlayout</li>
+<li>enrichissement du groupe de composants fluidPage/navbarPage/header/footer :
+<ul><li>possibilité d’ajouter une modale de sélection du thème (sombre/clair) dans header et footer (mis par défaut dans le footer)</li>
+<li>ajout de la possibilité de compléter le header avec des liens rapides et d’y ajouter un logo complémentaire au bloc marque pour les opérateurs de l’Etat</li>
+<li>ajout lien d’évitement dans navbarPage et fluidPage (accessibilité)</li>
+</ul></li>
 </ul></div>
 <div class="section level3">
 <h3 id="fix-1-0-5">Fix<a class="anchor" aria-label="anchor" href="#fix-1-0-5"></a></h3>
-<ul><li>Fix déplacement indésirable des NavbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l’onglet et masquait l’entête</li>
+<ul><li>Fix déplacement indésirable des navbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l’onglet et masquait l’entête</li>
+<li>Fix bug double balises html/head/body lié à l’utilisation de tagList après construction de fluidpage.html</li>
 </ul></div>
 </div>
     <div class="section level2">

@@ -65,7 +65,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/spyrales/shinygouv/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -82,7 +89,7 @@
 DSFR</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/spyrales/shinygouv/blob/dev/vignettes/Hist-A-recommandation-pour-l-implementation-de-dsfr.Rmd" class="external-link"><code>vignettes/Hist-A-recommandation-pour-l-implementation-de-dsfr.Rmd</code></a></small>
       <div class="hidden name"><code>Hist-A-recommandation-pour-l-implementation-de-dsfr.Rmd</code></div>
 
     </div>
@@ -90,7 +97,7 @@ DSFR</h1>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spyrales/shinygouv/" class="external-link">shinygouv</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="note-sur-les-orientations-initiales-de-développement-présentation-des-options">Note sur les orientations initiales de développement : présentation
 des options<a class="anchor" aria-label="anchor" href="#note-sur-les-orientations-initiales-de-d%C3%A9veloppement-pr%C3%A9sentation-des-options"></a>
@@ -172,7 +179,9 @@ app qui le fait <a href="https://github.com/MTES-MCT/dseshiny/blob/main/dseshiny
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="fu">remplace_bttn</span><span class="op">(</span><span class="va">ui</span><span class="op">)</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../reference/figures/option_b_btn.png"></p>
+<div class="float">
+<img src="../reference/figures/option_b_btn.png" alt="apercu_bouton"><div class="figcaption">apercu_bouton</div>
+</div>
 <p>Avantages:</p>
 <ul>
 <li>Facile à mettre en oeuvre pour les utilisateurs.</li>

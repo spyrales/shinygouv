@@ -66,7 +66,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/spyrales/shinygouv/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -82,10 +89,11 @@
 <div class="section level1">
 <div class="page-header"><h1 id="shinygouv">{shinygouv}<a class="anchor" aria-label="anchor" href="#shinygouv"></a>
 </h1></div>
-<p>Le package <code>{shinygouv}</code> permet d’utiliser le <a href="https://www.systeme-de-design.gouv.fr/" class="external-link"><code>Système de Design de l'Etat</code> (DSFR)</a> dans vos applications Shiny.</p>
+<p>Le package <a href="https://github.com/spyrales/shinygouv/" class="external-link">shinygouv</a> permet d’utiliser le <a href="https://www.systeme-de-design.gouv.fr/" class="external-link"><code>Système de Design de l'Etat</code> (DSFR)</a> dans vos applications Shiny.</p>
 <p>Cela leur donnera ce genre de look :</p>
-<p><img src="reference/figures/look_dsfr.png"></p>
-<p>Il s’installe depuis github :</p>
+<figure><img src="reference/figures/look_dsfr.png" alt="Apercu"><figcaption aria-hidden="true">
+Apercu
+</figcaption></figure><p>Il s’installe depuis github :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"spyrales/shinygouv"</span><span class="op">)</span></span></code></pre></div>
@@ -96,7 +104,7 @@
 <p>Le package s’utilise comme {shiny}. Voici un exemple minimaliste pour la partie UI:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shinygouv</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/spyrales/shinygouv/" class="external-link">shinygouv</a></span><span class="op">)</span></span>
 <span><span class="va">app_ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fluidPage_dsfr.html">fluidPage_dsfr</a></span><span class="op">(</span></span>
 <span>  header <span class="op">=</span> <span class="fu"><a href="reference/header_dsfr.html">header_dsfr</a></span><span class="op">(</span></span>
 <span>    intitule <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D\u00e9mo"</span>, <span class="st">"de"</span>, <span class="st">"{shinygouv}"</span><span class="op">)</span>,</span>
@@ -126,19 +134,26 @@
 <div class="section level1">
 <h1 id="contribuer-au-développement-du-package">Contribuer au développement du package<a class="anchor" aria-label="anchor" href="#contribuer-au-d%C3%A9veloppement-du-package"></a>
 </h1>
-<p>Voir les vignettes à l’intention des développeurs du <a href="https://spyrales.github.io/shinygouv/articles/index.html" class="external-link">site de présentation du packages et de ses fonctions</a></p>
+<p>Voir les vignettes à l’intention des développeurs du <a href="https://spyrales.github.io/shinygouv/articles/index.html">site de présentation du packages et de ses fonctions</a></p>
 </div>
 <div class="section level1">
 <h1 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
 </h1>
-<p>Notez svp qu’un Code de conduite (<a href="https://spyrales.github.io/shinygouv/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>) encadre la participation au projet {shinygouv}.</p>
+<p>Notez svp qu’un Code de conduite (<a href="https://spyrales.github.io/shinygouv/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>) encadre la participation au projet {shinygouv}.</p>
 <p>En contribuant à ce projet, vous acceptez de le respecter.</p>
 </div>
 
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/spyrales/shinygouv/" class="external-link">Browse source code</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>EUPL (&gt;= 1.2) | file <a href="LICENSE-text.html">LICENSE</a>
