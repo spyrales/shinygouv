@@ -76,6 +76,8 @@ flat_favicon.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_fileInput.Rmd:
   path: dev/flat_composants/flat_fileInput.Rmd
   state: active
