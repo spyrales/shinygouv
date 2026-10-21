@@ -1,5 +1,5 @@
 ---
-title: "flat_new_one.Rmd empty"
+title: "Flat navbarPage_dsfr"
 output: html_document
 editor_options:
   chunk_output_type: console
@@ -24,7 +24,7 @@ La `navbarPage_dsfr()` se compose de :
 - Une navbar, définie par une série d'éléments `navbarPanel_dsfr()`
 
 ```{r function-navbarPage_dsfr}
-#' Page avec navbar
+#' Page avec menu navbar
 #'
 #' @return html
 #'
@@ -34,7 +34,10 @@ La `navbarPage_dsfr()` se compose de :
 #' @param id Id de la navbar
 #' @param header header_dsfr()
 #' @param footer pied de page
-#' @seealso  [navbarPage()] in Shiny 
+#' @param dependencies dépendences complémentaire à implémenter dans la balise head (exemple golem add_resource_path)
+#' @references inspiré de la fonction [shiny::navbarPage()]
+#' @family structure functions
+
 #'
 #' @examples
 navbarPage_dsfr <- function(
@@ -42,7 +45,8 @@ navbarPage_dsfr <- function(
   ...,
   header = header_dsfr(intitule = "intitule a remplacer"),
   id = NULL,
-  footer = NULL
+  footer = NULL,
+  dependencies = NULL
     ) {
   all_navs <- list(...)
   # Making the first tab the current one
@@ -55,21 +59,12 @@ navbarPage_dsfr <- function(
     header,
     htmltools::htmlTemplate(
       filename = system.file(
-        get_dsfr_version(with_v = TRUE),
-        "composant",
-        "nav.html",
-        package = "shinygouv"
-      ),
+        get_dsfr_version(with_v = TRUE), "composant", "nav.html", package = "shinygouv" ),
       navs = lapply(
         all_navs,
         function(x) {
           htmltools::htmlTemplate(
-            filename = system.file(
-              get_dsfr_version(with_v = TRUE),
-              "composant",
-              "nav-item.html",
-              package = "shinygouv"
-            ),
+            filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "nav-item.html", package = "shinygouv"),
             title = x$title,
             id = x$id,
             ariacurrent = {
@@ -87,13 +82,10 @@ navbarPage_dsfr <- function(
       id = id
     )
   )
-  htmltools::htmlTemplate(
-    filename = system.file(
-      get_dsfr_version(with_v = TRUE),
-      "composant",
-      "fluidpage.html",
-      package = "shinygouv"
-    ),
+  ui <- htmltools::htmlTemplate(
+    filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "fluidpage.html", package = "shinygouv"),
+    dependencies = tagList(add_dsfr_deps(), dependencies),
+    skiplinks = skiplinks_template(), 
     header = header,
     title = title,
     body = tagList(
@@ -108,9 +100,12 @@ navbarPage_dsfr <- function(
         }
       )
     ),
-    footer = footer
-  ) %>%
-    add_dsfr_deps()
+    footer = footer,
+	  spinner = addWithSpinner(),
+	  modal = modaltheme_template()
+  ) 
+  
+  ui
 }
 
 

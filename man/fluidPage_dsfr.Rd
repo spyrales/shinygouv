@@ -10,7 +10,8 @@ fluidPage_dsfr(
   title = NULL,
   footer = NULL,
   theme = NULL,
-  lang = NULL
+  lang = NULL,
+  dependencies = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ fluidPage_dsfr(
 \item{theme}{pas implemente}
 
 \item{lang}{pas implemente}
+
+\item{dependencies}{dépendances complémentaires à placer dans la balise head (exemple golem add_resource_path ou htmlDependency). NULL par défaut}
 }
 \value{
 html
@@ -50,6 +53,11 @@ if (interactive()) {
   )
 }
 }
-\seealso{
-\code{\link[shiny:fluidPage]{fluidPage()}} fonction shiny originelle
+\references{
+inspiré de la fonction \code{\link[shiny:fluidPage]{shiny::fluidPage()}}
 }
+\seealso{
+Other structure functions:
+\code{\link[=navbarPage_dsfr]{navbarPage_dsfr()}}
+}
+\concept{structure functions}

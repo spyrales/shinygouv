@@ -19,7 +19,7 @@ Le package `{shinygouv}` permet d'utiliser le [`Système de Design de l'Etat` (D
 
 Cela leur donnera ce genre de look :
 
-![](man/figures/look_dsfr.png)
+![Apercu](man/figures/look_dsfr.png)
 
 Il s'installe depuis github :
 

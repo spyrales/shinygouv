@@ -37,7 +37,8 @@ pkgload::load_all(export_all = FALSE)
 #' }
 
 use_favicon_dsfr <- function(path_app = '', golem_app = TRUE) {
-  path_favicon_dsfr <- system.file(paste0("dsfr-v", get_dsfr_version(), "/dist/favicon/favicon.ico"), package = "shinygouv")
+  path_favicon_dsfr <- system.file(paste0("dsfr-v", get_dsfr_version(), "/dist/favicon/favicon.ico"), 
+                                   package = "shinygouv", mustWork = TRUE)
   if(golem_app) {
     golem::use_favicon(path = path_favicon_dsfr, pkg = path_app)
   } else {

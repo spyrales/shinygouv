@@ -4,11 +4,10 @@
             <div class="fr-header__body-row">
                 <div class="fr-header__brand fr-enlarge-link">
                     <div class="fr-header__brand-top">
-                        <div class="fr-header__logo"> <a href="/"
-                                title="Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
-                                <p class="fr-logo"> {{intitule}} </p>
-                            </a>
+                        <div class="fr-header__logo">
+                            <p class="fr-logo"> {{intitule}} </p>
                         </div>
+                        {{logoopt}}
                         <div class="fr-header__navbar">
                             <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-7145"
                                 aria-haspopup="menu" id="button-7146" title="Menu">
@@ -25,8 +24,15 @@
                         <p class="fr-header__service-tagline">{{baseline}}</p>
                     </div>
                 </div>
+                <div class="fr-header__tools">
+                  <div class="fr-header__tools-links">
+                    <ul class="fr-btns-group">
+                      {{choix_theme}}
+                      {{links}}
+                    </ul>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
-
 </header>

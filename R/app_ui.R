@@ -5,17 +5,18 @@
 #' @import shiny
 #' @noRd
 app_ui <- function(request) {
-  tagList(
-    # Leave this function for adding external resources
-    golem_add_external_resources(),
     # Your application UI logic
-    navbarPage_dsfr(
+    ui <- navbarPage_dsfr(
       title = "shinygouv",
       id = "nav",
+	  dependencies = golem_add_external_resources(), # Leave this function for adding external resources
       header = header_dsfr(
         intitule = c("D\u00e9mo", "de", "{shinygouv}"),
-        nom_site_service = "Bienvenue sur l\'application de d\u00e9monstration de {shinygouv}",
-        baseline = "https://github.com/spyrales/shinygouv"
+        nom_site_service = "Application de d\u00e9monstration de {shinygouv}",
+        baseline = "Bienvenue \u00e0 tous",
+        choix_theme = TRUE,
+        logo = list(url="modal-1.9.3/shinygouv.png",alttext="Logo Package shinygouv",style="width:4.5rem;"),
+        fastlink = list(list(lib="spyrales/shinygouv", url="https://github.com/spyrales/shinygouv/", icon="fr-icon-github-fill", blank=FALSE))
       ),
       footer = footer_dsfr(
         intitule = c("D\u00e9mo", "de", "{shinygouv}"),
@@ -39,7 +40,8 @@ app_ui <- function(request) {
         mod_input_limited_choices_ui("input_limited_choices_1")
       )
     )
-  )
+	
+	ui
 }
 
 #' Add external Resources to the Application

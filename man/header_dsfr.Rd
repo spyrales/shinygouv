@@ -11,7 +11,10 @@ header_dsfr(
   titre = NULL,
   nom_site_service = NULL,
   baseline = NULL,
-  class = "fr-container"
+  class = "fr-container",
+  choix_theme = FALSE,
+  logo = NULL,
+  fastlink = NULL
 )
 }
 \arguments{
@@ -26,6 +29,12 @@ header_dsfr(
 \item{baseline}{le texte sous le nom de site/service - optionnel}
 
 \item{class}{un classe a ajouter si necessaire ("fr-m-1w" correspond a une margin de 1w sur tous les cotés) - optionnel, par defaut "fr-container" (centré) (voir le Systeme de design de l'Etat "fondamentaux-techniques/espacements")}
+
+\item{choix_theme}{TRUE/FALSE (default) - afficher modale pour proposer choix theme clair ou sombre dans le header}
+
+\item{logo}{list(url, alttext, style) affichage d'un logo complémentaire optionnel dans le header à droite de la marianne (réservé aux opérateurs). Liste de 3 éléments : \code{url} = chemin vers le logo, \code{alttext} = "nom operateur", \code{style} = css (Exemple de \code{style} : "max-width:10rem;").}
+
+\item{fastlink}{list(list(lib, url, icon, blank)) - optionnel : affichage de liens rapides dans le header. Tous les attributs doivent être remplis pour ajouter un ou des liens rapides (pour les icônes voir https://www.systeme-de-design.gouv.fr/fondamentaux/icone/).}
 }
 \value{
 html
@@ -36,9 +45,18 @@ Vous pouvez ajouter le header officiel dans votre application avec \code{header_
 }
 \examples{
 if(interactive()) {
-  library(shiny)
-  header_dsfr(
-    intitule = c("Pr\u00e9fet", "de", "Bretagne")
+  shiny::shinyApp(
+    ui = fluidPage_dsfr(
+      header = header_dsfr(
+        intitule = c("Pr\u00e9fet", "de", "Bretagne"), 
+        logo = list(url = "https://hubeau.eaufrance.fr/sites/default/files/inline-images/DREALdatalab.jpg",
+                    alttext = "<DREALdatalab/>", style = "max-width:10rem;"),
+        fastlink = list(gh = list(lib = "spyrales/shinygouv", url = "https://github.com/spyrales/shinygouv/",
+                                  icon = "fr-icon-github-fill", blank = FALSE),
+                        ds = list(lib = "demarches num", url = "https://demarche.numerique.gouv.fr/",
+                                  icon = "fr-icon-edit-box-fill", blank = FALSE)))
+    ),
+    server = function(input, output){} 
   )
 }
 }

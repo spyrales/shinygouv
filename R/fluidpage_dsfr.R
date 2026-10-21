@@ -8,8 +8,10 @@
 #' @param theme pas implemente
 #' @param lang pas implemente
 #' @param title titre de la page
-#' @seealso [fluidPage()] fonction shiny originelle
+#' @param dependencies dépendances complémentaires à placer dans la balise head (exemple golem add_resource_path ou htmlDependency). NULL par défaut
 #' @return html
+#' @references inspiré de la fonction [shiny::fluidPage()]
+#' @family structure functions
 #'
 #' @importFrom htmltools tagList
 #'
@@ -38,20 +40,20 @@ fluidPage_dsfr <- function(
   title = NULL,
   footer = NULL,
   theme = NULL,
-  lang = NULL
+  lang = NULL,
+  dependencies = NULL
     ) {
   # TODO theme et lang
   # check les params
   ui <- fluidPage_dsfr_template(
+    dependencies = tagList(add_dsfr_deps(), dependencies),
     header = tagList(header),
     title = tagList(title),
     body = tagList(
       ...
     ),
     footer = footer
-  ) %>%
-    # parse_html(zone = "/html") %>%
-    add_dsfr_deps()
+  ) 
 
   ui
 }
