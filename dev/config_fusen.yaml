@@ -76,6 +76,8 @@ flat_favicon.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_fileInput.Rmd:
   path: dev/flat_composants/flat_fileInput.Rmd
   state: active
@@ -137,6 +139,8 @@ flat_footer.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_header.Rmd:
   path: dev/flat_composants/flat_header.Rmd
   state: active
@@ -154,6 +158,8 @@ flat_header.Rmd:
     check: false
     document: true
     overwrite: ask
+    clean: ask
+    codecov: false
 flat_modal.Rmd:
   path: dev/flat_composants/flat_modal.Rmd
   state: active
@@ -303,7 +309,7 @@ flat_slider.Rmd:
   path: dev/flat_composants/flat_slider.Rmd
   state: active
   R: R/sliderinput_dsfr.R
-  tests: []
+  tests: tests/testthat/test-sliderInput_dsfr.R
   vignettes: []
   inflate:
     flat_file: dev/flat_composants/flat_slider.Rmd
@@ -313,6 +319,29 @@ flat_slider.Rmd:
     document: true
     overwrite: ask
     clean: ask
+    codecov: false
+flat_sous_composants.Rmd:
+  path: dev/flat_composants/flat_sous_composants.Rmd
+  state: active
+  R:
+  - R/choix_theme_template.R
+  - R/logooperator_template.R
+  - R/skiplinks_template.R
+  - R/modaltheme_template.R
+  tests:
+  - tests/testthat/test-choix_theme_template.R
+  - tests/testthat/test-logooperator_template.R
+  - tests/testthat/test-skiplinks_template.R
+  - tests/testthat/test-modaltheme_template.R
+  vignettes: []
+  inflate:
+    flat_file: dev/flat_composants/flat_sous_composants.Rmd
+    vignette_name: .na
+    open_vignette: false
+    check: false
+    document: true
+    overwrite: 'yes'
+    clean: true
     codecov: false
 flat_tableOutput.Rmd:
   path: dev/flat_composants/flat_tableOutput.Rmd

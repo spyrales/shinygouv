@@ -1,7 +1,19 @@
+# shinygouv 1.0.5  
+## Composants  
+* amélioration du style de sliderInput_dsfr  
+* implémentation de wellpanel et sidebarlayout
+* enrichissement du groupe de composants fluidPage/navbarPage/header/footer :
+  - possibilité d'ajouter une modale de sélection du thème (sombre/clair) dans header et footer (mis par défaut dans le footer)
+  - ajout de la possibilité de compléter le header avec des liens rapides et d'y ajouter un logo complémentaire au bloc marque pour les opérateurs de l'Etat
+  - ajout lien d'évitement dans navbarPage et fluidPage (accessibilité)
+
+## Fix  
+* Fix déplacement indésirable des navbarPages : un clic sur les items du menu déplaçait la vue sur le nom de l'onglet et masquait l'entête
+* Fix bug double balises html/head/body lié à l'utilisation de tagList après construction de fluidpage.html
+
 # shinygouv 1.0.4
 
 ## Fix 
-
 * numericInput_dsfr : correction du template qui ne fonctionnait plus avec shiny v1.8.1
 
 # shinygouv 1.0.3

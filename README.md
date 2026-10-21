@@ -10,7 +10,10 @@ Shiny.
 
 Cela leur donnera ce genre de look :
 
-![](man/figures/look_dsfr.png)
+<figure>
+<img src="man/figures/look_dsfr.png" alt="Apercu" />
+<figcaption aria-hidden="true">Apercu</figcaption>
+</figure>
 
 Il s’installe depuis github :
 

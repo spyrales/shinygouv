@@ -137,5 +137,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:updateNumericInput]{shiny::updateNumericInput()}} in Shiny
+\code{\link[shiny:updateNumericInput]{updateNumericInput()}} in Shiny
 }

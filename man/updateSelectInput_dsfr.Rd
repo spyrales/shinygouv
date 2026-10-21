@@ -82,5 +82,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:updateSelectInput]{shiny::updateSelectInput()}} in Shiny
+\code{\link[shiny:updateSelectInput]{updateSelectInput()}} in Shiny
 }

@@ -8,11 +8,21 @@
 \description{
 Components and tools to build or transform shiny applications with the Design System of France.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/spyrales/shinygouv/}
+  \item \url{https://spyrales.github.io/shinygouv/}
+}
+
+}
 \author{
-\strong{Maintainer}: Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr}
+\strong{Maintainer}: Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr} (\href{https://orcid.org/0009-0001-4102-8013}{ORCID})
 
 Authors:
 \itemize{
+  \item Juliette ENGELAERE-LEFEBVRE \email{juliette.engelaere-lefebvre@developpement-durable.gouv.fr} (\href{https://orcid.org/0009-0001-4102-8013}{ORCID})
+  \item Edouard Morin \email{edouard.morin@developpement-durable.gouv.fr} (\href{https://orcid.org/0009-0009-3447-8778}{ORCID})
   \item Sébastien Rochette \email{sebastien@thinkr.fr} (\href{https://orcid.org/0000-0002-1565-9313}{ORCID})
   \item Murielle Delmotte \email{murielle@thinkr.fr} (\href{https://orcid.org/0000-0002-1339-2424}{ORCID})
   \item Cervan Girard \email{cervan@thinkr.fr} (\href{https://orcid.org/0000-0002-4816-4624}{ORCID})

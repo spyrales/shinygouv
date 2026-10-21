@@ -27,7 +27,8 @@ footer_dsfr(
   lien_donnees_personnelles = "#",
   lien_gestion_cookies = "#",
   add_extra_url_body = NULL,
-  add_extra_url_bottom = NULL
+  add_extra_url_bottom = NULL,
+  choix_theme = TRUE
 )
 
 footer_extra_url_body_dsfr(...)
@@ -58,6 +59,8 @@ footer_extra_url_bottom_dsfr(...)
 \item{add_extra_url_body}{url supplementaire a ajouter au corps du pied de page (voir \code{footer_extra_url_body_dsfr()})}
 
 \item{add_extra_url_bottom}{url supplementaire a ajouter au bas du pied de page (voir \code{footer_extra_url_bottom_dsfr()})}
+
+\item{choix_theme}{TRUE (default) / FALSE - afficher le lien modal pour proposer choix mode clair ou sombre dans le header}
 
 \item{id}{un identifiant (optionnel)}
 
@@ -156,8 +159,9 @@ if (interactive()) {
   )
 }
 footer_extra_url_body_dsfr(
-                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
-                footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"))
+  footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body"),
+  footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body")
+)
 footer_extra_url_bottom_dsfr(footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr"))
 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "body")
 footer_li_dsfr(href = "http://siteinternet.fr", texte = "siteinternet.fr", type = "bottom")

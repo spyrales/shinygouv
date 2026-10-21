@@ -66,5 +66,5 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link[shiny:updateRadioButtons]{shiny::updateRadioButtons()}}
+\code{\link[shiny:updateRadioButtons]{updateRadioButtons()}}
 }

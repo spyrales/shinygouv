@@ -47,5 +47,5 @@ radioButtons_dsfr(
 )
 }
 \seealso{
-\code{\link[shiny:radioButtons]{shiny::radioButtons()}}
+\code{\link[shiny:radioButtons]{radioButtons()}}
 }

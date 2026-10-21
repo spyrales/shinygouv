@@ -18,5 +18,5 @@ removeModal_dsfr(
 Faire dispparaitre une modale
 }
 \seealso{
-\code{\link[shiny:showModal]{shiny::removeModal()}} in Shiny
+\code{\link[shiny:removeModal]{removeModal()}} in Shiny
 }
