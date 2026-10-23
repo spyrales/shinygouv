@@ -67,7 +67,7 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 format string, to be passed to the Javascript strftime library. See
 \url{https://github.com/samsonjs/strftime} for more details. The allowed
 format specifications are very similar, but not identical, to those for R's
-\code{\link[base:strftime]{base::strftime()}} function. For Dates, the default is \code{"\%F"}
+\code{\link[base:strptime]{base::strftime()}} function. For Dates, the default is \code{"\%F"}
 (like \code{"2015-07-01"}), and for POSIXt, the default is \code{"\%F \%T"}
 (like \code{"2015-07-01 15:32:10"}).}
 
@@ -137,19 +137,19 @@ shinyApp(ui, server)
 \seealso{
 \code{\link[shiny:updateSliderInput]{updateSliderInput()}}
 
-Other input elements:
-\code{\link[shiny:actionButton]{actionButton()}},
-\code{\link[shiny:checkboxGroupInput]{checkboxGroupInput()}},
-\code{\link[shiny:checkboxInput]{checkboxInput()}},
-\code{\link[shiny:dateInput]{dateInput()}},
-\code{\link[shiny:dateRangeInput]{dateRangeInput()}},
-\code{\link[shiny:fileInput]{fileInput()}},
-\code{\link[shiny:numericInput]{numericInput()}},
-\code{\link[shiny:passwordInput]{passwordInput()}},
-\code{\link[shiny:radioButtons]{radioButtons()}},
-\code{\link[shiny:selectInput]{selectInput()}},
-\code{\link[shiny:submitButton]{submitButton()}},
-\code{\link[shiny:textAreaInput]{textAreaInput()}},
-\code{\link[shiny:textInput]{textInput()}},
-\code{\link[shiny:varSelectInput]{varSelectInput()}}
+Other input elements: 
+\code{\link[shiny]{actionButton}()},
+\code{\link[shiny]{checkboxGroupInput}()},
+\code{\link[shiny]{checkboxInput}()},
+\code{\link[shiny]{dateInput}()},
+\code{\link[shiny]{dateRangeInput}()},
+\code{\link[shiny]{fileInput}()},
+\code{\link[shiny]{numericInput}()},
+\code{\link[shiny]{passwordInput}()},
+\code{\link[shiny]{radioButtons}()},
+\code{\link[shiny]{selectInput}()},
+\code{\link[shiny]{submitButton}()},
+\code{\link[shiny]{textAreaInput}()},
+\code{\link[shiny]{textInput}()},
+\code{\link[shiny]{varSelectInput}()}
 }
