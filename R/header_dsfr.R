@@ -71,6 +71,14 @@ header_dsfr <- function(
   } else {
     links <- ""
   }
+  
+  headertools <- ""
+  if(choix_theme != "" | links[1] != ""){
+    headertools <- htmltools::htmlTemplate(filename = system.file(get_dsfr_version(with_v = TRUE), "composant", "headertools.html",
+                                                                  package = "shinygouv"),
+                                           choix_theme = choix_theme_dom,
+                                           links = links)
+  }
 
   res <- header_dsfr_template(
     class = class,
@@ -80,8 +88,7 @@ header_dsfr <- function(
     titre = titre,
     nom_site_service = nom_site_service,
     baseline = baseline,
-    choix_theme = choix_theme_dom, 
-    link = links
+    headertools = headertools
   ) %>%
     parse_html()
   

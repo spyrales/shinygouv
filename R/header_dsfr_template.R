@@ -7,27 +7,15 @@
 #' @param nom_site_service le nom du site ou du service - optionnel
 #' @param baseline le texte sous le nom de site/service - optionnel
 #' @param class un classe a ajouter si necessaire (".fr-m-1w" pour #TODO) - optionnel
-#' @param choix_theme html modal theme sombre ou clair - optionnel
 #' @param logo html pour intégration logo - optionnel
-#' @param links html liens rapides - optionnel 
+#' @param headertools lien(s) et choix theme
 #' @importFrom htmltools htmlTemplate
 #' @return html
 #' @noRd
 header_dsfr_template <- function(
-    intitule, url, titre, nom_site_service, baseline, class, choix_theme = "", logo = "", links = ""
+    intitule, url, titre, nom_site_service, baseline, class, logo = "", headertools = ""
     ) {
   
-  headertools <- ""
-  if(choix_theme != "" | links != ""){
-    headertools <- htmltools::tagList(htmltools::div(
-      htmltools::div(
-        htmltools::HTML("<ul class=\"fr-btns-group\">",
-          htmltools::HTML(choix_theme),
-          htmltools::HTML(links),"</ul>")
-      , class="fr-header__tools-links")
-    , class="fr-header__tools"))
-  }
-
   htmltools::htmlTemplate(
     filename = system.file(
       get_dsfr_version(with_v = TRUE),
