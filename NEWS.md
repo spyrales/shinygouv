@@ -1,3 +1,7 @@
+# shinygouv 1.0.6
+## Fix
+* correction du header qui laissait la div fr-header__tools vide en l'absence de liens rapides ou de bouton choix thème, faisant planté le chargement du js dsfr.
+
 # shinygouv 1.0.5  
 ## Composants  
 * amélioration du style de sliderInput_dsfr  
