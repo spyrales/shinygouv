@@ -7,15 +7,14 @@
 #' @param nom_site_service le nom du site ou du service - optionnel
 #' @param baseline le texte sous le nom de site/service - optionnel
 #' @param class un classe a ajouter si necessaire (".fr-m-1w" pour #TODO) - optionnel
-#' @param choix_theme html modal theme sombre ou clair - optionnel
 #' @param logo html pour intégration logo - optionnel
-#' @param links html liens rapides - optionnel
+#' @param headertools lien(s) et choix theme
 #' @importFrom htmltools htmlTemplate
 #' @return html
 #' @noRd
 header_dsfr_template <- function(
     intitule, url, titre, nom_site_service, baseline, class, logo = "", headertools = ""
-) {
+    ) {
 
   htmltools::htmlTemplate(
     filename = system.file(
