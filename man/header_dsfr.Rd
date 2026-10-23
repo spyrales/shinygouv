@@ -48,7 +48,7 @@ if(interactive()) {
   shiny::shinyApp(
     ui = fluidPage_dsfr(
       header = header_dsfr(
-        intitule = c("Pr\u00e9fet", "de", "Bretagne"), 
+        intitule = c("Pr\u00e9fet", "de", "Bretagne"),
         logo = list(url = "https://hubeau.eaufrance.fr/sites/default/files/inline-images/DREALdatalab.jpg",
                     alttext = "<DREALdatalab/>", style = "max-width:10rem;"),
         fastlink = list(gh = list(lib = "spyrales/shinygouv", url = "https://github.com/spyrales/shinygouv/",
@@ -56,7 +56,7 @@ if(interactive()) {
                         ds = list(lib = "demarches num", url = "https://demarche.numerique.gouv.fr/",
                                   icon = "fr-icon-edit-box-fill", blank = FALSE)))
     ),
-    server = function(input, output){} 
+    server = function(input, output){}
   )
 }
 }

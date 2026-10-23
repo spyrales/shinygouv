@@ -14,19 +14,8 @@
 #' @return html
 #' @noRd
 header_dsfr_template <- function(
-    intitule, url, titre, nom_site_service, baseline, class, choix_theme = "", logo = "", links = ""
+    intitule, url, titre, nom_site_service, baseline, class, logo = "", headertools = ""
 ) {
-
-  headertools <- ""
-  if(choix_theme != "" | links != ""){
-    headertools <- htmltools::tagList(htmltools::div(
-      htmltools::div(
-        htmltools::HTML("<ul class=\"fr-btns-group\">",
-          htmltools::HTML(choix_theme),
-          htmltools::HTML(links),"</ul>")
-      , class="fr-header__tools-links")
-    , class="fr-header__tools"))
-  }
 
   htmltools::htmlTemplate(
     filename = system.file(
